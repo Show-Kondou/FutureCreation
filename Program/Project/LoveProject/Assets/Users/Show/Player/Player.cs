@@ -6,27 +6,31 @@ using UnityEngine;
 /// <summary>
 /// プレイヤーマスタークラス
 /// </summary>
-public class Player : MonoBehaviour {
+public class Player : ObjectBase {
 
 	#region Member
+	[Header("プレイヤーID"), SerializeField]
+	private static uint		_PlayerID = 0;
 
 	[Header("体力"),SerializeField]
-	private int				m_HitPoint = 100;
+	private int				_HitPoint = 100;
 
 	[Header("移動量"),SerializeField]
 	private float			MOVE_FORCE = 10.0F;
 
-	[Header("カメラ"),SerializeField]
-	private PlayerCamera	m_Camera = null;
-	private Transform		m_CameraTrans;
+	//[Header("カメラ"),SerializeField]
+	private PlayerCamera	_Camera = null;
+	private Transform		_CameraTrans;
 
+	// TODO : ヒットストップ用の各オブジェクトのタイムスケール
+	private float m_TimeScale = 1.0F;
 
 	#endregion	Member
 
 	#region Getter
 
 	public int GetHP { get; set; }
-	public bool IsLife { get { return (m_HitPoint > 0); } }
+	public bool IsLife { get { return (_HitPoint > 0); } }
 
 	#endregion Getter
 
@@ -38,22 +42,20 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Init();
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		Move();	// 移動処理
-
-		// transform.position -= (transform.position - new Vector3( 0.0F, -0.5F, 10.0F )) / 4.0F;
 	}
 
+	protected override void Execute() {
+		Move(); // 移動処理
+	}
 
 	void Init() {
-		if( !m_Camera ) {
+		_PlayerID++;
+		var camera = GetComponentInChildren<PlayerCamera>();
+		if( !camera ) {
 			Debug.LogError("カメラオブジェクト取得失敗");
 		}
-		m_CameraTrans = m_Camera.transform;
+		_Camera = camera;
+		_CameraTrans = _Camera.transform;
 	}
 
 
@@ -62,39 +64,43 @@ public class Player : MonoBehaviour {
 	/// </summary>
 	void Move() {
 		// TODO : input 作成の後
-
 		Vector3 vec = Vector3.zero;	// 移動方向
-		Vector3 move;				// 移動量
+		Vector3 move;               // 移動量
+
+		// Debug.Log( m_CameraTrans.forward );
+
+		Vector3 cameraForward = new Vector3( _CameraTrans.forward.x, 0.0F, _CameraTrans.forward.z );
+		Vector3 cameraRight = new Vector3( _CameraTrans.right.x, 0.0F, _CameraTrans.right.z );
 
 		// 前進
 		if( Input.GetKey( KeyCode.W ) ) {
-			vec += m_CameraTrans.forward;
-			transform.forward = m_CameraTrans.forward;
+			vec += cameraForward;
+			transform.forward = cameraForward;
+
 		}
 		// 後退
 		if( Input.GetKey( KeyCode.S ) ) {
-			vec -= m_CameraTrans.forward;
-			transform.forward = -m_CameraTrans.forward;
+			vec -= cameraForward;
+			transform.forward = -cameraForward;
+
 		}
 		// 左
 		if( Input.GetKey( KeyCode.A ) ) {
-			vec -= m_CameraTrans.right;
-			transform.forward = -m_CameraTrans.right;
+			vec -= cameraRight;
+			transform.forward = -cameraRight;
 		}
 		// 右
 		if( Input.GetKey( KeyCode.D ) ) {
-			vec += m_CameraTrans.right;
-			transform.forward = m_CameraTrans.right;
+			vec += cameraRight;
+			transform.forward = cameraRight;
 		}
 		// 移動量計算
-		move = vec.normalized * MOVE_FORCE * Time.deltaTime;
-		//transform.position += move;
+		move = vec.normalized * MOVE_FORCE * DeltaTime;
+		// プレイヤーに反映
+		// TODO : 滑らか移動にする
 		transform.position += move;
-		// Debug.Log( "Player:" + transform.position );
-		// Debug.Log( "Camera:" + m_CameraTrans.position );
-		// Debug.Log( "Player - Camera:" + (transform.position - m_CameraTrans.position) );
-		m_CameraTrans.position += move;
-		//m_Camera.NextPos = move;
+		// カメラに反映
+		_CameraTrans.position += move;
 	}
 
 }
