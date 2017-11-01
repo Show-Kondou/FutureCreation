@@ -12,6 +12,7 @@ public class PlayerMove : ObjectBase {
 
 	// [Header("移動量"),SerializeField]
 	private float			_MoveForce;
+	private float           _JumpForce;
 
 	// [Header("カメラ"),SerializeField]
 	private PlayerCamera	_Camera = null;
@@ -26,6 +27,10 @@ public class PlayerMove : ObjectBase {
 		get { return _MoveForce; }
 		set { _MoveForce = value; }
 	}
+	public float JumpForce {
+		set { _JumpForce = value; }
+	}
+
 	public PlayerCamera Camera {
 		set { _Camera = value; }
 	}
@@ -95,4 +100,8 @@ public class PlayerMove : ObjectBase {
 		_Camera.NextPosition +=  move;
 	}
 
+
+	void Jump() {
+
+	}
 }
