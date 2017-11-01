@@ -38,6 +38,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4068940071542674}
   - component: {fileID: 114058411097548192}
+  - component: {fileID: 65310434013013320}
   m_Layer: 0
   m_Name: PlayerMove
   m_TagString: Untagged
@@ -222,7 +223,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1014768492164874}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2585, z: -0.13749999}
+  m_LocalPosition: {x: 0, y: -0.2585, z: 0}
   m_LocalScale: {x: 2, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 4665149640869464}
@@ -251,7 +252,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1125830702461656}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.5, z: -0.13749999}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 4665149640869464}
@@ -434,6 +435,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &65310434013013320
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1035875425697836}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: -0.5, z: 0}
 --- !u!65 &65338973783828780
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -486,8 +499,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f49d1fad45924f84eb5b828292d5f517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _PlayerID: 1
   _HitPoint: 100
   _MoveForce: 10
+  _JumpForce: 1
   _TurnForce: 30
 --- !u!124 &124446195231067392
 Behaviour:

@@ -8,9 +8,11 @@ using UnityEngine;
 /// </summary>
 public class PlayerCamera : ObjectBase {
 
-	private float _TurnForce = 30.0F;
+	private float _TurnForce;
 
-	public float TurnForce { get;set; }
+	public float TurnForce {
+		set { _TurnForce = value; }
+	}
 
 	/// <summary>
 	/// 更新
@@ -28,6 +30,7 @@ public class PlayerCamera : ObjectBase {
 
 		if( Input.GetKey( KeyCode.UpArrow ) ) {
 			transform.Rotate( Vector3.right * turnForce );
+			Debug.Log( turnForce );
 		}
 		if( Input.GetKey( KeyCode.DownArrow ) ) {
 			transform.Rotate( Vector3.right * -turnForce );
@@ -38,7 +41,6 @@ public class PlayerCamera : ObjectBase {
 		if( Input.GetKey( KeyCode.RightArrow ) ) {
 			transform.Rotate( Vector3.up * -turnForce, Space.World );
 		}
-		
 	}
 
 

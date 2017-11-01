@@ -12,8 +12,8 @@ public class ObjectBase : MonoBehaviour {
 	private float _timeScale = 1.0F; // 各オブジェクトのタイムスケール
 
 	private Vector3 _NextPosition;  // 次のポジション
-	// [Header("スムーズ値"),SerializeField]
-	private float   _Smooth = 0.1F;	// 滑らかに動かすようにする;
+	[Header("スムーズ値"),SerializeField]
+	private float   _Smooth = 0.5F;	// 滑らかに動かすようにする;
 
 	#endregion Member
 
@@ -69,6 +69,7 @@ public class ObjectBase : MonoBehaviour {
 
 		// 滑らか移動
 		var nowPos = transform.position;
+		//transform.position = _NextPosition;
 		transform.position += (_NextPosition - nowPos) * _Smooth;
 	}
 }

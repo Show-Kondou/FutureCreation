@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : ObjectBase {
-
+	private static uint     _PlayerCount   = 0;
 
 	#region Member
 	// ステータス
 	[Header("プレイヤーID"), SerializeField]
-	private static uint     _PlayerID	= 0;
+	private uint			_PlayerID	=  _PlayerCount ++;
 
 	[Header("体力"),SerializeField]
 	private int             _HitPoint	= 100;
 
 	[Header("移動量"),SerializeField]
 	private float           _MoveForce	= 10.0F;
+
+	[Header( "移動量" ), SerializeField]
+	private float            _JumpForce = 1.0F;
 
 	[Header("カメラ回転量"),SerializeField]
 	private float			_TurnForce	= 30.0F;
@@ -48,12 +51,19 @@ public class Player : ObjectBase {
 		// --- ステータス反映
 		// 移動
 		_Move.MoveForce = _MoveForce;
+		_Move.JumpForce = _JumpForce;
 		_Move.Camera	= _Camera;
 		// カメラ
 		_Camera.TurnForce = _TurnForce;
+
 	}
 
 
+	/// <summary>
+	/// コンポーネント取得簡易関数
+	/// </summary>
+	/// <typeparam name="T">Player系クラス</typeparam>
+	/// <returns>取得したコンポーネント</returns>
 	 T GetPlayerComponent<T>() {
 		T obj = GetComponentInChildren<T>();
 		if( obj == null ) {
