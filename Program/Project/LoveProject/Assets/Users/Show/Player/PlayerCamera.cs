@@ -6,32 +6,39 @@ using UnityEngine;
 /// <summary>
 /// プレイヤー用のカメラ
 /// </summary>
-public class PlayerCamera : MonoBehaviour {
+public class PlayerCamera : ObjectBase {
 
-	private Vector3 m_NextPos;
-	private float   m_Smooth = 100.0F;
+	private float _TurnForce = 30.0F;
 
-	public Vector3 NextPos {
-		set { m_NextPos = value; }
+	public float TurnForce { get;set; }
+
+	/// <summary>
+	/// 更新
+	/// </summary>
+	protected override void Execute() {
+		Move();
 	}
 
-	// Use this for initialization
-	void Start () {
-		m_NextPos = transform.position;
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		// Move();
-	}
-
+	/// <summary>
+	/// カメラ移動
+	/// </summary>
 	void Move() {
-		var pos = transform.position;
-		transform.position = -(m_NextPos - pos) / m_Smooth;
-		////transform.position -= (pos - m_NextPos) / m_Smooth;
-		//Debug.Log( "pos      :" + transform.position );
-		//Debug.Log( "m_NextPos:" + m_NextPos );
+		// 回転力計算
+		float turnForce = _TurnForce * DeltaTime;
+
+		if( Input.GetKey( KeyCode.UpArrow ) ) {
+			transform.Rotate( Vector3.right * turnForce );
+		}
+		if( Input.GetKey( KeyCode.DownArrow ) ) {
+			transform.Rotate( Vector3.right * -turnForce );
+		}
+		if( Input.GetKey( KeyCode.LeftArrow ) ) {
+			transform.Rotate( Vector3.up * turnForce, Space.World );
+		}
+		if( Input.GetKey( KeyCode.RightArrow ) ) {
+			transform.Rotate( Vector3.up * -turnForce, Space.World );
+		}
+		
 	}
 
 
