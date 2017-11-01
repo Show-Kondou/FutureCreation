@@ -2,28 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-/// <summary>
-/// プレイヤーマスタークラス
-/// </summary>
 public class Player : ObjectBase {
 
+
 	#region Member
+	// ステータス
 	[Header("プレイヤーID"), SerializeField]
-	private static uint		_PlayerID = 0;
+	private static uint     _PlayerID	= 0;
 
 	[Header("体力"),SerializeField]
-	private int				_HitPoint = 100;
+	private int             _HitPoint	= 100;
 
 	[Header("移動量"),SerializeField]
-	private float			MOVE_FORCE = 10.0F;
+	private float           _MoveForce	= 10.0F;
 
-	//[Header("カメラ"),SerializeField]
-	private PlayerCamera	_Camera = null;
-	private Transform		_CameraTrans;
+	[Header("カメラ回転量"),SerializeField]
+	private float			_TurnForce	= 30.0F;
 
-	// TODO : ヒットストップ用の各オブジェクトのタイムスケール
-	private float m_TimeScale = 1.0F;
+	//[Header("アイテム右"),SerializeField]
+	//private
+	//[Header("アイテム左"),SerializeField]
+	//private 
+
+	// 関連クラス取得
+	private PlayerMove      _Move		= null;
+	private PlayerCamera    _Camera		= null;
 
 	#endregion	Member
 
@@ -34,73 +37,30 @@ public class Player : ObjectBase {
 
 	#endregion Getter
 
-
-
-	#region Method
-	#endregion	Method
-
-	// Use this for initialization
-	void Start () {
-		Init();
-	}
-
-	protected override void Execute() {
-		Move(); // 移動処理
-	}
-
-	void Init() {
-		_PlayerID++;
-		var camera = GetComponentInChildren<PlayerCamera>();
-		if( !camera ) {
-			Debug.LogError("カメラオブジェクト取得失敗");
-		}
-		_Camera = camera;
-		_CameraTrans = _Camera.transform;
-	}
-
-
 	/// <summary>
-	/// 移動処理
+	/// 初期化関数
 	/// </summary>
-	void Move() {
-		// TODO : input 作成の後
-		Vector3 vec = Vector3.zero;	// 移動方向
-		Vector3 move;               // 移動量
+	private void Awake() {
+		// --- プレイヤー関係クラス取得
+		_Move = GetPlayerComponent<PlayerMove>();
+		_Camera = GetPlayerComponent<PlayerCamera>();
 
-		// Debug.Log( m_CameraTrans.forward );
+		// --- ステータス反映
+		// 移動
+		_Move.MoveForce = _MoveForce;
+		_Move.Camera	= _Camera;
+		// カメラ
+		_Camera.TurnForce = _TurnForce;
+	}
 
-		Vector3 cameraForward = new Vector3( _CameraTrans.forward.x, 0.0F, _CameraTrans.forward.z );
-		Vector3 cameraRight = new Vector3( _CameraTrans.right.x, 0.0F, _CameraTrans.right.z );
 
-		// 前進
-		if( Input.GetKey( KeyCode.W ) ) {
-			vec += cameraForward;
-			transform.forward = cameraForward;
-
+	 T GetPlayerComponent<T>() {
+		T obj = GetComponentInChildren<T>();
+		if( obj == null ) {
+			Debug.LogError( obj.GetType().Name + "の取得失敗" );
+			return default(T);
 		}
-		// 後退
-		if( Input.GetKey( KeyCode.S ) ) {
-			vec -= cameraForward;
-			transform.forward = -cameraForward;
-
-		}
-		// 左
-		if( Input.GetKey( KeyCode.A ) ) {
-			vec -= cameraRight;
-			transform.forward = -cameraRight;
-		}
-		// 右
-		if( Input.GetKey( KeyCode.D ) ) {
-			vec += cameraRight;
-			transform.forward = cameraRight;
-		}
-		// 移動量計算
-		move = vec.normalized * MOVE_FORCE * DeltaTime;
-		// プレイヤーに反映
-		// TODO : 滑らか移動にする
-		transform.position += move;
-		// カメラに反映
-		_CameraTrans.position += move;
+		return obj;
 	}
 
 }
