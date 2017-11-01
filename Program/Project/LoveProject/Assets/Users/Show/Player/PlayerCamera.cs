@@ -27,19 +27,19 @@ public class PlayerCamera : ObjectBase {
 	void Move() {
 		// 回転力計算
 		float turnForce = _TurnForce * DeltaTime;
+		// TODO : 床ずり　＆　カメラとプレイヤーの間のオブジェクト
 
 		if( Input.GetKey( KeyCode.UpArrow ) ) {
 			transform.Rotate( Vector3.right * turnForce );
-			Debug.Log( turnForce );
 		}
 		if( Input.GetKey( KeyCode.DownArrow ) ) {
 			transform.Rotate( Vector3.right * -turnForce );
 		}
 		if( Input.GetKey( KeyCode.LeftArrow ) ) {
-			transform.Rotate( Vector3.up * turnForce, Space.World );
+			transform.Rotate( Vector3.up * -turnForce, Space.World );
 		}
 		if( Input.GetKey( KeyCode.RightArrow ) ) {
-			transform.Rotate( Vector3.up * -turnForce, Space.World );
+			transform.Rotate( Vector3.up * turnForce, Space.World );
 		}
 	}
 

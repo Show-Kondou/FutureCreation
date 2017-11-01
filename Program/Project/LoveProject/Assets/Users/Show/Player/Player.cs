@@ -44,18 +44,24 @@ public class Player : ObjectBase {
 	/// 初期化関数
 	/// </summary>
 	private void Awake() {
+		Init();
+	}
+
+	private void OnValidate() {
+		Init();
+	}
+
+	private void Init() {
 		// --- プレイヤー関係クラス取得
 		_Move = GetPlayerComponent<PlayerMove>();
 		_Camera = GetPlayerComponent<PlayerCamera>();
-
 		// --- ステータス反映
 		// 移動
 		_Move.MoveForce = _MoveForce;
 		_Move.JumpForce = _JumpForce;
-		_Move.Camera	= _Camera;
+		_Move.Camera = _Camera;
 		// カメラ
 		_Camera.TurnForce = _TurnForce;
-
 	}
 
 
@@ -64,7 +70,7 @@ public class Player : ObjectBase {
 	/// </summary>
 	/// <typeparam name="T">Player系クラス</typeparam>
 	/// <returns>取得したコンポーネント</returns>
-	 T GetPlayerComponent<T>() {
+	T GetPlayerComponent<T>() {
 		T obj = GetComponentInChildren<T>();
 		if( obj == null ) {
 			Debug.LogError( obj.GetType().Name + "の取得失敗" );
