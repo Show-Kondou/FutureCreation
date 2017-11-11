@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1867328433063620}
+  m_IsPrefabParent: 1
+--- !u!1 &1867328433063620
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4999243836670838}
+  - component: {fileID: 114561813074737130}
+  m_Layer: 0
+  m_Name: MarbleChoco
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4999243836670838
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1867328433063620}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 3.822754, y: -4.6588516, z: -3.4458313}
+  m_LocalScale: {x: 1, y: 0.6312657, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114561813074737130
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1867328433063620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 305476ca9ba107943a1b70eeafab60f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  breakHp: 4
+  attackPoint: 20
+  healPoint: 10
+  id: 2
+  isShoot: 0
+  bulletPrefab:
+  - {fileID: 1164067954114468, guid: 9d30d9ef91c9ae04dab0df6347cc1699, type: 2}
+  - {fileID: 1122035579133258, guid: d3b46b64c07376343bd3ccc5f03497c6, type: 2}
