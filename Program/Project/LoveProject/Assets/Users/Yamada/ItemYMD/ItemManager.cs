@@ -21,7 +21,7 @@ public class ItemManager : MonoBehaviour {
 
 	#region Singleton
         static ItemManager instance;
-        static ItemManager Instance{
+        public static ItemManager Instance{
             get{
                 if (!instance){
                     instance = FindObjectOfType<ItemManager>();
@@ -40,29 +40,62 @@ public class ItemManager : MonoBehaviour {
 
 
 	#region	Member
-	List<GameObject> prefab = new List<GameObject>();	//	お菓子のプレハブのリスト
-	public MultiDictionary<ItemID, GameObject> itemPool;   //	インスタンスを格納するプール
+
+	//	お菓子が与えるダメージ値のテーブル
+	//	盾にしか必要ないかも....Managerにいらない？
+	[NamedArrayAttribute(new string[] { "ポッキー", "うまい棒", "マーブルチョコ", "飴玉", "クッキー", "せんべい" })]
+	public int[] ItemDamageTable = { 30, 40, 20, 35, 0, 0 };
+
+
+	//	お菓子のプレハブのテーブル
+	[NamedArrayAttribute(new string[] { "ポッキー", "うまい棒", "マーブルチョコ", "飴玉", "クッキー", "せんべい" })]
+	public GameObject[] prefab = new GameObject[6];
+	
+
+	//	インスタンスを格納するプール
+	public MultiDictionary<ItemID, GameObject> itemPool;
+	
 	#endregion	Member
 
 
 	#region Method
 
+
+	void Start(){
+		//	プールの生成
+		if (itemPool == null)
+			itemPool = new MultiDictionary<ItemID, GameObject>();
+
+		//	初期のアイテムストック生成
+		//	6種類を5個ずつ非表示で生成しておく
+		for(int item_id = 0; item_id < 6; item_id++){
+			for (int item_num = 0; item_num < 5; item_num++) {
+				var item_obj = Pop((ItemID)item_id, transform.position);
+				item_obj.SetActive(false);	//	非表示へ
+			}
+		}
+	}
+
+
 	///<param>
 	///	オブジェクト生成
-	///	prefab	:生成するプレハブ
+	///	id	:生成するプレハブのID
 	///	pos		:生成する座標
 	///</param>
 	public GameObject Pop(ItemID id, Vector3 pos){
 
 		//	インスタンス生成
 		var item_obj = (GameObject)Instantiate(prefab[(int)id], pos, Quaternion.identity);
+		item_obj.GetComponent<Item>().ID = id;	//	IDを設定
+		item_obj.transform.parent = transform;//	プールの子要素にする
+		itemPool.Add(id, item_obj);	//	リストに追加
 
 		return item_obj;
 	}
 	
 
 	///<param>
-	///	再使用(再使用可能なものがなければ、生成)
+	///	再使用可能オブジェクトを返す。(再使用可能なものがなければ、生成)
 	///	id		:再使用したいお菓子のID
 	///	pos		:再使用位置
 	///</param>
@@ -75,6 +108,10 @@ public class ItemManager : MonoBehaviour {
 			if (itemPool.ContainsKey(id) == false) {
 				//	生成する
 				obj = (GameObject)Instantiate(prefab[(int)id], pos, Quaternion.identity);
+			
+				//	IDを設定
+				obj.GetComponent<Item>().ID = id;
+
 				//	プールの子要素にする
 				obj.transform.parent = transform;
 
@@ -84,10 +121,13 @@ public class ItemManager : MonoBehaviour {
 
 
 			List<GameObject> gameObjects = itemPool[id];
+			
 
 			//	使用可能オブジェクト検索ループ
 			for (int i = 0; i < gameObjects.Count; i++) {
 				obj = gameObjects[i];
+				
+				if(obj == null) continue;
 
 				//	非アクティブであれば
 				if (obj.activeInHierarchy == false) {

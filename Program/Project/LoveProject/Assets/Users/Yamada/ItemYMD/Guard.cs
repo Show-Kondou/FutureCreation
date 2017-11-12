@@ -4,16 +4,24 @@ using UnityEngine;
 
 public class Guard : Item {
 
+
+
+
+
+
 	//	固有動作
 	public override void Action(){
-		
+		isUse = true;
 	}
 
 
 
-	public override void EatItem(){
+	public override uint EatItem(){
 		//TODO:	食べられた時の処理
+		return HealPoint;
 	}
+
+
 
 
 
@@ -21,9 +29,34 @@ public class Guard : Item {
 	void OnTriggerEnter(Collider other){
 
 		//TODO:	とりあえず当たったかをテスト。
-		Debug.Log(this.name + "は" + other.gameObject.name + "と当たった！");
+		//Debug.Log(this.name + "は" + other.gameObject.name + "と当たった！");
 
-		//TODO:	耐久度の減少
-		//		壊れるとかの処理など
+		//	拾われている
+		if(isHave){
+			
+			//	使用中の判定
+			if(isUse == false) return;
+
+			//	アイテムとの判定のみ
+			if(other.gameObject.tag == "Item"){
+
+				//	識別IDを　int　で取得 
+				var id = (int)other.gameObject.GetComponent<Item>().ID;
+				//	受けるダメージを、 ItemManager の持つ ダメージ値格納テーブル から取得
+				var damage = ItemManager.Instance.ItemDamageTable[id];
+				//	耐久値 から ダメージ を 引く
+				breakHp -= damage;
+			}
+
+		}else{
+		//	落ちている
+
+			//	プレイヤーと接触
+			if(other.gameObject.tag == "Player"){
+				isHave = true;	//	拾われた
+				this.gameObject.SetActive(false);
+			}
+		}
+
 	}
 }

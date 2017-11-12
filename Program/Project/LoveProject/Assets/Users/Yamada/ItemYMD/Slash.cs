@@ -20,25 +20,77 @@ public class Slash : Item {
 
 
 
-	//	固有動作
+	/// <summary>
+	/// 
+	/// </sammary>
 	public override void Action(){
-
+		//Debug.Log(id + "の固有動作");
+		isUse = true;
 	}
 
 
-
-	public override void EatItem(){
+	/// <summary>
+	/// 
+	/// </sammary>
+	public override uint EatItem(){
 		//TODO:	食べられた時の処理
+		return HealPoint;
 	}
 
 
 
-	//	衝突検知
+	/// <summary>
+	/// 衝突検知
+	/// </sammary>
 	void OnTriggerEnter(Collider other){
 
-		//TODO:	とりあえず当たったかをテスト。
-		Debug.Log(this.name + "は" + other.gameObject.name + "と当たった！");
+		//	とりあえず当たったかをテスト。
+		//Debug.Log(this.name + "は" + other.gameObject.name + "と当たった！");
 
-		//TODO:	耐久度の減少
+		
+		//	拾われている
+		if(isHave){
+
+			//	使用中の判定
+			if(isUse == false) return;
+
+			//	盾アイテム、またはプレイヤーのみ判定
+			var other_tag = other.gameObject.tag;
+
+			//	タグで分岐
+			if(other_tag == "Item"){//	アイテムとの判定
+
+				//	当たったオブジェクトがアイテムだった時、識別IDを取得
+				var other_id = other.gameObject.GetComponent<Item>().ID;
+
+				//	IDで分岐
+				switch(other_id){
+					//	クッキー
+					case ItemManager.ItemID.Cookie:
+						breakHp -= 1;	//	回数指定なのでマジックナンバーのまま
+					break;
+
+					//	せんべい
+					case ItemManager.ItemID.Senbei:
+						breakHp -= 1;	//	回数指定なのでマジックナンバーのまま
+					break;
+				}
+
+			}else if(other_tag == "Player"){//	プレイヤーとの判定
+				breakHp -= 1;	//	回数指定なのでマジックナンバーのまま
+			}
+
+		}else{
+		//	落ちている
+
+			//	プレイヤーと接触
+			if(other.gameObject.tag == "Player"){
+				isHave = true;	//	拾われた
+				this.gameObject.SetActive(false);
+			}
+
+		}
+
 	}
+
 }
