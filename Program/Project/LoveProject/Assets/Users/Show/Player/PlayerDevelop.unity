@@ -335,26 +335,6 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8928ed145e7492d47be118b3a26fa2f8, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1290690497 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1035875425697836, guid: 6a4e65b75f752cd4184bd5b652d1193a,
-    type: 2}
-  m_PrefabInternal: {fileID: 1485549219}
---- !u!54 &1290690501
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1290690497}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 122
-  m_CollisionDetection: 0
 --- !u!1001 &1485549219
 Prefab:
   m_ObjectHideFlags: 0
@@ -412,6 +392,11 @@ Prefab:
         type: 2}
       propertyPath: _TurnForce
       value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 114111425684587962, guid: 6a4e65b75f752cd4184bd5b652d1193a,
+        type: 2}
+      propertyPath: _MoveForce
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6a4e65b75f752cd4184bd5b652d1193a, type: 2}
@@ -471,7 +456,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1996390205357122, guid: 6a4e65b75f752cd4184bd5b652d1193a, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114111425684587962, guid: 6a4e65b75f752cd4184bd5b652d1193a,
+        type: 2}
+      propertyPath: _Smooth
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114111425684587962, guid: 6a4e65b75f752cd4184bd5b652d1193a,
+        type: 2}
+      propertyPath: _MoveForce
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6a4e65b75f752cd4184bd5b652d1193a, type: 2}

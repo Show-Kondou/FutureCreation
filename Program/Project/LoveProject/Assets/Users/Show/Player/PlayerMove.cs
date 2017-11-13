@@ -6,17 +6,25 @@ using UnityEngine;
 /// <summary>
 /// プレイヤーマスタークラス
 /// </summary>
-public class PlayerMove : ObjectBase {
+[RequireComponent( typeof( Rigidbody ) )]
+public class PlayerMove : ObjectTime {
+
 
 	#region Member
-
-	// [Header("移動量"),SerializeField]
+	private uint            _PlayerID;
+	// 移動量
 	private float			_MoveForce;
+	// ジャンプ量
 	private float           _JumpForce;
+	// ジャンプフラグ
+	private bool            _IsJumping = false;
 
 	// [Header("カメラ"),SerializeField]
 	private PlayerCamera	_Camera = null;
 	private Transform		_CameraTrans;
+	private Rigidbody       _Rigid;
+
+
 
 
 	#endregion	Member
@@ -35,27 +43,43 @@ public class PlayerMove : ObjectBase {
 		set { _Camera = value; }
 	}
 
+	public uint PlayerID {
+		set { _PlayerID = value; }
+	}
+
 	#endregion Accessor
 
 
 
 	#region Method
 	#endregion	Method
-
-	// Use this for initialization
-	void Start () {
+	/// <summary>
+	/// 初期化イベント
+	/// </summary>
+	private void Start() {
 		Init();
 	}
 
-	protected override void Execute() {
-		Move(); // 移動処理
-	}
 
+	/// <summary>
+	/// 初期化
+	/// </summary>
 	void Init() {
 		if( !_Camera ) {
 			Debug.LogError("カメラオブジェクト取得失敗");
+			return;
 		}
 		_CameraTrans = _Camera.transform;
+		_Rigid = GetComponent<Rigidbody>();
+	}
+
+
+	/// <summary>
+	/// 更新
+	/// </summary>
+	protected override void Execute() {
+		Move(); // 移動処理
+		Jump();
 	}
 
 
@@ -63,45 +87,40 @@ public class PlayerMove : ObjectBase {
 	/// 移動処理
 	/// </summary>
 	void Move() {
-		// TODO : input 作成の後
-		Vector3 vec = Vector3.zero;	// 移動方向
-		Vector3 move;               // 移動量
+		// 最終ベクトル
+		Vector3 vec = Vector3.zero;
+		// 入力取得
+		Vector3 input = InputGame.GetPlayerMove( _PlayerID );
 
-		// Debug.Log( m_CameraTrans.forward );
-
+		// カメラの方向
 		Vector3 cameraForward = new Vector3( _CameraTrans.forward.x, 0.0F, _CameraTrans.forward.z );
 		Vector3 cameraRight = new Vector3( _CameraTrans.right.x, 0.0F, _CameraTrans.right.z );
 
-		// 前進
-		if( Input.GetKey( KeyCode.W ) ) {
-			vec += cameraForward;
-			transform.forward = cameraForward;
-		}
-		// 後退
-		if( Input.GetKey( KeyCode.S ) ) {
-			vec -= cameraForward;
-			transform.forward = -cameraForward;
-		}
-		// 左
-		if( Input.GetKey( KeyCode.A ) ) {
-			vec -= cameraRight;
-			transform.forward = -cameraRight;
-		}
-		// 右
-		if( Input.GetKey( KeyCode.D ) ) {
-			vec += cameraRight;
-			transform.forward = cameraRight;
-		}
+		// 移動方向計算
+		vec += cameraForward * input.z;
+		vec += cameraRight * input.x;
+
+		// 移動方向に向く
+		if( vec.magnitude > 0.0F )
+			transform.forward = vec.normalized;
+
 		// 移動量計算
-		move = vec.normalized * _MoveForce * DeltaTime;
-		// プレイヤーに反映
-		NextPosition += move;
-		// カメラに反映
-		_Camera.NextPosition +=  move;
+		Vector3 move = vec.normalized * _MoveForce * DeltaTime;
+		// 移動
+		_Rigid.velocity = move;
 	}
 
 
-	void Jump() {
-
+	/// <summary>
+	/// ジャンプ
+	/// </summary>
+	private void Jump() {
+		bool checkJump = Input.GetKeyDown( KeyCode.Space ) &&
+						 !_IsJumping;
+		if( checkJump ) {
+			_Rigid.AddForce( Vector3.up * _JumpForce );
+		}
 	}
+
+
 }
