@@ -5,27 +5,24 @@ using UnityEngine;
 public class Slash : Item {
 
 
+	void Start(){
+		mesh = GetComponent<MeshRenderer>();
+		coll = GetComponent<Collider>();
+	}
+	
 	void Update(){
 
-		//	テスト動作
-		{
-			if(Input.GetKeyDown(KeyCode.Alpha9)){
-				transform.rotation = Quaternion.Euler(0,90,0);
-			}
-			var to_rot = Quaternion.Euler(120,90,0);
-			transform.rotation = Quaternion.Slerp(transform.rotation, to_rot, Time.deltaTime * 4.5f);
-		}
-
 	}
-
 
 
 	/// <summary>
 	/// 
 	/// </sammary>
 	public override void Action(){
-		//Debug.Log(id + "の固有動作");
-		isUse = true;
+		IsActive = true;	//	表示する
+		/*
+			ここに剣アイテムの固有動作
+		 */
 	}
 
 
@@ -43,52 +40,35 @@ public class Slash : Item {
 	/// 衝突検知
 	/// </sammary>
 	void OnTriggerEnter(Collider other){
-
-		//	とりあえず当たったかをテスト。
-		//Debug.Log(this.name + "は" + other.gameObject.name + "と当たった！");
-
 		
-		//	拾われている
-		if(isHave){
+		if(isPicked == false) return;//	落ちているときは処理しない
 
-			//	使用中の判定
-			if(isUse == false) return;
+		//	盾アイテム、またはプレイヤーのみ判定
+		var other_tag = other.gameObject.tag;
 
-			//	盾アイテム、またはプレイヤーのみ判定
-			var other_tag = other.gameObject.tag;
+		//	タグで分岐
+		if(other_tag == "Item"){//	アイテムとの判定
 
-			//	タグで分岐
-			if(other_tag == "Item"){//	アイテムとの判定
+			//	当たったオブジェクトがアイテムだった時、アイテムを取得
+			var item = other.gameObject.GetComponent<Item>();
 
-				//	当たったオブジェクトがアイテムだった時、識別IDを取得
-				var other_id = other.gameObject.GetComponent<Item>().ID;
+			if(item.IsPicked == false) return;// 相手が、落ちているオブジェクトなら判定しない
 
-				//	IDで分岐
-				switch(other_id){
-					//	クッキー
-					case ItemManager.ItemID.Cookie:
-						breakHp -= 1;	//	回数指定なのでマジックナンバーのまま
-					break;
+			//	IDで分岐
+			switch(item.ID){
+				//	クッキー
+				case ItemManager.ItemType.Cookie:
+					SubBreakHP(1);	//	耐久値の減少
+				break;
 
-					//	せんべい
-					case ItemManager.ItemID.Senbei:
-						breakHp -= 1;	//	回数指定なのでマジックナンバーのまま
-					break;
-				}
-
-			}else if(other_tag == "Player"){//	プレイヤーとの判定
-				breakHp -= 1;	//	回数指定なのでマジックナンバーのまま
+				//	せんべい
+				case ItemManager.ItemType.Senbei:
+					SubBreakHP(1);	//	耐久値の減少
+				break;
 			}
 
-		}else{
-		//	落ちている
-
-			//	プレイヤーと接触
-			if(other.gameObject.tag == "Player"){
-				isHave = true;	//	拾われた
-				this.gameObject.SetActive(false);
-			}
-
+		}else if(other_tag == "Player"){//	プレイヤーとの判定
+			SubBreakHP(1);	//	耐久値の減少
 		}
 
 	}

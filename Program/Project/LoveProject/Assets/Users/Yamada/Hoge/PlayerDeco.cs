@@ -26,7 +26,7 @@ public class PlayerDeco : MonoBehaviour {
 
 			var pop_pos = transform.position;
 			pop_pos.z += 1;
-			pockyObj = ItemManager.Instance.GetGameObject(ItemManager.ItemID.Pocky, pop_pos);
+			pockyObj = ItemManager.Instance.GetGameObject(ItemManager.ItemType.Pocky, pop_pos);
 
 		}
 		//	キーボード　２
@@ -34,7 +34,7 @@ public class PlayerDeco : MonoBehaviour {
 			
 			var pop_pos = transform.position;
 			pop_pos.z += 1;
-			ItemManager.Instance.GetGameObject(ItemManager.ItemID.DeliciousBar, pop_pos);
+			ItemManager.Instance.GetGameObject(ItemManager.ItemType.DeliciousBar, pop_pos);
 
 		}
 		//	キーボード　３
@@ -42,7 +42,7 @@ public class PlayerDeco : MonoBehaviour {
 			
 			var pop_pos = transform.position;
 			pop_pos.z += 1;
-			ItemManager.Instance.GetGameObject(ItemManager.ItemID.MarbleChoco, pop_pos);
+			ItemManager.Instance.GetGameObject(ItemManager.ItemType.MarbleChoco, pop_pos);
 
 		}
 		//	キーボード　４
@@ -50,7 +50,7 @@ public class PlayerDeco : MonoBehaviour {
 			
 			var pop_pos = transform.position;
 			pop_pos.z += 1;
-			ItemManager.Instance.GetGameObject(ItemManager.ItemID.Candy, pop_pos);
+			ItemManager.Instance.GetGameObject(ItemManager.ItemType.Candy, pop_pos);
 
 		}
 		//	キーボード　５
@@ -58,7 +58,7 @@ public class PlayerDeco : MonoBehaviour {
 			
 			var pop_pos = transform.position;
 			pop_pos.z += 1;
-			ItemManager.Instance.GetGameObject(ItemManager.ItemID.Cookie, pop_pos);
+			ItemManager.Instance.GetGameObject(ItemManager.ItemType.Cookie, pop_pos);
 
 		}
 		//	キーボード　６
@@ -66,7 +66,7 @@ public class PlayerDeco : MonoBehaviour {
 			
 			var pop_pos = transform.position;
 			pop_pos.z += 1;
-			ItemManager.Instance.GetGameObject(ItemManager.ItemID.Senbei, pop_pos);
+			ItemManager.Instance.GetGameObject(ItemManager.ItemType.Senbei, pop_pos);
 
 		}
 
@@ -74,14 +74,14 @@ public class PlayerDeco : MonoBehaviour {
 		//	Shoot呼び出し
 		{
 			if(Input.GetKeyDown(KeyCode.A)){
-				candyObj = ItemManager.Instance.GetGameObject(ItemManager.ItemID.Candy, transform.position);
+				candyObj = ItemManager.Instance.GetGameObject(ItemManager.ItemType.Candy, transform.position);
 			}
 			if(Input.GetKeyDown(KeyCode.B)){
 				candyObj.GetComponent<Item>().Action();
 			}
 			
 			if(Input.GetKeyDown(KeyCode.P)){
-				pockyObj = ItemManager.Instance.GetGameObject(ItemManager.ItemID.Pocky, transform.position);
+				pockyObj = ItemManager.Instance.GetGameObject(ItemManager.ItemType.Pocky, transform.position);
 				pockyObj.GetComponent<Item>().Action();
 			}
 		}

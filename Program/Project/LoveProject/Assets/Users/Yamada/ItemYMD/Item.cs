@@ -17,33 +17,60 @@ public abstract class Item : MonoBehaviour
 	protected uint healPoint;     //	回復量
 
 	[Header("ID"), SerializeField]
-	protected ItemManager.ItemID id;	//	アイテムの識別ID
+	protected ItemManager.ItemType id;	//	アイテムの識別ID
 
+	protected MeshRenderer mesh;	//	メッシュレンダラー
+	protected Collider coll;		//	コライダー
 
 	//	状態のフラグ管理群
-	protected bool isHave = false;      //	拾われているか(落ちているか、所持しているか)
-	protected bool isUse = false;       //	使っているか(武器・防具として使用しているか)
-	public bool IsActiveItem { get { return (isHave && isUse); } }	//	持っていて、使用している時のみtrueを返却
+	protected bool isPicked = false;      // 拾われた
+	protected bool isUsing = false;       // 使っているか(武器・防具として使用しているか)
 
 
-	//	プロパティ
+	//	アクセサ
 	public int BreakHP { get { return breakHp; } }
+	public bool IsBreak{
+			get{
+				if(breakHp <= 0) 
+					return true;
+				else return false;
+			}
+		}
 	public float AttackPoint { get { return attackPoint; } }
 	public uint HealPoint { get { return healPoint; } }
-	public ItemManager.ItemID ID { get { return id; } set { id = value; } }
+	public ItemManager.ItemType ID { get { return id; } set { id = value; } }
+	public bool IsActive {	get{return mesh.enabled && coll.enabled;} set{mesh.enabled = coll.enabled = value;}}
+	public bool IsPicked { get{return isPicked;} }
+	public bool IsUsing { get{return isUsing;} }
+
 
 
 	//	メソッド
-	public abstract void Action();
 
-	public abstract uint EatItem();
+	//	仮想
+	public abstract void Action();	//	固有動作
+	public abstract uint EatItem();	//	食べられた
 
+	/// <summary>
+	/// 拾われた
+	/// </sammary>
+	public void Chatch(){
+		//	表示を切る
+		IsActive = false;
+		//	拾われたことにする
+		isPicked = true;
+	}
+
+
+	/// <summary>
+	/// 耐久値の減少処理
+	/// </sammary>
 	public void SubBreakHP(int value){
-		if(breakHp <= 0){
-			//TODO:	耐久度ゼロ以下の処理
-		}else{
-			breakHp -= value;   //	耐久度を減らす
-		}
+		
+		breakHp -= value;   //	耐久度を減らす
+		if(breakHp <= 0)
+			gameObject.SetActive(false);
+
 	}
 
 }

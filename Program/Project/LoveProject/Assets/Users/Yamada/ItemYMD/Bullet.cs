@@ -8,13 +8,12 @@ public class Bullet : Item {
 
 	#region Member
 
-	//[Header("ID"), SerializeField]
-	//ItemManager.ItemID id;	//	アイテムの識別ID
-
 	bool isAction = false;	//	飛んでいくよ
 
 	[SerializeField]
 	float speed = 2;	//	飛んでくスピード
+
+	Vector3 target;
 	
 	float hogecount = 0;	//	テスト用
 
@@ -38,7 +37,7 @@ public class Bullet : Item {
 			hogecount += 1 * Time.deltaTime;
 			if(hogecount >= 5){
 				hogecount = 0;
-				ItemManager.Instance.NotActive(this.gameObject);
+				ItemManager.Instance.NotActive(this);
 			}
 		}
 	}
@@ -48,7 +47,7 @@ public class Bullet : Item {
 	/// 
 	/// </sammary>
 	public override void Action(){
-		Debug.LogError("Bullet.Action()ここは呼ばれないはずよ");
+		Debug.LogError("Bullet.cs Action()ここは呼ばれないはずよ");
 	}
 
 	
@@ -57,7 +56,7 @@ public class Bullet : Item {
 	/// 
 	/// </sammary>
 	public override uint EatItem(){
-		Debug.LogError("Bullet.EatItem()ここは呼ばれないはずよ");
+		Debug.LogError("Bullet.cs EatItem()ここは呼ばれないはずよ");
 		return healPoint;
 	}
 	
@@ -65,9 +64,10 @@ public class Bullet : Item {
 	/// <summary>
 	/// 
 	/// </sammary>
-	public void ActionBullet(){
-		isAction = true;
-		isUse = true;
+	public void ActionBullet(Vector3 _target){
+		isAction = true;	//	行動可能
+		target = _target;	//	飛んでく目標
+		transform.LookAt(target);
 	}
 
 
@@ -77,51 +77,33 @@ public class Bullet : Item {
 	/// </sammary>
 	void OnTriggerEnter(Collider other){
 
-		//	とりあえず当たったかをテスト。
-		//Debug.Log(this.name + "は" + other.gameObject.name + "と当たった！");
+		//	盾アイテム、またはプレイヤーのみ判定
+		var other_tag = other.gameObject.tag;
 
-		
-		//	拾われている
-		if(isHave){
+		//	タグで分岐
+		if(other_tag == "Item"){//	アイテム
 
-			//	使用中の判定
-			if(isUse == false) return;
+			//	当たったオブジェクトがアイテムだった時、アイテム取得
+			var item = other.gameObject.GetComponent<Item>();
 
-			//	盾アイテム、またはプレイヤーのみ判定
-			var other_tag = other.gameObject.tag;
+			if(item.IsPicked == false) return;// 相手が、落ちているオブジェクトなら判定しない
 
-			//	タグで分岐
-			if(other_tag == "Item"){//	アイテム
-
-				//	当たったオブジェクトがアイテムだった時、識別IDを取得
-				var other_id = other.gameObject.GetComponent<Item>().ID;
-
-				//	IDで分岐
-				switch(other_id){
-					//	クッキー
-					case ItemManager.ItemID.Cookie:
-						gameObject.SetActive(false);	//	非表示へ
-					break;
-					
-					//	せんべい
-					case ItemManager.ItemID.Senbei:
-						gameObject.SetActive(false);	//	非表示へ
-					break;
-				}
-			}else if(other_tag == "Player"){//	プレイヤー
-				gameObject.SetActive(false);	//	非表示へ
+			//	IDで分岐
+			switch(item.ID){
+				//	クッキー
+				case ItemManager.ItemType.Cookie:
+					gameObject.SetActive(false);	//	非表示へ
+				break;
+				
+				//	せんべい
+				case ItemManager.ItemType.Senbei:
+					gameObject.SetActive(false);	//	非表示へ
+				break;
 			}
-
-		}else{
-		//	落ちている
-		
-			//	プレイヤーと接触
-			if(other.gameObject.tag == "Player"){
-				isHave = true;	//	拾われた
-				this.gameObject.SetActive(false);
-			}
-
+		}else if(other_tag == "Player"){//	プレイヤー
+			gameObject.SetActive(false);	//	非表示へ
 		}
+
 
 
 	}
