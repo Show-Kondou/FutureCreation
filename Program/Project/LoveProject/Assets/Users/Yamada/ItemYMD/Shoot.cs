@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//	空のオブジェクトにコンポーネント？
+
 //	弾の親オブジェクトクラス
 public class Shoot : Item{
 
 	#region Member
 
-	/*[SerializeField]*/public Vector3 target{get; set;}	//	飛んでいく対象座標
+	Vector3 target;	//	飛んでいく対象座標
+	public Vector3 Target{get{return target;} set{target = value;}}
 
 	//	親が弾オブジェクトを生成するため
-	[NamedArrayAttribute(new string[] { "マーブルチョコ", "飴玉" })]
-	public GameObject[] bulletPrefab = new GameObject[2];	//	弾Prefabの格納テーブル
-	int createObjNum = 0;	//	生成するPrefabの番号
+	[Header("弾プレハブ")]
+	public GameObject bulletPrefab;	//	弾Prefabの格納テーブル
 
 	//	弾オブジェクトの格納リスト
 	List<GameObject> bulletList = new List<GameObject>();
@@ -32,24 +32,24 @@ public class Shoot : Item{
 	#region Method
 
 	void Start(){
+		mesh = GetComponent<MeshRenderer>();
+		coll = GetComponent<Collider>();
+
 		//	必要な弾数を生成
 		//	生成する弾の数を決める。　マーブルは４、飴玉は２
-		if(this.ID == ItemManager.ItemID.MarbleChoco){
+		if(this.ID == ItemManager.ItemType.MarbleChoco){
 			MaxBullet = ChocoBulletNum;
-			createObjNum = 0;
 
-		}else if(this.ID == ItemManager.ItemID.Candy){
+		}else if(this.ID == ItemManager.ItemType.Candy){
 			MaxBullet = CandyBulletNum;
-			createObjNum = 1;
 		}
-		//	弾生成ループ
-		for(int cnt = 0; cnt < MaxBullet; cnt++){
-			//	作って、子にして、表示オフ
-			bulletList.Add((GameObject)Instantiate(bulletPrefab[(int)createObjNum], transform.position, Quaternion.identity));
-			bulletList[cnt].transform.parent = transform;
-			bulletList[cnt].SetActive(false);
+
+		//	生成、子にする、非表示
+		for (int index = 0; index < MaxBullet; index++) {
+			bulletList.Add((GameObject)Instantiate(bulletPrefab, transform));
+			bulletList[index].transform.parent = transform;
+			bulletList[index].SetActive(false);
 		}
-		bulletList[currentBulletList].SetActive(true);	//	落ちているときに実体が必要
 	}
 
 	void Update(){
@@ -66,15 +66,21 @@ public class Shoot : Item{
 	public override void Action(){
 		//	子の弾の行動開始呼び出し
 		//	使用可能弾数オーバーチェック
-		if(currentBulletList >= MaxBullet) return;
+		if(currentBulletList >= MaxBullet) {
+			breakHp = 0;
+			gameObject.SetActive(false);	//	弾が尽きたので消す
+			return;
+		}
+
 		
 		//	使用する弾を、アクティブ化
 		bulletList[currentBulletList].SetActive(true);
 		//	弾の行動開始
-		bulletList[currentBulletList].GetComponent<Bullet>().ActionBullet();
+		bulletList[currentBulletList].GetComponent<Bullet>().ActionBullet(target);
+		//	親子関係の解除
+		bulletList[currentBulletList].transform.parent = null;
 		CurrentUp();
 		
-		isUse = true;
 	}
 
 

@@ -10,6 +10,7 @@ public class PlayerDeco : MonoBehaviour {
 
 	public GameObject candyPrefab = null;
 	GameObject candyObj = null;
+	GameObject pockyObj = null;
 	public Vector3 targetPos;
 
 	// Use this for initialization
@@ -22,30 +23,70 @@ public class PlayerDeco : MonoBehaviour {
 		
 		//	キーボード　１
 		if(Input.GetKeyDown(KeyCode.Alpha1)){
-			Debug.Log("key-1");
 
-			//TODO:	candyの生成
-			if(candyObj) return;
 			var pop_pos = transform.position;
 			pop_pos.z += 1;
-			candyObj = (GameObject)Instantiate(candyPrefab, pop_pos, Quaternion.identity);
+			pockyObj = ItemManager.Instance.GetGameObject(ItemManager.ItemType.Pocky, pop_pos);
+
 		}
 		//	キーボード　２
 		if(Input.GetKeyDown(KeyCode.Alpha2)){
-			Debug.Log("key-2");
 			
-			if(!candyObj) return;
-			//TODO:	candyのアクション呼び出し
-			candyObj.GetComponent<Shoot>().target = targetPos;
-			candyObj.GetComponent<Shoot>().Action();
+			var pop_pos = transform.position;
+			pop_pos.z += 1;
+			ItemManager.Instance.GetGameObject(ItemManager.ItemType.DeliciousBar, pop_pos);
+
 		}
-		//	キーボード　０
-		if(Input.GetKeyDown(KeyCode.Alpha0)){
-			Debug.Log("key-0");
+		//	キーボード　３
+		if(Input.GetKeyDown(KeyCode.Alpha3)){
 			
-			//TODO:	candy消す
-			Destroy(candyObj);
+			var pop_pos = transform.position;
+			pop_pos.z += 1;
+			ItemManager.Instance.GetGameObject(ItemManager.ItemType.MarbleChoco, pop_pos);
+
 		}
+		//	キーボード　４
+		if(Input.GetKeyDown(KeyCode.Alpha4)){
+			
+			var pop_pos = transform.position;
+			pop_pos.z += 1;
+			ItemManager.Instance.GetGameObject(ItemManager.ItemType.Candy, pop_pos);
+
+		}
+		//	キーボード　５
+		if(Input.GetKeyDown(KeyCode.Alpha5)){
+			
+			var pop_pos = transform.position;
+			pop_pos.z += 1;
+			ItemManager.Instance.GetGameObject(ItemManager.ItemType.Cookie, pop_pos);
+
+		}
+		//	キーボード　６
+		if(Input.GetKeyDown(KeyCode.Alpha6)){
+			
+			var pop_pos = transform.position;
+			pop_pos.z += 1;
+			ItemManager.Instance.GetGameObject(ItemManager.ItemType.Senbei, pop_pos);
+
+		}
+
+
+		//	Shoot呼び出し
+		{
+			if(Input.GetKeyDown(KeyCode.A)){
+				candyObj = ItemManager.Instance.GetGameObject(ItemManager.ItemType.Candy, transform.position);
+			}
+			if(Input.GetKeyDown(KeyCode.B)){
+				candyObj.GetComponent<Item>().Action();
+			}
+			
+			if(Input.GetKeyDown(KeyCode.P)){
+				pockyObj = ItemManager.Instance.GetGameObject(ItemManager.ItemType.Pocky, transform.position);
+				pockyObj.GetComponent<Item>().Action();
+			}
+		}
+
+		
 	}
 
 
@@ -53,6 +94,6 @@ public class PlayerDeco : MonoBehaviour {
 	void OnTriggerEnter(Collider other){
 
 		//TODO:	とりあえず当たったかをテスト。
-		Debug.Log(this.name + "は" + other.gameObject.name + "と当たった！");
+		//Debug.Log(this.name + "は" + other.gameObject.name + "と当たった！");
 	}
 }

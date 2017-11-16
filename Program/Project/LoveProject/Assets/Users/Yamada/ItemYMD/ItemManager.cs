@@ -7,13 +7,14 @@ public class ItemManager : MonoBehaviour {
 
 	#region	Enumilation
 	//	アイテムの種類
-	public enum ItemID{
-		Pocky,		//	ポッキー
+	public enum ItemType : uint{
+		Pocky = 0,		//	ポッキー
 		DeliciousBar,	//	うまい棒
 		MarbleChoco,	//	マーブルチョコ
 		Candy,			//	飴玉
 		Cookie,			//	クッキー
-		Senbei			//	せんべい
+		Senbei,			//	せんべい
+		Max
 	};
 	#endregion	Enumilation
 
@@ -34,6 +35,19 @@ public class ItemManager : MonoBehaviour {
 		void Awake(){
 			if (Instance && instance != this)
 				Destroy(gameObject);
+				
+			//	プールの生成
+			if (itemPool == null)
+				itemPool = new MultiDictionary<ItemType, GameObject>();
+
+			//	初期のアイテムストック生成
+			//	6種類を5個ずつ非表示で生成しておく
+			for(int item_id = 0; item_id < 6; item_id++){
+				for (int item_num = 0; item_num < 5; item_num++) {
+					var item_obj = GetGameObject((ItemType)item_id, transform.position);
+					item_obj.SetActive(false);	//	非表示へ
+				}
+			}
 		}
 	#endregion Singleton
 
@@ -53,36 +67,27 @@ public class ItemManager : MonoBehaviour {
 	
 
 	//	インスタンスを格納するプール
-	public MultiDictionary<ItemID, GameObject> itemPool;
+	public MultiDictionary<ItemType, GameObject> itemPool;
 	
 	#endregion	Member
 
 
 	#region Method
 
-
-	void Start(){
-		//	プールの生成
-		if (itemPool == null)
-			itemPool = new MultiDictionary<ItemID, GameObject>();
-
-		//	初期のアイテムストック生成
-		//	6種類を5個ずつ非表示で生成しておく
-		for(int item_id = 0; item_id < 6; item_id++){
-			for (int item_num = 0; item_num < 5; item_num++) {
-				var item_obj = Pop((ItemID)item_id, transform.position);
-				item_obj.SetActive(false);	//	非表示へ
-			}
-		}
-	}
-
+#if UNITY_EDITOR
+	// void Update(){
+	// 	if(Input.GetKeyDown(KeyCode.Alpha0)){
+			
+	// 	}
+	// }
+#endif
 
 	///<param>
-	///	オブジェクト生成
+	///	オブジェクト生成	これいる！！消さないで！！
 	///	id	:生成するプレハブのID
 	///	pos		:生成する座標
 	///</param>
-	public GameObject Pop(ItemID id, Vector3 pos){
+	public GameObject GetGameObject(ItemType id, Vector3 pos){
 
 		//	インスタンス生成
 		var item_obj = (GameObject)Instantiate(prefab[(int)id], pos, Quaternion.identity);
@@ -99,7 +104,7 @@ public class ItemManager : MonoBehaviour {
 	///	id		:再使用したいお菓子のID
 	///	pos		:再使用位置
 	///</param>
-	public GameObject GetGameObject(ItemID id, Vector3 pos){
+	public GameObject Pop(ItemType id, Vector3 pos){
 
 			// 生成用
 			GameObject obj = null;
@@ -161,8 +166,8 @@ public class ItemManager : MonoBehaviour {
 	///	Activeを切る
 	///	obj		:切り替えるGameObject
 	///</param>
-	public void NotActive(GameObject obj){
-		obj.SetActive(false);
+	public void NotActive(Item obj){
+		obj.gameObject.SetActive(false);
 	}
 
 
