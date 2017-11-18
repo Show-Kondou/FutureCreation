@@ -74,14 +74,6 @@ public class ItemManager : MonoBehaviour {
 
 	#region Method
 
-#if UNITY_EDITOR
-	// void Update(){
-	// 	if(Input.GetKeyDown(KeyCode.Alpha0)){
-			
-	// 	}
-	// }
-#endif
-
 	///<param>
 	///	オブジェクト生成	これいる！！消さないで！！
 	///	type	:生成するプレハブの種別

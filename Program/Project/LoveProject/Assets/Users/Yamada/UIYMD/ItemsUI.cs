@@ -5,34 +5,61 @@ using UnityEngine.UI;
 
 public class ItemsUI : MonoBehaviour {
 
-	[SerializeField]private Sprite[] buttonUI = new Sprite[4];
-	[SerializeField]private Sprite[] itemIcon = new Sprite[6];
+	[SerializeField,Header("ボタンUI"),NamedArrayAttribute(new string[] { "押してない１", "押してない２", "押した１", "押した２" })]
+	private Sprite[] buttonUI = new Sprite[4];	//	ボタン１・２(押した・押してない)
 
-	private Image itemImage;
+	[SerializeField,Header("アイテムUI"),NamedArrayAttribute(new string[] { "ポッキー", "うまい棒", "マーブルチョコ", "飴玉", "クッキー", "せんべい" })]
+	private Sprite[] itemIcon = new Sprite[6];	//	アイテムアイコン６種類
+
+	private Image itemImage;	//	アイテムのアイコン
+	private Image[] button = new Image[2];	//	ボタン１・２
+
 
 	// Use this for initialization
 	void Start () {
 		
 		//	ボタンUI用
-
+		button[0] = transform.Find("Button1").gameObject.GetComponent<Image>();
+		button[1] = transform.Find("Button2").gameObject.GetComponent<Image>();
 
 		//	所持アイテムのUI用
 		itemImage = transform.Find("ItemIcon").gameObject.GetComponent<Image>();
 		itemImage.color = new Color(1,1,1,0);	//	初期値は非表示
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		GetItemUI();
+
+	/// <summary>
+	/// 押されたボタンスプライトを表示
+	/// </sammary>
+	public void PushedButton(uint button_num){
+		var index = button_num - 1;
+		button[index].sprite = buttonUI[index + 2];//押した
 	}
 
-	
-	public void GetItemUI(/*ItemManager.ItemType item_type*/){
+	/// <summary>
+	/// ボタンが押されてないときのスプライト表示
+	/// </sammary>
+	public void ReleaseButton(uint button_num){
+		var index = button_num - 1;
+		button[index].sprite = buttonUI[index];//押してない
+
+		// for(int index = 0; index < 2; index++){
+		// 	button[index].sprite = buttonUI[index];
+		// }
+	}
+
+	/// <summary>
+	/// 引数のアイテムを表示
+	/// </sammary>
+	public void SetItemUI(ItemManager.ItemType item_type){
 		itemImage.color = new Color(1,1,1,1);
-		itemImage.sprite = itemIcon[(int)Mathf.Abs(((GameTimer.Instance.TimeLimit % 10) - 5))];
-		// itemImage.sprite = itemIcon[(int)item_type];
+		//itemImage.sprite = itemIcon[(int)Mathf.Abs(((GameTimer.Instance.TimeLimit % 10) - 5))];
+		itemImage.sprite = itemIcon[(int)item_type];
 	}
 
+	/// <summary>
+	/// アイテムの表示を非表示にする
+	/// </sammary>
 	public void LoseItemUI(){
 		itemImage.color = new Color(1,1,1,0);
 	}

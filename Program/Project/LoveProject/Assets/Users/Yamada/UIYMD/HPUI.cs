@@ -29,7 +29,6 @@ public class HPUI : MonoBehaviour {
 		//	子全取得
 		foreach (Transform child in transform){
 			childList.Add(child.GetComponent<Image>());
-			Debug.Log(child.name);
 		}
 
 		gaugeImage = transform.Find("GaugeIn").gameObject.GetComponent<Image>();
