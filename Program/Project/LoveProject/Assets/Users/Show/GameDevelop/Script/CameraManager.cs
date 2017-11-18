@@ -63,19 +63,19 @@ public class CameraManager : MonoBehaviour {
 	/// </summary>
 	/// <param name="num"></param>
 	/// <returns></returns>
-	public PlayerCamera GetPlayerCamera( uint num ) {
+	public CameraPlayer GetPlayerCamera( uint num ) {
 		switch( num ) {
 		case 1:
-			_Camera_1.playerCamera.enabled = true;
+			// _Camera_1.playerCamera.enabled = true;
 			return _Camera_1.playerCamera;
 		case 2:
-			_Camera_2.playerCamera.enabled = true;
+			// _Camera_2.playerCamera.enabled = true;
 			return _Camera_2.playerCamera;
 		case 3:
-			_Camera_3.playerCamera.enabled = true;
+			// _Camera_3.playerCamera.enabled = true;
 			return _Camera_3.playerCamera;
 		case 4:
-			_Camera_4.playerCamera.enabled = true;
+			// _Camera_4.playerCamera.enabled = true;
 			return _Camera_4.playerCamera;
 		default:
 			return null;
