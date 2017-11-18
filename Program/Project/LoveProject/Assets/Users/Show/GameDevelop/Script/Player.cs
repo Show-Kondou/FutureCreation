@@ -32,21 +32,39 @@ public class Player : MonoBehaviour {
 
 	// 関連クラス取得
 	private PlayerMove      _Move		= null;
-	private PlayerCamera    _Camera		= null;
+	private PlayerJump      _Jump       = null;
+	private CameraPlayer    _Camera		= null;
+	private PlayerItem      _Item       = null;
 
 	#endregion	Member
 
-	#region Getter
+	#region Accessor
 
 	public int GetHP { get; set; }
 	public bool IsLife { get { return (_HitPoint > 0); } }
 
-	#endregion Getter
+	public uint PlayerID {
+		get { return _PlayerID; }
+	}
+
+	public int PlayerHP {
+		// TODO：更新してあるステータスを投げる
+		get { return _HitPoint; }
+	}
+
+	public ItemManager.ItemID ItemTypeL {
+		get { return _Item.ItemL.ID; }
+	}
+	public ItemManager.ItemID ItemTypeR {
+		get { return _Item.ItemR.ID; }
+	}
+
+	#endregion Accessor
 
 	/// <summary>
 	/// 初期化関数
 	/// </summary>
-	private void Start() {
+	private void Awake() {
 		Init();
 	}
 
@@ -54,7 +72,7 @@ public class Player : MonoBehaviour {
 	/// インスペクター変更時イベント
 	/// </summary>
 	private void OnValidate() {
-		Init();
+		// Init();
 	}
 
 
@@ -64,17 +82,24 @@ public class Player : MonoBehaviour {
 	private void Init() {
 		// --- プレイヤー関係クラス取得
 		_Move = GetPlayerComponent<PlayerMove>();
+		_Jump = GetPlayerComponent<PlayerJump>();
 		var camera = CameraManager.Instance.GetPlayerCamera( _PlayerID );
 		_Camera = Define.NullCheck( camera );
+		_Item = GetPlayerComponent<PlayerItem>();
 		// --- ステータス反映
 		// 移動
-		_Move.PlayerID = _PlayerID;
+		_Move.PlayerID	= _PlayerID;
 		_Move.MoveForce = _MoveForce;
-		_Move.JumpForce = _JumpForce;
-		_Move.Camera = _Camera;
+		_Move.Camera	= _Camera;
+		// ジャンプ
+		_Jump.PlayerID	= _PlayerID;
+		_Jump.JumpForce = _JumpForce;
 		// カメラ
 		_Camera.playerTrans = _Move.transform;
-		_Camera.TurnForce = _TurnForce;
+		_Camera.TurnForce	= _TurnForce;
+		_Camera.Init();
+		// アイテム
+		_Item.PlayerID	= _PlayerID;
 	}
 
 
@@ -83,7 +108,7 @@ public class Player : MonoBehaviour {
 	/// </summary>
 	/// <typeparam name="T">Player系クラス</typeparam>
 	/// <returns>取得したコンポーネント</returns>
-	T GetPlayerComponent<T>() {
+	T GetPlayerComponent<T>( ) {
 		T obj = GetComponentInChildren<T>();
 		if( obj != null ) {
 			return obj;

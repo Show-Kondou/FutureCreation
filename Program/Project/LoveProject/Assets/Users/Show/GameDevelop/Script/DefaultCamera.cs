@@ -13,7 +13,7 @@ using UnityEngine;
 /// <summary>
 /// CameraBaseクラス
 /// </summary>
-[RequireComponent(typeof( PlayerCamera ))]
+[RequireComponent(typeof( CameraPlayer ))]
 public class DefaultCamera : MonoBehaviour {
 
 	// 定数
@@ -25,7 +25,7 @@ public class DefaultCamera : MonoBehaviour {
 	[Header("カメラID"), SerializeField]
 	private uint _CameraID;
 
-	private PlayerCamera _PlayerCamera = null;
+	private CameraPlayer _PlayerCamera = null;
 
 	#endregion Member
 
@@ -38,10 +38,10 @@ public class DefaultCamera : MonoBehaviour {
 	}
 
 	// プレイヤーモードのカメラ
-	public PlayerCamera playerCamera {
+	public CameraPlayer playerCamera {
 		get {
 			if( _PlayerCamera == null ) {
-				_PlayerCamera = GetComponent<PlayerCamera>();
+				_PlayerCamera = GetComponent<CameraPlayer>();
 			}
 			return _PlayerCamera;
 		}
