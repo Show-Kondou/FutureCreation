@@ -52,10 +52,10 @@ public class Player : MonoBehaviour {
 		get { return _HitPoint; }
 	}
 
-	public ItemManager.ItemID ItemTypeL {
+	public ItemManager.ItemType ItemTypeL {
 		get { return _Item.ItemL.ID; }
 	}
-	public ItemManager.ItemID ItemTypeR {
+	public ItemManager.ItemType ItemTypeR {
 		get { return _Item.ItemR.ID; }
 	}
 
