@@ -16,6 +16,7 @@ public class InputGame {
 	#region Constant
 	readonly static string GamePadName = "GamePad";
 	readonly static string CameraName = "Camera";
+	readonly static float CameraCorrectionX = 0.7F;
 	#endregion Constant
 
 	// メソッド
@@ -37,9 +38,9 @@ public class InputGame {
 	/// <param name="playerID">プレイヤーID</param>
 	/// <returns>Vector3のXとZに値</returns>
 	static public Vector3 GetCameraTurn( uint cameraID ) {
-		return new Vector3( GetCameraTurnX( cameraID ),
-							0.0F,
-							GetCameraTurnZ( cameraID ) );
+		return new Vector3( GetCameraTurnX( cameraID ), // 縦
+							GetCameraTurnY( cameraID ),// 横
+							0.0F );
 	}
 
 	/// <summary>
@@ -74,14 +75,14 @@ public class InputGame {
 	static public float GetCameraTurnX( uint cameraID = 1 ) {
 		float key = GetKeyCameraX();
 		if( key != 0.0F )
-			return key;
-		return GetCameraX( cameraID );
+			return key * CameraCorrectionX;
+		return GetCameraX( cameraID ) * CameraCorrectionX;
 	}
-	static public float GetCameraTurnZ( uint cameraID = 1 ) {
-		float key = GetKeyCameraZ();
+	static public float GetCameraTurnY( uint cameraID = 1 ) {
+		float key = GetKeyCameraY();
 		if( key != 0.0F )
 			return key;
-		return GetCameraZ( cameraID );
+		return GetCameraY( cameraID );
 	}
 
 	/// <summary>
@@ -162,14 +163,14 @@ public class InputGame {
 	/// デバック用カメラ回転
 	/// </summary>
 	/// <returns> -1.0F ~ 1.0F </returns>
-	static private float GetKeyCameraX() {
-		if( Input.GetKey( KeyCode.RightArrow ) ) return -1.0F;
-		if( Input.GetKey( KeyCode.LeftArrow ) )	 return  1.0F;
+	static private float GetKeyCameraY() {
+		if( Input.GetKey( KeyCode.UpArrow ) )	 return	 1.0F;
+		if( Input.GetKey( KeyCode.DownArrow ) )  return -1.0F;
 		return 0.0F;
 	}
-	static private float GetKeyCameraZ() {
-		if( Input.GetKey( KeyCode.UpArrow ) ) return	 1.0F;
-		if( Input.GetKey( KeyCode.DownArrow ) )  return -1.0F;
+	static private float GetKeyCameraX() {
+		if( Input.GetKey( KeyCode.RightArrow ) ) return  1.0F;
+		if( Input.GetKey( KeyCode.LeftArrow ) )	 return -1.0F;
 		return 0.0F;
 	}
 
@@ -216,8 +217,8 @@ public class InputGame {
 	static private float GetCameraX( uint num ) {
 		return Input.GetAxis( CameraName + num + "_X" );
 	}
-	static private float GetCameraZ( uint num ) {
-		return Input.GetAxis( CameraName + num + "_Z" );
+	static private float GetCameraY( uint num ) {
+		return Input.GetAxis( CameraName + num + "_Y" );
 	}
 
 	#endregion Method
