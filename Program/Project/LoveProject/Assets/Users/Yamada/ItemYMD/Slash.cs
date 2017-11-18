@@ -54,8 +54,8 @@ public class Slash : Item {
 
 			if(item.IsPicked == false) return;// 相手が、落ちているオブジェクトなら判定しない
 
-			//	IDで分岐
-			switch(item.ID){
+			//	Typeで分岐
+			switch(item.Type){
 				//	クッキー
 				case ItemManager.ItemType.Cookie:
 					SubBreakHP(1);	//	耐久値の減少

@@ -84,16 +84,16 @@ public class ItemManager : MonoBehaviour {
 
 	///<param>
 	///	オブジェクト生成	これいる！！消さないで！！
-	///	id	:生成するプレハブのID
+	///	type	:生成するプレハブの種別
 	///	pos		:生成する座標
 	///</param>
-	public GameObject GetGameObject(ItemType id, Vector3 pos){
+	public GameObject GetGameObject(ItemType type, Vector3 pos){
 
 		//	インスタンス生成
-		var item_obj = (GameObject)Instantiate(prefab[(int)id], pos, Quaternion.identity);
-		item_obj.GetComponent<Item>().ID = id;	//	IDを設定
+		var item_obj = (GameObject)Instantiate(prefab[(int)type], pos, Quaternion.identity);
+		item_obj.GetComponent<Item>().Type = type;	//	Typeを設定
 		item_obj.transform.parent = transform;//	プールの子要素にする
-		itemPool.Add(id, item_obj);	//	リストに追加
+		itemPool.Add(type, item_obj);	//	リストに追加
 
 		return item_obj;
 	}
@@ -101,31 +101,31 @@ public class ItemManager : MonoBehaviour {
 
 	///<param>
 	///	再使用可能オブジェクトを返す。(再使用可能なものがなければ、生成)
-	///	id		:再使用したいお菓子のID
+	///	type		:再使用したいお菓子の種別
 	///	pos		:再使用位置
 	///</param>
-	public GameObject Pop(ItemType id, Vector3 pos){
+	public GameObject Pop(ItemType type, Vector3 pos){
 
 			// 生成用
 			GameObject obj = null;
 			
-			//	プールにidのオブジェクトが存在しなければ生成
-			if (itemPool.ContainsKey(id) == false) {
+			//	プールにtypeのオブジェクトが存在しなければ生成
+			if (itemPool.ContainsKey(type) == false) {
 				//	生成する
-				obj = (GameObject)Instantiate(prefab[(int)id], pos, Quaternion.identity);
+				obj = (GameObject)Instantiate(prefab[(int)type], pos, Quaternion.identity);
 			
-				//	IDを設定
-				obj.GetComponent<Item>().ID = id;
+				//	Typeを設定
+				obj.GetComponent<Item>().Type = type;
 
 				//	プールの子要素にする
 				obj.transform.parent = transform;
 
-				itemPool.Add(id, obj);
+				itemPool.Add(type, obj);
 				return obj;
 			}
 
 
-			List<GameObject> gameObjects = itemPool[id];
+			List<GameObject> gameObjects = itemPool[type];
 			
 
 			//	使用可能オブジェクト検索ループ
@@ -151,7 +151,7 @@ public class ItemManager : MonoBehaviour {
 
 			//	使用できるものがなかった場合ここまでくる
 			//	生成する
-			obj = (GameObject)Instantiate(prefab[(int)id], pos, Quaternion.identity);
+			obj = (GameObject)Instantiate(prefab[(int)type], pos, Quaternion.identity);
 
 			//	プールの子要素にする
 			obj.transform.parent = transform;

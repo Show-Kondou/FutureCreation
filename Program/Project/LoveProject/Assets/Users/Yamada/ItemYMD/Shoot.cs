@@ -37,10 +37,10 @@ public class Shoot : Item{
 
 		//	必要な弾数を生成
 		//	生成する弾の数を決める。　マーブルは４、飴玉は２
-		if(this.ID == ItemManager.ItemType.MarbleChoco){
+		if(this.Type == ItemManager.ItemType.MarbleChoco){
 			MaxBullet = ChocoBulletNum;
 
-		}else if(this.ID == ItemManager.ItemType.Candy){
+		}else if(this.Type == ItemManager.ItemType.Candy){
 			MaxBullet = CandyBulletNum;
 		}
 

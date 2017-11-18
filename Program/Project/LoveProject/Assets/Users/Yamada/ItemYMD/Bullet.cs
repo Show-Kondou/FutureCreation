@@ -88,8 +88,8 @@ public class Bullet : Item {
 
 			if(item.IsPicked == false) return;// 相手が、落ちているオブジェクトなら判定しない
 
-			//	IDで分岐
-			switch(item.ID){
+			//	Typeで分岐
+			switch(item.Type){
 				//	クッキー
 				case ItemManager.ItemType.Cookie:
 					gameObject.SetActive(false);	//	非表示へ

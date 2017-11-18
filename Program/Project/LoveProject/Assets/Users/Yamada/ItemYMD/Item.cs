@@ -16,8 +16,8 @@ public abstract class Item : MonoBehaviour
 	[Header("回復量"), SerializeField]
 	protected uint healPoint;     //	回復量
 
-	[Header("ID"), SerializeField]
-	protected ItemManager.ItemType id;	//	アイテムの識別ID
+	[Header("種類"), SerializeField]
+	protected ItemManager.ItemType type;	//	アイテムの識別Type
 
 	protected MeshRenderer mesh;	//	メッシュレンダラー
 	protected Collider coll;		//	コライダー
@@ -38,7 +38,7 @@ public abstract class Item : MonoBehaviour
 		}
 	public float AttackPoint { get { return attackPoint; } }
 	public uint HealPoint { get { return healPoint; } }
-	public ItemManager.ItemType ID { get { return id; } set { id = value; } }
+	public ItemManager.ItemType Type { get { return type; } set { type = value; } }
 	public bool IsActive {	get{return mesh.enabled && coll.enabled;} set{mesh.enabled = coll.enabled = value;}}
 	public bool IsPicked { get{return isPicked;} }
 	public bool IsUsing { get{return isUsing;} }

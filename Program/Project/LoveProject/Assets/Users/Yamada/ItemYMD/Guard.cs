@@ -43,10 +43,10 @@ public class Guard : Item {
 
 			if(item.IsPicked == false) return;// 相手が、落ちているオブジェクトなら判定しない
 
-			//	識別IDを　int　で取得 
-			var id = (uint)item.ID;
+			//	識別Typeを　int　で取得 
+			var type = (uint)item.Type;
 			//	受けるダメージを、 ItemManager の持つ ダメージ値格納テーブル から取得
-			var damage = ItemManager.Instance.ItemDamageTable[id];
+			var damage = ItemManager.Instance.ItemDamageTable[type];
 			//	耐久値 から ダメージ を 引く
 			SubBreakHP(damage);	//	耐久値の減少
 		}
