@@ -57,7 +57,7 @@ GameObject:
   - component: {fileID: 222928322638175670}
   - component: {fileID: 114231358644443292}
   m_Layer: 5
-  m_Name: L2_Icon
+  m_Name: Button2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -142,7 +142,7 @@ GameObject:
   - component: {fileID: 222851639451639224}
   - component: {fileID: 114745189769922580}
   m_Layer: 5
-  m_Name: R2_Icon
+  m_Name: Button2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -193,7 +193,7 @@ GameObject:
   - component: {fileID: 222369732240880380}
   - component: {fileID: 114147370343131168}
   m_Layer: 5
-  m_Name: L1_Icon
+  m_Name: Button1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 224333557960969240}
   - component: {fileID: 222073878449202024}
   - component: {fileID: 114230149939471526}
+  - component: {fileID: 114376668659849762}
   m_Layer: 5
   m_Name: UI_Item_R
   m_TagString: Untagged
@@ -397,7 +398,7 @@ GameObject:
   - component: {fileID: 222834554394259384}
   - component: {fileID: 114200392389545476}
   m_Layer: 5
-  m_Name: R1_Icon
+  m_Name: Button1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -755,6 +756,7 @@ GameObject:
   - component: {fileID: 224437021535318698}
   - component: {fileID: 222187203890028694}
   - component: {fileID: 114236073328820616}
+  - component: {fileID: 114553882352121722}
   m_Layer: 5
   m_Name: Monitor01
   m_TagString: Untagged
@@ -1227,10 +1229,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buttonUI:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: efdbd240eb5446a4bbe21f3fd7fcff24, type: 3}
+  - {fileID: 21300000, guid: 2279894924e6a39498c0c5d2ad957169, type: 3}
+  - {fileID: 21300000, guid: 41d3ece33a54e9546ae74ce8f59e0611, type: 3}
+  - {fileID: 21300000, guid: 3329a05570016cd4387199405a208a77, type: 3}
   itemIcon:
   - {fileID: 21300000, guid: 02340b54f17ab6541b120639fda75cc4, type: 3}
   - {fileID: 21300002, guid: 02340b54f17ab6541b120639fda75cc4, type: 3}
@@ -1318,6 +1320,29 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114376668659849762
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1236304269167548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e0c595d4c4482c42bcecb35b347ca9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonUI:
+  - {fileID: 21300000, guid: 1b7678611ee422a4b9ec32741ad510a8, type: 3}
+  - {fileID: 21300000, guid: f206dd91d9f8e3441b201ed93bf46712, type: 3}
+  - {fileID: 21300000, guid: 7f52a7497ce22df48bd354ed4c5df2bc, type: 3}
+  - {fileID: 21300000, guid: 156f83c4b99f3fc419a91c9c73047054, type: 3}
+  itemIcon:
+  - {fileID: 21300000, guid: 02340b54f17ab6541b120639fda75cc4, type: 3}
+  - {fileID: 21300002, guid: 02340b54f17ab6541b120639fda75cc4, type: 3}
+  - {fileID: 21300004, guid: 02340b54f17ab6541b120639fda75cc4, type: 3}
+  - {fileID: 21300006, guid: 02340b54f17ab6541b120639fda75cc4, type: 3}
+  - {fileID: 21300008, guid: 02340b54f17ab6541b120639fda75cc4, type: 3}
+  - {fileID: 21300010, guid: 02340b54f17ab6541b120639fda75cc4, type: 3}
 --- !u!114 &114413257392578008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1561,6 +1586,18 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 0
+--- !u!114 &114553882352121722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1976677186418050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3755c8ed039af634aa7c7e50c72053a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _player: {fileID: 0}
 --- !u!114 &114564332093913698
 MonoBehaviour:
   m_ObjectHideFlags: 1
