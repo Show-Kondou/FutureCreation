@@ -5,6 +5,9 @@ Program/Project/LoveProject/[Tt]emp/
 Program/Project/LoveProject/[Oo]bj/
 Program/Project/LoveProject/[Bb]uild
 Program/Project/LoveProject/[Ll]ibrary/
+Program/Project/LoveProject/[Oo]ut[Gg]it/
+
+
 sysinfo.txt
 *.stackdump
 
@@ -34,4 +37,5 @@ Program/Project/LoveProject/.idea*/
 ehthumbs.db
 [Tt]humbs.db
 [Dd]esktop.ini
+
 Program/Project/LoveProject/.vscode/settings.json
