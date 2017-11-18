@@ -53,10 +53,10 @@ public class Player : MonoBehaviour {
 	}
 
 	public ItemManager.ItemType ItemTypeL {
-		get { return _Item.ItemL.ID; }
+		get { return _Item.ItemL.Type; }
 	}
 	public ItemManager.ItemType ItemTypeR {
-		get { return _Item.ItemR.ID; }
+		get { return _Item.ItemR.Type; }
 	}
 
 	#endregion Accessor
