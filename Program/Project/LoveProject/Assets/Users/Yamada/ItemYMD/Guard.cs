@@ -5,58 +5,52 @@ using UnityEngine;
 public class Guard : Item {
 
 
+	void Start(){
+		mesh = GetComponent<MeshRenderer>();
+		coll = GetComponent<Collider>();
+	}
 
-
-
-
-	//	固有動作
+	/// <summary>
+	/// 固有動作
+	/// </sammary>
 	public override void Action(){
-		isUse = true;
+		IsActive = true;	//	表示する
+		/*
+			ここに盾アイテムの固有動作
+		 */
 	}
 
 
-
+	/// <summary>
+	/// 食べられた時の処理
+	/// </sammary>
 	public override uint EatItem(){
-		//TODO:	食べられた時の処理
+		//	回復量返却
 		return HealPoint;
 	}
 
-
-
-
-
-	//	衝突検知
+	/// <summary>
+	/// 衝突検知
+	/// </sammary>
 	void OnTriggerEnter(Collider other){
 
-		//TODO:	とりあえず当たったかをテスト。
-		//Debug.Log(this.name + "は" + other.gameObject.name + "と当たった！");
-
-		//	拾われている
-		if(isHave){
+		if(isPicked == false) return;
+		
+		//	アイテムとの判定のみ
+		if(other.gameObject.tag == "Item"){
 			
-			//	使用中の判定
-			if(isUse == false) return;
+			var item = other.gameObject.GetComponent<Item>();
 
-			//	アイテムとの判定のみ
-			if(other.gameObject.tag == "Item"){
+			if(item.IsPicked == false) return;// 相手が、落ちているオブジェクトなら判定しない
 
-				//	識別IDを　int　で取得 
-				var id = (int)other.gameObject.GetComponent<Item>().ID;
-				//	受けるダメージを、 ItemManager の持つ ダメージ値格納テーブル から取得
-				var damage = ItemManager.Instance.ItemDamageTable[id];
-				//	耐久値 から ダメージ を 引く
-				breakHp -= damage;
-			}
-
-		}else{
-		//	落ちている
-
-			//	プレイヤーと接触
-			if(other.gameObject.tag == "Player"){
-				isHave = true;	//	拾われた
-				this.gameObject.SetActive(false);
-			}
+			//	識別IDを　int　で取得 
+			var id = (uint)item.ID;
+			//	受けるダメージを、 ItemManager の持つ ダメージ値格納テーブル から取得
+			var damage = ItemManager.Instance.ItemDamageTable[id];
+			//	耐久値 から ダメージ を 引く
+			SubBreakHP(damage);	//	耐久値の減少
 		}
 
 	}
+
 }
