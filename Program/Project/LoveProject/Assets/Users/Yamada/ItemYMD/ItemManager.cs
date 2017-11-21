@@ -79,10 +79,40 @@ public class ItemManager : MonoBehaviour {
 	#region Method
 
 	/// <summary>
-	/// 
+	/// 生成するアイテムを選定し、Typeを返す
 	/// </sammary>
-	public void PickItem(){
+	public ItemType PickItem(){
 		
+		//	判定値を生成(ランダム)
+		int judgeValue = Random.Range(0, 100);	//	0~99までの100個
+
+		//	境界値初期化
+		uint rangeBottom = 0;
+		uint rangeTop = 0;
+
+		//Debug.Log("random" + judgeValue);
+		
+		//	アイテム確定走査ループ
+		ItemType current = 0;
+		for(current = 0; current < ItemType.Max; current++){
+
+			//	判定範囲設定
+			rangeBottom = rangeTop;
+			rangeTop += probability[(uint)current];
+
+			//Debug.Log(rangeBottom + "~" + rangeTop);
+
+			//	判定内だ
+			if(judgeValue >= rangeBottom && judgeValue <= rangeTop){
+				//	判定内なので、アイテムの種類確定
+				//Debug.Log(current);
+				return current;
+			}
+
+		}
+
+		//	きっとここはこない
+		return current;
 	}
 
 

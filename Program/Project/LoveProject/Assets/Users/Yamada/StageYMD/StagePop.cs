@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StagePop : MonoBehaviour {
 
-	[Header("こいつがお菓子を生成できる確率"), SerializeField]
-	private uint popPriority;
+	[Header("こいつがお菓子を生成できる確率")]
+	public uint popPriority;
 
 
 	/// <summary>
