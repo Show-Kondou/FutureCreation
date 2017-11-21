@@ -57,22 +57,35 @@ public class ItemManager : MonoBehaviour {
 
 	//	お菓子が与えるダメージ値のテーブル
 	//	盾にしか必要ないかも....Managerにいらない？
-	[NamedArrayAttribute(new string[] { "ポッキー", "うまい棒", "マーブルチョコ", "飴玉", "クッキー", "せんべい" })]
+	[Header("お菓子が与えるダメージ値のテーブル"), NamedArrayAttribute(new string[] { "ポッキー", "うまい棒", "マーブルチョコ", "飴玉", "クッキー", "せんべい" })]
 	public int[] ItemDamageTable = { 30, 40, 20, 35, 0, 0 };
 
 
 	//	お菓子のプレハブのテーブル
-	[NamedArrayAttribute(new string[] { "ポッキー", "うまい棒", "マーブルチョコ", "飴玉", "クッキー", "せんべい" })]
+	[Header("お菓子のプレハブのテーブル"), NamedArrayAttribute(new string[] { "ポッキー", "うまい棒", "マーブルチョコ", "飴玉", "クッキー", "せんべい" })]
 	public GameObject[] prefab = new GameObject[6];
 	
 
 	//	インスタンスを格納するプール
 	public MultiDictionary<ItemType, GameObject> itemPool;
+
+
+	[Header("各お菓子の生成確率"), SerializeField, NamedArrayAttribute(new string[] { "ポッキー", "うまい棒", "マーブルチョコ", "飴玉", "クッキー", "せんべい" })]
+	private uint[] probability = new uint[6];
 	
 	#endregion	Member
 
 
 	#region Method
+
+	/// <summary>
+	/// 
+	/// </sammary>
+	public void PickItem(){
+		
+	}
+
+
 
 	///<param>
 	///	オブジェクト生成	これいる！！消さないで！！
