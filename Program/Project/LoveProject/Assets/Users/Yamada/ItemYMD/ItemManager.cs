@@ -57,22 +57,65 @@ public class ItemManager : MonoBehaviour {
 
 	//	お菓子が与えるダメージ値のテーブル
 	//	盾にしか必要ないかも....Managerにいらない？
-	[NamedArrayAttribute(new string[] { "ポッキー", "うまい棒", "マーブルチョコ", "飴玉", "クッキー", "せんべい" })]
+	[Header("お菓子が与えるダメージ値のテーブル"), NamedArrayAttribute(new string[] { "ポッキー", "うまい棒", "マーブルチョコ", "飴玉", "クッキー", "せんべい" })]
 	public int[] ItemDamageTable = { 30, 40, 20, 35, 0, 0 };
 
 
 	//	お菓子のプレハブのテーブル
-	[NamedArrayAttribute(new string[] { "ポッキー", "うまい棒", "マーブルチョコ", "飴玉", "クッキー", "せんべい" })]
+	[Header("お菓子のプレハブのテーブル"), NamedArrayAttribute(new string[] { "ポッキー", "うまい棒", "マーブルチョコ", "飴玉", "クッキー", "せんべい" })]
 	public GameObject[] prefab = new GameObject[6];
 	
 
 	//	インスタンスを格納するプール
 	public MultiDictionary<ItemType, GameObject> itemPool;
+
+
+	[Header("各お菓子の生成確率"), SerializeField, NamedArrayAttribute(new string[] { "ポッキー", "うまい棒", "マーブルチョコ", "飴玉", "クッキー", "せんべい" })]
+	private uint[] probability = new uint[6];
 	
 	#endregion	Member
 
 
 	#region Method
+
+	/// <summary>
+	/// 生成するアイテムを選定し、Typeを返す
+	/// </sammary>
+	public ItemType PickItem(){
+		
+		//	判定値を生成(ランダム)
+		int judgeValue = Random.Range(0, 100);	//	0~99までの100個
+
+		//	境界値初期化
+		uint rangeBottom = 0;
+		uint rangeTop = 0;
+
+		//Debug.Log("random" + judgeValue);
+		
+		//	アイテム確定走査ループ
+		ItemType current = 0;
+		for(current = 0; current < ItemType.Max; current++){
+
+			//	判定範囲設定
+			rangeBottom = rangeTop;
+			rangeTop += probability[(uint)current];
+
+			//Debug.Log(rangeBottom + "~" + rangeTop);
+
+			//	判定内だ
+			if(judgeValue >= rangeBottom && judgeValue <= rangeTop){
+				//	判定内なので、アイテムの種類確定
+				//Debug.Log(current);
+				return current;
+			}
+
+		}
+
+		//	きっとここはこない
+		return current;
+	}
+
+
 
 	///<param>
 	///	オブジェクト生成	これいる！！消さないで！！

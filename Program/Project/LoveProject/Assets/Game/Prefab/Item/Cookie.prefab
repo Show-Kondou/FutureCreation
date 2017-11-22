@@ -9,34 +9,34 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1164067954114468}
+  m_RootGameObject: {fileID: 1583310783582246}
   m_IsPrefabParent: 1
---- !u!1 &1164067954114468
+--- !u!1 &1583310783582246
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4245670714503010}
-  - component: {fileID: 33566007746476356}
-  - component: {fileID: 23300065654449358}
-  - component: {fileID: 54875055158498488}
-  - component: {fileID: 114872673977180132}
-  - component: {fileID: 65331147274291792}
+  - component: {fileID: 4571950457707378}
+  - component: {fileID: 33380305762810618}
+  - component: {fileID: 65949123573010184}
+  - component: {fileID: 23309245261563382}
+  - component: {fileID: 114405350323646566}
+  - component: {fileID: 54901975487841716}
   m_Layer: 0
-  m_Name: _choco
+  m_Name: Cookie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4245670714503010
+--- !u!4 &4571950457707378
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1164067954114468}
+  m_GameObject: {fileID: 1583310783582246}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -44,12 +44,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &23300065654449358
+--- !u!23 &23309245261563382
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1164067954114468}
+  m_GameObject: {fileID: 1583310783582246}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -76,19 +76,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33566007746476356
+--- !u!33 &33380305762810618
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1164067954114468}
-  m_Mesh: {fileID: 4300000, guid: 29436e5d564ed1e4db3e7f8ba17eacd5, type: 3}
---- !u!54 &54875055158498488
+  m_GameObject: {fileID: 1583310783582246}
+  m_Mesh: {fileID: 4300000, guid: dc611443cdf6c73429c366ae1e32910b, type: 3}
+--- !u!54 &54901975487841716
 Rigidbody:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1164067954114468}
+  m_GameObject: {fileID: 1583310783582246}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -98,31 +98,30 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &65331147274291792
+--- !u!65 &65949123573010184
 BoxCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1164067954114468}
+  m_GameObject: {fileID: 1583310783582246}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.31999996, y: 0.15999998, z: 0.32000005}
-  m_Center: {x: -0.000000014901161, y: 0, z: 0}
---- !u!114 &114872673977180132
+  m_Size: {x: 1.3141288, y: 1.3141286, z: 0.22}
+  m_Center: {x: 0, y: 0.000000029802322, z: 0.0000000037252903}
+--- !u!114 &114405350323646566
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1164067954114468}
+  m_GameObject: {fileID: 1583310783582246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4360af42e17b4f54782504f0b421664b, type: 3}
+  m_Script: {fileID: 11500000, guid: 89634210639ef304982add3b94631bc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breakHp: 0
-  attackPoint: 20
-  healPoint: 0
-  type: 2
-  speed: 2
+  breakHp: 60
+  attackPoint: 0
+  healPoint: 10
+  type: 4

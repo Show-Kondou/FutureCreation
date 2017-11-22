@@ -38,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1122035579133258}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.3517761, y: -0.5669327, z: -0.11758423}
-  m_LocalScale: {x: 0.53422284, y: 0.53422284, z: 0.5342228}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 45a2333f7dcce21418f3f61b17416bf8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,7 +82,7 @@ MeshFilter:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1122035579133258}
-  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 4300000, guid: 1eff39a85f176ad42b63cb4937d6c6af, type: 3}
 --- !u!54 &54695751886756020
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -112,7 +112,7 @@ MonoBehaviour:
   breakHp: 0
   attackPoint: 35
   healPoint: 0
-  id: 3
+  type: 3
   speed: 2
 --- !u!135 &135816474023862256
 SphereCollider:
@@ -124,5 +124,5 @@ SphereCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Radius: 0.16
+  m_Center: {x: -0.000000014901161, y: -0.000000007450581, z: 0.000000067055225}
