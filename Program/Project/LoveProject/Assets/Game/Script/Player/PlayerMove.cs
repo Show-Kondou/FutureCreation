@@ -16,8 +16,6 @@ public class PlayerMove : ObjectTime {
 	private uint            _PlayerID;
 	// 移動量
 	private float			_MoveForce;
-	// ダッシュ
-	private float           _DashForce;
 	// 入力値
 	private Vector3         _InputMove;
 	
@@ -41,12 +39,6 @@ public class PlayerMove : ObjectTime {
 	public float MoveForce {
 		get { return _MoveForce; }
 		set { _MoveForce = value; }
-	}
-	/// <summary>
-	/// ダッシュアクセサ
-	/// </summary>
-	public float DashForce {
-		set { _DashForce = value; }
 	}
 	/// <summary>
 	/// カメラアクセサ
@@ -141,20 +133,14 @@ public class PlayerMove : ObjectTime {
 
 		
 
-		// ダッシュ入力判定
-		if( InputGame.GetPlayerJump( _PlayerID ) ) {
-			// TODO：足し算か掛け算か？
-			moveForce += _DashForce;
-		}
-
 		// 移動方向計算
 		vec += _InputMove.x * cameraRight;
 		vec += _InputMove.z * cameraForward;
 
 
-		// 移動方向に向く
-		if( vec.magnitude > 0.0F )  // ゼロベクトル代入防止
-			transform.forward = vec.normalized;
+		//// 移動方向に向く
+		//if( vec.magnitude > 0.0F )  // ゼロベクトル代入防止
+		//	transform.forward = vec.normalized;
 
 
 
