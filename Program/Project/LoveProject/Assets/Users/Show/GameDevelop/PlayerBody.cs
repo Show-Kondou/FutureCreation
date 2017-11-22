@@ -5,6 +5,7 @@
  *	
  *	▼ Author	Show Kondou
 */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,7 @@ using UnityEngine;
 /// <summary>
 /// PlayerBodyクラス
 /// </summary>
-public class PlayerBody : MonoBehaviour {
+public class PlayerBody : ObjectTime {
 
 	// 定数
 	#region Constant
@@ -21,22 +22,79 @@ public class PlayerBody : MonoBehaviour {
 
 	// メンバー
 	#region Member
+	// 上半身のフォワード
+	private float			_UBRotY;
+	// 下半身のフォワード
+	private float			_LBRotY;
+
+	// コンポーネント
+	// 上半身
+	private Transform		_UpperBody;
+	// 下半身
+	private Transform		_LowerBody;
+	// カメラ
+	private Transform		_CameraTrans;
+
 	#endregion Member
 
 	// アクセサ
 	#region Accessor
+	/// <summary>
+	/// カメラ
+	/// </summary>
+	public Transform Camera {
+		set { _CameraTrans = value; }
+	}
 	#endregion Accessor
 
 	// メソッド
 	#region Method
+	private void Init() {
+		// 上半身と下半身を取得
+		foreach( Transform obj in transform ) {
+			if( obj.name == "Body" ) {
+				_UpperBody = obj;
+				continue;
+			}
+			if( obj.name == "Leg" ) {
+				_LowerBody = obj;
+				continue;
+			}
+		}
+
+
+		// 初期角度取得
+		var rot = _UpperBody.rotation;
+		_UBRotY = rot.eulerAngles.y;
+		rot = _LowerBody.rotation;
+		_LBRotY = rot.eulerAngles.y;
+	}
+	/// <summary>
+	/// 更新
+	/// </summary>
+	protected override void Execute() {
+	}
+
+
+	protected void UpperBodyDirection() {
+
+	}
+	protected void LowerBodyDirection() {
+
+	}
+
+
+
 	#endregion Method
 
 	// イベント
 	#region MonoBehaviour Event
-	// /// <summary>
-	// /// 初期化
-	// /// </summary>
-	// private void Start() { }
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	private void Start() {
+		Init();
+	}
 
 	// /// <summary>
 	// /// 更新
