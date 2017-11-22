@@ -54,10 +54,8 @@ public class Shoot : Item{
 
 	void Update(){
 		
-		//	テスト動作
-		{
-			//処理
-		}
+		//	ここで、落ちているときの動作？
+
 	}
 
 	/// <summary>

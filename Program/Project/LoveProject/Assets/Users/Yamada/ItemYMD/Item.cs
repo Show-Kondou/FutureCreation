@@ -22,7 +22,7 @@ public abstract class Item : MonoBehaviour
 	protected MeshRenderer mesh;	//	メッシュレンダラー
 	protected Collider coll;        //	コライダー
 
-	protected uint playerID;
+	protected uint playerID;		//	拾ったプレイヤーの識別ID
 
 	//	状態のフラグ管理群
 	protected bool isPicked = false;      // 拾われた

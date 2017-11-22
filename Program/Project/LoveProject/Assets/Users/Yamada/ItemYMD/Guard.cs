@@ -10,6 +10,12 @@ public class Guard : Item {
 		coll = GetComponent<Collider>();
 	}
 
+	void Update(){
+		
+		//	ここで、落ちているときの動作？
+		
+	}
+
 	/// <summary>
 	/// 固有動作
 	/// </sammary>

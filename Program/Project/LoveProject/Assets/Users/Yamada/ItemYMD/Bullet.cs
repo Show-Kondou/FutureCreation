@@ -101,6 +101,11 @@ public class Bullet : Item {
 				break;
 			}
 		}else if(other_tag == "Player"){//	プレイヤー
+			var other_id = other.GetComponent<Player>().PlayerID;
+			
+			//	拾ったプレイヤーと同じなので、判定しない
+			if(other_id == playerID) return;
+
 			gameObject.SetActive(false);	//	非表示へ
 		}
 
