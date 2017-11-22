@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,9 +9,7 @@ using UnityEngine;
 /// </summary>
 [RequireComponent( typeof( Rigidbody ) )]
 public class PlayerMove : ObjectTime {
-
-	readonly Vector3 MASK_XZ = new Vector3( 1.0F, 0.0F, 1.0F );
-
+	
 	#region Member
 	// --- ステータス ---
 	// プレイヤー番号
@@ -19,6 +18,8 @@ public class PlayerMove : ObjectTime {
 	private float			_MoveForce;
 	// ダッシュ
 	private float           _DashForce;
+	// 入力値
+	private Vector3         _InputMove;
 	
 	// --- コンポーネント ---
 	// カメラ
@@ -93,10 +94,28 @@ public class PlayerMove : ObjectTime {
 
 
 	/// <summary>
-	/// 更新z
+	/// 更新（固定フレーム）
+	/// </summary>
+	protected override void FixedExecute() {
+		Move(); // 移動処理
+	}
+
+	/// <summary>
+	/// 更新
 	/// </summary>
 	protected override void Execute() {
-		Move(); // 移動処理
+		Input();
+	}
+
+
+
+
+	/// <summary>
+	/// 入力処理
+	/// </summary>
+	private void Input() {
+		// 移動の入力判定
+		_InputMove = InputGame.GetPlayerMove( _PlayerID );
 	}
 
 
@@ -120,9 +139,7 @@ public class PlayerMove : ObjectTime {
 											 0.0F,
 											 _CameraTrans.right.z );
 
-
-		// 移動の入力判定
-		Vector3 input = InputGame.GetPlayerMove( _PlayerID );
+		
 
 		// ダッシュ入力判定
 		if( InputGame.GetPlayerJump( _PlayerID ) ) {
@@ -131,8 +148,8 @@ public class PlayerMove : ObjectTime {
 		}
 
 		// 移動方向計算
-		vec += input.x * cameraRight;
-		vec += input.z * cameraForward;
+		vec += _InputMove.x * cameraRight;
+		vec += _InputMove.z * cameraForward;
 
 
 		// 移動方向に向く
@@ -154,6 +171,7 @@ public class PlayerMove : ObjectTime {
 		// 移動
 		// _Rigid.velocity = move * DeltaTime;
 		var vel = _Rigid.velocity;
+		float DeltaTime = Time.deltaTime;
 		vel.x = move.x * DeltaTime;
 		vel.z = move.z * DeltaTime;
 		_Rigid.velocity = vel;

@@ -39,7 +39,20 @@ abstract public class ObjectTime : MonoBehaviour {
 		Execute();
 	}
 
+	private void LateUpdate() {
+		_deltaTime = Time.deltaTime;
+		LateExecute();
+	}
+
+	private void FixedUpdate() {
+		FixedExecute();
+	}
+
+	virtual protected void FixedExecute() { }
+
 	abstract protected void Execute();
+
+	virtual protected void LateExecute() { }
 
 	#endregion MEthod
 
