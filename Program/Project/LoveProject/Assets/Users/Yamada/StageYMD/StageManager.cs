@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour {
 
-	[Header("ポップポイント"), SerializeField]
-	List<StagePop> popPoint = new List<StagePop>();	//	ポップする場所オブジェ
+	[Header("ポップポイント"), HideInInspector]
+	public List<StagePop> popPoint = new List<StagePop>();	//	ポップする場所オブジェ
 
 	//TODO:	生成上限は15個
 
@@ -18,6 +18,24 @@ public class StageManager : MonoBehaviour {
 
 	private List<float> percent = new List<float>();	//	％変換後の箱
 
+
+	#region Singleton
+        static StageManager instance;
+        public static StageManager Instance{
+            get{
+                if (!instance){
+                    instance = FindObjectOfType<StageManager>();
+                    if (!instance)  instance = new GameObject("StageManager").AddComponent<StageManager>();
+                }
+                return instance;
+            }
+        }
+
+		void Awake(){
+			if (Instance && instance != this)
+				Destroy(gameObject);
+		}
+	#endregion Singleton
 
 	// Use this for initialization
 	void Start () {
