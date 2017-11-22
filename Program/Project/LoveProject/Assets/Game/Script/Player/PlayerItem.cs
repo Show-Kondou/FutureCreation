@@ -57,10 +57,14 @@ public class PlayerItem : ObjectTime {
 		if( InputGame.GetPlayerItemL( _PlayerID ) ) {
 			if( _ItemL == null ) return;
 			_ItemL.Action();
+			// アイテム終
+			if( _ItemL.IsBreak )  _ItemL = null;
 			Debug.Log( "ActionItem" );
 		}else if( InputGame.GetPlayerItemR( _PlayerID ) ) {
 			if( _ItemR == null ) return;
 			_ItemR.Action();
+			if( _ItemR.IsBreak )
+				_ItemR = null;
 			Debug.Log( "ActionItem" );
 		}
 	}
@@ -113,17 +117,17 @@ public class PlayerItem : ObjectTime {
 	private void OnTriggerEnter( Collider coll ) {
 		if( coll.gameObject.tag != "Item" ) return;
 		Item item = coll.gameObject.GetComponent<Item>();
+		// TODO:手の位置に持ってくる
 		if( _ItemL == null ) {
 			_ItemL = item;
-			// _ItemL.Catch();
+			_ItemL.Chatch( _PlayerID );
 			return;
 		}
 		if( _ItemR == null ) {
 			_ItemR = item;
+			_ItemL.Chatch( _PlayerID );
 			return;
 		}
-
-		// 持ちきれなかったアイテムは何もしない
 	}
 
 

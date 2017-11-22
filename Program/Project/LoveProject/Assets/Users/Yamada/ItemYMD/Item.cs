@@ -20,7 +20,9 @@ public abstract class Item : MonoBehaviour
 	protected ItemManager.ItemType type;	//	アイテムの識別Type
 
 	protected MeshRenderer mesh;	//	メッシュレンダラー
-	protected Collider coll;		//	コライダー
+	protected Collider coll;        //	コライダー
+
+	protected uint playerID;
 
 	//	状態のフラグ管理群
 	protected bool isPicked = false;      // 拾われた
@@ -54,11 +56,12 @@ public abstract class Item : MonoBehaviour
 	/// <summary>
 	/// 拾われた
 	/// </sammary>
-	public void Chatch(){
+	public void Chatch( uint ID ){
 		//	表示を切る
 		IsActive = false;
 		//	拾われたことにする
 		isPicked = true;
+		playerID = ID;
 	}
 
 
