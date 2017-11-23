@@ -31,7 +31,7 @@ public class Slash : Item {
 	/// <summary>
 	/// 
 	/// </sammary>
-	public override uint EatItem(){
+	public override int EatItem(){
 		//TODO:	食べられた時の処理
 		return HealPoint;
 	}

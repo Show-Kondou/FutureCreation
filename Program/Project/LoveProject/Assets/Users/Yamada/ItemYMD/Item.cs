@@ -14,7 +14,7 @@ public abstract class Item : MonoBehaviour
 	protected float attackPoint;  //	攻撃力・威力
 
 	[Header("回復量"), SerializeField]
-	protected uint healPoint;     //	回復量
+	protected int healPoint;     //	回復量
 
 	[Header("種類"), SerializeField]
 	protected ItemManager.ItemType type;	//	アイテムの識別Type
@@ -39,7 +39,7 @@ public abstract class Item : MonoBehaviour
 			}
 		}
 	public float AttackPoint { get { return attackPoint; } }
-	public uint HealPoint { get { return healPoint; } }
+	public int HealPoint { get { return healPoint; } }
 	public ItemManager.ItemType Type { get { return type; } set { type = value; } }
 	public bool IsActive {	get{return mesh.enabled && coll.enabled;} set{mesh.enabled = coll.enabled = value;}}
 	public bool IsPicked { get{return isPicked;} }
@@ -51,7 +51,7 @@ public abstract class Item : MonoBehaviour
 
 	//	仮想
 	public abstract void Action();	//	固有動作
-	public abstract uint EatItem();	//	食べられた
+	public abstract int EatItem();	//	食べられた
 
 	/// <summary>
 	/// 拾われた

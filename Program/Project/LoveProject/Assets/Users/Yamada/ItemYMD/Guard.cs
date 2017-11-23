@@ -30,7 +30,7 @@ public class Guard : Item {
 	/// <summary>
 	/// 食べられた時の処理
 	/// </sammary>
-	public override uint EatItem(){
+	public override int EatItem(){
 		//	回復量返却
 		return HealPoint;
 	}

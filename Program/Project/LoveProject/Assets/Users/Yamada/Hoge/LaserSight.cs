@@ -2,21 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-//
-//	プレイやのテスト
-//
-public class PlayerDeco : MonoBehaviour {
-
-	public GameObject candyPrefab = null;
-	GameObject candyObj = null;
-	GameObject pockyObj = null;
-	public GameObject targetPos;
-
+public class LaserSight : MonoBehaviour {
 
     //  ラインレンダラー関係
     LineRenderer lineRenderer;
     List<Vector3> renderLinePoints = new List<Vector3>();
+
+
     //  開始地点
     Vector3 offset = Vector3.zero;
 
@@ -26,47 +18,13 @@ public class PlayerDeco : MonoBehaviour {
     //  角度
     float deg = 0;
 
+
     // Use this for initialization
     void Start ()
     {
         lineRenderer = GetComponent<LineRenderer>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        if (Input.GetKey(KeyCode.RightArrow))
-        {
-            transform.localEulerAngles += new Vector3(0, 50 * Time.deltaTime, 0);
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            transform.localEulerAngles -= new Vector3(0, 50 * Time.deltaTime, 0);
-        }
-        if (Input.GetKey(KeyCode.A))
-        {
-            transform.position -= new Vector3(2 * Time.deltaTime, 0, 0);
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            transform.position += new Vector3(2 * Time.deltaTime, 0, 0);
-        }
-
-
-        if (Input.GetKey(KeyCode.Space))
-        {
-            DrawLine(transform.localPosition, targetPos.transform.localPosition, 60);
-        }
-    }
-
-
-	//	衝突検知
-	void OnTriggerEnter(Collider other){
-
-		//TODO:	とりあえず当たったかをテスト。
-		//Debug.Log(this.name + "は" + other.gameObject.name + "と当たった！");
-	}
+    
 
     public void DrawLine(Vector3 _offset, Vector3 _target, float _deg)
     {
