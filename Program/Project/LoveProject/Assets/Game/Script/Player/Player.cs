@@ -65,41 +65,51 @@ public class Player : MonoBehaviour {
 	/// 初期化関数
 	/// </summary>
 	private void Awake() {
-		Init();
+		InitComponent();
+		InitStatus();
 	}
 
 	/// <summary>
 	/// インスペクター変更時イベント
 	/// </summary>
 	private void OnValidate() {
-		// Init();
+		//InitComponent();
+		//InitStatus();
 	}
 
 
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	private void Init() {
+	private void InitComponent() {
 		// --- プレイヤー関係クラス取得
 		_Move = GetPlayerComponent<PlayerMove>();
 		_Jump = GetPlayerComponent<PlayerJump>();
 		var camera = CameraManager.Instance.GetPlayerCamera( _PlayerID );
 		_Camera = Define.NullCheck( camera );
 		_Item = GetPlayerComponent<PlayerItem>();
+	}
+
+
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	private void InitStatus() {
 		// --- ステータス反映
 		// 移動
-		_Move.PlayerID	= _PlayerID;
+		Define.NullCheck(_Move);
+		_Move.PlayerID = _PlayerID;
 		_Move.MoveForce = _MoveForce;
-		_Move.Camera	= _Camera;
+		_Move.Camera = _Camera;
 		// ジャンプ
-		_Jump.PlayerID	= _PlayerID;
+		_Jump.PlayerID = _PlayerID;
 		_Jump.JumpForce = _JumpForce;
 		// カメラ
 		_Camera.playerTrans = _Move.transform;
-		_Camera.TurnForce	= _TurnForce;
+		_Camera.TurnForce = _TurnForce;
 		_Camera.Init();
 		// アイテム
-		_Item.PlayerID	= _PlayerID;
+		_Item.PlayerID = _PlayerID;
 	}
 
 

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44332898, g: 0.49259228, b: 0.5722389, a: 1}
+  m_IndirectSpecularColor: {r: 0.44332945, g: 0.4925928, b: 0.57223994, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 97433579}
   - component: {fileID: 97433578}
   - component: {fileID: 97433577}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Stage
   m_Icon: {fileID: 0}
@@ -295,7 +295,7 @@ GameObject:
   - component: {fileID: 180727326}
   - component: {fileID: 180727325}
   - component: {fileID: 180727324}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Stage
   m_Icon: {fileID: 0}
@@ -713,7 +713,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 993927545}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Field
   m_TagString: Stage
   m_Icon: {fileID: 0}
@@ -754,7 +754,7 @@ GameObject:
   - component: {fileID: 1146664917}
   - component: {fileID: 1146664916}
   - component: {fileID: 1146664915}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (2)
   m_TagString: Stage
   m_Icon: {fileID: 0}
@@ -836,7 +836,7 @@ GameObject:
   - component: {fileID: 1228480895}
   - component: {fileID: 1228480894}
   - component: {fileID: 1228480893}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground
   m_TagString: Stage
   m_Icon: {fileID: 0}
@@ -996,7 +996,9 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 54299124495000496, guid: 3659c86e95b9cdc4fb8cb41d93f8c1d9, type: 2}
+    - {fileID: 65545037608991338, guid: 3659c86e95b9cdc4fb8cb41d93f8c1d9, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 3659c86e95b9cdc4fb8cb41d93f8c1d9, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &1583937865

@@ -7,7 +7,7 @@
 */
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEditor;
 
 
 /// <summary>
@@ -58,6 +58,7 @@ static public class Define {//  : MonoBehaviour {
 	public static T NullCheck<T>( T obj ) {
 		if( obj == null ) {
 			UnityEngine.Debug.LogError( typeof(T).Name + "の生成に失敗しました。" );
+			EditorApplication.isPaused = true;
 			return default(T);
 		}
 		return obj;
