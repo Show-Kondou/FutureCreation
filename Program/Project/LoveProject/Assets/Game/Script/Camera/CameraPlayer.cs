@@ -145,11 +145,4 @@ public class CameraPlayer : ObjectTime {
 	}
 	#endregion Method
 
-
-
-	// イベント
-	#region MonoBehaviour Event
-	#endregion MonoBehaviour Event
-
-
 }

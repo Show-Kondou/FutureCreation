@@ -18,6 +18,8 @@ public class PlayerMove : ObjectTime {
 	private float			_MoveForce;
 	// 入力値
 	private Vector3         _InputMove;
+	// 
+	private Player.PlayerState _State;
 	
 	// --- コンポーネント ---
 	// カメラ
@@ -51,6 +53,9 @@ public class PlayerMove : ObjectTime {
 	/// </summary>
 	public uint PlayerID {
 		set { _PlayerID = value; }
+	}
+	public Player.PlayerState State {
+		set { _State = value; }
 	}
 	#endregion Accessor
 
@@ -106,7 +111,10 @@ public class PlayerMove : ObjectTime {
 	/// 入力処理
 	/// </summary>
 	private void Input() {
+		Debug.Log( _State );
 		// 移動の入力判定
+		if (_State == Player.PlayerState.EAT)
+			return;
 		_InputMove = InputGame.GetPlayerMove( _PlayerID );
 	}
 

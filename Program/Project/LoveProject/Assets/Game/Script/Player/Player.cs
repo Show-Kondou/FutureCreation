@@ -1,65 +1,103 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿/*
+ *	▼ File		PlayerItem.cs
+ *	
+ *	▼ Brief	説明
+ *	
+ *	▼ Author	Show Kondou
+*/using UnityEngine;
 
+/// <summary>
+/// プレイヤークラス
+/// </summary>
 public class Player : MonoBehaviour {
 
+//TODO : PlayerStatusClass制作
 
-	// private static uint     _PlayerCount   = 0;
+	public enum PlayerState {
+		STAND,	// 立ち
+		RUN,	// 走る
+		JUMP,	// ジャンプ
+		ATTACK,	// 攻撃
+		EAT,	// 食べる
+		ROLL,	// ロール
+		WIN,	// 勝ち
+		LOSS,	// 負け
+
+
+
+
+	}
+
+	// プレイヤーステータス
+	public struct PlayerStatus {
+		uint _PlayerID;		
+		int _HitPoint;
+		float _MoveForce;
+		float _JumpForce;
+		float _TurnForce;
+		PlayerState _State;
+	};
+
+
+
+	private PlayerState _State;
 
 	#region Member
-	// ステータス
+	// --- ステータス ---
 	[Header("プレイヤーID"), SerializeField]
 	private uint			_PlayerID;
-
 	[Header("体力"),SerializeField]
 	private int             _HitPoint	= 100;
-
 	[Header("移動量"),SerializeField]
 	private float           _MoveForce	= 10.0F;
-
 	[Header( "ジャンプ力" ), SerializeField]
 	private float            _JumpForce = 1.0F;
-
 	[Header("カメラ回転量"),SerializeField]
 	private float			_TurnForce	= 30.0F;
 
-	//[Header("アイテム右"),SerializeField]
-	//private 
-	//[Header("アイテム左"),SerializeField]
-	//private 
-
-	// 関連クラス取得
+	//コンポーネントの取得フラグ
+	private bool			_IsGetComponent = false;
+	
+	// --- コンポーネント ---
 	private PlayerMove      _Move		= null;
 	private PlayerJump      _Jump       = null;
 	private CameraPlayer    _Camera		= null;
 	private PlayerItem      _Item       = null;
-
 	#endregion	Member
 
+
+
 	#region Accessor
-
-	public int GetHP { get; set; }
-	public bool IsLife { get { return (_HitPoint > 0); } }
-
+	/// <summary>
+	/// プレイヤーID
+	/// </summary>
 	public uint PlayerID {
 		get { return _PlayerID; }
 	}
-
-	public int PlayerHP {
-		// TODO：更新してあるステータスを投げる
-		get { return _HitPoint; }
+	/// <summary>
+	/// 生存確認
+	/// </summary>
+	public bool IsLife {
+		get { return (_Item.HitPoint > 0); }
 	}
-
+	/// <summary>
+	/// 体力
+	/// </summary>
+	public int PlayerHP {
+		get { return _Item.HitPoint; }
+	}
+	/// <summary>
+	/// アイテムの種類
+	/// </summary>
 	public ItemManager.ItemType ItemTypeL {
 		get { return _Item.ItemL.Type; }
 	}
 	public ItemManager.ItemType ItemTypeR {
 		get { return _Item.ItemR.Type; }
 	}
-
 	#endregion Accessor
+
+
 
 	/// <summary>
 	/// 初期化関数
@@ -73,8 +111,21 @@ public class Player : MonoBehaviour {
 	/// インスペクター変更時イベント
 	/// </summary>
 	private void OnValidate() {
-		//InitComponent();
-		//InitStatus();
+		if ( !_IsGetComponent ) return;
+
+		// --- ステータス反映
+		// 移動
+		_Move.PlayerID = _PlayerID;
+		_Move.MoveForce = _MoveForce;
+		_Move.Camera = _Camera;
+		// ジャンプ
+		_Jump.PlayerID = _PlayerID;
+		_Jump.JumpForce = _JumpForce;
+		// カメラ
+		_Camera.TurnForce = _TurnForce;
+		// アイテム
+		_Item.PlayerID = _PlayerID;
+		_Item.HitPoint = _HitPoint;
 	}
 
 
@@ -88,6 +139,7 @@ public class Player : MonoBehaviour {
 		var camera = CameraManager.Instance.GetPlayerCamera( _PlayerID );
 		_Camera = Define.NullCheck( camera );
 		_Item = GetPlayerComponent<PlayerItem>();
+		_IsGetComponent = true;
 	}
 
 
@@ -97,7 +149,6 @@ public class Player : MonoBehaviour {
 	private void InitStatus() {
 		// --- ステータス反映
 		// 移動
-		Define.NullCheck(_Move);
 		_Move.PlayerID = _PlayerID;
 		_Move.MoveForce = _MoveForce;
 		_Move.Camera = _Camera;
@@ -110,6 +161,7 @@ public class Player : MonoBehaviour {
 		_Camera.Init();
 		// アイテム
 		_Item.PlayerID = _PlayerID;
+		_Item.HitPoint = _HitPoint;
 	}
 
 

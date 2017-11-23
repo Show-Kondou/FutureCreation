@@ -15,25 +15,6 @@ using UnityEditor;
 /// </summary>
 static public class Define {//  : MonoBehaviour {
 
-
-	//#region Singleton
-	//// インスタンス
-	//static public Define _Instance = null;
-	//// インスタンスのアクセサ
-	//static public Define Instance {
-	//	get {
-	//		if( _Instance != null )
-	//			return _Instance;
-	//		_Instance = FindObjectOfType<Define>();
-	//		if( _Instance == null )
-	//			Debug.LogError( typeof( Define ).Name + "の生成に失敗しました。" );
-
-	//		return _Instance;
-	//	}
-	//}
-	//#endregion Singleton
-
-
 	// 定数
 	#region Constant
 	#endregion Constant
