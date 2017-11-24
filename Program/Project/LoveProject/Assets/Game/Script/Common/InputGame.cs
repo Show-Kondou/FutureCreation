@@ -16,7 +16,8 @@ public class InputGame {
 	#region Constant
 	readonly static string GamePadName = "GamePad";
 	readonly static string CameraName = "Camera";
-	readonly static float CameraCorrectionX = 0.7F;
+	readonly static float CameraCorrectionX = 0.3F;
+	readonly static float CameraCorrectionY = 0.5F;
 	#endregion Constant
 
 	// メソッド
@@ -81,8 +82,8 @@ public class InputGame {
 	static public float GetCameraTurnY( uint cameraID = 1 ) {
 		float key = GetKeyCameraY();
 		if( key != 0.0F )
-			return key;
-		return GetCameraY( cameraID );
+			return key * CameraCorrectionY;
+		return GetCameraY( cameraID ) * CameraCorrectionY;
 	}
 
 	/// <summary>

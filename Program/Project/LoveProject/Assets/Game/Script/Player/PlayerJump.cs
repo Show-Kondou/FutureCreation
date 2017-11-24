@@ -38,6 +38,7 @@ public class PlayerJump : ObjectTime {
 	private float	_AddForce;　// ジャンプ力の加算する力
 	public State   _State;		// 状態
 	private Action	_ActionF;	// 状態による関数
+	private bool	_
 
 	private Rigidbody _Rigid;   // リジッドボディ
 
@@ -59,6 +60,9 @@ public class PlayerJump : ObjectTime {
 	// メソッド
 	#region Method
 	protected override void Execute() {
+	}
+
+	protected override void FixedExecute() {
 		_ActionF();
 	}
 
@@ -68,13 +72,13 @@ public class PlayerJump : ObjectTime {
 	private void Stand() {
 		if( _State != State.STANDING )
 			return;
-		_AddForce = 0.0F;			// 加速度初期化
+		_AddForce = Physics.gravity.y;			// 加速度初期化
 		SetVelocityY( _AddForce );    // 速度適応
+
 		// ジャンプインプット
 		bool checkJump = InputGame.GetPlayerJump( _PlayerID );
 		if( checkJump ) {
 			// ジャンプ
-			Debug.Log("ジャンプ");
 			_State = State.JUMPING;
 			_AddForce = _JumpForce;
 			_ActionF = Jump;
@@ -144,7 +148,6 @@ public class PlayerJump : ObjectTime {
 	private void OnTriggerEnter( Collider coll ) {
 		if( coll.tag != "Stage" ) return;
 		// 接地
-		Debug.Log("立ち");
 		_State = State.STANDING;
 		_ActionF = Stand;
 	}
@@ -158,12 +161,12 @@ public class PlayerJump : ObjectTime {
 		if( coll.tag != "Stage" ) return;
 		// ジャンプ？落下？
 		if( _State == State.JUMPING ) return;
-		Debug.Log( "落下" );
-		Debug.Log( coll.name );
+
+		
 		// 落下
 		_State = State.FALLING;
-		_JumpForce = 0.0F;
-		SetVelocityY( _JumpForce );
+		_AddForce = Physics.gravity.y;
+		SetVelocityY( _AddForce );
 		_ActionF = Fall;
 	}
 	#endregion MonoBehaviour Event
@@ -173,4 +176,18 @@ public class PlayerJump : ObjectTime {
 
 /*
  *	▼ End of File
+*/
+
+
+
+
+
+
+
+
+
+
+
+/*
+ * v += g * delta
 */

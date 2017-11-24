@@ -27,6 +27,8 @@ public class CameraPlayer : ObjectTime {
 	// 回転力
 	private float			_TurnForce;
 
+	private Vector3         _NowAngle;
+
 	// カメラの中心
 	private CameraCenter	_CameraCenter	= null;
 	private Transform		_CenterTrans	= null;
@@ -94,7 +96,7 @@ public class CameraPlayer : ObjectTime {
 	private void Move() {
 		Vector3 now  = _CenterTrans.position;
 		Vector3 next = _PlayerTrans.position + CENTER_ADD;
-		_CenterTrans.position = Vector3.Lerp( now, next, DeltaTime * 15.0F );
+		_CenterTrans.position += (next - now) * 0.2F;
 	}
 
 	/// <summary>
@@ -121,7 +123,8 @@ public class CameraPlayer : ObjectTime {
 
 		// 横回転（制限なし）
 		turnRot	   = _CenterTrans.eulerAngles;
-		turnRot.y += turnForce.x;
+		_NowAngle.y += (turnForce.x - _NowAngle.y) * 0.1F;
+		turnRot.y += _NowAngle.y;
 		_CenterTrans.rotation = Quaternion.Euler( turnRot );
 
 
@@ -129,7 +132,8 @@ public class CameraPlayer : ObjectTime {
 		dumpRot = _CenterTrans.rotation;			// データをダンプ
 		// 一旦回転
 		turnRot = _CenterTrans.eulerAngles;
-		turnRot.x += turnForce.y;
+		_NowAngle.x += (turnForce.y - _NowAngle.x) * 0.1F;
+		turnRot.x += _NowAngle.x;
 		// 角度判定
 		float turnX = turnRot.x - 180.0F;
 		turnX = (turnX < 0.0F) ? turnX + 360.0F : turnX;

@@ -30,8 +30,14 @@ public class Parabpla : MonoBehaviour {
         float b = Mathf.Tan( deg * Mathf.Deg2Rad ); //  角度を何とかしている
         float a = (target.y - b * target.z) / (target.z * target.z);    //  ？？？
 
-        //  傾きの計算
-        float katamuki = (target.z - offset.z) / (target.x - offset.x);
+		// 予測線の軌道をクリア
+		renderLinePoints.Clear();
+		// LineRenderer で描画
+		lineRenderer.positionCount = renderLinePoints.Count;
+		lineRenderer.SetPositions( renderLinePoints.ToArray() );
+
+		//  傾きの計算
+		float katamuki = (target.z - offset.z) / (target.x - offset.x);
 
         for (float z = 0; z <= target.z; z += 0.5f){
 
@@ -106,7 +112,7 @@ public class Parabpla : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Alpha8))
         {
             transform.parent = null;
-            SetTarget(DropPos.transform.localPosition, 60);
+			SetTarget(DropPos.transform.localPosition, 60);
             CallThrow();
         }
 

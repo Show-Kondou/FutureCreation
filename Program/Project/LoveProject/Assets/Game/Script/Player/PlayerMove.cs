@@ -17,7 +17,7 @@ public class PlayerMove : ObjectTime {
 	// 移動量
 	private float			_MoveForce;
 	// 入力値
-	private Vector3         _InputMove;
+	private Vector3         _InputMove = Vector3.zero;
 	// 
 	private Player.PlayerState _State;
 	
@@ -39,7 +39,7 @@ public class PlayerMove : ObjectTime {
 	/// 移動力アクセサ
 	/// </summary>
 	public float MoveForce {
-		get { return _MoveForce; }
+		//get { return _MoveForce; }
 		set { _MoveForce = value; }
 	}
 	/// <summary>
@@ -111,10 +111,12 @@ public class PlayerMove : ObjectTime {
 	/// 入力処理
 	/// </summary>
 	private void Input() {
-		Debug.Log( _State );
 		// 移動の入力判定
 		if (_State == Player.PlayerState.EAT)
 			return;
+		//var nowInput = InputGame.GetPlayerMove( _PlayerID );
+		//_InputMove += (nowInput - _InputMove) * 0.7F;
+		//Debug.Log( _InputMove );
 		_InputMove = InputGame.GetPlayerMove( _PlayerID );
 	}
 
@@ -125,8 +127,6 @@ public class PlayerMove : ObjectTime {
 	void Move() {
 		// 最終ベクトル
 		Vector3 vec = Vector3.zero;
-		// 移動力
-		float moveForce = _MoveForce;
 		// 方向ベクトルの正規化の値
 		Vector3 nor = Vector3.zero;
 
@@ -156,16 +156,13 @@ public class PlayerMove : ObjectTime {
 
 		// 正規化
 		nor = vec.normalized;
-		// 移動量を計算
-
 
 		// 移動方向に移動量を計算
-		var move = vec.normalized * moveForce;
+		var move = vec.normalized * _MoveForce;
 		
 		// 移動
-		// _Rigid.velocity = move * DeltaTime;
 		var vel = _Rigid.velocity;
-		float DeltaTime = Time.deltaTime;
+		float DeltaTime = 1.0F;
 		vel.x = move.x * DeltaTime;
 		vel.z = move.z * DeltaTime;
 		_Rigid.velocity = vel;

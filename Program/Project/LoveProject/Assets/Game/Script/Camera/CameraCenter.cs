@@ -5,6 +5,7 @@
  *	
  *	▼ Author	Show Kondou
 */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,11 +13,12 @@ using UnityEngine;
 /// <summary>
 /// CameraCenter
 /// </summary>
-public class CameraCenter : MonoBehaviour {
+public class CameraCenter : ObjectTime {
 
 	// 定数
 	#region Constant
 	readonly float Coll_RANGE = 0.8F;
+	readonly float RAY_INTERVAL = 0.2F;
 	#endregion Constant
 
 
@@ -28,7 +30,9 @@ public class CameraCenter : MonoBehaviour {
 	// 中心からカメラの距離
 	private float _MaxDistance;		// 最大
 	private float _NextDistance;	// 次の距離（滑らかに動かすため）
-	private float _NowDistance;		// 現在の距離
+	private float _NowDistance;     // 現在の距離
+	private float _PassTime;            // レイを飛ばす間隔のキャッシュ
+
 
 	// コライダーコンポーネント
 	private BoxCollider _Coll = null;
@@ -97,9 +101,9 @@ public class CameraCenter : MonoBehaviour {
 	/// <summary>
 	/// 更新
 	/// </summary>
-	private void Update() {
+	protected override void Execute() {
 		HitCameraStage();
-		_NowDistance += ( _NextDistance - _NowDistance) * 0.8F;
+		_NowDistance += (_NextDistance - _NowDistance) * 0.3F;
 	}
 
 
@@ -107,7 +111,14 @@ public class CameraCenter : MonoBehaviour {
 	/// カメラがステージにめり込んだ時の処理
 	/// </summary>
 	private void HitCameraStage() {
-		if (!IsRayHit)	return;
+		_NextDistance = _MaxDistance;
+		if( !IsRayHit ) return;
+
+		//// レイのインターバル
+		//_PassTime += DeltaTime;
+		//if( RAY_INTERVAL > _PassTime ) return;
+		//_PassTime = 0.0F;
+
 
 		Ray			ray = new Ray();// レイ
 		RaycastHit	hitObj;         // 当たったオブジェクトのキャッシュ
@@ -122,8 +133,6 @@ public class CameraCenter : MonoBehaviour {
 		Debug.DrawRay( ray.origin, ray.direction * _MaxDistance, Color.yellow );
 		if( Physics.Raycast(ray, out hitObj, _MaxDistance, mask ) ){
 			_NextDistance = hitObj.distance;
-		}else{
-			_NextDistance = _MaxDistance;
 		}
 	}
 	#endregion Method
@@ -151,6 +160,7 @@ public class CameraCenter : MonoBehaviour {
 			return;
 		_RayHitNum--;
 	}
+
 	#endregion MonoBehaviour Event
 
 }

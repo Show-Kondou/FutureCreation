@@ -500,9 +500,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _PlayerID: 1
   _HitPoint: 100
-  _MoveForce: 1000
-  _JumpForce: 100
-  _TurnForce: 100
+  _MoveForce: 10
+  _JumpForce: 130
+  _TurnForce: 200
 --- !u!114 &114998940835581784
 MonoBehaviour:
   m_ObjectHideFlags: 1

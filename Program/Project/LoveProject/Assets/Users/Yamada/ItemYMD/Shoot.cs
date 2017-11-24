@@ -66,7 +66,7 @@ public class Shoot : Item{
 	void Update(){
 
         //	ここで、落ちているときの動作？
-        DrawLine(transform.localPosition, DropPoint.localPosition, 70);
+        // DrawLine(transform.localPosition, DropPoint.localPosition, 70);
 
         if (Input.GetKeyDown(KeyCode.M))
         {
@@ -95,7 +95,12 @@ public class Shoot : Item{
         //	弾の行動開始
         bulletList[currentBulletList].GetComponent<Bullet>().ActionBullet(transform.localPosition, DropPoint.localPosition, 70);
 		CurrentUp();
-		
+		// 予測線の軌道をクリア
+		renderLinePoints.Clear();
+		// LineRenderer で描画
+		lineRenderer.positionCount = renderLinePoints.Count;
+		lineRenderer.SetPositions( renderLinePoints.ToArray() );
+
 	}
 
 

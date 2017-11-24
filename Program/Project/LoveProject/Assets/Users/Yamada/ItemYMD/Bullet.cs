@@ -168,6 +168,8 @@ public class Bullet : Item {
 
         //  到達後にここにくるから、ここで爆発とか
         coll.GetComponent<SphereCollider>().radius = 5;
+
+		Destroy( this.gameObject );
     }
 
     #endregion Method
