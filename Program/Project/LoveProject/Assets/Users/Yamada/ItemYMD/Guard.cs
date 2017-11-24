@@ -10,6 +10,12 @@ public class Guard : Item {
 		coll = GetComponent<Collider>();
 	}
 
+	void Update(){
+		
+		//	ここで、落ちているときの動作？
+		
+	}
+
 	/// <summary>
 	/// 固有動作
 	/// </sammary>
@@ -24,7 +30,7 @@ public class Guard : Item {
 	/// <summary>
 	/// 食べられた時の処理
 	/// </sammary>
-	public override uint EatItem(){
+	public override int EatItem(){
 		//	回復量返却
 		return HealPoint;
 	}

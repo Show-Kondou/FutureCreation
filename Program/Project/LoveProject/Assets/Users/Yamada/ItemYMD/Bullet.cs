@@ -10,36 +10,49 @@ public class Bullet : Item {
 
 	bool isAction = false;	//	飛んでいくよ
 
-	[SerializeField]
-	float speed = 2;	//	飛んでくスピード
+	//[SerializeField]
+	//float speed = 2;	//	飛んでくスピード
+    
+	//float hogecount = 0;    //	テスト用
 
-	Vector3 target;
-	
-	float hogecount = 0;	//	テスト用
+    //  開始地点
+    Vector3 offset = Vector3.zero;
 
-	#endregion Member
+    //  落下地点
+    Vector3 target = Vector3.zero;
+
+    //  角度
+    float deg = 0;
+
+    #endregion Member
 
 
 
-	#region Method
-	
-	// Update is called once per frame
-	void Update () {
+    #region Method
+
+    void Start()
+    {
+        mesh = GetComponent<MeshRenderer>();
+        coll = GetComponent<SphereCollider>();
+    }
+
+        // Update is called once per frame
+    void Update () {
 
 		if(isAction == false) return;
 		//	以下、動作
 		
 		//	Z方向へ直進
-		transform.position += transform.forward * speed * Time.deltaTime;
+		//transform.position += transform.forward * speed * Time.deltaTime;
 
 		//テスト動作
-		{
-			hogecount += 1 * Time.deltaTime;
-			if(hogecount >= 5){
-				hogecount = 0;
-				ItemManager.Instance.NotActive(this);
-			}
-		}
+		//{
+		//	hogecount += 1 * Time.deltaTime;
+		//	if(hogecount >= 5){
+		//		hogecount = 0;
+		//		ItemManager.Instance.NotActive(this);
+		//	}
+		//}
 	}
 	
 
@@ -55,19 +68,30 @@ public class Bullet : Item {
 	/// <summary>
 	/// 
 	/// </sammary>
-	public override uint EatItem(){
+	public override int EatItem(){
 		Debug.LogError("Bullet.cs EatItem()ここは呼ばれないはずよ");
 		return healPoint;
 	}
 	
 
-	/// <summary>
-	/// 
-	/// </sammary>
-	public void ActionBullet(Vector3 _target){
+
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="_offset">運動開始地点</param>
+    /// <param name="_target"></param>
+    /// <param name="_deg"></param>
+	public void ActionBullet(Vector3 _offset, Vector3 _target, float _deg){
 		isAction = true;	//	行動可能
-		target = _target;	//	飛んでく目標
-		transform.LookAt(target);
+
+        offset = _offset;
+        target = transform.TransformPoint(_target - offset);
+        deg = _deg;
+
+        Debug.Log("off:" + offset);
+        Debug.Log("tar:" + target);
+
+        StartCoroutine("Throw");
 	}
 
 
@@ -101,15 +125,51 @@ public class Bullet : Item {
 				break;
 			}
 		}else if(other_tag == "Player"){//	プレイヤー
-			gameObject.SetActive(false);	//	非表示へ
+			var other_id = other.GetComponent<Player>().PlayerID;
+			
+			//	拾ったプレイヤーと同じなので、判定しない
+			if(other_id == playerID) return;
+
+			//gameObject.SetActive(false);	//	非表示へ
 		}
 
 
 
 	}
 
-	//TODO:　衝突時の自壊
+    //TODO:　衝突時の自壊
 
-	#endregion Method
+
+
+
+    /// <summary>
+    /// 放物挙動コルーチン
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator Throw()
+    {
+
+        float b = Mathf.Tan(deg * Mathf.Deg2Rad); //  角度を何とかしている
+        float a = (target.y - b * target.z) / (target.z * target.z);    //  ？？？
+
+        //  傾きの計算
+        float katamuki = (target.z - offset.z) / (target.x - offset.x);
+
+        for (float z = 0; z <= target.z; z += 0.5f)
+        {
+
+            float y = a * z * z + b * z;    //  Y軸の位置計算
+            float x = z / katamuki;         //  X軸の位置計算 x = y/a
+
+            //  座標反映
+            transform.localPosition = new Vector3(x, y, z) + offset;
+            yield return null;
+        }
+
+        //  到達後にここにくるから、ここで爆発とか
+        coll.GetComponent<SphereCollider>().radius = 5;
+    }
+
+    #endregion Method
 
 }

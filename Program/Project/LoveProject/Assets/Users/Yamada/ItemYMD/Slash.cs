@@ -12,6 +12,8 @@ public class Slash : Item {
 	
 	void Update(){
 
+		//	ここで、落ちているときの動作？
+		
 	}
 
 
@@ -29,7 +31,7 @@ public class Slash : Item {
 	/// <summary>
 	/// 
 	/// </sammary>
-	public override uint EatItem(){
+	public override int EatItem(){
 		//TODO:	食べられた時の処理
 		return HealPoint;
 	}
@@ -68,6 +70,11 @@ public class Slash : Item {
 			}
 
 		}else if(other_tag == "Player"){//	プレイヤーとの判定
+			var other_id = other.GetComponent<Player>().PlayerID;
+
+			//	拾ったプレイヤーと同じなので、判定しない
+			if(other_id == playerID) return;
+
 			SubBreakHP(1);	//	耐久値の減少
 		}
 
