@@ -24,9 +24,9 @@ public class PlayerBody : ObjectTime {
 	#region Member
 	//
 	private uint			_PlayerID;
-	// 上半身のフォワード
+	// 上半身の角度
 	private float			_UBRotY;
-	// 下半身のフォワード
+	// 下半身の角度
 	private float			_LBRotY;
 
 	// コンポーネント
@@ -113,7 +113,24 @@ public class PlayerBody : ObjectTime {
 
 		// 移動方向に向く
 		// _LowerBody.forward = vec.normalized;
-		var a = Vector3.Angle( transform.position, vec.normalized );
+		var xSing = Sign( vec.normalized.x );
+		var zSing = Sign( vec.normalized.z );
+		var yAngle = Vector3.Angle( _LowerBody.forward, vec.normalized );
+		yAngle = yAngle * xSing * zSing;
+
+		_LBRotY += (yAngle - _LBRotY) * 0.5F;
+		Debug.Log( _LBRotY );
+
+		_LowerBody.rotation *= Quaternion.Euler( 0, _LBRotY, 0 );
+	}
+
+
+	private float Sign( float f ){
+		if( f >= 0 ){
+			return 1.0F;
+		} else {
+			return -1.0F;
+		}
 	}
 
 

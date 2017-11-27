@@ -103,8 +103,6 @@ public class PlayerMove : ObjectTime {
 	/// </summary>
 	protected override void Execute() {
 		Input();
-		Debug.Log( transform.position - _OldPos );
-		_OldPos = transform.position;
 	}
 
 
