@@ -63,6 +63,7 @@ public class Player : MonoBehaviour {
 	private PlayerJump      _Jump       = null;
 	private CameraPlayer    _Camera		= null;
 	private PlayerItem      _Item       = null;
+	private PlayerBody		_Body		= null;
 	#endregion	Member
 
 
@@ -140,6 +141,7 @@ public class Player : MonoBehaviour {
 		_Camera = Define.NullCheck( camera );
 		_Item = GetPlayerComponent<PlayerItem>();
 		_IsGetComponent = true;
+		_Body = GetPlayerComponent<PlayerBody>();
 	}
 
 
@@ -162,6 +164,9 @@ public class Player : MonoBehaviour {
 		// アイテム
 		_Item.PlayerID = _PlayerID;
 		_Item.HitPoint = _HitPoint;
+		// 体の方向
+		_Body.PlayerID = _PlayerID;
+		_Body.Camera = _Camera.transform;
 	}
 
 

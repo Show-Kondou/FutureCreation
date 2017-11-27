@@ -22,6 +22,8 @@ public class PlayerBody : ObjectTime {
 
 	// メンバー
 	#region Member
+	//
+	private uint			_PlayerID;
 	// 上半身のフォワード
 	private float			_UBRotY;
 	// 下半身のフォワード
@@ -39,6 +41,10 @@ public class PlayerBody : ObjectTime {
 
 	// アクセサ
 	#region Accessor
+	public uint PlayerID {
+		set { _PlayerID = value; }
+	}
+
 	/// <summary>
 	/// カメラ
 	/// </summary>
@@ -73,6 +79,7 @@ public class PlayerBody : ObjectTime {
 	/// 更新
 	/// </summary>
 	protected override void Execute() {
+		LowerBodyDirection();
 	}
 
 
@@ -80,7 +87,33 @@ public class PlayerBody : ObjectTime {
 
 	}
 	protected void LowerBodyDirection() {
+		var inputMove = InputGame.GetPlayerMove( _PlayerID );
 
+		if ( inputMove.magnitude <= 0.0F )
+			return; 
+
+		// 最終ベクトル
+		Vector3 vec = Vector3.zero;
+
+
+		// カメラの方向
+		Vector3 cameraForward = new Vector3( _CameraTrans.forward.x,
+											 0.0F,
+											 _CameraTrans.forward.z );
+		Vector3 cameraRight = new Vector3( _CameraTrans.right.x,
+											 0.0F,
+											 _CameraTrans.right.z );
+
+
+
+		// 移動方向計算
+		vec += inputMove.x * cameraRight;
+		vec += inputMove.z * cameraForward;
+
+
+		// 移動方向に向く
+		// _LowerBody.forward = vec.normalized;
+		var a = Vector3.Angle( transform.position, vec.normalized );
 	}
 
 
