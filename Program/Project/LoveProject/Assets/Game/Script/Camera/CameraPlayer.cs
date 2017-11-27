@@ -13,17 +13,17 @@ public class CameraPlayer : ObjectTime {
 	#region Constant
 	readonly float	 LIMIT_DOWN		= 290.0F - 180.0F;
 	readonly float	 LIMIT_UP		=  70.0F + 180.0F;
-	readonly Vector3 CENTER_ADD     = new Vector3( 0,1,0 ); 
+	readonly Vector3 CENTER_POS     = new Vector3( 0.0F, 0.5F, 0.0F );
 	#endregion Constant
 
 
 
 	// メンバー
 	#region Member
-	[Header("プレイヤーとカメラの距離"),SerializeField]
-	private Vector3			DefaultPos		= new Vector3(0.0F,3.0F,-5.0F);
-	[Header("初期のカメラ角度"),SerializeField]
-	private Vector3			DefaultRot		= new Vector3( 10.0F, 0.0F, 0.0F );
+	//[Header("プレイヤーとカメラの距離"),SerializeField]
+	private Vector3			DefaultPos		= new Vector3( 0.0F, 5.0F, -10.0F);
+	//[Header("初期のカメラ角度"),SerializeField]
+	private Vector3			LookPos			= new Vector3( 0.0F, 3.0F, 5.0F );
 	// 回転力
 	private float			_TurnForce;
 
@@ -63,14 +63,14 @@ public class CameraPlayer : ObjectTime {
 	/// </summary>
 	public void Init() {
 		// ステータス初期化
-		transform.position = _PlayerTrans.position + DefaultPos;    // 移動
-		transform.rotation = Quaternion.Euler( DefaultRot );
+		transform.position = _PlayerTrans.position + DefaultPos;        // 移動
+		transform.LookAt( LookPos );
 
 		// 注視点を作成
 		var obj					= new GameObject( "CameraCenter" );     // 生成
-		obj = Define.NullCheck( obj );              // 生成チェック
+		obj						= Define.NullCheck( obj );              // 生成チェック
 		_CenterTrans			= obj.transform;						// トランスフォームのスタック
-		_CenterTrans.position	= _PlayerTrans.position + CENTER_ADD;   // 注視点位置設定
+		_CenterTrans.position	= _PlayerTrans.position + CENTER_POS;	// 注視点位置設定
 		obj.AddComponent<CameraCenter>().CameraTrans = transform;       // めり込み判定追加
 		_CameraCenter = obj.GetComponent<CameraCenter>();
 	}
@@ -95,8 +95,9 @@ public class CameraPlayer : ObjectTime {
 	/// </summary>
 	private void Move() {
 		Vector3 now  = _CenterTrans.position;
-		Vector3 next = _PlayerTrans.position + CENTER_ADD;
-		_CenterTrans.position += (next - now) * 0.2F;
+		Vector3 next = _PlayerTrans.position + CENTER_POS;
+		var move = (next - now) * 0.2F;
+		_CenterTrans.position += move;
 	}
 
 	/// <summary>

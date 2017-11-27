@@ -31,7 +31,7 @@ public class PlayerMove : ObjectTime {
 	#endregion	Member
 
 
-
+	private Vector3 _OldPos;
 
 
 	#region Accessor
@@ -94,6 +94,7 @@ public class PlayerMove : ObjectTime {
 	/// 更新（固定フレーム）
 	/// </summary>
 	protected override void FixedExecute() {
+
 		Move(); // 移動処理
 	}
 
@@ -102,6 +103,8 @@ public class PlayerMove : ObjectTime {
 	/// </summary>
 	protected override void Execute() {
 		Input();
+		Debug.Log( transform.position - _OldPos );
+		_OldPos = transform.position;
 	}
 
 
@@ -114,9 +117,6 @@ public class PlayerMove : ObjectTime {
 		// 移動の入力判定
 		if (_State == Player.PlayerState.EAT)
 			return;
-		//var nowInput = InputGame.GetPlayerMove( _PlayerID );
-		//_InputMove += (nowInput - _InputMove) * 0.7F;
-		//Debug.Log( _InputMove );
 		_InputMove = InputGame.GetPlayerMove( _PlayerID );
 	}
 
@@ -146,25 +146,18 @@ public class PlayerMove : ObjectTime {
 		vec += _InputMove.z * cameraForward;
 
 
-		//// 移動方向に向く
-		//if( vec.magnitude > 0.0F )  // ゼロベクトル代入防止
-		//	transform.forward = vec.normalized;
-
-
-
-
 
 		// 正規化
 		nor = vec.normalized;
 
 		// 移動方向に移動量を計算
 		var move = vec.normalized * _MoveForce;
-		
+
 		// 移動
 		var vel = _Rigid.velocity;
-		float DeltaTime = 1.0F;
-		vel.x = move.x * DeltaTime;
-		vel.z = move.z * DeltaTime;
+		float timeScale = Time.timeScale;
+		vel.x = move.x * timeScale;
+		vel.z = move.z * timeScale;
 		_Rigid.velocity = vel;
 	}
 

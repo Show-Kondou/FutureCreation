@@ -17,8 +17,8 @@ public class CameraCenter : ObjectTime {
 
 	// 定数
 	#region Constant
-	readonly float Coll_RANGE = 0.8F;
-	readonly float RAY_INTERVAL = 0.2F;
+	readonly float Coll_RANGE = 0.9F;
+	readonly float RAY_INTERVAL = 0.05F;
 	#endregion Constant
 
 
@@ -94,7 +94,8 @@ public class CameraCenter : ObjectTime {
 		_MaxDistance = _NowDistance = _NextDistance = sizeZ;
 		_Coll.size = new Vector3(0.1F, 0.1F, sizeZ * Coll_RANGE );
 		_Coll.center = new Vector3( 0, 0, -centerZ );
-		_Coll.transform.forward = _CameraTrans.forward ;
+		_Coll.transform.LookAt( _CameraTrans.position );
+		_Coll.transform.forward = -_Coll.transform.forward;
 		_CameraTrans.parent = transform;
 	}
 
@@ -111,13 +112,16 @@ public class CameraCenter : ObjectTime {
 	/// カメラがステージにめり込んだ時の処理
 	/// </summary>
 	private void HitCameraStage() {
-		_NextDistance = _MaxDistance;
-		if( !IsRayHit ) return;
+		if (!IsRayHit) {
+			_NextDistance = _MaxDistance;
+			return;
+		}
 
-		//// レイのインターバル
-		//_PassTime += DeltaTime;
-		//if( RAY_INTERVAL > _PassTime ) return;
-		//_PassTime = 0.0F;
+		// レイのインターバル
+		_PassTime += DeltaTime;
+		if (RAY_INTERVAL > _PassTime)
+			return;
+		_PassTime = 0.0F;
 
 
 		Ray			ray = new Ray();// レイ
@@ -133,6 +137,8 @@ public class CameraCenter : ObjectTime {
 		Debug.DrawRay( ray.origin, ray.direction * _MaxDistance, Color.yellow );
 		if( Physics.Raycast(ray, out hitObj, _MaxDistance, mask ) ){
 			_NextDistance = hitObj.distance;
+		}else{
+			_NextDistance = _MaxDistance;
 		}
 	}
 	#endregion Method
