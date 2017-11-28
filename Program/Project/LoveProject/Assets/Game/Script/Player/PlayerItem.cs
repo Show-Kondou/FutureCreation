@@ -20,7 +20,6 @@ public class PlayerItem : ObjectTime {
 	#region Member
 	private uint    _PlayerID;
 	private int		_HitPoint;
-	private Player.PlayerState _State;
 	// 各アイテムのキャッシュ
 	private Item    _ItemL;
 	private Item    _ItemR;
@@ -53,12 +52,6 @@ public class PlayerItem : ObjectTime {
 	public int HitPoint {
 		get { return _HitPoint; }
 		set { _HitPoint = value; }
-	}
-	/// <summary>
-	/// 状態
-	/// </summary>
-	public Player.PlayerState State {
-		set { _State = value; }
 	}
 	#endregion Accessor
 

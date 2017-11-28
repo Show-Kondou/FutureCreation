@@ -4,52 +4,20 @@
  *	▼ Brief	説明
  *	
  *	▼ Author	Show Kondou
-*/using UnityEngine;
+*/
+using System;
+using UnityEngine;
 
 /// <summary>
 /// プレイヤークラス
 /// </summary>
-public class Player : MonoBehaviour {
+public class Player : PlayerBase {
 
-//TODO : PlayerStatusClass制作
-
-	public enum PlayerState {
-		STAND,	// 立ち
-		RUN,	// 走る
-		JUMP,	// ジャンプ
-		ATTACK,	// 攻撃
-		EAT,	// 食べる
-		ROLL,	// ロール
-		WIN,	// 勝ち
-		LOSS,	// 負け
-	}
-
-	// プレイヤーステータス
-	public struct PlayerStatus {
-		uint _PlayerID;		
-		int _HitPoint;
-		float _MoveForce;
-		float _JumpForce;
-		float _TurnForce;
-		PlayerState _State;
-	};
-
-
-
-	private PlayerState _State;
+	//TODO : PlayerStatusClass制作
 
 	#region Member
-	// --- ステータス ---
-	[Header("プレイヤーID"), SerializeField]
-	private uint			_PlayerID;
-	[Header("体力"),SerializeField]
-	private int             _HitPoint	= 100;
-	[Header("移動量"),SerializeField]
-	private float           _MoveForce	= 10.0F;
-	[Header( "ジャンプ力" ), SerializeField]
-	private float            _JumpForce = 1.0F;
-	[Header("カメラ回転量"),SerializeField]
-	private float			_TurnForce	= 30.0F;
+	[Header("ステータス"), SerializeField]
+	private PlayerStatus    _InitStatus;
 
 	//コンポーネントの取得フラグ
 	private bool			_IsGetComponent = false;
@@ -65,24 +33,22 @@ public class Player : MonoBehaviour {
 
 
 	#region Accessor
-	/// <summary>
-	/// プレイヤーID
-	/// </summary>
 	public uint PlayerID {
-		get { return _PlayerID; }
+		get { return Status._PlayerID; }
 	}
+
 	/// <summary>
 	/// 生存確認
 	/// </summary>
 	public bool IsLife {
 		get { return (_Item.HitPoint > 0); }
 	}
-	/// <summary>
-	/// 体力
-	/// </summary>
-	public int PlayerHP {
-		get { return _Item.HitPoint; }
-	}
+	///// <summary>
+	///// 体力
+	///// </summary>
+	//public int PlayerHP {
+	//	get { return _Item.HitPoint; }
+	//}
 	/// <summary>
 	/// アイテムの種類
 	/// </summary>
@@ -108,21 +74,22 @@ public class Player : MonoBehaviour {
 	/// インスペクター変更時イベント
 	/// </summary>
 	private void OnValidate() {
+
 		if ( !_IsGetComponent ) return;
 
 		// --- ステータス反映
 		// 移動
-		_Move.PlayerID = _PlayerID;
-		_Move.MoveForce = _MoveForce;
-		_Move.Camera = _Camera;
+		_Move.Status = Status;
 		// ジャンプ
-		_Jump.PlayerID = _PlayerID;
-		_Jump.JumpForce = _JumpForce;
+		_Jump.Status = Status;
+		//_Jump.JumpForce = _JumpForce;
 		// カメラ
-		_Camera.TurnForce = _TurnForce;
+		_Camera.TurnForce = Status._TurnForce;
 		// アイテム
-		_Item.PlayerID = _PlayerID;
-		_Item.HitPoint = _HitPoint;
+		//_Item.PlayerID = _PlayerID;
+		//_Item.HitPoint = _HitPoint;
+		// 体の方向
+		_Body.Status = Status;
 	}
 
 
@@ -133,7 +100,7 @@ public class Player : MonoBehaviour {
 		// --- プレイヤー関係クラス取得
 		_Move = GetPlayerComponent<PlayerMove>();
 		_Jump = GetPlayerComponent<PlayerJump>();
-		var camera = CameraManager.Instance.GetPlayerCamera( _PlayerID );
+		var camera = CameraManager.Instance.GetPlayerCamera( Status._PlayerID );
 		_Camera = Define.NullCheck( camera );
 		_Item = GetPlayerComponent<PlayerItem>();
 		_IsGetComponent = true;
@@ -145,24 +112,20 @@ public class Player : MonoBehaviour {
 	/// 初期化
 	/// </summary>
 	private void InitStatus() {
-		// --- ステータス反映
+		Status =_InitStatus;
+		//// --- ステータス反映
 		// 移動
-		_Move.PlayerID = _PlayerID;
-		_Move.MoveForce = _MoveForce;
-		_Move.Camera = _Camera;
+		_Move.Status = Status;
 		// ジャンプ
-		_Jump.PlayerID = _PlayerID;
-		_Jump.JumpForce = _JumpForce;
+		_Jump.Status = Status;
+		//_Jump.JumpForce = _JumpForce;
 		// カメラ
-		_Camera.playerTrans = _Move.transform;
-		_Camera.TurnForce = _TurnForce;
-		_Camera.Init();
+		_Camera.TurnForce = Status._TurnForce;
 		// アイテム
-		_Item.PlayerID = _PlayerID;
-		_Item.HitPoint = _HitPoint;
+		//_Item.PlayerID = _PlayerID;
+		//_Item.HitPoint = _HitPoint;
 		// 体の方向
-		_Body.PlayerID = _PlayerID;
-		_Body.Camera = _Camera.transform;
+		_Body.Status = Status;
 	}
 
 
@@ -184,4 +147,6 @@ public class Player : MonoBehaviour {
 		return default(T);
 	}
 
+	protected override void Execute() {
+	}
 }

@@ -14,7 +14,7 @@ using UnityEngine;
 /// <summary>
 /// PlayerBodyクラス
 /// </summary>
-public class PlayerBody : ObjectTime {
+public class PlayerBody : PlayerBase {
 
 	// 定数
 	#region Constant
@@ -22,8 +22,6 @@ public class PlayerBody : ObjectTime {
 
 	// メンバー
 	#region Member
-	//
-	private uint			_PlayerID;
 	// 上半身の角度
 	private float			_UBRotY;
 	// 下半身の角度
@@ -34,23 +32,10 @@ public class PlayerBody : ObjectTime {
 	private Transform		_UpperBody;
 	// 下半身
 	private Transform		_LowerBody;
-	// カメラ
-	private Transform		_CameraTrans;
-
 	#endregion Member
 
 	// アクセサ
 	#region Accessor
-	public uint PlayerID {
-		set { _PlayerID = value; }
-	}
-
-	/// <summary>
-	/// カメラ
-	/// </summary>
-	public Transform Camera {
-		set { _CameraTrans = value; }
-	}
 	#endregion Accessor
 
 	// メソッド
@@ -85,12 +70,12 @@ public class PlayerBody : ObjectTime {
 
 
 	protected void UpperBodyDirection() {
-		bool isAction = InputGame.GetPlayerItemL( _PlayerID ) ||
-						InputGame.GetPlayerItemR( _PlayerID );
+		bool isAction = InputGame.GetPlayerItemL( Status._PlayerID ) ||
+						InputGame.GetPlayerItemR( Status._PlayerID );
 		if( isAction ) {
-			Vector3 cameraForward = new Vector3( _CameraTrans.forward.x,
+			Vector3 cameraForward = new Vector3( Status._CameraTrans.forward.x,
 												 0.0F,
-												 _CameraTrans.forward.z );
+												 Status._CameraTrans.forward.z );
 			// _UpperBody.forward = cameraForward;
 			_UpperBody.forward += (cameraForward - _UpperBody.forward) * 0.2F;
 			return;
@@ -99,7 +84,7 @@ public class PlayerBody : ObjectTime {
 
 	}
 	protected void LowerBodyDirection() {
-		var inputMove = InputGame.GetPlayerMove( _PlayerID );
+		var inputMove = InputGame.GetPlayerMove( Status._PlayerID );
 
 		if ( inputMove.magnitude <= 0.0F )
 			return; 
@@ -109,12 +94,12 @@ public class PlayerBody : ObjectTime {
 
 
 		// カメラの方向
-		Vector3 cameraForward = new Vector3( _CameraTrans.forward.x,
+		Vector3 cameraForward = new Vector3( Status._CameraTrans.forward.x,
 											 0.0F,
-											 _CameraTrans.forward.z );
-		Vector3 cameraRight = new Vector3( _CameraTrans.right.x,
+											 Status._CameraTrans.forward.z );
+		Vector3 cameraRight = new Vector3( Status._CameraTrans.right.x,
 											 0.0F,
-											 _CameraTrans.right.z );
+											 Status._CameraTrans.right.z );
 
 
 
