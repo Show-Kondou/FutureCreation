@@ -39,9 +39,11 @@ public class Shoot : Item{
 
         if(this.Type == ItemManager.ItemType.Candy){
             bulletType = ItemManager.ItemType.BullCandy;
+            MaxBullet = CandyBulletNum;
         }
         if(this.Type == ItemManager.ItemType.MarbleChoco){
             bulletType = ItemManager.ItemType.BullChoco;
+            MaxBullet = ChocoBulletNum;
         }
 	}
 
@@ -65,6 +67,7 @@ public class Shoot : Item{
 
             //  発射
             forceControll.ShootAction(bulletType);
+            SubBreakHP(1);
 
         }else if(isAction == true && isPrevAction == true){
         //  押しっぱなし
