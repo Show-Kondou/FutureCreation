@@ -7,32 +7,13 @@
 */
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEditor;
 
 
 /// <summary>
 /// Defineクラス
 /// </summary>
 static public class Define {//  : MonoBehaviour {
-
-
-	//#region Singleton
-	//// インスタンス
-	//static public Define _Instance = null;
-	//// インスタンスのアクセサ
-	//static public Define Instance {
-	//	get {
-	//		if( _Instance != null )
-	//			return _Instance;
-	//		_Instance = FindObjectOfType<Define>();
-	//		if( _Instance == null )
-	//			Debug.LogError( typeof( Define ).Name + "の生成に失敗しました。" );
-
-	//		return _Instance;
-	//	}
-	//}
-	//#endregion Singleton
-
 
 	// 定数
 	#region Constant
@@ -58,6 +39,7 @@ static public class Define {//  : MonoBehaviour {
 	public static T NullCheck<T>( T obj ) {
 		if( obj == null ) {
 			UnityEngine.Debug.LogError( typeof(T).Name + "の生成に失敗しました。" );
+			EditorApplication.isPaused = true;
 			return default(T);
 		}
 		return obj;

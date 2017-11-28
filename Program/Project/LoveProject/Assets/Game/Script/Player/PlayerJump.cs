@@ -34,10 +34,12 @@ public class PlayerJump : ObjectTime {
 	#region Member
 
 	private uint    _PlayerID;
+	private float	_Gravity = Physics.gravity.y;
 	private float	_JumpForce; //ジャンプ力（基本ステータス）
 	private float	_AddForce;　// ジャンプ力の加算する力
 	public State   _State;		// 状態
-	private Action	_ActionF;	// 状態による関数
+	private Action	_ActionF;   // 状態による関数
+	private bool	_Input;		// 入力フラグ
 
 	private Rigidbody _Rigid;   // リジッドボディ
 
@@ -59,7 +61,16 @@ public class PlayerJump : ObjectTime {
 	// メソッド
 	#region Method
 	protected override void Execute() {
+		Input();
+	}
+
+	protected override void FixedExecute() {
 		_ActionF();
+	}
+
+
+	private void Input(){
+		_Input = InputGame.GetPlayerJump( _PlayerID ); ;
 	}
 
 	/// <summary>
@@ -68,13 +79,12 @@ public class PlayerJump : ObjectTime {
 	private void Stand() {
 		if( _State != State.STANDING )
 			return;
-		_AddForce = 0.0F;			// 加速度初期化
+		_AddForce = _Gravity * Time.fixedDeltaTime;			// 加速度初期化
 		SetVelocityY( _AddForce );    // 速度適応
+
 		// ジャンプインプット
-		bool checkJump = InputGame.GetPlayerJump( _PlayerID );
-		if( checkJump ) {
+		if( _Input ) {
 			// ジャンプ
-			Debug.Log("ジャンプ");
 			_State = State.JUMPING;
 			_AddForce = _JumpForce;
 			_ActionF = Jump;
@@ -88,7 +98,7 @@ public class PlayerJump : ObjectTime {
 		if( _State != State.JUMPING )
 			return;
 		// Debug.Log( _Rigid.velocity );
-		_AddForce += Physics.gravity.y;
+		_AddForce += _Gravity * Time.fixedDeltaTime;
 		AddVelocityY( _AddForce );
 	}
 
@@ -98,7 +108,7 @@ public class PlayerJump : ObjectTime {
 	private void Fall() {
 		if( _State != State.FALLING )
 			return;
-		_AddForce += Physics.gravity.y;
+		_AddForce += _Gravity * Time.fixedDeltaTime;
 		AddVelocityY( _AddForce );
 	}
 
@@ -109,7 +119,7 @@ public class PlayerJump : ObjectTime {
 	/// <returns></returns>
 	private void SetVelocityY( float y ) {
 		var vel = _Rigid.velocity;
-		vel.y = y * DeltaTime;
+		vel.y = y;
 		_Rigid.velocity = vel;
 	}
 
@@ -120,7 +130,7 @@ public class PlayerJump : ObjectTime {
 	/// <returns></returns>
 	private void AddVelocityY( float y ) {
 		var vel = _Rigid.velocity;
-		vel.y += y * DeltaTime;
+		vel.y += y;
 		_Rigid.velocity = vel;
 	}
 
@@ -144,7 +154,6 @@ public class PlayerJump : ObjectTime {
 	private void OnTriggerEnter( Collider coll ) {
 		if( coll.tag != "Stage" ) return;
 		// 接地
-		Debug.Log("立ち");
 		_State = State.STANDING;
 		_ActionF = Stand;
 	}
@@ -158,12 +167,12 @@ public class PlayerJump : ObjectTime {
 		if( coll.tag != "Stage" ) return;
 		// ジャンプ？落下？
 		if( _State == State.JUMPING ) return;
-		Debug.Log( "落下" );
-		Debug.Log( coll.name );
+
+		
 		// 落下
 		_State = State.FALLING;
-		_JumpForce = 0.0F;
-		SetVelocityY( _JumpForce );
+		_AddForce = _Gravity * Time.fixedDeltaTime;
+		SetVelocityY( _AddForce );
 		_ActionF = Fall;
 	}
 	#endregion MonoBehaviour Event
@@ -173,4 +182,18 @@ public class PlayerJump : ObjectTime {
 
 /*
  *	▼ End of File
+*/
+
+
+
+
+
+
+
+
+
+
+
+/*
+ * v += g * delta
 */

@@ -16,7 +16,8 @@ public class InputGame {
 	#region Constant
 	readonly static string GamePadName = "GamePad";
 	readonly static string CameraName = "Camera";
-	readonly static float CameraCorrectionX = 0.7F;
+	readonly static float CameraCorrectionX = 0.3F;
+	readonly static float CameraCorrectionY = 0.5F;
 	#endregion Constant
 
 	// メソッド
@@ -81,8 +82,8 @@ public class InputGame {
 	static public float GetCameraTurnY( uint cameraID = 1 ) {
 		float key = GetKeyCameraY();
 		if( key != 0.0F )
-			return key;
-		return GetCameraY( cameraID );
+			return key * CameraCorrectionY;
+		return GetCameraY( cameraID ) * CameraCorrectionY;
 	}
 
 	/// <summary>
@@ -91,10 +92,10 @@ public class InputGame {
 	/// <param name="playerID">プレイヤー番号</param>
 	/// <returns> フラグ </returns>
 	static public bool GetPlayerItemL( uint playerID = 1 ) {
-		return Input.GetButtonDown( "Item" + playerID + "_L" );
+		return Input.GetButton( "Item" + playerID + "_L" );
 	}
 	static public bool GetPlayerItemR( uint playerID = 1 ) {
-		return Input.GetButtonDown( "Item" + playerID + "_R" );
+		return Input.GetButton( "Item" + playerID + "_R" );
 	}
 
 	/// <summary>

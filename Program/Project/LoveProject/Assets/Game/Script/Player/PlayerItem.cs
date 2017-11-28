@@ -16,34 +16,53 @@ using UnityEngine;
 /// </summary>
 public class PlayerItem : ObjectTime {
 
-	// 定数
-	#region Constant
-	#endregion Constant
-
 	// メンバー
 	#region Member
 	private uint    _PlayerID;
-
+	private int		_HitPoint;
+	private Player.PlayerState _State;
+	// 各アイテムのキャッシュ
 	private Item    _ItemL;
 	private Item    _ItemR;
 	#endregion Member
 
+
+
 	// アクセサ
 	#region Accessor
+	/// <summary>
+	/// プレイヤーID
+	/// </summary>
 	public uint PlayerID {
 		set { _PlayerID = value; }
 	}
-
+	/// <summary>
+	/// アイテム左
+	/// </summary>
 	public Item ItemL {
 		get { return _ItemL; }
 		set { _ItemL = value; }
 	}
+	/// <summary>
+	/// アイテム右
+	/// </summary>
 	public Item ItemR {
 		get { return _ItemR; }
 		set { _ItemR = value; }
 	}
-
+	public int HitPoint {
+		get { return _HitPoint; }
+		set { _HitPoint = value; }
+	}
+	/// <summary>
+	/// 状態
+	/// </summary>
+	public Player.PlayerState State {
+		set { _State = value; }
+	}
 	#endregion Accessor
+
+
 
 	// メソッド
 	#region Method
@@ -51,16 +70,24 @@ public class PlayerItem : ObjectTime {
 	/// 更新処理
 	/// </summary>
 	protected override void Execute() {
+		ActionItem();
+		EatItem();
 	}
 
+	/// <summary>
+	/// アイテム発動
+	/// </summary>
 	private void ActionItem() {
+		// 左アイテムアクション
 		if( InputGame.GetPlayerItemL( _PlayerID ) ) {
 			if( _ItemL == null ) return;
 			_ItemL.Action();
 			// アイテム終
 			if( _ItemL.IsBreak )  _ItemL = null;
 			Debug.Log( "ActionItem" );
-		}else if( InputGame.GetPlayerItemR( _PlayerID ) ) {
+		}
+		// 右アイテムアクション
+		else if ( InputGame.GetPlayerItemR( _PlayerID ) ) {
 			if( _ItemR == null ) return;
 			_ItemR.Action();
 			if( _ItemR.IsBreak )
@@ -69,47 +96,29 @@ public class PlayerItem : ObjectTime {
 		}
 	}
 
+	/// <summary>
+	/// アイテム食べる
+	/// </summary>
+	private void EatItem() {
+		// 左アイテム食べる
+		if ( InputGame.GetPlayerEatL( _PlayerID ) ) {
+			if ( _ItemL == null ) return;
+			_HitPoint += _ItemL.EatItem();
+			_ItemL = null;
+		}
+		// 右アイテム食べる
+		else if ( InputGame.GetPlayerEatR( _PlayerID ) ) {
+			if ( _ItemR == null ) return;
+			_HitPoint += _ItemR.EatItem();
+			_ItemR = null;
+		}
+	}
 	#endregion Method
+
+
 
 	// イベント
 	#region MonoBehaviour Event
-	/// <summary>
-	/// 初期化
-	/// </summary>
-	private void Start() { }
-
-
-
-	// /// <summary>
-	// /// インスペクタの変更時イベント
-	// /// </summary>
-	// private void OnValidate() { }
-
-	// /// <summary>
-	// /// 先初期化
-	// /// </summary>
-	// private void Awake() { }
-
-	// /// <summary>
-	// /// 後更新
-	// /// </summary>
-	// private void LateUpdate() { }
-
-	/// <summary>
-	/// 当たり判定
-	/// </summary>
-	/// <param name="coll">当たったオブジェクト</param>
-	//private void OnCollisionEnter( Collision coll ) {
-	//	if( coll.gameObject.tag != "Item" )
-	//		return;
-	//	Debug.Log( "ItemHit" );
-	//	if( _ItemL == null ) {
-	//		_ItemL = coll.gameObject.GetComponent<Item>();
-	//	} else if( _ItemR == null ) {
-	//		_ItemR = coll.gameObject.GetComponent<Item>();
-	//	}
-	//}
-
 	/// <summary>
 	/// トリガー当たり判定
 	/// </summary>
@@ -129,8 +138,6 @@ public class PlayerItem : ObjectTime {
 			return;
 		}
 	}
-
-
 	#endregion MonoBehaviour Event
 }
 
