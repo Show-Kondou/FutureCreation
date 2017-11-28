@@ -20,6 +20,7 @@ public class CameraPlayer : ObjectTime {
 
 	// メンバー
 	#region Member
+	private uint            _PlayerID;
 	//[Header("プレイヤーとカメラの距離"),SerializeField]
 	private Vector3			DefaultPos		= new Vector3( 0.0F, 5.0F, -10.0F);
 	//[Header("初期のカメラ角度"),SerializeField]
@@ -40,6 +41,9 @@ public class CameraPlayer : ObjectTime {
 
 	// アクセサ
 	#region Accessor
+	public uint PlayerID {
+		set { _PlayerID = value; }
+	}
 	/// <summary>
 	/// 回転力
 	/// </summary>
@@ -113,7 +117,7 @@ public class CameraPlayer : ObjectTime {
 	/// </summary>
 	void Turn() {
 		// カメラ回転の入力値取得
-		Vector3		turnInput = InputGame.GetCameraTurn( 1 );
+		Vector3		turnInput = InputGame.GetCameraTurn( _PlayerID );
 		// 回転力計算
 		Vector3		turnForce = _TurnForce * DeltaTime * turnInput;
 		// ダンプ

@@ -5,6 +5,7 @@
  *	
  *	▼ Author	Show Kondou
 */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,7 +14,7 @@ using UnityEngine;
 /// <summary>
 /// PlayerAnimationクラス
 /// </summary>
-public class PlayerAnimation : MonoBehaviour {
+public class PlayerAnimation : PlayerBase {
 
 	// 定数
 	#region Constant
@@ -61,12 +62,23 @@ public class PlayerAnimation : MonoBehaviour {
 	/// 更新
 	/// </summary>
 	private void Update() {
-		var inp = InputGame.GetPlayerMove( _PlayerID );
-		if( inp.magnitude > 0.0F ) {
-			Debug.Log( "--------------" );
-			_LowerAnimator.SetTrigger( "Run" );
-		}
-		_LowerAnimator.SetTrigger( "Stand");
+		//var inp = InputGame.GetPlayerMove( _PlayerID );
+		//_LowerAnimator.SetInteger( "State", (int)Player.PlayerState.STAND );
+		//if( inp.magnitude > 0.0F ) {
+		//	Debug.Log( "--------------" );
+		//	_LowerAnimator.SetInteger("State", (int)Player.PlayerState.RUN );
+		//} else if( InputGame.GetPlayerJump(_PlayerID) ) {
+		//	_LowerAnimator.SetInteger( "State", (int)Player.PlayerState.JUMP );
+		//	Debug.Log("Jump");
+		//} else if(InputGame.GetPlayerRoll(_PlayerID)) {
+		//	_LowerAnimator.SetInteger( "State", (int)Player.PlayerState.ROLL );
+		//}else {
+		//	_LowerAnimator.SetInteger( "State", (int)Player.PlayerState.STAND );
+		//}
+	}
+
+	protected override void Execute() {
+		throw new NotImplementedException();
 	}
 
 

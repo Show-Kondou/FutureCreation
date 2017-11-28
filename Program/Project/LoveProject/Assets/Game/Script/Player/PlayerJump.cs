@@ -15,7 +15,7 @@ using UnityEngine;
 /// <summary>
 /// PlayerJumpクラス
 /// </summary>
-public class PlayerJump : ObjectTime {
+public class PlayerJump : PlayerBase {
 
 	// 定数
 	#region Constant
@@ -47,30 +47,28 @@ public class PlayerJump : ObjectTime {
 
 	// アクセサ
 	#region Accessor
-	public uint PlayerID {
-		set { _PlayerID = value; }
-	}
-	/// <summary>
-	/// ジャンプアクセサ
-	/// </summary>
-	public float JumpForce {
-		set { _JumpForce = value; }
-	}
 	#endregion Accessor
 
 	// メソッド
 	#region Method
+	/// <summary>
+	/// 更新
+	/// </summary>
 	protected override void Execute() {
 		Input();
 	}
-
+	/// <summary>
+	/// 固定フレーム更新
+	/// </summary>
 	protected override void FixedExecute() {
 		_ActionF();
 	}
 
-
+	/// <summary>
+	/// 入力
+	/// </summary>
 	private void Input(){
-		_Input = InputGame.GetPlayerJump( _PlayerID ); ;
+		_Input = InputGame.GetPlayerJump( Status._PlayerID ); ;
 	}
 
 	/// <summary>
@@ -86,7 +84,7 @@ public class PlayerJump : ObjectTime {
 		if( _Input ) {
 			// ジャンプ
 			_State = State.JUMPING;
-			_AddForce = _JumpForce;
+			_AddForce = Status._JumpForce;
 			_ActionF = Jump;
 		}
 	}
@@ -97,7 +95,6 @@ public class PlayerJump : ObjectTime {
 	private void Jump() {
 		if( _State != State.JUMPING )
 			return;
-		// Debug.Log( _Rigid.velocity );
 		_AddForce += _Gravity * Time.fixedDeltaTime;
 		AddVelocityY( _AddForce );
 	}
