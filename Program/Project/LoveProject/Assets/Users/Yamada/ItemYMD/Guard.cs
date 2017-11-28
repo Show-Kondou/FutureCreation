@@ -13,6 +13,7 @@ public class Guard : Item {
 	void Update(){
 		
 		//	ここで、落ちているときの動作？
+	
 		
 	}
 
