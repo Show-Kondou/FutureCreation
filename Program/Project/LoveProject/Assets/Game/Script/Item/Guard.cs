@@ -8,6 +8,16 @@ using UnityEngine;
 /// </sammary>
 public class Guard : Item {
 
+	#region Member
+    
+	//  ボタンリリース判定用
+    private bool isAction = false;
+    private bool isPrevAction = false;
+
+	#endregion Member
+
+
+
 	#region Method
 
 	/// <summary>
@@ -16,6 +26,7 @@ public class Guard : Item {
 	void Start(){
 		mesh = GetComponent<MeshRenderer>();
 		coll = GetComponent<Collider>();
+        transform.localPosition += new Vector3(0,1.2f,0);
 	}
 
 
@@ -25,7 +36,31 @@ public class Guard : Item {
 	/// </sammary>
 	void Update(){
 		//TODO: ここで、落ちているときの動作？
+        if(isPicked == false)
+            transform.localEulerAngles += new Vector3(18 * Mathf.Cos(Time.time), 18 * Mathf.Sin(Time.time),0);
 	}
+
+	
+    /// <summary>
+    /// 後更新
+    /// </sammary>
+    void LateUpdate(){
+
+        //  ボタン判定
+        if(isAction == false && isPrevAction == true){
+        //  離したフレーム
+			IsActive = false;
+        }else if(isAction == true && isPrevAction == true){
+        //  押しっぱなし
+		 	transform.rotation = Quaternion.Euler(0,180 * Mathf.Cos(Time.time),0);
+        }
+        
+        //  前フレームのフラグを保存
+        isPrevAction = isAction;
+
+        //  常にfalseを代入
+        isAction = false;
+    }
 
 
 
@@ -34,11 +69,11 @@ public class Guard : Item {
 	/// </sammary>
 	public override void Action(){
 		//	表示する
-		IsActive = true;	
+		IsActive = true;
+		isAction = true;	
 		/*
 			ここに盾アイテムの固有動作
 		 */
-		 transform.rotation = Quaternion.Euler(0,180 * Mathf.Cos(Time.time),0);
 	}
 
 

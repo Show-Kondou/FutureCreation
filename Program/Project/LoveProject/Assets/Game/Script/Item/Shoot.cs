@@ -42,6 +42,8 @@ public class Shoot : Item{
         if(this.Type == ItemManager.ItemType.MarbleChoco){
             bulletType = ItemManager.ItemType.BullChoco;
         }
+
+        transform.localPosition += new Vector3(0,1.2f,0);
 	}
 
 
@@ -53,6 +55,9 @@ public class Shoot : Item{
         if(Input.GetKey(KeyCode.G)){
             this.Action();
         }
+
+        if(isPicked == false)
+            transform.localEulerAngles += new Vector3(18 * Mathf.Cos(Time.time), 18 * Mathf.Sin(Time.time),0);
     }
     
 
