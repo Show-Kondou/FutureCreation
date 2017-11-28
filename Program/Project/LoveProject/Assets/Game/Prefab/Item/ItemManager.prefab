@@ -34,7 +34,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1110127813909518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 339.59192, y: 114.803734, z: 286.36578}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -55,10 +55,10 @@ MonoBehaviour:
   prefab:
   - {fileID: 1010091007677098, guid: f218a3c2719cddd48bacefbced37decb, type: 2}
   - {fileID: 1396306128462804, guid: b7bf7ee700c3292428b584b4fb7d02e9, type: 2}
-  - {fileID: 1174472932596436, guid: e2176b980c4255e44a120a0c6d36e956, type: 2}
-  - {fileID: 1324523672742006, guid: 1ae108c9f15b7264b8df59164a8b8979, type: 2}
+  - {fileID: 1426350025373622, guid: e2176b980c4255e44a120a0c6d36e956, type: 2}
+  - {fileID: 1489613112642184, guid: 1ae108c9f15b7264b8df59164a8b8979, type: 2}
   - {fileID: 1015965480761236, guid: 5414cad1b077b55429e8218cfda66fc7, type: 2}
   - {fileID: 1274696575656064, guid: 62232277cd83ff04aaba0cd5709c6de7, type: 2}
-  - {fileID: 1164067954114468, guid: 9d30d9ef91c9ae04dab0df6347cc1699, type: 2}
   - {fileID: 1122035579133258, guid: d3b46b64c07376343bd3ccc5f03497c6, type: 2}
+  - {fileID: 1164067954114468, guid: 9d30d9ef91c9ae04dab0df6347cc1699, type: 2}
   probability: 1b0000000d0000001b0000000d0000000d00000006000000

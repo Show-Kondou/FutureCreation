@@ -14,9 +14,9 @@ public class ItemManager : MonoBehaviour {
 		Candy,			//	飴玉
 		Cookie,			//	クッキー
 		Senbei,			//	せんべい
-		Max,
 		BullCandy,		//	弾キャンディ
-		BullChoco		//	弾チョコ
+		BullChoco,		//	弾チョコ
+		Max
 	};
 	#endregion	Enumilation
 
@@ -44,7 +44,7 @@ public class ItemManager : MonoBehaviour {
 
 			//	初期のアイテムストック生成
 			//	6種類を5個ずつ非表示で生成しておく
-			for(int item_id = 0; item_id < 6; item_id++){
+			for(int item_id = 0; item_id < 8; item_id++){
 				for (int item_num = 0; item_num < 5; item_num++) {
 					var item_obj = GetGameObject((ItemType)item_id, transform.position);
 					item_obj.SetActive(false);	//	非表示へ

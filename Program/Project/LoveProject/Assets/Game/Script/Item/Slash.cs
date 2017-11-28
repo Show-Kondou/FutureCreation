@@ -11,6 +11,7 @@ public class Slash : Item {
 	void Start(){
 		mesh = GetComponent<MeshRenderer>();
 		coll = GetComponent<Collider>();
+        transform.localPosition += new Vector3(0,1.2f,0);
 	}
 	
 
@@ -22,6 +23,8 @@ public class Slash : Item {
 
 		//TODO: ここで、落ちているときの動作？
 		
+        if(isPicked == false)
+            transform.localEulerAngles += new Vector3(18 * Mathf.Cos(Time.time), 18 * Mathf.Sin(Time.time),0);
 	}
 
 
@@ -30,6 +33,7 @@ public class Slash : Item {
 	/// 固有動作
 	/// </sammary>
 	public override void Action(){
+		Debug.Log(this.name + "のアクション");
 		//	表示する
 		IsActive = true;	
 		/*
