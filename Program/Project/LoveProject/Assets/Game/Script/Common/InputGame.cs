@@ -92,10 +92,10 @@ public class InputGame {
 	/// <param name="playerID">プレイヤー番号</param>
 	/// <returns> フラグ </returns>
 	static public bool GetPlayerItemL( uint playerID = 1 ) {
-		return Input.GetButtonDown( "Item" + playerID + "_L" );
+		return Input.GetButton( "Item" + playerID + "_L" );
 	}
 	static public bool GetPlayerItemR( uint playerID = 1 ) {
-		return Input.GetButtonDown( "Item" + playerID + "_R" );
+		return Input.GetButton( "Item" + playerID + "_R" );
 	}
 
 	/// <summary>

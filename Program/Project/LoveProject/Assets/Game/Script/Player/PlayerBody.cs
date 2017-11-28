@@ -80,10 +80,22 @@ public class PlayerBody : ObjectTime {
 	/// </summary>
 	protected override void Execute() {
 		LowerBodyDirection();
+		UpperBodyDirection();
 	}
 
 
 	protected void UpperBodyDirection() {
+		bool isAction = InputGame.GetPlayerItemL( _PlayerID ) ||
+						InputGame.GetPlayerItemR( _PlayerID );
+		if( isAction ) {
+			Vector3 cameraForward = new Vector3( _CameraTrans.forward.x,
+												 0.0F,
+												 _CameraTrans.forward.z );
+			// _UpperBody.forward = cameraForward;
+			_UpperBody.forward += (cameraForward - _UpperBody.forward) * 0.2F;
+			return;
+		}
+		_UpperBody.forward += (_LowerBody.forward - _UpperBody.forward) * 0.2F;
 
 	}
 	protected void LowerBodyDirection() {
@@ -110,27 +122,8 @@ public class PlayerBody : ObjectTime {
 		vec += inputMove.x * cameraRight;
 		vec += inputMove.z * cameraForward;
 
-
 		// 移動方向に向く
-		// _LowerBody.forward = vec.normalized;
-		var xSing = Sign( vec.normalized.x );
-		var zSing = Sign( vec.normalized.z );
-		var yAngle = Vector3.Angle( _LowerBody.forward, vec.normalized );
-		yAngle = yAngle * xSing * zSing;
-
-		_LBRotY += (yAngle - _LBRotY) * 0.5F;
-		Debug.Log( _LBRotY );
-
-		_LowerBody.rotation *= Quaternion.Euler( 0, _LBRotY, 0 );
-	}
-
-
-	private float Sign( float f ){
-		if( f >= 0 ){
-			return 1.0F;
-		} else {
-			return -1.0F;
-		}
+		_LowerBody.forward += (vec.normalized - _LowerBody.forward) * 0.4F;
 	}
 
 

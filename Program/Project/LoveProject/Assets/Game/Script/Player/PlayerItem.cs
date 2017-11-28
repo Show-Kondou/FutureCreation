@@ -103,13 +103,13 @@ public class PlayerItem : ObjectTime {
 		// 左アイテム食べる
 		if ( InputGame.GetPlayerEatL( _PlayerID ) ) {
 			if ( _ItemL == null ) return;
-			// _HitPoint += _ItemL.EatItem();
+			_HitPoint += _ItemL.EatItem();
 			_ItemL = null;
 		}
 		// 右アイテム食べる
 		else if ( InputGame.GetPlayerEatR( _PlayerID ) ) {
 			if ( _ItemR == null ) return;
-			// _HitPoint += _ItemR.EatItem();
+			_HitPoint += _ItemR.EatItem();
 			_ItemR = null;
 		}
 	}

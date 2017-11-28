@@ -22,10 +22,6 @@ public class Player : MonoBehaviour {
 		ROLL,	// ロール
 		WIN,	// 勝ち
 		LOSS,	// 負け
-
-
-
-
 	}
 
 	// プレイヤーステータス

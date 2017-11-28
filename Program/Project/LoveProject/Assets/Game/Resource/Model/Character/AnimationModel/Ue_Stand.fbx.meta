@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 6ad2d57b7f7c25345bdd998ee14fcce5
-timeCreated: 1511796259
+guid: 84d61cca3a8f1d64fa8ea7ac0cdecf17
+timeCreated: 1511796268
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -149,7 +149,7 @@ ModelImporter:
     4300002: Maegami
     4300004: chuck
     4300006: Parka
-    7400000: Take 001
+    7400000: Upper_Stand
     9500000: //RootNode
     13700000: chuck
     13700002: head
@@ -178,7 +178,35 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Upper_Stand
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 32
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
