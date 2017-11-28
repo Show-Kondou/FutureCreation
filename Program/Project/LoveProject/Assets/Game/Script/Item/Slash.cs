@@ -33,6 +33,7 @@ public class Slash : Item {
 	/// 固有動作
 	/// </sammary>
 	public override void Action(){
+		Debug.Log(this.name + "のアクション");
 		//	表示する
 		IsActive = true;	
 		/*

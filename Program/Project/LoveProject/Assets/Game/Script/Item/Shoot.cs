@@ -97,6 +97,7 @@ public class Shoot : Item{
     /// 固有アクション
     /// </sammary>
     public override void Action(){
+		Debug.Log(this.name + "のアクション");
         //  表示
         IsActive = true;
         //  行動フラグオン
