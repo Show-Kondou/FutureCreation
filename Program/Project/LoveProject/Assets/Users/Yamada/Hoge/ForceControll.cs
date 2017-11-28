@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Rigidbodyを使った放物運動
+/// </sammary>
 public class ForceControll : MonoBehaviour {
+
+	#region Member
 
 	[SerializeField]
 	private Transform shootPoint = null;
@@ -11,22 +17,23 @@ public class ForceControll : MonoBehaviour {
 	[SerializeField]
 	private GameObject shootObject = null;
 	
-	Vector3 v0;
+	private Vector3 v0;	//	初速
 	
     //  ラインレンダラー関係
-    LineRenderer lineRenderer;
-    List<Vector3> renderLinePoints = new List<Vector3>();
+    private LineRenderer lineRenderer;
+    private List<Vector3> renderLinePoints = new List<Vector3>();
 
+	#endregion Member
+
+
+	#region Method
+
+	/// <summary>
+	/// 初期化
+	/// </sammary>
 	void Start(){
-		
+		//	ラインレンダラー取得
         lineRenderer = GetComponent<LineRenderer>();
-	}
-
-	// Update is called once per frame
-	void Update () {
-		if(Input.GetKeyDown(KeyCode.G)){
-			//ShootAction(target.position);
-		}
 	}
 
 
@@ -34,8 +41,8 @@ public class ForceControll : MonoBehaviour {
 	/// <summary>
 	/// 
 	/// </sammary>
-	public void ShootAction(/*Vector3 _targetPos*/){
-		ShootFixedAngle(target.position, 60.0F);
+	public void ShootAction(ItemManager.ItemType type){
+		ShootFixedAngle(target.position, 60.0F, type);
 	}
 
 
@@ -43,7 +50,7 @@ public class ForceControll : MonoBehaviour {
 	/// <summary>
 	/// 角度を指定してオブジェクトを発射
 	/// </sammary>
-	private void ShootFixedAngle(Vector3 _targetPos, float _angle){
+	private void ShootFixedAngle(Vector3 _targetPos, float _angle, ItemManager.ItemType type){
 		var speed_vec = ComputeVectorFromAngle(_targetPos, _angle);
 		if(speed_vec <= 0.0F){
 			Debug.Log("!!着地負荷");
@@ -51,7 +58,7 @@ public class ForceControll : MonoBehaviour {
 		}
 
 		Vector3 _vec = ConvertVectorToVector3(speed_vec, _angle, _targetPos);
-		InstantiateShootObject(_vec);
+		InstantiateShootObject(_vec, type);
 	}
 
 
@@ -112,13 +119,14 @@ public class ForceControll : MonoBehaviour {
 	/// <summary>
 	/// 発射するオブジェクトの生成
 	/// </sammary>
-	private void InstantiateShootObject(Vector3 _shootVector){
+	private void InstantiateShootObject(Vector3 _shootVector, ItemManager.ItemType type){
 
 
 		if(shootObject == null) {Debug.Log("shootObjectがない");return;}
 		if(shootPoint == null) {Debug.Log("shootPointがない");return;}
 
-		var _obj = Instantiate<GameObject>(shootObject, shootPoint.position, Quaternion.identity);
+		//var _obj = Instantiate<GameObject>(shootObject, shootPoint.position, Quaternion.identity);
+		var _obj = ItemManager.Instance.Pop(type, shootPoint.position);
 		var _rigidbody = _obj.GetComponent<Rigidbody>();
 
 		Vector3 _force = _shootVector * _rigidbody.mass;
@@ -127,6 +135,9 @@ public class ForceControll : MonoBehaviour {
 	}
 
 
+	/// <summary>
+	/// 予測線を消す
+	/// </sammary>
 	public void DestLaser(){
         // 予測線の軌道をクリア
         renderLinePoints.Clear();
@@ -135,6 +146,10 @@ public class ForceControll : MonoBehaviour {
         lineRenderer.SetPositions(renderLinePoints.ToArray());
 	}
 
+
+	/// <summary>
+	/// 予測線を描画
+	/// </sammary>
 	public void DrawLaser(){
 		
 		float x = 0;
@@ -166,5 +181,7 @@ public class ForceControll : MonoBehaviour {
         lineRenderer.SetPositions(renderLinePoints.ToArray());
 
 	}
+
+	#endregion Method
 
 }

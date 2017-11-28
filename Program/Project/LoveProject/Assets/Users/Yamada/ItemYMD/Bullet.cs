@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//
-//	Shootがこいつを投げられる弾の数生成する。
+
+/// <summary>
+/// 弾クラス
+/// </sammary>
 public class Bullet : Item {
-
-	#region Member
-
-
-    #endregion Member
-
-
 
     #region Method
 
-    void Start()
-    {
+	/// <summary>
+	/// 初期化
+	/// </sammary>
+    void Start(){
+		//	メッシュ・コライダーの取得
         mesh = GetComponent<MeshRenderer>();
         coll = GetComponent<SphereCollider>();
     }
@@ -24,7 +22,7 @@ public class Bullet : Item {
 	
 
 	/// <summary>
-	/// 
+	/// 固有動作
 	/// </sammary>
 	public override void Action(){
 		Debug.LogError("Bullet.cs Action()ここは呼ばれないはずよ");
@@ -33,7 +31,7 @@ public class Bullet : Item {
 	
 
 	/// <summary>
-	/// 
+	/// 食べられた時の処理
 	/// </sammary>
 	public override int EatItem(){
 		Debug.LogError("Bullet.cs EatItem()ここは呼ばれないはずよ");
@@ -105,7 +103,6 @@ public class Bullet : Item {
 	IEnumerator BombCoroutine(){
 		
 		var sc = GetComponent<SphereCollider>();
-		Debug.Log("coroutine");
 		while(sc.radius < 2){
 			sc.radius += Time.deltaTime;
 			yield return null;
@@ -115,7 +112,15 @@ public class Bullet : Item {
 	}
 
 
-    //TODO:　衝突時の自壊
+
+	/// <summary>
+	/// 表示された時の処理
+	/// </sammary>
+	void OnEnable(){
+		var rb = GetComponent<Rigidbody>();
+		rb.velocity = Vector3.zero;
+		rb.useGravity = true;
+	}
 
     #endregion Method
 

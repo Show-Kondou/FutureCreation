@@ -2,30 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// 盾アイテムクラス
+/// </sammary>
 public class Guard : Item {
 
+	#region Method
 
+	/// <summary>
+	/// 初期化
+	/// </sammary>
 	void Start(){
 		mesh = GetComponent<MeshRenderer>();
 		coll = GetComponent<Collider>();
 	}
 
+
+
+	/// <summary>
+	/// 標準更新
+	/// </sammary>
 	void Update(){
-		
-		//	ここで、落ちているときの動作？
-	
-		
+		//TODO: ここで、落ちているときの動作？
 	}
+
+
 
 	/// <summary>
 	/// 固有動作
 	/// </sammary>
 	public override void Action(){
-		IsActive = true;	//	表示する
+		//	表示する
+		IsActive = true;	
 		/*
 			ここに盾アイテムの固有動作
 		 */
+		 transform.rotation = Quaternion.Euler(0,180 * Mathf.Cos(Time.time),0);
 	}
+
 
 
 	/// <summary>
@@ -35,6 +50,8 @@ public class Guard : Item {
 		//	回復量返却
 		return HealPoint;
 	}
+
+
 
 	/// <summary>
 	/// 衝突検知
@@ -59,5 +76,7 @@ public class Guard : Item {
 		}
 
 	}
+
+	#endregion Method
 
 }

@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114134965360998166}
   m_Layer: 0
   m_Name: _candy
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,7 +112,7 @@ MonoBehaviour:
   breakHp: 0
   attackPoint: 35
   healPoint: 0
-  type: 3
+  type: 7
 --- !u!135 &135816474023862256
 SphereCollider:
   m_ObjectHideFlags: 1
