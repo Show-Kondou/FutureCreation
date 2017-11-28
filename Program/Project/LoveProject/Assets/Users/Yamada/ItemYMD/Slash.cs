@@ -5,31 +5,42 @@ using UnityEngine;
 public class Slash : Item {
 
 
+	/// <summary>
+	/// 初期化
+	/// </sammary>
 	void Start(){
 		mesh = GetComponent<MeshRenderer>();
 		coll = GetComponent<Collider>();
 	}
 	
+
+
+	/// <summary>
+	/// 標準更新
+	/// </sammary>
 	void Update(){
 
-		//	ここで、落ちているときの動作？
+		//TODO: ここで、落ちているときの動作？
 		
 	}
 
 
+
 	/// <summary>
-	/// 
+	/// 固有動作
 	/// </sammary>
 	public override void Action(){
-		IsActive = true;	//	表示する
+		//	表示する
+		IsActive = true;	
 		/*
 			ここに剣アイテムの固有動作
 		 */
 	}
 
 
+
 	/// <summary>
-	/// 
+	/// 食べられた時の処理
 	/// </sammary>
 	public override int EatItem(){
 		//TODO:	食べられた時の処理

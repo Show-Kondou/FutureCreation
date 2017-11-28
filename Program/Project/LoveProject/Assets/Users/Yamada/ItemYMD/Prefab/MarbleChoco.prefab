@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 114730418667786548}
   m_Layer: 0
   m_Name: MarbleChoco
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,9 +112,7 @@ MonoBehaviour:
   breakHp: 2
   attackPoint: 20
   healPoint: 100
-  id: 2
-  bulletPrefab: {fileID: 1164067954114468, guid: 9d30d9ef91c9ae04dab0df6347cc1699,
-    type: 2}
+  type: 2
 --- !u!135 &135887777633666076
 SphereCollider:
   m_ObjectHideFlags: 1
