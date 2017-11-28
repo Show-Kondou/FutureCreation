@@ -34,8 +34,8 @@ public class ForceControll : MonoBehaviour {
 	/// <summary>
 	/// 
 	/// </sammary>
-	public void ShootAction(/*Vector3 _targetPos*/){
-		ShootFixedAngle(target.position, 60.0F);
+	public void ShootAction(ItemManager.ItemType type){
+		ShootFixedAngle(target.position, 60.0F, type);
 	}
 
 
@@ -43,7 +43,7 @@ public class ForceControll : MonoBehaviour {
 	/// <summary>
 	/// 角度を指定してオブジェクトを発射
 	/// </sammary>
-	private void ShootFixedAngle(Vector3 _targetPos, float _angle){
+	private void ShootFixedAngle(Vector3 _targetPos, float _angle, ItemManager.ItemType type){
 		var speed_vec = ComputeVectorFromAngle(_targetPos, _angle);
 		if(speed_vec <= 0.0F){
 			Debug.Log("!!着地負荷");
@@ -51,7 +51,7 @@ public class ForceControll : MonoBehaviour {
 		}
 
 		Vector3 _vec = ConvertVectorToVector3(speed_vec, _angle, _targetPos);
-		InstantiateShootObject(_vec);
+		InstantiateShootObject(_vec, type);
 	}
 
 
@@ -112,13 +112,14 @@ public class ForceControll : MonoBehaviour {
 	/// <summary>
 	/// 発射するオブジェクトの生成
 	/// </sammary>
-	private void InstantiateShootObject(Vector3 _shootVector){
+	private void InstantiateShootObject(Vector3 _shootVector, ItemManager.ItemType type){
 
 
 		if(shootObject == null) {Debug.Log("shootObjectがない");return;}
 		if(shootPoint == null) {Debug.Log("shootPointがない");return;}
 
-		var _obj = Instantiate<GameObject>(shootObject, shootPoint.position, Quaternion.identity);
+		//var _obj = Instantiate<GameObject>(shootObject, shootPoint.position, Quaternion.identity);
+		var _obj = ItemManager.Instance.Pop(type, shootPoint.position);
 		var _rigidbody = _obj.GetComponent<Rigidbody>();
 
 		Vector3 _force = _shootVector * _rigidbody.mass;

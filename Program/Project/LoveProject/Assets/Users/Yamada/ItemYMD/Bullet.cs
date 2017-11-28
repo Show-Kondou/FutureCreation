@@ -105,7 +105,6 @@ public class Bullet : Item {
 	IEnumerator BombCoroutine(){
 		
 		var sc = GetComponent<SphereCollider>();
-		Debug.Log("coroutine");
 		while(sc.radius < 2){
 			sc.radius += Time.deltaTime;
 			yield return null;
@@ -114,6 +113,12 @@ public class Bullet : Item {
 		gameObject.SetActive(false);
 	}
 
+
+	void OnEnable(){
+		var rb = GetComponent<Rigidbody>();
+		rb.velocity = Vector3.zero;
+		rb.useGravity = true;
+	}
 
     //TODO:　衝突時の自壊
 

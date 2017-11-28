@@ -14,7 +14,9 @@ public class ItemManager : MonoBehaviour {
 		Candy,			//	飴玉
 		Cookie,			//	クッキー
 		Senbei,			//	せんべい
-		Max
+		Max,
+		BullCandy,		//	弾キャンディ
+		BullChoco		//	弾チョコ
 	};
 	#endregion	Enumilation
 
@@ -58,12 +60,12 @@ public class ItemManager : MonoBehaviour {
 	//	お菓子が与えるダメージ値のテーブル
 	//	盾にしか必要ないかも....Managerにいらない？
 	[Header("お菓子が与えるダメージ値のテーブル"), NamedArrayAttribute(new string[] { "ポッキー", "うまい棒", "マーブルチョコ", "飴玉", "クッキー", "せんべい" })]
-	public int[] ItemDamageTable = { 30, 40, 20, 35, 0, 0 };
+	public int[] ItemDamageTable = { 30, 40, 20, 35, 0, 0 , 20, 35};
 
 
 	//	お菓子のプレハブのテーブル
-	[Header("お菓子のプレハブのテーブル"), NamedArrayAttribute(new string[] { "ポッキー", "うまい棒", "マーブルチョコ", "飴玉", "クッキー", "せんべい" })]
-	public GameObject[] prefab = new GameObject[6];
+	[Header("お菓子のプレハブのテーブル"), NamedArrayAttribute(new string[] { "ポッキー", "うまい棒", "マーブルチョコ", "飴玉", "クッキー", "せんべい", "弾キャンディー", "弾マーブルチョコ" })]
+	public GameObject[] prefab = new GameObject[8];
 	
 
 	//	インスタンスを格納するプール

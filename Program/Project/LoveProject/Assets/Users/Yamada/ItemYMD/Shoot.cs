@@ -26,6 +26,8 @@ public class Shoot : Item{
 
     ForceControll forceControll;    //  放物軌道用
 
+    ItemManager.ItemType bulletType;
+
     #endregion Member
 
     #region Method
@@ -34,6 +36,13 @@ public class Shoot : Item{
 		mesh = GetComponent<MeshRenderer>();
 		coll = GetComponent<Collider>();
         forceControll = GetComponent<ForceControll>();
+
+        if(this.Type == ItemManager.ItemType.Candy){
+            bulletType = ItemManager.ItemType.BullCandy;
+        }
+        if(this.Type == ItemManager.ItemType.MarbleChoco){
+            bulletType = ItemManager.ItemType.BullChoco;
+        }
 	}
 
 	void Update(){
@@ -55,7 +64,7 @@ public class Shoot : Item{
         //  離したフレーム
 
             //  発射
-            forceControll.ShootAction();
+            forceControll.ShootAction(bulletType);
 
         }else if(isAction == true && isPrevAction == true){
         //  押しっぱなし
