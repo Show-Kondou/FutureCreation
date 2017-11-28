@@ -58,7 +58,6 @@ abstract public class PlayerBase : MonoBehaviour {
 	// メンバー
 	#region Member
 	// プレイヤーステータス
-	[SerializeField]
 	private PlayerStatus    _Status;
 	// 各オブジェクトごとにヒットストップを行うため
 	private float   _deltaTime;       // 各オブジェクトのデルタタイム

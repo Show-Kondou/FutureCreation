@@ -41,7 +41,7 @@ public class Player : PlayerBase {
 	/// 生存確認
 	/// </summary>
 	public bool IsLife {
-		get { return (_Item.HitPoint > 0); }
+		get { return (_Item.Status._HitPoint > 0); }
 	}
 	///// <summary>
 	///// 体力
@@ -86,8 +86,7 @@ public class Player : PlayerBase {
 		// カメラ
 		_Camera.TurnForce = Status._TurnForce;
 		// アイテム
-		//_Item.PlayerID = _PlayerID;
-		//_Item.HitPoint = _HitPoint;
+		_Item.Status = Status;
 		// 体の方向
 		_Body.Status = Status;
 	}
@@ -100,11 +99,12 @@ public class Player : PlayerBase {
 		// --- プレイヤー関係クラス取得
 		_Move = GetPlayerComponent<PlayerMove>();
 		_Jump = GetPlayerComponent<PlayerJump>();
-		var camera = CameraManager.Instance.GetPlayerCamera( Status._PlayerID );
+		var camera = CameraManager.Instance.GetPlayerCamera( _InitStatus._PlayerID );
 		_Camera = Define.NullCheck( camera );
 		_Item = GetPlayerComponent<PlayerItem>();
 		_IsGetComponent = true;
 		_Body = GetPlayerComponent<PlayerBody>();
+		_InitStatus._CameraTrans = _Camera.transform;
 	}
 
 
@@ -118,12 +118,14 @@ public class Player : PlayerBase {
 		_Move.Status = Status;
 		// ジャンプ
 		_Jump.Status = Status;
-		//_Jump.JumpForce = _JumpForce;
 		// カメラ
+		// カメラ
+		_Camera.playerTrans = _Move.transform;
 		_Camera.TurnForce = Status._TurnForce;
+		_Camera.PlayerID = Status._PlayerID;
+		_Camera.Init();
 		// アイテム
-		//_Item.PlayerID = _PlayerID;
-		//_Item.HitPoint = _HitPoint;
+		_Item.Status = Status;
 		// 体の方向
 		_Body.Status = Status;
 	}

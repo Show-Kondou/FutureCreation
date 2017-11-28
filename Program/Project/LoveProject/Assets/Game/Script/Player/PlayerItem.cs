@@ -14,12 +14,10 @@ using UnityEngine;
 /// <summary>
 /// PlayerItemクラス
 /// </summary>
-public class PlayerItem : ObjectTime {
+public class PlayerItem : PlayerBase {
 
 	// メンバー
 	#region Member
-	private uint    _PlayerID;
-	private int		_HitPoint;
 	// 各アイテムのキャッシュ
 	private Item    _ItemL;
 	private Item    _ItemR;
@@ -29,12 +27,6 @@ public class PlayerItem : ObjectTime {
 
 	// アクセサ
 	#region Accessor
-	/// <summary>
-	/// プレイヤーID
-	/// </summary>
-	public uint PlayerID {
-		set { _PlayerID = value; }
-	}
 	/// <summary>
 	/// アイテム左
 	/// </summary>
@@ -48,10 +40,6 @@ public class PlayerItem : ObjectTime {
 	public Item ItemR {
 		get { return _ItemR; }
 		set { _ItemR = value; }
-	}
-	public int HitPoint {
-		get { return _HitPoint; }
-		set { _HitPoint = value; }
 	}
 	#endregion Accessor
 
@@ -72,7 +60,7 @@ public class PlayerItem : ObjectTime {
 	/// </summary>
 	private void ActionItem() {
 		// 左アイテムアクション
-		if( InputGame.GetPlayerItemL( _PlayerID ) ) {
+		if( InputGame.GetPlayerItemL( Status._PlayerID ) ) {
 			if( _ItemL == null ) return;
 			_ItemL.Action();
 			// アイテム終
@@ -80,7 +68,7 @@ public class PlayerItem : ObjectTime {
 			Debug.Log( "ActionItem" );
 		}
 		// 右アイテムアクション
-		else if ( InputGame.GetPlayerItemR( _PlayerID ) ) {
+		else if ( InputGame.GetPlayerItemR( Status._PlayerID ) ) {
 			if( _ItemR == null ) return;
 			_ItemR.Action();
 			if( _ItemR.IsBreak )
@@ -94,15 +82,15 @@ public class PlayerItem : ObjectTime {
 	/// </summary>
 	private void EatItem() {
 		// 左アイテム食べる
-		if ( InputGame.GetPlayerEatL( _PlayerID ) ) {
+		if ( InputGame.GetPlayerEatL( Status._PlayerID ) ) {
 			if ( _ItemL == null ) return;
-			_HitPoint += _ItemL.EatItem();
+			Status._HitPoint += _ItemL.EatItem();
 			_ItemL = null;
 		}
 		// 右アイテム食べる
-		else if ( InputGame.GetPlayerEatR( _PlayerID ) ) {
+		else if ( InputGame.GetPlayerEatR( Status._PlayerID ) ) {
 			if ( _ItemR == null ) return;
-			_HitPoint += _ItemR.EatItem();
+			Status._HitPoint += _ItemR.EatItem();
 			_ItemR = null;
 		}
 	}
@@ -122,12 +110,12 @@ public class PlayerItem : ObjectTime {
 		// TODO:手の位置に持ってくる
 		if( _ItemL == null ) {
 			_ItemL = item;
-			_ItemL.Chatch( _PlayerID );
+			_ItemL.Chatch( Status._PlayerID );
 			return;
 		}
 		if( _ItemR == null ) {
 			_ItemR = item;
-			_ItemL.Chatch( _PlayerID );
+			_ItemL.Chatch( Status._PlayerID );
 			return;
 		}
 	}
