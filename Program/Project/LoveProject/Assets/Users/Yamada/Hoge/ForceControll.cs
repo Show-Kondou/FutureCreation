@@ -2,7 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Rigidbodyを使った放物運動
+/// </sammary>
 public class ForceControll : MonoBehaviour {
+
+	#region Member
 
 	[SerializeField]
 	private Transform shootPoint = null;
@@ -11,22 +17,23 @@ public class ForceControll : MonoBehaviour {
 	[SerializeField]
 	private GameObject shootObject = null;
 	
-	Vector3 v0;
+	private Vector3 v0;	//	初速
 	
     //  ラインレンダラー関係
-    LineRenderer lineRenderer;
-    List<Vector3> renderLinePoints = new List<Vector3>();
+    private LineRenderer lineRenderer;
+    private List<Vector3> renderLinePoints = new List<Vector3>();
 
+	#endregion Member
+
+
+	#region Method
+
+	/// <summary>
+	/// 初期化
+	/// </sammary>
 	void Start(){
-		
+		//	ラインレンダラー取得
         lineRenderer = GetComponent<LineRenderer>();
-	}
-
-	// Update is called once per frame
-	void Update () {
-		if(Input.GetKeyDown(KeyCode.G)){
-			//ShootAction(target.position);
-		}
 	}
 
 
@@ -128,6 +135,9 @@ public class ForceControll : MonoBehaviour {
 	}
 
 
+	/// <summary>
+	/// 予測線を消す
+	/// </sammary>
 	public void DestLaser(){
         // 予測線の軌道をクリア
         renderLinePoints.Clear();
@@ -136,6 +146,10 @@ public class ForceControll : MonoBehaviour {
         lineRenderer.SetPositions(renderLinePoints.ToArray());
 	}
 
+
+	/// <summary>
+	/// 予測線を描画
+	/// </sammary>
 	public void DrawLaser(){
 		
 		float x = 0;
@@ -167,5 +181,7 @@ public class ForceControll : MonoBehaviour {
         lineRenderer.SetPositions(renderLinePoints.ToArray());
 
 	}
+
+	#endregion Method
 
 }
