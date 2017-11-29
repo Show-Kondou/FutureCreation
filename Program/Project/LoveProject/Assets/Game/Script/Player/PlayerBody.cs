@@ -70,13 +70,14 @@ public class PlayerBody : PlayerBase {
 
 
 	protected void UpperBodyDirection() {
-		bool isAction = InputGame.GetPlayerItemL( Status._PlayerID ) ||
-						InputGame.GetPlayerItemR( Status._PlayerID );
+		bool isAction = Status._State == PlayerStatus.State.SLASH ||
+						Status._State == PlayerStatus.State.SCHOTT ||
+						Status._State == PlayerStatus.State.GUARD ||
+						Status._State == PlayerStatus.State.EAT;
 		if( isAction ) {
 			Vector3 cameraForward = new Vector3( Status._CameraTrans.forward.x,
 												 0.0F,
 												 Status._CameraTrans.forward.z );
-			// _UpperBody.forward = cameraForward;
 			_UpperBody.forward += (cameraForward - _UpperBody.forward) * 0.2F;
 			return;
 		}
@@ -84,6 +85,13 @@ public class PlayerBody : PlayerBase {
 
 	}
 	protected void LowerBodyDirection() {
+
+
+		bool isAction = Status._State == PlayerStatus.State.SLASH ||
+						Status._State == PlayerStatus.State.SCHOTT ||
+						Status._State == PlayerStatus.State.GUARD ||
+						Status._State == PlayerStatus.State.EAT;
+
 		var inputMove = InputGame.GetPlayerMove( Status._PlayerID );
 
 		if ( inputMove.magnitude <= 0.0F )
@@ -108,7 +116,12 @@ public class PlayerBody : PlayerBase {
 		vec += inputMove.z * cameraForward;
 
 		// 移動方向に向く
-		_LowerBody.forward += (vec.normalized - _LowerBody.forward) * 0.4F;
+		if( isAction ) {
+			Debug.Log( vec.normalized );
+			_LowerBody.forward += (vec.normalized - _LowerBody.forward) * 0.47F;
+		} else {
+			_LowerBody.forward += (vec.normalized - _LowerBody.forward) * 0.47F;
+		}
 	}
 
 

@@ -75,6 +75,15 @@ public class PlayerMove : PlayerBase {
 	private void Input() {
 		// 移動の入力判定
 		_InputMove = InputGame.GetPlayerMove( Status._PlayerID );
+		if( Status._State == PlayerStatus.State.JUMP )
+			return;
+		if( _InputMove.magnitude > 0.0F ) {
+			Status._State = PlayerStatus.State.RUN;
+		} else {
+			if( Status._State == PlayerStatus.State.JUMP )
+				return;
+			Status._State = PlayerStatus.State.STAND;
+		}
 	}
 
 
@@ -82,6 +91,7 @@ public class PlayerMove : PlayerBase {
 	/// 移動処理
 	/// </summary>
 	void Move() {
+
 		// 最終ベクトル
 		Vector3 vec = Vector3.zero;
 		// 方向ベクトルの正規化の値
