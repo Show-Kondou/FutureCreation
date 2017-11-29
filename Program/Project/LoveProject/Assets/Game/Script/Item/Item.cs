@@ -73,6 +73,28 @@ public abstract class Item : MonoBehaviour
 
 
 	/// <summary>
+	/// 手に持った時に呼ぶ。
+	/// </sammary>
+	public void HoldHand(Transform value){
+		transform.position = value.position;
+		transform.forward = value.forward;
+
+		//手の位置に移動
+		//	ポッキーの時
+		if(this.type == ItemManager.ItemType.Pocky){
+			transform.position += transform.forward * 0.7F;
+		}
+		//	うまい棒の時
+		if(this.type == ItemManager.ItemType.DeliciousBar){
+			transform.position += transform.forward * 0.7F;
+		}
+
+		transform.parent = value;
+
+	}
+
+
+	/// <summary>
 	/// 耐久値の減少処理
 	/// </sammary>
 	public void SubBreakHP(int value){
