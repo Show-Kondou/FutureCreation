@@ -7,7 +7,8 @@ public class StageManager : MonoBehaviour {
 	[Header("ポップポイント"), HideInInspector]
 	public List<StagePop> popPoint = new List<StagePop>();	//	ポップする場所オブジェ
 
-	//TODO:	生成上限は15個
+	//	ステージ配置可能アイテム数
+	private const int MaxPopItemNum = 15;
 
 	[Header("生成間隔(秒)"), SerializeField]
 	private uint limitTime;	//	生成間隔
