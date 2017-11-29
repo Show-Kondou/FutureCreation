@@ -16,7 +16,8 @@ public class ItemManager : MonoBehaviour {
 		Senbei,			//	せんべい
 		BullCandy,		//	弾キャンディ
 		BullChoco,		//	弾チョコ
-		Max
+		Max,
+		None			//	なにもなし
 	};
 	#endregion	Enumilation
 
