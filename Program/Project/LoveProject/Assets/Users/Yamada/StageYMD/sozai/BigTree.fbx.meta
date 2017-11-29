@@ -1,0 +1,285 @@
+fileFormatVersion: 2
+guid: 5a55e5f0801e66243bdfbd36a8b7ee3d
+timeCreated: 1511868451
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Ball_Blue1
+    100002: Ball_Blue1 1
+    100004: Ball_Blue2
+    100006: Ball_Blue2 1
+    100008: Ball_Blue3
+    100010: Ball_Blue3 1
+    100012: Ball_Red1
+    100014: Ball_Red1 1
+    100016: Ball_Red1 2
+    100018: Ball_Red2
+    100020: Ball_Red2 1
+    100022: Ball_Red2 2
+    100024: Ball_Red3
+    100026: Ball_Red3 1
+    100028: Ball_Red3 2
+    100030: Ball_White1
+    100032: Ball_White1 1
+    100034: Ball_White2
+    100036: Ball_White2 1
+    100038: Ball_White3
+    100040: Ball_White3 1
+    100042: Ball_Yellow1
+    100044: Ball_Yellow1 1
+    100046: Ball_Yellow1 2
+    100048: Ball_Yellow2
+    100050: Ball_Yellow2 1
+    100052: Ball_Yellow2 2
+    100054: Ball_Yellow3
+    100056: Ball_Yellow3 1
+    100058: Ball_Yellow3 2
+    100060: //RootNode
+    100062: Dodai
+    100064: G_Ball_1
+    100066: G_Ball_2
+    100068: G_Ball_3
+    100070: G_Ball_4
+    100072: G_Ball_5
+    100074: Star1
+    100076: Star2
+    100078: Star3
+    100080: Star4
+    100082: Star5
+    100084: Star6
+    100086: Top_Star
+    400000: Ball_Blue1
+    400002: Ball_Blue1 1
+    400004: Ball_Blue2
+    400006: Ball_Blue2 1
+    400008: Ball_Blue3
+    400010: Ball_Blue3 1
+    400012: Ball_Red1
+    400014: Ball_Red1 1
+    400016: Ball_Red1 2
+    400018: Ball_Red2
+    400020: Ball_Red2 1
+    400022: Ball_Red2 2
+    400024: Ball_Red3
+    400026: Ball_Red3 1
+    400028: Ball_Red3 2
+    400030: Ball_White1
+    400032: Ball_White1 1
+    400034: Ball_White2
+    400036: Ball_White2 1
+    400038: Ball_White3
+    400040: Ball_White3 1
+    400042: Ball_Yellow1
+    400044: Ball_Yellow1 1
+    400046: Ball_Yellow1 2
+    400048: Ball_Yellow2
+    400050: Ball_Yellow2 1
+    400052: Ball_Yellow2 2
+    400054: Ball_Yellow3
+    400056: Ball_Yellow3 1
+    400058: Ball_Yellow3 2
+    400060: //RootNode
+    400062: Dodai
+    400064: G_Ball_1
+    400066: G_Ball_2
+    400068: G_Ball_3
+    400070: G_Ball_4
+    400072: G_Ball_5
+    400074: Star1
+    400076: Star2
+    400078: Star3
+    400080: Star4
+    400082: Star5
+    400084: Star6
+    400086: Top_Star
+    2300000: Ball_Blue1
+    2300002: Ball_Blue1 1
+    2300004: Ball_Blue2
+    2300006: Ball_Blue2 1
+    2300008: Ball_Blue3
+    2300010: Ball_Blue3 1
+    2300012: Ball_Red1
+    2300014: Ball_Red1 1
+    2300016: Ball_Red1 2
+    2300018: Ball_Red2
+    2300020: Ball_Red2 1
+    2300022: Ball_Red2 2
+    2300024: Ball_Red3
+    2300026: Ball_Red3 1
+    2300028: Ball_Red3 2
+    2300030: Ball_White1
+    2300032: Ball_White1 1
+    2300034: Ball_White2
+    2300036: Ball_White2 1
+    2300038: Ball_White3
+    2300040: Ball_White3 1
+    2300042: Ball_Yellow1
+    2300044: Ball_Yellow1 1
+    2300046: Ball_Yellow1 2
+    2300048: Ball_Yellow2
+    2300050: Ball_Yellow2 1
+    2300052: Ball_Yellow2 2
+    2300054: Ball_Yellow3
+    2300056: Ball_Yellow3 1
+    2300058: Ball_Yellow3 2
+    2300060: Dodai
+    2300062: Star1
+    2300064: Star2
+    2300066: Star3
+    2300068: Star4
+    2300070: Star5
+    2300072: Star6
+    2300074: Top_Star
+    3300000: Ball_Blue1
+    3300002: Ball_Blue1 1
+    3300004: Ball_Blue2
+    3300006: Ball_Blue2 1
+    3300008: Ball_Blue3
+    3300010: Ball_Blue3 1
+    3300012: Ball_Red1
+    3300014: Ball_Red1 1
+    3300016: Ball_Red1 2
+    3300018: Ball_Red2
+    3300020: Ball_Red2 1
+    3300022: Ball_Red2 2
+    3300024: Ball_Red3
+    3300026: Ball_Red3 1
+    3300028: Ball_Red3 2
+    3300030: Ball_White1
+    3300032: Ball_White1 1
+    3300034: Ball_White2
+    3300036: Ball_White2 1
+    3300038: Ball_White3
+    3300040: Ball_White3 1
+    3300042: Ball_Yellow1
+    3300044: Ball_Yellow1 1
+    3300046: Ball_Yellow1 2
+    3300048: Ball_Yellow2
+    3300050: Ball_Yellow2 1
+    3300052: Ball_Yellow2 2
+    3300054: Ball_Yellow3
+    3300056: Ball_Yellow3 1
+    3300058: Ball_Yellow3 2
+    3300060: Dodai
+    3300062: Star1
+    3300064: Star2
+    3300066: Star3
+    3300068: Star4
+    3300070: Star5
+    3300072: Star6
+    3300074: Top_Star
+    4300000: Top_Star
+    4300002: Star1
+    4300004: Star2
+    4300006: Star3
+    4300008: Star4
+    4300010: Star5
+    4300012: Star6
+    4300014: Dodai
+    4300016: Ball_Red1
+    4300018: Ball_Red2
+    4300020: Ball_Red3
+    4300022: Ball_Yellow1
+    4300024: Ball_Yellow2
+    4300026: Ball_Yellow3
+    4300028: Ball_Blue1
+    4300030: Ball_Blue2
+    4300032: Ball_Blue3
+    4300034: Ball_White1
+    4300036: Ball_White2
+    4300038: Ball_White3
+    4300040: Ball_Red1
+    4300042: Ball_Red2
+    4300044: Ball_Red3
+    4300046: Ball_Yellow1
+    4300048: Ball_Yellow2
+    4300050: Ball_Yellow3
+    4300052: Ball_Blue1
+    4300054: Ball_Blue2
+    4300056: Ball_Blue3
+    4300058: Ball_White1
+    4300060: Ball_White2
+    4300062: Ball_White3
+    4300064: Ball_Red1
+    4300066: Ball_Red2
+    4300068: Ball_Red3
+    4300070: Ball_Yellow1
+    4300072: Ball_Yellow2
+    4300074: Ball_Yellow3
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 37.5
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

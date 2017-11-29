@@ -68,6 +68,8 @@ public class Shoot : Item{
         
         //  レーザーサイト消す
         forceControll.DestLaser();
+        //  表示
+        IsActive = false;
 
         //  ボタン判定
         if(isAction == false && isPrevAction == true){
@@ -80,7 +82,8 @@ public class Shoot : Item{
 
         }else if(isAction == true && isPrevAction == true){
         //  押しっぱなし
-
+            //  表示
+            IsActive = true;
             //  レーザーサイト描画
             forceControll.DrawLaser();
         }
@@ -98,8 +101,6 @@ public class Shoot : Item{
     /// </sammary>
     public override void Action(){
 		Debug.Log(this.name + "のアクション");
-        //  表示
-        IsActive = true;
         //  行動フラグオン
         isAction = true;
 		

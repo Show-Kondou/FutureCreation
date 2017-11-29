@@ -64,6 +64,13 @@ public abstract class Item : MonoBehaviour
 		playerID = ID;
 	}
 
+	/// <summary>
+	/// 表示のみオンにする
+	/// </sammary>
+	public void DispItem(bool value){
+		mesh.enabled = value;
+	}
+
 
 	/// <summary>
 	/// 耐久値の減少処理

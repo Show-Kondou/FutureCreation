@@ -16,7 +16,8 @@ public class ItemManager : MonoBehaviour {
 		Senbei,			//	せんべい
 		BullCandy,		//	弾キャンディ
 		BullChoco,		//	弾チョコ
-		Max
+		Max,
+		None			//	なにもなし
 	};
 	#endregion	Enumilation
 
@@ -74,6 +75,9 @@ public class ItemManager : MonoBehaviour {
 
 	[Header("各お菓子の生成確率"), SerializeField, NamedArrayAttribute(new string[] { "ポッキー", "うまい棒", "マーブルチョコ", "飴玉", "クッキー", "せんべい" })]
 	private uint[] probability = new uint[6];
+
+	//	ステージ配置可能アイテム数
+	private const int MaxPopItemNum = 15;
 	
 	#endregion	Member
 
@@ -211,6 +215,16 @@ public class ItemManager : MonoBehaviour {
 		return current;
 	}
 
+
+
+	/// <summary>
+	/// ポップ可能かを返す
+	/// </sammary>
+	public bool CanPopItem(){
+		//TODO:	落ちているアイテムが１５未満ならtrueを返す。
+		//		１５以上ならfalseを返す。
+		return true;
+	}
 
 
 	//TODO:	検索
