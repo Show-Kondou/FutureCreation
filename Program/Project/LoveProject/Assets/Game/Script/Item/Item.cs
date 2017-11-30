@@ -25,6 +25,7 @@ public abstract class Item : MonoBehaviour
 	protected uint playerID;		//	拾ったプレイヤーの識別ID
 
 	//	状態のフラグ管理群
+	[Header("拾われた"), SerializeField]
 	protected bool isPicked = false;      // 拾われた
 	protected bool isUsing = false;       // 使っているか(武器・防具として使用しているか)
 

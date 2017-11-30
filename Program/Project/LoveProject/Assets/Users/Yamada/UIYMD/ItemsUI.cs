@@ -53,8 +53,15 @@ public class ItemsUI : MonoBehaviour {
 	/// </sammary>
 	public void SetItemUI(ItemManager.ItemType item_type){
 		itemImage.color = new Color(1,1,1,1);
-		itemImage.sprite = itemIcon[(int)Mathf.Abs(((GameTimer.Instance.TimeLimit % 10) - 5))];
-		//itemImage.sprite = itemIcon[(int)item_type];
+		//itemImage.sprite = itemIcon[(int)Mathf.Abs(((GameTimer.Instance.TimeLimit % 10) - 5))];
+		
+		if((int)item_type >= 7){
+			LoseItemUI();
+			return;
+		}
+		
+
+		itemImage.sprite = itemIcon[(int)item_type];
 	}
 
 	/// <summary>
