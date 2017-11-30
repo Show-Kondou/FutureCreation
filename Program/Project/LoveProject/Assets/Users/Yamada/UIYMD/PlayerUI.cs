@@ -11,6 +11,8 @@ public class PlayerUI : MonoBehaviour {
 	ItemsUI itemsUIR;	//	アイテムUI右
 	HPUI	hpUI;		//	HPUI
 
+
+	
 	// Use this for initialization
 	void Start () {
 		itemsUIL = transform.Find("UI_Item_L").gameObject.GetComponent<ItemsUI>();
@@ -18,8 +20,8 @@ public class PlayerUI : MonoBehaviour {
 		hpUI = transform.Find("UI_Gauge").gameObject.GetComponent<HPUI>();
 
 		//	アイテムUIへアイテム情報を投げ
-		//itemsUIL.SetItemUI(_player.ItemTypeL);
-		//itemsUIR.SetItemUI(_player.ItemTypeR);
+		itemsUIL.SetItemUI(_player.ItemTypeL);
+		itemsUIR.SetItemUI(_player.ItemTypeR);
 
 		//	HPUIへHPを投げ
 		//hpUI.playerHp = _player.PlayerHP;
@@ -27,30 +29,29 @@ public class PlayerUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
 		//	アイテムUIへアイテム情報を投げ
-		//itemsUIL.SetItemUI(_player.ItemTypeL);
-		//itemsUIR.SetItemUI(_player.ItemTypeR);
+		itemsUIL.SetItemUI(_player.ItemTypeL);
+		itemsUIR.SetItemUI(_player.ItemTypeR);
 
-		//	HPUIへHPを投げ
-		//hpUI.playerHp = _player.PlayerHP;
+		// 	HPUIへHPを投げ
+		// hpUI.playerHp = _player.PlayerHP;
 		
 		//	ボタンUI4更新
-		// if(InputGame.GetPlayerItemL()){
-		// 	itemsUIL.PushedButton(1);
-		// }
-		// if(InputGame.GetPlayerItemR()){
-		// 	itemsUIR.PushedButton(1);
-		// }
-		// if(InputGame.GetPlayerEatL()){
-		// 	itemsUIL.PushedButton(2);
-		// }
-		// if(InputGame.GetPlayerEatR()){
-		// 	itemsUIR.PushedButton(2);
-		// }
+		if(InputGame.GetPlayerItemL()){
+			itemsUIL.PushedButton(1);
+		}
+		if(InputGame.GetPlayerItemR()){
+			itemsUIR.PushedButton(1);
+		}
+		if(InputGame.GetPlayerEatL()){
+			itemsUIL.PushedButton(2);
+		}
+		if(InputGame.GetPlayerEatR()){
+			itemsUIR.PushedButton(2);
+		}
 
 
-		DebugButtonUI();
+		//DebugButtonUI();
 	}
 
 
