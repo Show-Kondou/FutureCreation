@@ -20,8 +20,8 @@ public class PlayerUI : MonoBehaviour {
 		hpUI = transform.Find("UI_Gauge").gameObject.GetComponent<HPUI>();
 
 		//	アイテムUIへアイテム情報を投げ
-		itemsUIL.SetItemUI(_player.ItemTypeL);
-		itemsUIR.SetItemUI(_player.ItemTypeR);
+		itemsUIL.LoseItemUI();
+		itemsUIR.LoseItemUI();
 
 		//	HPUIへHPを投げ
 		//hpUI.playerHp = _player.PlayerHP;
