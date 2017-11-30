@@ -55,10 +55,21 @@ public class Player : PlayerBase {
 	/// アイテムの種類
 	/// </summary>
 	public ItemManager.ItemType ItemTypeL {
-		get { return _Item.ItemTypeL; }
+	//	get { return _Item.ItemTypeL; }
+	get {
+			if( _Item == null ) {
+				return ItemManager.ItemType.None;
+			}
+			return _Item.ItemTypeL;
+		}
 	}
 	public ItemManager.ItemType ItemTypeR {
-		get { return _Item.ItemTypeR; }
+		get {
+			if( _Item == null ) {
+				return ItemManager.ItemType.None;
+			}
+			return _Item.ItemTypeR;
+		}
 	}
 	#endregion Accessor
 
@@ -76,23 +87,24 @@ public class Player : PlayerBase {
 	/// インスペクター変更時イベント
 	/// </summary>
 	private void OnValidate() {
+		Status = _InitStatus;
 
-		if ( !_IsGetComponent ) return;
+		//if ( !_IsGetComponent ) return;
 
-		// --- ステータス反映
-		// 移動
-		_Move.Status = Status;
-		// ジャンプ
-		_Jump.Status = Status;
-		//_Jump.JumpForce = _JumpForce;
-		// カメラ
-		_Camera.TurnForce = Status._TurnForce;
-		// アイテム
-		_Item.Status = Status;
-		// 体の方向
-		_Body.Status = Status;
-		// アニメーション
-		_Animetion.Status = Status;
+		//// --- ステータス反映
+		//// 移動
+		//_Move.Status = Status;
+		//// ジャンプ
+		//_Jump.Status = Status;
+		////_Jump.JumpForce = _JumpForce;
+		//// カメラ
+		//_Camera.TurnForce = Status._TurnForce;
+		//// アイテム
+		//_Item.Status = Status;
+		//// 体の方向
+		//_Body.Status = Status;
+		//// アニメーション
+		//_Animetion.Status = Status;
 	}
 
 

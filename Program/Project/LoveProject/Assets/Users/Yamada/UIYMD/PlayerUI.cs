@@ -36,27 +36,33 @@ public class PlayerUI : MonoBehaviour {
 		// 	HPUIへHPを投げ
 		// hpUI.playerHp = _player.PlayerHP;
 		
-		//	ボタンUI4更新
-		if(InputGame.GetPlayerItemL()){
-			itemsUIL.PushedButton(1);
-		}
-		if(InputGame.GetPlayerItemR()){
-			itemsUIR.PushedButton(1);
-		}
-		if(InputGame.GetPlayerEatL()){
-			itemsUIL.PushedButton(2);
-		}
-		if(InputGame.GetPlayerEatR()){
-			itemsUIR.PushedButton(2);
-		}
+		////	ボタンUI4更新
+		//if(InputGame.GetPlayerItemL()){
+		//	itemsUIL.PushedButton(1);
+		//}
+		//if(InputGame.GetPlayerItemR()){
+		//	itemsUIR.PushedButton(1);
+		//}
+		//if(InputGame.GetPlayerEatL()){
+		//	itemsUIL.PushedButton(2);
+		//}
+		//if(InputGame.GetPlayerEatR()){
+		//	itemsUIR.PushedButton(2);
+		//}
 
 
-		//DebugButtonUI();
+		DebugButtonUI();
 	}
 
 
 	void DebugButtonUI(){
 		//	ボタンUI4更新
+		if( InputGame.GetPlayerItemL( _player.PlayerID ) ) {
+			itemsUIL.PushedButton( 1 );
+		} else {
+			itemsUIL.ReleaseButton( 1 );
+		}
+
 		if(Input.GetKey(KeyCode.V)){
 			itemsUIL.PushedButton(1);
 		}else if(Input.GetKey(KeyCode.B)){
