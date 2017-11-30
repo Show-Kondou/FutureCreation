@@ -42,7 +42,6 @@ public class PlayerJump : PlayerBase {
 	private bool	_Input;		// 入力フラグ
 
 	private Rigidbody _Rigid;   // リジッドボディ
-
 	#endregion Member
 
 	// アクセサ

@@ -41,6 +41,10 @@ public class Player : PlayerBase {
 		get { return Status._PlayerID; }
 	}
 
+	public int PlayerHP {
+		get { return Status._HitPoint; }
+	}
+
 	/// <summary>
 	/// 生存確認
 	/// </summary>

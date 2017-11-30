@@ -40,7 +40,7 @@ public class PlayerItem : PlayerBase {
 	public ItemManager.ItemType ItemTypeL {
 		get {
 			if( _ItemL == null ) {
-				return ItemManager.ItemType.Max;
+				return ItemManager.ItemType.None;
 			}
 			return _ItemL.Type;
 		}
@@ -48,7 +48,7 @@ public class PlayerItem : PlayerBase {
 	public ItemManager.ItemType ItemTypeR {
 		get {
 			if( _ItemR == null ) {
-				return ItemManager.ItemType.Max;
+				return ItemManager.ItemType.None;
 			}
 			return _ItemR.Type;
 		}
