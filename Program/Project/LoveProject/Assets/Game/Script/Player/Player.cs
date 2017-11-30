@@ -18,7 +18,10 @@ public class Player : PlayerBase {
 	#region Member
 	[Header("ステータス"), SerializeField]
 	private PlayerStatus    _InitStatus;
-
+	[SerializeField]
+	private ItemManager.ItemType _ItemL;
+	[SerializeField]
+	private ItemManager.ItemType _ItemR;
 	//コンポーネントの取得フラグ
 	private bool			_IsGetComponent = false;
 	
@@ -28,6 +31,7 @@ public class Player : PlayerBase {
 	private CameraPlayer    _Camera		= null;
 	private PlayerItem      _Item       = null;
 	private PlayerBody		_Body		= null;
+	private PlayerAnimation _Animetion	= null;
 	#endregion	Member
 
 
@@ -37,26 +41,24 @@ public class Player : PlayerBase {
 		get { return Status._PlayerID; }
 	}
 
+	public int PlayerHP {
+		get { return Status._HitPoint; }
+	}
+
 	/// <summary>
 	/// 生存確認
 	/// </summary>
 	public bool IsLife {
 		get { return (_Item.Status._HitPoint > 0); }
 	}
-	///// <summary>
-	///// 体力
-	///// </summary>
-	//public int PlayerHP {
-	//	get { return _Item.HitPoint; }
-	//}
 	/// <summary>
 	/// アイテムの種類
 	/// </summary>
 	public ItemManager.ItemType ItemTypeL {
-		get { return _Item.ItemL.Type; }
+		get { return _Item.ItemTypeL; }
 	}
 	public ItemManager.ItemType ItemTypeR {
-		get { return _Item.ItemR.Type; }
+		get { return _Item.ItemTypeR; }
 	}
 	#endregion Accessor
 
@@ -89,6 +91,8 @@ public class Player : PlayerBase {
 		_Item.Status = Status;
 		// 体の方向
 		_Body.Status = Status;
+		// アニメーション
+		_Animetion.Status = Status;
 	}
 
 
@@ -104,6 +108,7 @@ public class Player : PlayerBase {
 		_Item = GetPlayerComponent<PlayerItem>();
 		_IsGetComponent = true;
 		_Body = GetPlayerComponent<PlayerBody>();
+		_Animetion = GetPlayerComponent<PlayerAnimation>();
 		_InitStatus._CameraTrans = _Camera.transform;
 	}
 
@@ -128,6 +133,8 @@ public class Player : PlayerBase {
 		_Item.Status = Status;
 		// 体の方向
 		_Body.Status = Status;
+		// アニメーション
+		_Animetion.Status = Status;
 	}
 
 
@@ -150,5 +157,7 @@ public class Player : PlayerBase {
 	}
 
 	protected override void Execute() {
+		_ItemL = _Item.ItemTypeL;
+		_ItemR = _Item.ItemTypeR;
 	}
 }

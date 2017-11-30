@@ -21,6 +21,8 @@ public class PlayerItem : PlayerBase {
 	// 各アイテムのキャッシュ
 	private Item    _ItemL;
 	private Item    _ItemR;
+	[SerializeField]
+	private Transform _HandTrans;
 	#endregion Member
 
 
@@ -34,6 +36,24 @@ public class PlayerItem : PlayerBase {
 		get { return _ItemL; }
 		set { _ItemL = value; }
 	}
+
+	public ItemManager.ItemType ItemTypeL {
+		get {
+			if( _ItemL == null ) {
+				return ItemManager.ItemType.None;
+			}
+			return _ItemL.Type;
+		}
+	}
+	public ItemManager.ItemType ItemTypeR {
+		get {
+			if( _ItemR == null ) {
+				return ItemManager.ItemType.None;
+			}
+			return _ItemR.Type;
+		}
+	}
+
 	/// <summary>
 	/// アイテム右
 	/// </summary>
@@ -53,6 +73,11 @@ public class PlayerItem : PlayerBase {
 	protected override void Execute() {
 		ActionItem();
 		EatItem();
+
+		if( _ItemL == null )
+			return;
+		//_ItemL.transform.position = _HandTrans.position;
+		//_ItemL.transform.forward = _HandTrans.forward;
 	}
 
 	/// <summary>
@@ -61,19 +86,22 @@ public class PlayerItem : PlayerBase {
 	private void ActionItem() {
 		// 左アイテムアクション
 		if( InputGame.GetPlayerItemL( Status._PlayerID ) ) {
+			// TODO:仮
+			Status._State = PlayerStatus.State.SCHOTT;
 			if( _ItemL == null ) return;
+			// Status._State = PlayerStatus.State.SCHOTT;
 			_ItemL.Action();
+			Status._State = PlayerStatus.State.SCHOTT;
 			// アイテム終
 			if( _ItemL.IsBreak )  _ItemL = null;
-			Debug.Log( "ActionItem" );
 		}
 		// 右アイテムアクション
 		else if ( InputGame.GetPlayerItemR( Status._PlayerID ) ) {
 			if( _ItemR == null ) return;
 			_ItemR.Action();
+			Status._State = PlayerStatus.State.SCHOTT;
 			if( _ItemR.IsBreak )
 				_ItemR = null;
-			Debug.Log( "ActionItem" );
 		}
 	}
 
@@ -86,12 +114,14 @@ public class PlayerItem : PlayerBase {
 			if ( _ItemL == null ) return;
 			Status._HitPoint += _ItemL.EatItem();
 			_ItemL = null;
+			Status._State = PlayerStatus.State.EAT;
 		}
 		// 右アイテム食べる
 		else if ( InputGame.GetPlayerEatR( Status._PlayerID ) ) {
 			if ( _ItemR == null ) return;
 			Status._HitPoint += _ItemR.EatItem();
 			_ItemR = null;
+			Status._State = PlayerStatus.State.EAT;
 		}
 	}
 	#endregion Method
@@ -107,10 +137,12 @@ public class PlayerItem : PlayerBase {
 	private void OnTriggerEnter( Collider coll ) {
 		if( coll.gameObject.tag != "Item" ) return;
 		Item item = coll.gameObject.GetComponent<Item>();
-		// TODO:手の位置に持ってくる
 		if( _ItemL == null ) {
 			_ItemL = item;
 			_ItemL.Chatch( Status._PlayerID );
+			_ItemL.transform.position = _HandTrans.position;
+			_ItemL.transform.forward = _HandTrans.forward;
+			_ItemL.transform.parent = _HandTrans;
 			return;
 		}
 		if( _ItemR == null ) {

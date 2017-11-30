@@ -61,24 +61,9 @@ public class PlayerAnimation : PlayerBase {
 	/// <summary>
 	/// 更新
 	/// </summary>
-	private void Update() {
-		//var inp = InputGame.GetPlayerMove( _PlayerID );
-		//_LowerAnimator.SetInteger( "State", (int)Player.PlayerState.STAND );
-		//if( inp.magnitude > 0.0F ) {
-		//	Debug.Log( "--------------" );
-		//	_LowerAnimator.SetInteger("State", (int)Player.PlayerState.RUN );
-		//} else if( InputGame.GetPlayerJump(_PlayerID) ) {
-		//	_LowerAnimator.SetInteger( "State", (int)Player.PlayerState.JUMP );
-		//	Debug.Log("Jump");
-		//} else if(InputGame.GetPlayerRoll(_PlayerID)) {
-		//	_LowerAnimator.SetInteger( "State", (int)Player.PlayerState.ROLL );
-		//}else {
-		//	_LowerAnimator.SetInteger( "State", (int)Player.PlayerState.STAND );
-		//}
-	}
-
 	protected override void Execute() {
-		throw new NotImplementedException();
+		_UpperAnimator.SetInteger( "State", (int)Status._State );
+		_LowerAnimator.SetInteger( "State", (int)Status._State );
 	}
 
 
