@@ -72,7 +72,7 @@ public class CameraPlayer : ObjectTime {
 
 		// 注視点を作成
 		var obj					= new GameObject( "CameraCenter" );     // 生成
-		obj						= Define.NullCheck( obj );              // 生成チェック
+		// obj						= Define.NullCheck( obj );              // 生成チェック
 		_CenterTrans			= obj.transform;						// トランスフォームのスタック
 		_CenterTrans.position	= _PlayerTrans.position + CENTER_POS;	// 注視点位置設定
 		obj.AddComponent<CameraCenter>().CameraTrans = transform;       // めり込み判定追加
