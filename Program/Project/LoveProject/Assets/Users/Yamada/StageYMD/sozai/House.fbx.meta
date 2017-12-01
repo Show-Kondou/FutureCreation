@@ -1,0 +1,212 @@
+fileFormatVersion: 2
+guid: 94c415e98769d7a4ebbd38f0da5af7cd
+timeCreated: 1512032651
+licenseType: Free
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: Cookie_L1
+    100002: Cookie_L2
+    100004: Cookie_L3
+    100006: Cookie_L4
+    100008: Cookie_R1
+    100010: Cookie_R2
+    100012: Cookie_R3
+    100014: Cookie_R4
+    100016: Door
+    100018: Door 1
+    100020: Door_Nobu
+    100022: Entotsu
+    100024: Front_Window
+    100026: Hashira_L1
+    100028: Hashira_L2
+    100030: Hashira_R1
+    100032: Hashira_R2
+    100034: //RootNode
+    100036: House
+    100038: House_Yane
+    100040: House_YaneMado_L1
+    100042: House_YaneMado_R1
+    100044: House_YaneMado_R2
+    100046: Window_L1
+    100048: Window_L2
+    100050: Window_R1
+    100052: Window_R2
+    400000: Cookie_L1
+    400002: Cookie_L2
+    400004: Cookie_L3
+    400006: Cookie_L4
+    400008: Cookie_R1
+    400010: Cookie_R2
+    400012: Cookie_R3
+    400014: Cookie_R4
+    400016: Door
+    400018: Door 1
+    400020: Door_Nobu
+    400022: Entotsu
+    400024: Front_Window
+    400026: Hashira_L1
+    400028: Hashira_L2
+    400030: Hashira_R1
+    400032: Hashira_R2
+    400034: //RootNode
+    400036: House
+    400038: House_Yane
+    400040: House_YaneMado_L1
+    400042: House_YaneMado_R1
+    400044: House_YaneMado_R2
+    400046: Window_L1
+    400048: Window_L2
+    400050: Window_R1
+    400052: Window_R2
+    2300000: Cookie_L1
+    2300002: Cookie_L2
+    2300004: Cookie_L3
+    2300006: Cookie_L4
+    2300008: Cookie_R1
+    2300010: Cookie_R2
+    2300012: Cookie_R3
+    2300014: Cookie_R4
+    2300016: Door 1
+    2300018: Door_Nobu
+    2300020: Entotsu
+    2300022: Front_Window
+    2300024: Hashira_L1
+    2300026: Hashira_L2
+    2300028: Hashira_R1
+    2300030: Hashira_R2
+    2300032: House
+    2300034: House_Yane
+    2300036: House_YaneMado_L1
+    2300038: House_YaneMado_R1
+    2300040: House_YaneMado_R2
+    2300042: Window_L1
+    2300044: Window_L2
+    2300046: Window_R1
+    2300048: Window_R2
+    3300000: Cookie_L1
+    3300002: Cookie_L2
+    3300004: Cookie_L3
+    3300006: Cookie_L4
+    3300008: Cookie_R1
+    3300010: Cookie_R2
+    3300012: Cookie_R3
+    3300014: Cookie_R4
+    3300016: Door 1
+    3300018: Door_Nobu
+    3300020: Entotsu
+    3300022: Front_Window
+    3300024: Hashira_L1
+    3300026: Hashira_L2
+    3300028: Hashira_R1
+    3300030: Hashira_R2
+    3300032: House
+    3300034: House_Yane
+    3300036: House_YaneMado_L1
+    3300038: House_YaneMado_R1
+    3300040: House_YaneMado_R2
+    3300042: Window_L1
+    3300044: Window_L2
+    3300046: Window_R1
+    3300048: Window_R2
+    4300000: House
+    4300002: House_Yane
+    4300004: Entotsu
+    4300006: House_YaneMado_L1
+    4300008: House_YaneMado_R1
+    4300010: House_YaneMado_R2
+    4300012: Front_Window
+    4300014: Door
+    4300016: Door_Nobu
+    4300018: Cookie_L1
+    4300020: Cookie_L2
+    4300022: Cookie_L3
+    4300024: Cookie_L4
+    4300026: Cookie_R1
+    4300028: Cookie_R2
+    4300030: Cookie_R3
+    4300032: Cookie_R4
+    4300034: Window_L1
+    4300036: Window_L2
+    4300038: Window_R1
+    4300040: Window_R2
+    4300042: Hashira_L1
+    4300044: Hashira_L2
+    4300046: Hashira_R1
+    4300048: Hashira_R2
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 20
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -221,11 +221,39 @@ public class ItemManager : MonoBehaviour {
 	/// ポップ可能かを返す
 	/// </sammary>
 	public bool CanPopItem(){
-		//TODO:	落ちているアイテムが１５未満ならtrueを返す。
-		//		１５以上ならfalseを返す。
-		return true;
+        //TODO:	落ちているアイテムが１５未満ならtrueを返す。
+        //		１５以上ならfalseを返す。
+        if (SearchActiveItemCount() < 15) return true;
+        else return false;
 	}
 
+    public int SearchActiveItemCount() {
+
+        
+        GameObject obj = null;
+        int _count = 0;
+
+        for (int type = 0; type < 6; type++){
+
+            List<GameObject> gameObjects = itemPool[(ItemManager.ItemType)type];
+
+            //	使用可能オブジェクト検索ループ
+            for (int i = 0; i < gameObjects.Count; i++){
+                obj = gameObjects[i];
+
+                if (obj == null) continue;
+
+                //	アクティブであれば
+                if (obj.activeInHierarchy == true){
+                    //  かつ、拾われていない
+                    if (obj.GetComponent<Item>().IsPicked == false)
+                        _count += 1;
+                }
+            }
+        }
+
+        return _count;
+    }
 
 	//TODO:	検索
 	#endregion	Method
