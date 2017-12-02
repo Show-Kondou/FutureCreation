@@ -841,29 +841,7 @@ Transform:
   m_Father: {fileID: 2116538330}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &605162146 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114292315535094354, guid: 5778d9f4a06876641bd2ab349a51569b,
-    type: 2}
-  m_PrefabInternal: {fileID: 276598823}
-  m_Script: {fileID: 11500000, guid: f49d1fad45924f84eb5b828292d5f517, type: 3}
---- !u!1 &644656624
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1854181471318364, guid: f3d58adecf0ca514e8875ddcffb35414,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 2116538330}
-  m_Layer: 0
-  m_Name: StagePlane
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!1001 &700713730
+--- !u!1001 &603226948
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -902,57 +880,31 @@ Prefab:
       propertyPath: m_RootOrder
       value: 14
       objectReference: {fileID: 0}
-    - target: {fileID: 1630476080675248, guid: b1356b9aa2482804c91178ca79f37806, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1177291736887078, guid: b1356b9aa2482804c91178ca79f37806, type: 2}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1086984759684948, guid: b1356b9aa2482804c91178ca79f37806, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1413575752615370, guid: b1356b9aa2482804c91178ca79f37806, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1188271187680032, guid: b1356b9aa2482804c91178ca79f37806, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1535325844437614, guid: b1356b9aa2482804c91178ca79f37806, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1689680006975446, guid: b1356b9aa2482804c91178ca79f37806, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1254506287638828, guid: b1356b9aa2482804c91178ca79f37806, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1262360358433224, guid: b1356b9aa2482804c91178ca79f37806, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1810224472916738, guid: b1356b9aa2482804c91178ca79f37806, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1415380589201600, guid: b1356b9aa2482804c91178ca79f37806, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1504903178575104, guid: b1356b9aa2482804c91178ca79f37806, type: 2}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b1356b9aa2482804c91178ca79f37806, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &605162146 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114292315535094354, guid: 5778d9f4a06876641bd2ab349a51569b,
+    type: 2}
+  m_PrefabInternal: {fileID: 276598823}
+  m_Script: {fileID: 11500000, guid: f49d1fad45924f84eb5b828292d5f517, type: 3}
+--- !u!1 &644656624
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 1854181471318364, guid: f3d58adecf0ca514e8875ddcffb35414,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 2116538330}
+  m_Layer: 0
+  m_Name: StagePlane
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
 --- !u!1 &761648333
 GameObject:
   m_ObjectHideFlags: 0
