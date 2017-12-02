@@ -12,7 +12,7 @@ public class CameraManager : MonoBehaviour {
 		get {
 			if( _Instance == null ) {
 				var obj = FindObjectOfType<CameraManager>();
-				_Instance = Define.NullCheck(obj);
+				_Instance = obj;// Define.NullCheck(obj);
 				return _Instance;
 			}
 			return _Instance;
@@ -97,6 +97,7 @@ public class CameraManager : MonoBehaviour {
 
 	private void Awake() {
 		DontDestroyOnLoad( _Instance );
+		Screen.SetResolution( 3840, 100, false );
 	}
 	#endregion MonoBehaviour Event
 

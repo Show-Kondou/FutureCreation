@@ -116,7 +116,7 @@ public class Player : PlayerBase {
 		_Move = GetPlayerComponent<PlayerMove>();
 		_Jump = GetPlayerComponent<PlayerJump>();
 		var camera = CameraManager.Instance.GetPlayerCamera( _InitStatus._PlayerID );
-		_Camera = Define.NullCheck( camera );
+		_Camera = camera;//Define.NullCheck( camera );
 		_Item = GetPlayerComponent<PlayerItem>();
 		_IsGetComponent = true;
 		_Body = GetPlayerComponent<PlayerBody>();
