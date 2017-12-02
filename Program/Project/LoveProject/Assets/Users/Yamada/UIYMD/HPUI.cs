@@ -42,7 +42,7 @@ public class HPUI : MonoBehaviour {
 	void Update(){
 
 		//	プレイヤーのHP取得
-		playerHp = Mathf.Abs((int)(100 * Mathf.Sin(Time.time))) + 1;
+		//playerHp = Mathf.Abs((int)(100 * Mathf.Sin(Time.time))) + 1;
 
 		//	変更があったときのみ更新
 		if(prevPlayerHp == playerHp) return;
