@@ -24,7 +24,7 @@ public class PlayerUI : MonoBehaviour {
 		itemsUIR.LoseItemUI();
 
 		//	HPUIへHPを投げ
-		//hpUI.playerHp = _player.PlayerHP;
+		hpUI.playerHp = _player.PlayerHP;
 	}
 	
 	// Update is called once per frame
@@ -34,23 +34,8 @@ public class PlayerUI : MonoBehaviour {
 		itemsUIR.SetItemUI(_player.ItemTypeR);
 
 		// 	HPUIへHPを投げ
-		// hpUI.playerHp = _player.PlayerHP;
+		hpUI.playerHp = _player.PlayerHP;
 		
-		////	ボタンUI4更新
-		//if(InputGame.GetPlayerItemL()){
-		//	itemsUIL.PushedButton(1);
-		//}
-		//if(InputGame.GetPlayerItemR()){
-		//	itemsUIR.PushedButton(1);
-		//}
-		//if(InputGame.GetPlayerEatL()){
-		//	itemsUIL.PushedButton(2);
-		//}
-		//if(InputGame.GetPlayerEatR()){
-		//	itemsUIR.PushedButton(2);
-		//}
-
-
 		DebugButtonUI();
 	}
 
@@ -62,28 +47,21 @@ public class PlayerUI : MonoBehaviour {
 		} else {
 			itemsUIL.ReleaseButton( 1 );
 		}
-
-		if(Input.GetKey(KeyCode.V)){
-			itemsUIL.PushedButton(1);
-		}else if(Input.GetKey(KeyCode.B)){
-			itemsUIR.PushedButton(1);
-		}else if(Input.GetKey(KeyCode.N)){
-			itemsUIL.PushedButton(2);
-		}else if(Input.GetKey(KeyCode.M)){
-			itemsUIR.PushedButton(2);
+		if( InputGame.GetPlayerEatL( _player.PlayerID ) ) {
+			itemsUIL.PushedButton( 2 );
+		} else {
+			itemsUIL.ReleaseButton( 2 );
 		}
 
-		if(Input.GetKeyUp(KeyCode.V)){
-			itemsUIL.ReleaseButton(1);
+		if( InputGame.GetPlayerItemR( _player.PlayerID ) ) {
+			itemsUIR.PushedButton( 1 );
+		} else {
+			itemsUIR.ReleaseButton( 1 );
 		}
-		if(Input.GetKeyUp(KeyCode.B)){
-			itemsUIR.ReleaseButton(1);
-		}
-		if(Input.GetKeyUp(KeyCode.N)){
-			itemsUIL.ReleaseButton(2);
-		}
-		if(Input.GetKeyUp(KeyCode.M)){
-			itemsUIR.ReleaseButton(2);
+		if( InputGame.GetPlayerEatR( _player.PlayerID ) ) {
+			itemsUIR.PushedButton( 2 );
+		} else {
+			itemsUIR.ReleaseButton( 2 );
 		}
 	}
 
