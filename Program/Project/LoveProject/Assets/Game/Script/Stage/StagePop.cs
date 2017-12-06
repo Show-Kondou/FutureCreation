@@ -8,7 +8,7 @@ public class StagePop : MonoBehaviour {
 	public uint popPriority;
 
 
-	void Start(){
+	void Awake(){
 		//	自身でマネージャのリストに飛び込む
 		StageManager.Instance.popPoint.Add(this);
 
