@@ -194,7 +194,7 @@ public class ItemManager : MonoBehaviour {
 		
 		//	アイテム確定走査ループ
 		ItemType current = 0;
-		for(current = 0; current < ItemType.Max; current++){
+		for(current = 0; current < (ItemType)6; current++){
 
 			//	判定範囲設定
 			rangeBottom = rangeTop;

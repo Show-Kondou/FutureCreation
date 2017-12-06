@@ -57,12 +57,20 @@ public abstract class Item : MonoBehaviour
 	/// <summary>
 	/// 拾われた
 	/// </sammary>
-	public void Chatch( uint ID ){
+	public bool Chatch( uint ID ){
+
+		if(isPicked == true)
+			return false;
+
 		//	表示を切る
 		IsActive = false;
 		//	拾われたことにする
 		isPicked = true;
 		playerID = ID;
+
+		return true;
+		
+
 	}
 
 	/// <summary>
