@@ -24,8 +24,9 @@ public class Bullet : Item {
 	/// <summary>
 	/// 固有動作
 	/// </sammary>
-	public override void Action(){
+	public override int Action(){
 		Debug.LogError("Bullet.cs Action()ここは呼ばれないはずよ");
+        return 0;
 	}
 
 	
