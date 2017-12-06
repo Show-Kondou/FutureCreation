@@ -35,16 +35,18 @@ public class Slash : Item {
 	public override int Action(){
 		Debug.Log(this.name + "のアクション");
 		//	表示する
-		IsActive = true;	
-		/*
+		IsActive = true;
+        /*
 			ここに剣アイテムの固有動作
 		 */
-		
+        int action_num = 0;
 		//	アニメーション番号
 		if(type == ItemManager.ItemType.Pocky)
-			return ItemManager.ItemAnimationNumber.SlashPocky;
+            action_num = (int)ItemManager.ItemAnimationNumber.SlashPocky;
 		else if(type == ItemManager.ItemType.DeliciousBar)
-			return ItemManager.ItemAnimationNumber.SlashDeliciousBar;
+            action_num = (int)ItemManager.ItemAnimationNumber.SlashDeliciousBar;
+
+        return action_num;
 	}
 
 
