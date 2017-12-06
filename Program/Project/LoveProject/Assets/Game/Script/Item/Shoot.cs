@@ -97,13 +97,14 @@ public class Shoot : Item{
 
 
     /// <summary>
-    /// 固有アクション
+    /// 固有アクション	アイテムのアニメーション番号を返す。
     /// </sammary>
-    public override void Action(){
+    public override int Action(){
 		Debug.Log(this.name + "のアクション");
         //  行動フラグオン
         isAction = true;
 		
+        return (int)ItemManager.ItemAnimationNumber.Shoot;
 	}
 
 

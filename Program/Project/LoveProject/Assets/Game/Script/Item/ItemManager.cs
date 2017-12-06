@@ -19,6 +19,15 @@ public class ItemManager : MonoBehaviour {
 		Max,
 		None			//	なにもなし
 	};
+
+	//	アイテムのアニメーション番号
+	public enum ItemAnimationNumber : int{
+		SlashPocky = 0,
+		SlashDeliciousBar = 1,
+		Shoot = 2,
+		Guard = 3,
+		Max
+	};
 	#endregion	Enumilation
 
 
