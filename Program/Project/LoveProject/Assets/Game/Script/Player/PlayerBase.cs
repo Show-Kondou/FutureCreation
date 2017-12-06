@@ -12,20 +12,20 @@ using UnityEngine;
 
 [Serializable]
 public class PlayerStatus {
-	public enum State {
+	public enum STATE {
 		//		状態	　　番号
 		STAND,  // 立ち		　 0
 		RUN,    // 走る		　 1
 		JUMP,   // ジャンプ	　 2
+		ROLL,   // ロール	　 7
+		EAT,    // 食べる	　 6
+		WIN,    // 勝ち		　 8
+		LOSS,   // 負け		　 9
 
 		SLASH,  // 攻撃		　 3
 		SCHOTT, // 攻撃		　 4
 		GUARD,  // 攻撃		　 5
 
-		EAT,    // 食べる	　 6
-		ROLL,   // ロール	　 7
-		WIN,    // 勝ち		　 8
-		LOSS,   // 負け		　 9
 	}
 	[Header("プレイヤーID"), SerializeField]
 	public uint            _PlayerID;
@@ -38,9 +38,20 @@ public class PlayerStatus {
 	[Header("カメラ回転量"),SerializeField]
 	public float           _TurnForce;
 	[Header("ステータス"),SerializeField]
-	public State			_State;
+	private STATE			_State;
 	[Header("カメラのトランスフォーム"),NonSerialized]
 	public Transform       _CameraTrans;
+
+	public STATE State {
+		set {
+
+
+		}
+		get {
+			return _State;
+		}
+	}
+
 }
 
 

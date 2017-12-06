@@ -22,7 +22,8 @@ public class CameraPlayer : ObjectTime {
 	#region Member
 	private uint            _PlayerID;
 	//[Header("プレイヤーとカメラの距離"),SerializeField]
-	private Vector3			DefaultPos		= new Vector3( 0.0F, 5.0F, -10.0F);
+	// private Vector3			DefaultPos		= new Vector3( 0.0F, 5.0F, -10.0F);
+	private Vector3			DefaultPos      = new Vector3( 0.0F, 2.5F, -5.0F);
 	//[Header("初期のカメラ角度"),SerializeField]
 	private Vector3			LookPos			= new Vector3( 0.0F, 3.0F, 5.0F );
 	// 回転力

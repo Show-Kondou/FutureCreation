@@ -62,8 +62,8 @@ public class PlayerAnimation : PlayerBase {
 	/// 更新
 	/// </summary>
 	protected override void Execute() {
-		_UpperAnimator.SetInteger( "State", (int)Status._State );
-		_LowerAnimator.SetInteger( "State", (int)Status._State );
+		//_UpperAnimator.SetInteger( "State", (int)Status._State );
+		//_LowerAnimator.SetInteger( "State", (int)Status._State );
 	}
 
 

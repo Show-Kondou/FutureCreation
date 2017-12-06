@@ -84,7 +84,6 @@ public class PlayerJump : PlayerBase {
 			// ジャンプ
 			_State = State.JUMPING;
 			_AddForce = Status._JumpForce;
-			Status._State = PlayerStatus.State.JUMP;
 			_ActionF = Jump;
 		}
 	}
@@ -152,7 +151,6 @@ public class PlayerJump : PlayerBase {
 		if( coll.tag != "Stage" ) return;
 		// 接地
 		_State = State.STANDING;
-		Status._State = PlayerStatus.State.STAND;
 		_ActionF = Stand;
 	}
 
@@ -169,7 +167,6 @@ public class PlayerJump : PlayerBase {
 		
 		// 落下
 		_State = State.FALLING;
-		Status._State = PlayerStatus.State.JUMP;
 		_AddForce = _Gravity * Time.fixedDeltaTime;
 		SetVelocityY( _AddForce );
 		_ActionF = Fall;
