@@ -68,6 +68,9 @@ public class ItemsUI : MonoBehaviour {
 	/// アイテムの表示を非表示にする
 	/// </sammary>
 	public void LoseItemUI(){
+		if(itemImage == null) 
+			itemImage = transform.Find("ItemIcon").gameObject.GetComponent<Image>();
+			
 		itemImage.color = new Color(1,1,1,0);
 	}
 
