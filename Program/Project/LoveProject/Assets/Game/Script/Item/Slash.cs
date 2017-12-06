@@ -30,15 +30,21 @@ public class Slash : Item {
 
 
 	/// <summary>
-	/// 固有動作
+	/// 固有動作	アイテムのアニメーション番号を返す。
 	/// </sammary>
-	public override void Action(){
+	public override int Action(){
 		Debug.Log(this.name + "のアクション");
 		//	表示する
 		IsActive = true;	
 		/*
 			ここに剣アイテムの固有動作
 		 */
+		
+		//	アニメーション番号
+		if(type == ItemManager.ItemType.Pocky)
+			return ItemManager.ItemAnimationNumber.SlashPocky;
+		else if(type == ItemManager.ItemType.DeliciousBar)
+			return ItemManager.ItemAnimationNumber.SlashDeliciousBar;
 	}
 
 
