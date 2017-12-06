@@ -87,11 +87,9 @@ public class PlayerItem : PlayerBase {
 		// 左アイテムアクション
 		if( InputGame.GetPlayerItemL( Status._PlayerID ) ) {
 			// TODO:仮
-			Status._State = PlayerStatus.State.SCHOTT;
 			if( _ItemL == null ) return;
-			// Status._State = PlayerStatus.State.SCHOTT;
+			// Status._State = PlayerStatus.STATE.SCHOTT;
 			_ItemL.Action();
-			Status._State = PlayerStatus.State.SCHOTT;
 			// アイテム終
 			if( _ItemL.IsBreak )  _ItemL = null;
 		}
@@ -99,7 +97,6 @@ public class PlayerItem : PlayerBase {
 		else if ( InputGame.GetPlayerItemR( Status._PlayerID ) ) {
 			if( _ItemR == null ) return;
 			_ItemR.Action();
-			Status._State = PlayerStatus.State.SCHOTT;
 			if( _ItemR.IsBreak )
 				_ItemR = null;
 		}
@@ -114,14 +111,12 @@ public class PlayerItem : PlayerBase {
 			if ( _ItemL == null ) return;
 			Status._HitPoint += _ItemL.EatItem();
 			_ItemL = null;
-			Status._State = PlayerStatus.State.EAT;
 		}
 		// 右アイテム食べる
 		else if ( InputGame.GetPlayerEatR( Status._PlayerID ) ) {
 			if ( _ItemR == null ) return;
 			Status._HitPoint += _ItemR.EatItem();
 			_ItemR = null;
-			Status._State = PlayerStatus.State.EAT;
 		}
 	}
 	#endregion Method

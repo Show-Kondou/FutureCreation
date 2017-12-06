@@ -31,6 +31,12 @@ public class StageManager : MonoBehaviour {
                 return instance;
             }
         }
+		
+		//	Awakeより前に呼ばれる
+		// [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
+		// static void OnBeforeSceneLoadRuntimeMethod (){
+		// }
+
 
 		void Awake(){
 			if (Instance && instance != this)
