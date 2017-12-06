@@ -30,6 +30,7 @@ public class Player : PlayerBase {
 	private PlayerJump      _Jump       = null;
 	private CameraPlayer    _Camera		= null;
 	private PlayerItem      _Item       = null;
+	private PlayerRoll      _Roll       = null;
 	private PlayerBody		_Body		= null;
 	private PlayerAnimation _Animetion	= null;
 	#endregion	Member
@@ -118,10 +119,11 @@ public class Player : PlayerBase {
 		var camera = CameraManager.Instance.GetPlayerCamera( _InitStatus._PlayerID );
 		_Camera = camera;//Define.NullCheck( camera );
 		_Item = GetPlayerComponent<PlayerItem>();
-		_IsGetComponent = true;
+		_Roll = GetPlayerComponent<PlayerRoll>();
 		_Body = GetPlayerComponent<PlayerBody>();
 		_Animetion = GetPlayerComponent<PlayerAnimation>();
 		_InitStatus._CameraTrans = _Camera.transform;
+		_IsGetComponent = true;
 	}
 
 
@@ -143,6 +145,8 @@ public class Player : PlayerBase {
 		_Camera.Init();
 		// アイテム
 		_Item.Status = Status;
+		// 回避＆ダメージ
+		_Roll.Status = Status;
 		// 体の方向
 		_Body.Status = Status;
 		// アニメーション

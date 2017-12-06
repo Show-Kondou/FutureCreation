@@ -44,7 +44,7 @@ public class PlayerStatus {
 
 	public STATE State {
 		set {
-
+			_State = value;
 
 		}
 		get {
