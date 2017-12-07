@@ -57,4 +57,8 @@ public class Gauss : MonoBehaviour{
 
         Graphics.ExecuteCommandBuffer(command);
     }
+
+    public void GaussOn(){
+        resolution = 20;
+    }
 }

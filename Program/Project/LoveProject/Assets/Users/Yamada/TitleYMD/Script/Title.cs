@@ -24,7 +24,7 @@ public class Title : MonoBehaviour
     {
         //	カメラのアニメーターを取得
         cameraAnim = rendererCamera.GetComponent<Animator>();
-        cameraAnim.speed = 0;
+        //cameraAnim.speed = 0;
     }
 
     // Update is called once per frame
@@ -36,8 +36,8 @@ public class Title : MonoBehaviour
         //else
         //    intencity -= Time.deltaTime * 8;
 
-        intencity = Mathf.Clamp01(intencity);
-        gauss.Resolution = (int)(intencity * 10);
+        //intencity = Mathf.Clamp01(intencity);
+        //gauss.Resolution = (int)(intencity * 10);
 
 
 
@@ -55,7 +55,8 @@ public class Title : MonoBehaviour
         //TODO:	おそらくシーンマネージャーの遷移開始的なのを呼ぶ
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            PlayCameraAnim();
+           // PlayCameraAnim();
+           cameraAnim.SetTrigger("PushButton");
         }
     }
 
