@@ -65,9 +65,9 @@ public class Guard : Item {
 
 
 	/// <summary>
-	/// 固有動作
+	/// 固有動作	アイテムのアニメーション番号を返す。
 	/// </sammary>
-	public override void Action(){
+	public override int Action(){
 		Debug.Log(this.name + "のアクション");
 		//	表示する
 		IsActive = true;
@@ -75,6 +75,8 @@ public class Guard : Item {
 		/*
 			ここに盾アイテムの固有動作
 		 */
+
+		return (int)ItemManager.ItemAnimationNumber.Guard;
 	}
 
 

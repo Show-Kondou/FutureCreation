@@ -51,7 +51,7 @@ public abstract class Item : MonoBehaviour
 	//	メソッド
 
 	//	仮想
-	public abstract void Action();	//	固有動作
+	public abstract int Action();	//	固有動作
 	public abstract int EatItem();	//	食べられた
 
 	/// <summary>
