@@ -40,7 +40,7 @@ public class Title : MonoBehaviour {
 
 	private void PlayCameraAnim(){
 		//TODO:	カメラの移動アニメーション開始呼び出し
-		cameraAnim.Play();
+		// cameraAnim.Play();
 	}
 
 
