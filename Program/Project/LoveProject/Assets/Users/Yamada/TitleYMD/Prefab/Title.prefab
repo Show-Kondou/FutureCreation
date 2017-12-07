@@ -53,6 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rendererCamera: {fileID: 0}
   cameraAnim: {fileID: 0}
-  IsGauss: 0
-  gauss: {fileID: 0}
-  intencity: 0
+  titleUIs:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
