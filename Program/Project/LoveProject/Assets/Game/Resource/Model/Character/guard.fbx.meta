@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 9200b0360a3a6bd47b049027e53e4246
-timeCreated: 1511796259
+guid: 6df56d933df12a24e886e8f68127bddf
+timeCreated: 1512631009
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -71,10 +71,10 @@ ModelImporter:
     100126: Character1_Spine1
     100128: Character1_Spine2
     100130: chuck
-    100132: head
-    100134: Maegami
-    100136: Parka
-    100138: //RootNode
+    100132: //RootNode
+    100134: head
+    100136: Maegami
+    100138: Parka
     400000: Character1_Head
     400002: Character1_Hips
     400004: Character1_LeftArm
@@ -141,15 +141,15 @@ ModelImporter:
     400126: Character1_Spine1
     400128: Character1_Spine2
     400130: chuck
-    400132: head
-    400134: Maegami
-    400136: Parka
-    400138: //RootNode
+    400132: //RootNode
+    400134: head
+    400136: Maegami
+    400138: Parka
     4300000: head
     4300002: Maegami
     4300004: chuck
     4300006: Parka
-    7400000: Upper_Run
+    7400000: Take 001
     9500000: //RootNode
     13700000: chuck
     13700002: head
@@ -180,17 +180,17 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Upper_Run
+      name: Take 001
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 26
+      lastFrame: 50
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
