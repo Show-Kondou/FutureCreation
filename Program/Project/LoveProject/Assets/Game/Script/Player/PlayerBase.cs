@@ -17,14 +17,11 @@ public class PlayerStatus {
 		STAND,  // 立ち		　 0
 		RUN,    // 走る		　 1
 		JUMP,   // ジャンプ	　 2
-		ROLL,   // ロール	　 7
-		EAT,    // 食べる	　 6
-		WIN,    // 勝ち		　 8
-		LOSS,   // 負け		　 9
-
-		SLASH,  // 攻撃		　 3
-		SCHOTT, // 攻撃		　 4
-		GUARD,  // 攻撃		　 5
+		ROLL,   // ロール	　 3
+		ATTACK,	// 攻撃		   4	(種類は他のステータスで判定)
+		EAT,    // 食べる	　 5
+		WIN,    // 勝ち		　 5
+		LOSS,   // 負け		　 6
 
 	}
 	[Header("プレイヤーID"), SerializeField]

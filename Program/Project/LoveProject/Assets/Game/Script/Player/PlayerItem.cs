@@ -133,19 +133,23 @@ public class PlayerItem : PlayerBase {
 	/// </summary>
 	/// <param name="coll">当たったオブジェクト</param>
 	private void OnTriggerEnter( Collider coll ) {
+		// アイテム判定
 		if( coll.gameObject.tag != "Item" ) return;
+		// アイテム取得
 		Item item = coll.gameObject.GetComponent<Item>();
+		// アイテムが使用状態判定
+		if( !item.Chatch( Status._PlayerID ) ) return;
+		// 先に左取得
 		if( _ItemL == null ) {
 			_ItemL = item;
-			_ItemL.Chatch( Status._PlayerID );
-			_ItemL.transform.position = _HandTrans.position;
-			_ItemL.transform.forward = _HandTrans.forward;
-			_ItemL.transform.parent = _HandTrans;
+			//_ItemL.transform.position = _HandTrans.position;
+			//_ItemL.transform.forward = _HandTrans.forward;
+			//_ItemL.transform.parent = _HandTrans;
 			return;
 		}
+		// 右取得
 		if( _ItemR == null ) {
 			_ItemR = item;
-			_ItemL.Chatch( Status._PlayerID );
 			return;
 		}
 	}

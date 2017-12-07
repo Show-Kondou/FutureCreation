@@ -139,10 +139,9 @@ public class Player : PlayerBase {
 		_Jump.Status = Status;
 		// カメラ
 		// カメラ
-		_Camera.playerTrans = _Move.transform;
 		_Camera.TurnForce = Status._TurnForce;
 		_Camera.PlayerID = Status._PlayerID;
-		_Camera.Init();
+		_Camera.Init( _Move.transform );
 		// アイテム
 		_Item.Status = Status;
 		// 回避＆ダメージ
