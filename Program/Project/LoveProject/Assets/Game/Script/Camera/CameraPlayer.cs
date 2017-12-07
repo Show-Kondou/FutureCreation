@@ -31,6 +31,7 @@ public class CameraPlayer : ObjectTime {
 
 	private Vector3         _NowAngle;
 
+
 	// カメラの中心
 	private CameraCenter	_CameraCenter	= null;
 	private Transform		_CenterTrans	= null;
@@ -66,8 +67,9 @@ public class CameraPlayer : ObjectTime {
 	/// <summary>
 	/// スプリクトの有効時
 	/// </summary>
-	public void Init() {
+	public void Init( Transform trans ) {
 		// ステータス初期化
+		_PlayerTrans = trans;
 		transform.position = _PlayerTrans.position + DefaultPos;        // 移動
 		transform.LookAt( LookPos );
 

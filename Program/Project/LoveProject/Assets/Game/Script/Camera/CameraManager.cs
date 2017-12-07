@@ -16,13 +16,6 @@ public class CameraManager : MonoBehaviour {
 				return _Instance;
 			}
 			return _Instance;
-
-			//if( _Instance != null ) return _Instance;
-			//_Instance = FindObjectOfType<CameraManager>();
-			//if( _Instance == null )
-			//	Debug.LogError( typeof( CameraManager ).Name + "の生成に失敗しました。" );
-			//DontDestroyOnLoad( _Instance );
-			//return _Instance;
 		}
 	}
 	#endregion Singleton
@@ -97,7 +90,7 @@ public class CameraManager : MonoBehaviour {
 
 	private void Awake() {
 		DontDestroyOnLoad( _Instance );
-		Screen.SetResolution( 3840, 100, false );
+		//Screen.SetResolution( 1920, 1080, false );
 	}
 	#endregion MonoBehaviour Event
 
