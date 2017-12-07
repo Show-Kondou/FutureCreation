@@ -89,7 +89,7 @@ public class PlayerItem : PlayerBase {
 			// TODO:仮
 			if( _ItemL == null ) return;
 			_ItemL.Action();
-			Status.State = PlayerStatus.STATE.SCHOTT;
+			Status.State = PlayerStatus.STATE.ATTACK;
 			// アイテム終
 			if( _ItemL.IsBreak )  _ItemL = null;
 		}
@@ -97,7 +97,7 @@ public class PlayerItem : PlayerBase {
 		else if ( InputGame.GetPlayerItemR( Status._PlayerID ) ) {
 			if( _ItemR == null ) return;
 			_ItemR.Action();
-			Status.State = PlayerStatus.STATE.SCHOTT;
+			Status.State = PlayerStatus.STATE.ATTACK;
 			if( _ItemR.IsBreak )
 				_ItemR = null;
 		}
