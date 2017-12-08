@@ -1,4 +1,6 @@
 ﻿using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.Rendering;
 
 //[RequireComponent(typeof(Camera))]
@@ -13,11 +15,36 @@ public class Gauss : MonoBehaviour{
 
     public int Resolution { get { return resolution; } set { resolution = value; } }
 
-    void Awake()
-    {
+	//public void GaussOn(){
+	//	resolution = 20;
+	//}
+
+	//public void GaussOff(){
+	//	resolution = 0;
+	//}
+
+	//private IEnumerator IncrementResolution(){
+	//	while (resolution <= 20) {
+	//		resolution += 1;
+	//		yield return null;
+	//	}
+	//}
+
+
+	//private IEnumerator DecrementResolution(){
+	//	while (resolution >= 0) {
+	//		resolution -= 1;
+	//		yield return null;
+	//	}
+	//}
+
+
+	void Awake(){
         var shader = Shader.Find("Hidden/Gauss");
         material = new Material(shader);
     }
+
+
 
     // 今回はシェーダーに定数をベタ打ちしているため未使用
     // シェーダー内ではCalcWeight(3.0f, 4)の値を使用
@@ -34,10 +61,10 @@ public class Gauss : MonoBehaviour{
         return weight;
     }
 
-    void OnRenderImage(RenderTexture source, RenderTexture destination)
-    {
-        if (resolution == 0)
-        {
+
+
+    void OnRenderImage(RenderTexture source, RenderTexture destination){
+        if (resolution == 0){
             Graphics.Blit(source, destination);
             return;
         }
@@ -57,4 +84,5 @@ public class Gauss : MonoBehaviour{
 
         Graphics.ExecuteCommandBuffer(command);
     }
+
 }

@@ -8,73 +8,82 @@ using UnityEngine;
 /// </sammary>
 public class Title : MonoBehaviour
 {
+	//	タイトルシーン内での状態
+	enum StateInTitle{
+		Title = 0,	//	タイトル状態
+		Select,		//	セレクト状態
+		MAx
+	}
+	StateInTitle currentState;
 
+    //  タイトルシーンのカメラアニメーション用
     [SerializeField]
-    GameObject rendererCamera;
-
+    private GameObject rendererCamera;  //  Animatorがコンポーネントされてるやつね
     [HideInInspector]
-    public Animator cameraAnim;
+    public Animator cameraAnim; //  アクセスのためにパブリック
 
-    public bool IsGauss = false;
-    public Gauss gauss = null;
-    public float intencity = 0;
+	//	タイトルシーンのみで使用するUI
+	public GameObject[] titleUIs = new GameObject[4];	//	画面４つ分
+    
 
     // Use this for initialization
-    void Start()
-    {
+    void Start(){
         //	カメラのアニメーターを取得
         cameraAnim = rendererCamera.GetComponent<Animator>();
-        cameraAnim.speed = 0;
-    }
+	}
 
+
+	
     // Update is called once per frame
-    void Update()
-    {
-
-        //if (IsGauss)
-        //    intencity += Time.deltaTime * 8;
-        //else
-        //    intencity -= Time.deltaTime * 8;
-
-        intencity = Mathf.Clamp01(intencity);
-        gauss.Resolution = (int)(intencity * 10);
-
-
+    void Update(){
 
         //	入力待ち
         WaitInput();
+
     }
 
 
+
+	/// <summary>
+	/// 全画面のタイトルUIのアクティブ操作
+	/// </summary>
+	/// <param name="value"></param>
+	private void TitleUIsSetActive(bool value){
+		foreach(GameObject obj in titleUIs) {
+			obj.SetActive(value);
+		}
+	}
 
     /// <summary>
     /// タイトルシーン内での入力待ち処理記述
     /// </sammary>
     private void WaitInput()
     {
-        //TODO:	おそらくシーンマネージャーの遷移開始的なのを呼ぶ
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            PlayCameraAnim();
+        //TODO:	ゲームパッド用のインプットに変更する
+
+		//	参加受付画面に移行
+        if (Input.GetKeyDown(KeyCode.Space)){
+            //  アニメーション開始
+            cameraAnim.SetTrigger("PushButton");
+			//	タイトルUIを非表示に
+			TitleUIsSetActive(false);
         }
+
+		//	タイトル画面に移行
+		else if (Input.GetKeyDown(KeyCode.Backspace)) {
+			//  アニメーション開始
+			cameraAnim.SetTrigger("PushButton");
+			//	タイトルUIを表示
+			TitleUIsSetActive(true);
+		}
     }
 
 
-    private void PlayCameraAnim()
-    {
-        //TODO:	カメラの移動アニメーション開始呼び出し
-        cameraAnim.speed = 1;
-        //cameraAnim.Play("CameraTilt", 0, 0.0f);
-    }
-
-
+    #region Singleton
     static Title instance;
-    public static Title Instance
-    {
-        get
-        {
-            if (!instance)
-            {
+    public static Title Instance{
+        get{
+            if (!instance){
                 instance = FindObjectOfType<Title>();
                 if (!instance) instance = new GameObject("Title").AddComponent<Title>();
             }
@@ -82,10 +91,9 @@ public class Title : MonoBehaviour
         }
     }
 
-    void Awake()
-    {
+    void Awake(){
         if (Instance && instance != this)
             Destroy(gameObject);
-        
     }
+    #endregion Singleton
 }
