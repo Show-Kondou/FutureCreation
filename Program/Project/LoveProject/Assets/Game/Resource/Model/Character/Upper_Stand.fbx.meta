@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 16803169d48d15241abcf688c765e8df
-timeCreated: 1511796268
+guid: 4726d1c07dbd3714e9c99f860a6538ed
+timeCreated: 1512716531
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -70,8 +70,11 @@ ModelImporter:
     100124: Character1_Spine
     100126: Character1_Spine1
     100128: Character1_Spine2
-    100130: Leg
-    100132: //RootNode
+    100130: chuck
+    100132: head
+    100134: Maegami
+    100136: Parka
+    100138: //RootNode
     400000: Character1_Head
     400002: Character1_Hips
     400004: Character1_LeftArm
@@ -137,12 +140,21 @@ ModelImporter:
     400124: Character1_Spine
     400126: Character1_Spine1
     400128: Character1_Spine2
-    400130: Leg
-    400132: //RootNode
-    4300000: Leg
-    7400000: Lower_Stand
+    400130: chuck
+    400132: head
+    400134: Maegami
+    400136: Parka
+    400138: //RootNode
+    4300000: head
+    4300002: Maegami
+    4300004: chuck
+    4300006: Parka
+    7400000: Upper_Stand
     9500000: //RootNode
-    13700000: Leg
+    13700000: chuck
+    13700002: head
+    13700004: Maegami
+    13700006: Parka
   materials:
     importMaterials: 1
     materialName: 0
@@ -168,7 +180,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Lower_Stand
+      name: Upper_Stand
       takeName: Take 001
       firstFrame: 1
       lastFrame: 32
@@ -178,7 +190,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -190,14 +202,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.27683616
-        functionName: asd
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

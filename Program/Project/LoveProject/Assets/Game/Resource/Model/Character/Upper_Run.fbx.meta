@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 5109f35efd64f3a499dbf34c6ad0c1a7
-timeCreated: 1511796268
+guid: dcb2eaf850693dd499488437a722e388
+timeCreated: 1512716538
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -149,7 +149,7 @@ ModelImporter:
     4300002: Maegami
     4300004: chuck
     4300006: Parka
-    7400000: Upper_Stand
+    7400000: Upper_Run
     9500000: //RootNode
     13700000: chuck
     13700002: head
@@ -180,10 +180,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Upper_Stand
+      name: Upper_Run
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 32
+      lastFrame: 26
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
