@@ -12,7 +12,8 @@ using UnityEngine;
 
 [Serializable]
 public class PlayerStatus {
-	public enum STATE {
+
+	public enum STATE : int {
 		//		状態	　　番号
 		STAND,  // 立ち		　 0
 		RUN,    // 走る		　 1
@@ -20,10 +21,13 @@ public class PlayerStatus {
 		ROLL,   // ロール	　 3
 		ATTACK,	// 攻撃		   4	(種類は他のステータスで判定)
 		EAT,    // 食べる	　 5
-		WIN,    // 勝ち		　 5
-		LOSS,   // 負け		　 6
+		WIN,    // 勝ち		　 6
+		LOSS,   // 負け		　 7
+		MAX,
+	};
 
-	}
+	private int[] StatePriority = new int[(int)STATE.MAX]{0,0,1,1,1,1,2,2 };
+
 	[Header("プレイヤーID"), SerializeField]
 	public uint            _PlayerID;
 	[Header("体力"),SerializeField]
@@ -38,16 +42,22 @@ public class PlayerStatus {
 	private STATE			_State;
 	[Header("カメラのトランスフォーム"),NonSerialized]
 	public Transform       _CameraTrans;
+	[Header("アニメーション"), NonSerialized]
+	public PlayerAnimation _Animation;
 
 	public STATE State {
 		set {
-			_State = value;
-
+			if(StatePriority[(int)_State] <= StatePriority[(int)value])
+				_State = value;
 		}
 		get {
 			return _State;
 		}
 	}
+	public STATE SetState {
+		set{ _State = value; }
+	}
+
 
 }
 

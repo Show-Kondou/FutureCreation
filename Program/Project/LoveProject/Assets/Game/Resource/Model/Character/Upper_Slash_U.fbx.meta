@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: fc396aa31dcf8ff40a157e9f24d04013
-timeCreated: 1512716544
+guid: 1866a82705a69b14ca35d493ed1c2d3d
+timeCreated: 1512750053
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -149,7 +149,7 @@ ModelImporter:
     4300002: Maegami
     4300004: chuck
     4300006: Parka
-    7400000: Upper_Slash_Umaibou
+    7400000: Upper_Slash_U
     9500000: //RootNode
     13700000: chuck
     13700002: head
@@ -180,7 +180,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Upper_Slash_Umaibou
+      name: Upper_Slash_U
       takeName: Take 001
       firstFrame: 1
       lastFrame: 30

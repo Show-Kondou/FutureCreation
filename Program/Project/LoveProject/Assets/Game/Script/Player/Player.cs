@@ -123,6 +123,7 @@ public class Player : PlayerBase {
 		_Body = GetPlayerComponent<PlayerBody>();
 		_Animetion = GetPlayerComponent<PlayerAnimation>();
 		_InitStatus._CameraTrans = _Camera.transform;
+		_InitStatus._Animation = _Animetion;
 		_IsGetComponent = true;
 	}
 
@@ -137,7 +138,6 @@ public class Player : PlayerBase {
 		_Move.Status = Status;
 		// ジャンプ
 		_Jump.Status = Status;
-		// カメラ
 		// カメラ
 		_Camera.TurnForce = Status._TurnForce;
 		_Camera.PlayerID = Status._PlayerID;

@@ -70,10 +70,15 @@ public class PlayerBody : PlayerBase {
 
 
 	protected void UpperBodyDirection() {
+		if ( Status.State == PlayerStatus.STATE.ATTACK ) {
 			Vector3 cameraForward = new Vector3( Status._CameraTrans.forward.x,
 												 0.0F,
 												 Status._CameraTrans.forward.z );
 			_UpperBody.forward += (cameraForward - _UpperBody.forward) * 0.2F;
+		}
+		else {
+			_UpperBody.forward += (_LowerBody.forward - _UpperBody.forward) * 0.2F;
+		}
 
 	}
 	protected void LowerBodyDirection() {

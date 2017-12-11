@@ -142,6 +142,7 @@ public class PlayerItem : PlayerBase {
 		// 先に左取得
 		if( _ItemL == null ) {
 			_ItemL = item;
+			_ItemL.HoldHand( _HandTrans );
 			//_ItemL.transform.position = _HandTrans.position;
 			//_ItemL.transform.forward = _HandTrans.forward;
 			//_ItemL.transform.parent = _HandTrans;

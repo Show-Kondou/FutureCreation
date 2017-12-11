@@ -16,9 +16,21 @@ using UnityEngine;
 /// </summary>
 public class PlayerAnimation : PlayerBase {
 
+	public enum STATE : int {
+		//		状態	　　番号
+		STAND,  // 立ち		　 0
+		RUN,    // 走る		　 1
+		JUMP,   // ジャンプ	　 2
+		ROLL,   // ロール	　 3
+		ATTACK, // 攻撃		   4	(種類は他のステータスで判定)
+		EAT,    // 食べる	　 5
+		WIN,    // 勝ち		　 6
+		LOSS,   // 負け		　 7
+		MAX,
+	};
+
 	// 定数
 	#region Constant
-	private uint        _PlayerID = 1;
 	private Animator    _UpperAnimator;
 	private Animator    _LowerAnimator;
 	#endregion Constant
@@ -45,6 +57,8 @@ public class PlayerAnimation : PlayerBase {
 				continue;
 			}
 		}
+		var body = _UpperAnimator.GetBehaviour<BodyScript>();
+		body._Status = Status;
 	}
 	#endregion Method
 
@@ -57,12 +71,33 @@ public class PlayerAnimation : PlayerBase {
 		Init();
 	}
 
+	public void StartAnimation( int state ) {
+		_UpperAnimator.SetInteger( "State", state );
+
+		if( state == (int)STATE.STAND ||
+			state == (int)STATE.RUN   ||
+			state == (int)STATE.JUMP ) {
+			_LowerAnimator.SetInteger( "State", state );
+		}
+
+	}
+
 	/// <summary>
 	/// 更新
 	/// </summary>
 	protected override void Execute() {
-		_UpperAnimator.SetInteger( "State", (int)Status.State );
-		_LowerAnimator.SetInteger( "State", (int)Status.State );
+		StartAnimation( (int)Status.State );
+		//_UpperAnimator.SetInteger( "State", (int)Status.State );
+		// _LowerAnimator.SetInteger( "State", (int)Status.State );
+		//if (Input.GetKey( KeyCode.Q )) {
+		//	_UpperAnimator.SetInteger( "State", 0 );
+		//}
+		//if (Input.GetKey( KeyCode.W )) {
+		//	_UpperAnimator.SetInteger( "State", 1 );
+		//}
+		//if (Input.GetKey( KeyCode.E )) {
+		//	_UpperAnimator.SetInteger( "State", 2 );
+		//}
 	}
 
 

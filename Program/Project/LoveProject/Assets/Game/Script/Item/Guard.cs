@@ -68,7 +68,6 @@ public class Guard : Item {
 	/// 固有動作	アイテムのアニメーション番号を返す。
 	/// </sammary>
 	public override int Action(){
-		Debug.Log(this.name + "のアクション");
 		//	表示する
 		IsActive = true;
 		isAction = true;	

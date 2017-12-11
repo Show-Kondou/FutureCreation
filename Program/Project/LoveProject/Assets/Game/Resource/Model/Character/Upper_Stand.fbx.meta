@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 4726d1c07dbd3714e9c99f860a6538ed
-timeCreated: 1512716531
+guid: c691e3d05d948eb409f802d231579a4e
+timeCreated: 1512750071
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -190,7 +190,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 0
+      loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
