@@ -55,7 +55,6 @@ public class Guard : Item {
 			IsActive = false;
         }else if(isAction == true && isPrevAction == true){
         //  押しっぱなし
-		 	transform.rotation = Quaternion.Euler(0,180 * Mathf.Cos(Time.time),0);
         }
         
         //  前フレームのフラグを保存
@@ -71,7 +70,6 @@ public class Guard : Item {
 	/// 固有動作	アイテムのアニメーション番号を返す。
 	/// </sammary>
 	public override void Action(){
-		Debug.Log(this.name + "のアクション");
 		//	押されてる
 		isAction = true;
 	}
