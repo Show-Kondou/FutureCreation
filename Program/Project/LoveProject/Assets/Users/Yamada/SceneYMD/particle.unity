@@ -222,6 +222,10 @@ Prefab:
       propertyPath: EmissionModule.rateOverTime.scalar
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1008213802228048, guid: 7f002ea74e4b9af4889ad30891a37df3, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7f002ea74e4b9af4889ad30891a37df3, type: 2}
   m_IsPrefabParent: 0
@@ -388,6 +392,10 @@ Prefab:
       propertyPath: SubModule.subEmitters.Array.data[0].type
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1373038959399112, guid: 7a84717edab3d0e419fd08a56fdc9dfa, type: 2}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7a84717edab3d0e419fd08a56fdc9dfa, type: 2}
   m_IsPrefabParent: 0
@@ -432,7 +440,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1530620493169944, guid: 30ac26a17f99fec4786d6a6d600c9860, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 198237528838376326, guid: 30ac26a17f99fec4786d6a6d600c9860,
         type: 2}
@@ -604,6 +612,10 @@ Prefab:
     - target: {fileID: 136105284743907438, guid: 1838dc5e88e803a4c90f5db2f810f82a,
         type: 2}
       propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1205784889593576, guid: 1838dc5e88e803a4c90f5db2f810f82a, type: 2}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

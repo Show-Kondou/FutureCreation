@@ -28,6 +28,7 @@ public abstract class Item : MonoBehaviour
 	[Header("拾われた"), SerializeField]
 	protected bool isPicked = false;      // 拾われた
 	protected bool isUsing = false;       // 使っているか(武器・防具として使用しているか)
+	protected bool isActioning = false;	//	アクション呼ぶかどうか
 
 
 	//	アクセサ
@@ -45,14 +46,17 @@ public abstract class Item : MonoBehaviour
 	public bool IsActive {	get{return mesh.enabled && coll.enabled;} set{mesh.enabled = coll.enabled = value;}}
 	public bool IsPicked { get{return isPicked;} }
 	public bool IsUsing { get{return isUsing;} }
+	public bool IsActioning { get{return isActioning;} }
 
 
 
 	//	メソッド
 
 	//	仮想
-	public abstract int Action();	//	固有動作
+	public abstract void Action();	//	固有動作
 	public abstract int EatItem();	//	食べられた
+	public abstract int ActionStart();	//	アクションの開始
+	public abstract void ActionEnd();	//	アクションの終了
 
 	/// <summary>
 	/// 拾われた

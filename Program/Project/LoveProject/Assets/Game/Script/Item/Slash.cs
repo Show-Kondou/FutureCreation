@@ -21,10 +21,11 @@ public class Slash : Item {
 	/// </sammary>
 	void Update(){
 
-		//TODO: ここで、落ちているときの動作？
-		
-        if(isPicked == false)
-            transform.localEulerAngles += new Vector3(18 * Mathf.Cos(Time.time), 18 * Mathf.Sin(Time.time),0);
+		if(isActioning){
+			Action();
+		}else{
+
+		}
 	}
 
 
@@ -32,21 +33,13 @@ public class Slash : Item {
 	/// <summary>
 	/// 固有動作	アイテムのアニメーション番号を返す。
 	/// </sammary>
-	public override int Action(){
+	public override void Action(){
 		Debug.Log(this.name + "のアクション");
 		//	表示する
 		IsActive = true;
         /*
 			ここに剣アイテムの固有動作
 		 */
-        int action_num = 0;
-		//	アニメーション番号
-		if(type == ItemManager.ItemType.Pocky)
-            action_num = (int)ItemManager.ItemAnimationNumber.SlashPocky;
-		else if(type == ItemManager.ItemType.DeliciousBar)
-            action_num = (int)ItemManager.ItemAnimationNumber.SlashDeliciousBar;
-
-        return action_num;
 	}
 
 
@@ -57,6 +50,37 @@ public class Slash : Item {
 	public override int EatItem(){
 		//TODO:	食べられた時の処理
 		return HealPoint;
+	}
+
+
+	
+	public override int ActionStart(){
+		
+		//	表示する
+		IsActive = true;
+
+		//	アクションを始めるよ～
+		isActioning = true;
+
+		//	返却アニメーションを判断するよ
+        int action_num = 0;
+		//	アニメーション番号
+		if(type == ItemManager.ItemType.Pocky)
+            action_num = (int)ItemManager.ItemAnimationNumber.SlashPocky;
+		else if(type == ItemManager.ItemType.DeliciousBar)
+            action_num = (int)ItemManager.ItemAnimationNumber.SlashDeliciousBar;
+
+        return action_num;
+	}
+
+	public override void ActionEnd(){
+		
+		//	表示する
+		IsActive = false;
+		
+
+		//	アクションを終わるよ～
+		isActioning = false;
 	}
 
 
