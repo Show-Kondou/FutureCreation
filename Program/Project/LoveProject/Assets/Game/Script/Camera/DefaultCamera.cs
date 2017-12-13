@@ -5,6 +5,7 @@
  *	
  *	▼ Author	Show Kondou
 */
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -46,9 +47,9 @@ public class DefaultCamera : MonoBehaviour {
 			return _PlayerCamera;
 		}
 	}
-
-	#endregion Accessor
 	
+	#endregion Accessor
+
 }
 
 

@@ -67,7 +67,7 @@ public class PlayerJump : PlayerBase {
 	/// 入力
 	/// </summary>
 	private void Input(){
-		_Input = InputGame.GetPlayerJump( Status._PlayerID ); ;
+		_Input = InputGame.GetPlayerJump( Status._PlayerID );
 	}
 
 	/// <summary>
@@ -83,6 +83,7 @@ public class PlayerJump : PlayerBase {
 		if( _Input ) {
 			// ジャンプ
 			_State = State.JUMPING;
+			Status.State = PlayerStatus.STATE.JUMP;
 			_AddForce = Status._JumpForce;
 			_ActionF = Jump;
 		}
@@ -151,6 +152,7 @@ public class PlayerJump : PlayerBase {
 		if( coll.tag != "Stage" ) return;
 		// 接地
 		_State = State.STANDING;
+		Status.State = PlayerStatus.STATE.STAND;
 		_ActionF = Stand;
 	}
 
@@ -167,6 +169,7 @@ public class PlayerJump : PlayerBase {
 		
 		// 落下
 		_State = State.FALLING;
+		Status.State = PlayerStatus.STATE.JUMP;
 		_AddForce = _Gravity * Time.fixedDeltaTime;
 		SetVelocityY( _AddForce );
 		_ActionF = Fall;

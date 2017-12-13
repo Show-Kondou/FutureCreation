@@ -75,6 +75,12 @@ public class PlayerMove : PlayerBase {
 	private void Input() {
 		// 移動の入力判定
 		_InputMove = InputGame.GetPlayerMove( Status._PlayerID );
+		// アニメーション設定
+		if( _InputMove.magnitude == 0.0F ) {
+			Status.State = PlayerStatus.STATE.STAND;
+		}else {
+			Status.State = PlayerStatus.STATE.RUN;
+		}
 	}
 
 
