@@ -42,6 +42,7 @@ public class ForceControll : MonoBehaviour {
 	/// 
 	/// </sammary>
 	public void ShootAction(ItemManager.ItemType type){
+		target.position = transform.position + new Vector3(0,0,5.0f);
 		ShootFixedAngle(target.position, 60.0F, type);
 	}
 
