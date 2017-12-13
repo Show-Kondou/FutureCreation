@@ -24,9 +24,8 @@ public class Bullet : Item {
 	/// <summary>
 	/// 固有動作
 	/// </sammary>
-	public override int Action(){
+	public override void Action(){
 		Debug.LogError("Bullet.cs Action()ここは呼ばれないはずよ");
-        return 0;
 	}
 
 	
@@ -38,6 +37,16 @@ public class Bullet : Item {
 		Debug.LogError("Bullet.cs EatItem()ここは呼ばれないはずよ");
 		return healPoint;
 	}
+
+	
+	public override int ActionStart(){
+		Debug.LogError("Bullet.cs ActionStart()ここは呼ばれないはずよ");
+		return (int)ItemManager.ItemAnimationNumber.Guard;
+	}
+	public override void ActionEnd(){
+		Debug.LogError("Bullet.cs ActionEnd()ここは呼ばれないはずよ");
+	}
+
 
 
 

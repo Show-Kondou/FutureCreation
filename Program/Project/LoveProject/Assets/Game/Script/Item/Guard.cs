@@ -35,9 +35,12 @@ public class Guard : Item {
 	/// 標準更新
 	/// </sammary>
 	void Update(){
-		//TODO: ここで、落ちているときの動作？
-        if(isPicked == false)
-            transform.localEulerAngles += new Vector3(18 * Mathf.Cos(Time.time), 18 * Mathf.Sin(Time.time),0);
+		
+		if(isActioning){
+			Action();
+		}else{
+
+		}
 	}
 
 	
@@ -67,16 +70,10 @@ public class Guard : Item {
 	/// <summary>
 	/// 固有動作	アイテムのアニメーション番号を返す。
 	/// </sammary>
-	public override int Action(){
+	public override void Action(){
 		Debug.Log(this.name + "のアクション");
-		//	表示する
-		IsActive = true;
-		isAction = true;	
-		/*
-			ここに盾アイテムの固有動作
-		 */
-
-		return (int)ItemManager.ItemAnimationNumber.Guard;
+		//	押されてる
+		isAction = true;
 	}
 
 
@@ -87,6 +84,30 @@ public class Guard : Item {
 	public override int EatItem(){
 		//	回復量返却
 		return HealPoint;
+	}
+
+	
+
+	
+	public override int ActionStart(){
+		
+		//	表示する
+		IsActive = true;
+		
+		//  アクション始まるよ
+        isActioning = true;
+
+		return (int)ItemManager.ItemAnimationNumber.Guard;
+	}
+
+	public override void ActionEnd(){
+		
+		//	表示する
+		IsActive = false;
+		
+		//  アクション始まるよ
+        isActioning = false;
+
 	}
 
 
