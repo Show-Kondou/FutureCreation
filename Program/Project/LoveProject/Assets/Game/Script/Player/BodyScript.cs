@@ -23,17 +23,25 @@ public class BodyScript : StateMachineBehaviour {
 
 	// OnStateEnter is called before OnStateEnter is called on any state inside this state machine
 	override public void OnStateEnter( Animator animator, AnimatorStateInfo stateInfo, int layerIndex ) {
-		switch( stateInfo.fullPathHash ) {
-		case :
-		break;
-		default:
-			break;
-		}
 		if( stateInfo.IsName("Stand") ) {
-
+			_Anime.ResetLower();
 		}
-		if( stateInfo.IsName("") ) {
-
+		if( stateInfo.IsName( "Run" ) ) {
+			_Anime.ResetLower();
+		}
+		if( stateInfo.IsName( "Jump" ) ) {
+		}
+		if( stateInfo.IsName( "Roll" ) ) {
+		}
+		if( stateInfo.IsName( "Slash_P" ) ) {
+		}
+		if( stateInfo.IsName( "Slash_U" ) ) {
+		}
+		if( stateInfo.IsName( "Shot" ) ) {
+		}
+		if( stateInfo.IsName( "Guard" ) ) {
+		}
+		if( stateInfo.IsName( "Eat" ) ) {
 		}
 
 	}
@@ -47,37 +55,26 @@ public class BodyScript : StateMachineBehaviour {
 	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 		if (stateInfo.IsName( "Jump" )) {
 			_Status.SetState = PlayerStatus.STATE.STAND;
-			_Anime.ResetLower();
 		}
 		if (stateInfo.IsName( "Roll" )) {
 			_Status.SetState = PlayerStatus.STATE.STAND;
-			_Anime.ResetLower();
-
 		}
+		/* 攻撃 */
 		if (stateInfo.IsName( "Slash_P" )) {
-			_Status.SetState = PlayerStatus.STATE.STAND;
-			_Anime.ResetLower();
-
+			_Item.EndAction();
 		}
 		if (stateInfo.IsName( "Slash_U" )) {
-			_Status.SetState = PlayerStatus.STATE.STAND;
-			_Anime.ResetLower();
-
+			_Item.EndAction();
 		}
 		if (stateInfo.IsName( "Shot" )) {
-			//_Status.SetState = PlayerStatus.STATE.STAND;
-			_Anime.ResetLower();
-
+			_Item.EndAction();
 		}
 		if (stateInfo.IsName( "Guard" )) {
-			_Status.SetState = PlayerStatus.STATE.STAND;
-			_Anime.ResetLower();
-
+			_Item.EndAction();
 		}
+
 		if (stateInfo.IsName( "Eat" )) {
 			_Status.SetState = PlayerStatus.STATE.STAND;
-			_Anime.ResetLower();
-
 		}
 
 	}

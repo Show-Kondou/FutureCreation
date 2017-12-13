@@ -43,9 +43,7 @@ public class PlayerAnimation : PlayerBase {
 	// アクセサ
 	#region Accessor
 	public int ActionNumber {
-		set { _ActionAnime = value;
-			Debug.Log( _ActionAnime );
-		}
+		set { _ActionAnime = value;}
 	}
 	#endregion Accessor
 
@@ -81,14 +79,13 @@ public class PlayerAnimation : PlayerBase {
 
 	public void StartAnimation( int state ) {
 		_UpperAnimator.SetInteger( "State", state );
-		_UpperAnimator.SetInteger( "ActionNum", _ActionAnime );
-
-		if( true || state == (int)STATE.STAND ||
-			state == (int)STATE.RUN   ||
-			state == (int)STATE.JUMP  ) {
-			_LowerAnimator.SetInteger( "State", state );
+		if( state == (int)STATE.ATTACK ) {
+			_UpperAnimator.SetInteger( "ActionNum", _ActionAnime + 1 );
+		} else {
+			_UpperAnimator.SetInteger( "ActionNum", 0 );
 		}
 
+		_LowerAnimator.SetInteger( "State", (int)Status.LowerState );
 	}
 
 	public void ResetLower() {

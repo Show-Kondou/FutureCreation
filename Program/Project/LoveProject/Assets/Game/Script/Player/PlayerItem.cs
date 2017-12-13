@@ -90,28 +90,50 @@ public class PlayerItem : PlayerBase {
 			if( _ItemL == null ) return;
 			// 右のアイテムが使用中か
 			if( _ItemRFlag ) return;
-			//_Anime.ActionNumber = _ItemL.Action();
 			// アイテムスタート
-			// _Anime.ActionNumber = _ItemL.StartAction();
+			_Anime.ActionNumber = _ItemL.ActionStart();
 			Status.State = PlayerStatus.STATE.ATTACK;
 			_ItemLFlag = true;
 		}
 		// 右アイテムアクション
 		else if ( InputGame.GetPlayerItemR( Status._PlayerID ) ) {
+			// 所持しているか
 			if( _ItemR == null ) return;
-			_Anime.ActionNumber = _ItemR.Action();
-			_ItemRFlag = true;
+			// 左のアイテムが使用中か
+			if( _ItemLFlag ) return;
+			_Anime.ActionNumber = _ItemR.ActionStart();
 			Status.State = PlayerStatus.STATE.ATTACK;
+			_ItemRFlag = true;
+
 		}
 
+
+		// アイテム解除
 		if( InputGame.GetPlayerUpItemL(Status._PlayerID) ) {
-
+			if( !_ItemLFlag ) return;
+			Status.SetState = PlayerStatus.STATE.STAND;
 		}
-		if( InputGame.GetPlayerUpItemL( Status._PlayerID ) ) {
-
+		if( InputGame.GetPlayerUpItemR( Status._PlayerID ) ) {
+			if( !_ItemRFlag ) return;
+			Status.SetState = PlayerStatus.STATE.STAND;
 		}
 	}
 
+	/// <summary>
+	/// Action終了
+	/// </summary>
+	public void EndAction() {
+		if( _ItemLFlag ) {
+			_ItemL.ActionEnd();
+			Debug.Log( "ItemL終了" );
+			_ItemLFlag = false;
+		}
+		if( _ItemRFlag ) {
+			_ItemR.ActionEnd();
+			Debug.Log( "ItemR終了" );
+			_ItemRFlag = false;
+		}
+	}
 	/// <summary>
 	/// アイテムブレイク判定
 	/// </summary>
@@ -171,9 +193,6 @@ public class PlayerItem : PlayerBase {
 				return;
 			_ItemL = item;
 			_ItemL.HoldHand( _HandTrans );
-			//_ItemL.transform.position = _HandTrans.position;
-			//_ItemL.transform.forward = _HandTrans.forward;
-			//_ItemL.transform.parent = _HandTrans;
 			return;
 		}
 		// 右取得
@@ -182,6 +201,7 @@ public class PlayerItem : PlayerBase {
 			if( !item.Chatch( Status._PlayerID ) )
 				return;
 			_ItemR = item;
+			_ItemR.HoldHand( _HandTrans );
 			return;
 		}
 	}

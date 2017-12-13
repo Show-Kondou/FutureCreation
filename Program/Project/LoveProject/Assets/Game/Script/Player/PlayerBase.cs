@@ -38,8 +38,10 @@ public class PlayerStatus {
 	public float           _JumpForce;
 	[Header("カメラ回転量"),SerializeField]
 	public float           _TurnForce;
-	[Header("ステータス"),SerializeField]
-	private STATE			_State;
+	[Header("上半身ステータス"),SerializeField]
+	private STATE           _UpperState;
+	[Header("下半身ステータス"),SerializeField]
+	private STATE           _LowerState;
 	[Header("カメラのトランスフォーム"),NonSerialized]
 	public Transform       _CameraTrans;
 	[Header("アニメーション"), NonSerialized]
@@ -47,15 +49,20 @@ public class PlayerStatus {
 
 	public STATE State {
 		set {
-			if(StatePriority[(int)_State] <= StatePriority[(int)value])
-				_State = value;
+			if(StatePriority[(int)_UpperState] <= StatePriority[(int)value])
+				_UpperState = value;
 		}
 		get {
-			return _State;
+			return _UpperState;
 		}
 	}
 	public STATE SetState {
-		set{ _State = value; }
+		set{ _UpperState = value; }
+	}
+
+	public STATE LowerState {
+		get { return _LowerState; }
+		set { _LowerState = value; }
 	}
 
 
