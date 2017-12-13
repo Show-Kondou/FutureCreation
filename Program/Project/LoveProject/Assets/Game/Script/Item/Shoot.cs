@@ -70,7 +70,7 @@ public class Shoot : Item{
         //  レーザーサイト消す
         forceControll.DestLaser();
         //  表示
-        IsActive = false;
+        //IsActive = false;
 
         //  ボタン判定
         if(isAction == false && isPrevAction == true){
