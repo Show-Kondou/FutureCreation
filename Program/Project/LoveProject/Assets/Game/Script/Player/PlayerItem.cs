@@ -94,7 +94,6 @@ public class PlayerItem : PlayerBase {
 			_Anime.ActionNumber = _ItemL.ActionStart();
 			Status.State = PlayerStatus.STATE.ATTACK;
 			_ItemLFlag = true;
-			Debug.Log( "左アイテムスタート" );
 		}
 		// 右アイテムアクション
 		else if ( InputGame.GetPlayerItemR( Status._PlayerID ) ) {
@@ -105,7 +104,7 @@ public class PlayerItem : PlayerBase {
 			_Anime.ActionNumber = _ItemR.ActionStart();
 			Status.State = PlayerStatus.STATE.ATTACK;
 			_ItemRFlag = true;
-			Debug.Log( "右アイテムスタート" );
+
 		}
 
 
@@ -113,12 +112,10 @@ public class PlayerItem : PlayerBase {
 		if( InputGame.GetPlayerUpItemL(Status._PlayerID) ) {
 			if( !_ItemLFlag ) return;
 			Status.SetState = PlayerStatus.STATE.STAND;
-			Debug.Log( "左アイテムエンド" );
 		}
 		if( InputGame.GetPlayerUpItemR( Status._PlayerID ) ) {
 			if( !_ItemRFlag ) return;
 			Status.SetState = PlayerStatus.STATE.STAND;
-			Debug.Log( "右アイテムエンド" );
 		}
 	}
 
@@ -204,7 +201,7 @@ public class PlayerItem : PlayerBase {
 			if( !item.Chatch( Status._PlayerID ) )
 				return;
 			_ItemR = item;
-			_ItemL.HoldHand( _HandTrans );
+			_ItemR.HoldHand( _HandTrans );
 			return;
 		}
 	}

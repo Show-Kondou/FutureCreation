@@ -78,8 +78,10 @@ public class PlayerMove : PlayerBase {
 		// アニメーション設定
 		if( _InputMove.magnitude == 0.0F ) {
 			Status.State = PlayerStatus.STATE.STAND;
+			Status.LowerState = PlayerStatus.STATE.STAND;
 		}else {
 			Status.State = PlayerStatus.STATE.RUN;
+			Status.LowerState = PlayerStatus.STATE.RUN;
 		}
 	}
 
