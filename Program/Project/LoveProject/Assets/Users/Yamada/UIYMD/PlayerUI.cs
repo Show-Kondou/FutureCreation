@@ -7,8 +7,13 @@ public class PlayerUI : MonoBehaviour {
 	[Header("プレイヤー"),SerializeField]
 	private Player _player;
 
-	ItemsUI itemsUIL;	//	アイテムUI左
-	ItemsUI itemsUIR;	//	アイテムUI右
+	[Header("アイテムUI")]
+	[SerializeField]
+	ItemsUI itemsUIL;   //	アイテムUI左
+	[SerializeField]
+	ItemsUI itemsUIR;  //	アイテムUI右
+
+	[Header("体力UI"), SerializeField]
 	HPUI	hpUI;		//	HPUI
 
 
@@ -36,11 +41,12 @@ public class PlayerUI : MonoBehaviour {
 		// 	HPUIへHPを投げ
 		hpUI.playerHp = _player.PlayerHP;
 		
-		DebugButtonUI();
+		//	ボタンUI
+		ButtonUI();
 	}
 
 
-	void DebugButtonUI(){
+	void ButtonUI(){
 		//	ボタンUI4更新
 		if( InputGame.GetPlayerItemL( _player.PlayerID ) ) {
 			itemsUIL.PushedButton( 1 );

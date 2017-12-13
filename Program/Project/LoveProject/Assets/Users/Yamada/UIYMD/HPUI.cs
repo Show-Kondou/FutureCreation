@@ -5,44 +5,31 @@ using UnityEngine.UI;
 
 
 public class HPUI : MonoBehaviour {
-
-	//	表示用オブジェクトのプレハブ
-	[SerializeField]private Sprite[] spriteNumbers = new Sprite[10];//0~9で10個
-	[SerializeField]private Sprite[] spriteGauge = new Sprite[2];	//ゲージ枠、中で二つ。	
+	
+	//	数字プレハブ
+	[SerializeField]
+	private Sprite[] spriteNumbers = new Sprite[10];//0~9で10個
+	
+	//	ゲージオブジェクト
+	[SerializeField]
+	private MaskGauge gauge;
 
 	//	子UIのリスト
-	private List<Image> childList = new List<Image>();
-
-	private Image gaugeImage;	//	ゲージUI 中
-
+	[SerializeField, NamedArrayAttribute(new string[] { "Digit01", "Digit02", "Digit03" })]
+	private Image[] nmberImage = new Image[3];
+	
+	//	プレイヤーの体力取得用
 	[Range(0,100)]
 	public int playerHp = 100;
 	private int prevPlayerHp = 0;
 
 
-
-	/// <summary>
-	/// 
-	/// </sammary>
-	void Start(){
-
-		//	子全取得
-		foreach (Transform child in transform){
-			childList.Add(child.GetComponent<Image>());
-		}
-
-		gaugeImage = transform.Find("GaugeIn").gameObject.GetComponent<Image>();
-
-	}
-
-
+	
 	/// <summary>
 	/// 
 	/// </sammary>
 	void Update(){
-
-		//	プレイヤーのHP取得
-		//playerHp = Mathf.Abs((int)(100 * Mathf.Sin(Time.time))) + 1;
+		
 
 		//	変更があったときのみ更新
 		if(prevPlayerHp == playerHp) return;
@@ -52,7 +39,7 @@ public class HPUI : MonoBehaviour {
 		HpNumberUpdate(playerHp);
 
 		//	ゲージUI更新
-		GaugeUpdate(playerHp);
+		gauge.TransUV(playerHp);
 	}
 
 
@@ -68,18 +55,18 @@ public class HPUI : MonoBehaviour {
 		
 		//	数値からスプライト番号割り出しループ
 		for(index = 0; index < 3; index++){
-			childList[index].sprite = spriteNumbers[_Hp % 10];
+			nmberImage[index].sprite = spriteNumbers[_Hp % 10];
 			_Hp /= 10;
 		}
 
 		//	前ゼロを消すためのやつ
 		//	二つしか見ないからループにする必要ないかも
 		for(index = 2; index >= 1; index --){
-			var col = childList[index].color;
+			var col = nmberImage[index].color;
 			if(_temp >= check_value) col.a = 1;
 			else col.a = 0;
 			check_value /= 10;
-			childList[index].color = col;
+			nmberImage[index].color = col;
 		}
 		// //	前ゼロ消し
 		// if(_temp >= 10) childList[1].color = new Color(1,1,1,1);
@@ -89,12 +76,5 @@ public class HPUI : MonoBehaviour {
 		// else	childList[2].color = new Color(0,0,0,0);
 	}
 
-
-
-	/// <summary>
-	/// 
-	/// </sammary>
-	private void GaugeUpdate(int _Hp){
-		gaugeImage.fillAmount = _Hp * 0.01f;
-	}
+	
 }
