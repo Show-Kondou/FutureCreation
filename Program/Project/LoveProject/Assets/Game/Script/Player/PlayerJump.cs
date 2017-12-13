@@ -152,7 +152,7 @@ public class PlayerJump : PlayerBase {
 		if( coll.tag != "Stage" ) return;
 		// 接地
 		_State = State.STANDING;
-		Status.State = PlayerStatus.STATE.STAND;
+		Status.SetState = PlayerStatus.STATE.STAND;
 		_ActionF = Stand;
 	}
 

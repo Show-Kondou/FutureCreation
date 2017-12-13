@@ -43,9 +43,7 @@ public class PlayerAnimation : PlayerBase {
 	// アクセサ
 	#region Accessor
 	public int ActionNumber {
-		set { _ActionAnime = value;
-			Debug.Log( _ActionAnime );
-		}
+		set { _ActionAnime = value;}
 	}
 	#endregion Accessor
 
