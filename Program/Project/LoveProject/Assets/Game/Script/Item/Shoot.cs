@@ -14,13 +14,15 @@ public class Shoot : Item{
     private ForceControll forceControll;    //  放物軌道用
     private ItemManager.ItemType bulletType;    //  飛ばすアイテムの種類
 	private Vector3 target;	//	飛んでいく対象座標
+
+    private float shootDistance = 5.0f; //  ベクトルにかける値
     
     //  ボタンリリース判定用
     private bool isAction = false;
     private bool isPrevAction = false;
 
     //  アクセサ
-	public Vector3 Target{get{return target;} set{target = value;}}
+	//public Vector3 Target{get{return target;} set{target = value;}}
 
     #endregion Member
 
@@ -44,7 +46,11 @@ public class Shoot : Item{
         }
 
         transform.localPosition += new Vector3(0,1.2f,0);
-	}
+
+        //  投げの対象地点をカメラから取得
+        var _camera = CameraManager.Instance.GetPlayerCamera(playerID).transform;
+        this.target = shootDistance * new Vector3(_camera.forward.x, 0, _camera.forward.z);
+    }
 
 
 
@@ -77,7 +83,7 @@ public class Shoot : Item{
         //  離したフレーム
 
             //  発射
-            forceControll.ShootAction(bulletType);
+            forceControll.ShootAction(target, bulletType);
             //  使用可能回数減らす
             SubBreakHP(1);
 
@@ -86,7 +92,7 @@ public class Shoot : Item{
             //  表示
             IsActive = true;
             //  レーザーサイト描画
-            forceControll.DrawLaser();
+            forceControll.DrawLaser(target);
         }
         
         //  前フレームのフラグを保存
@@ -101,7 +107,7 @@ public class Shoot : Item{
     /// 固有アクション	アイテムのアニメーション番号を返す。
     /// </sammary>
     public override void Action(){
-		Debug.Log(this.name + "のアクション");
+		//Debug.Log(this.name + "のアクション");
         //  押されている
         isAction = true;
 		

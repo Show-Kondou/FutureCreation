@@ -34,7 +34,7 @@ public class Slash : Item {
 	/// 固有動作	アイテムのアニメーション番号を返す。
 	/// </sammary>
 	public override void Action(){
-		Debug.Log(this.name + "のアクション");
+		//Debug.Log(this.name + "のアクション");
 		//	表示する
 		IsActive = true;
         /*

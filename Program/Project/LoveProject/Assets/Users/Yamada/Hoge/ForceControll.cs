@@ -41,8 +41,9 @@ public class ForceControll : MonoBehaviour {
 	/// <summary>
 	/// 
 	/// </sammary>
-	public void ShootAction(ItemManager.ItemType type){
-		ShootFixedAngle(target.position, 60.0F, type);
+	public void ShootAction(Vector3 _target, ItemManager.ItemType type){
+		//target.position = transform.position + new Vector3(0,0,5.0f);
+		ShootFixedAngle(_target, 60.0F, type);
 	}
 
 
@@ -150,7 +151,7 @@ public class ForceControll : MonoBehaviour {
 	/// <summary>
 	/// 予測線を描画
 	/// </sammary>
-	public void DrawLaser(){
+	public void DrawLaser(Vector3 _target){
 		
 		float x = 0;
 		float y = 0;
@@ -159,8 +160,8 @@ public class ForceControll : MonoBehaviour {
         // 予測線の軌道をクリア
         renderLinePoints.Clear();
 
-		var speed_vec = ComputeVectorFromAngle(target.position, 60.0F);
-		Vector3 _vec = ConvertVectorToVector3(speed_vec, 60.0F, target.position);
+		var speed_vec = ComputeVectorFromAngle(_target, 60.0F);
+		Vector3 _vec = ConvertVectorToVector3(speed_vec, 60.0F, _target);
 		v0 = _vec;
 		
 		//弾道予測の位置に点を移動
