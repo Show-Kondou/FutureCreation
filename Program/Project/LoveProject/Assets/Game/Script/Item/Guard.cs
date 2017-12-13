@@ -72,6 +72,11 @@ public class Guard : Item {
 	public override void Action(){
 		//	押されてる
 		isAction = true;
+
+        //  盾を向ける方向をカメラより設定
+        var _camera = CameraManager.Instance.GetPlayerCamera(playerID).transform;
+        transform.forward = new Vector3(_camera.forward.x, 0, _camera.forward.z);
+
 	}
 
 
