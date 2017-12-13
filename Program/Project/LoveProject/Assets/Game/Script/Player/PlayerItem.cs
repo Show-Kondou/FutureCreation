@@ -21,8 +21,11 @@ public class PlayerItem : PlayerBase {
 	// 各アイテムのキャッシュ
 	private Item    _ItemL;
 	private Item    _ItemR;
+	private bool    _ItemLFlag = false;
+	private bool    _ItemRFlag = false;
 	[SerializeField]
 	private Transform _HandTrans;
+	private PlayerAnimation _Anime;
 	#endregion Member
 
 
@@ -73,11 +76,8 @@ public class PlayerItem : PlayerBase {
 	protected override void Execute() {
 		ActionItem();
 		EatItem();
-
-		if( _ItemL == null )
-			return;
-		//_ItemL.transform.position = _HandTrans.position;
-		//_ItemL.transform.forward = _HandTrans.forward;
+		ItemBreak();
+		
 	}
 
 	/// <summary>
@@ -86,21 +86,42 @@ public class PlayerItem : PlayerBase {
 	private void ActionItem() {
 		// 左アイテムアクション
 		if( InputGame.GetPlayerItemL( Status._PlayerID ) ) {
-			// TODO:仮
+			// 所持しているか
 			if( _ItemL == null ) return;
-			_ItemL.Action();
+			// 右のアイテムが使用中か
+			if( _ItemRFlag ) return;
+			//_Anime.ActionNumber = _ItemL.Action();
+			// アイテムスタート
+			// _Anime.ActionNumber = _ItemL.StartAction();
 			Status.State = PlayerStatus.STATE.ATTACK;
-			// アイテム終
-			if( _ItemL.IsBreak )  _ItemL = null;
+			_ItemLFlag = true;
 		}
 		// 右アイテムアクション
 		else if ( InputGame.GetPlayerItemR( Status._PlayerID ) ) {
 			if( _ItemR == null ) return;
-			_ItemR.Action();
+			_Anime.ActionNumber = _ItemR.Action();
+			_ItemRFlag = true;
 			Status.State = PlayerStatus.STATE.ATTACK;
-			if( _ItemR.IsBreak )
-				_ItemR = null;
 		}
+
+		if( InputGame.GetPlayerUpItemL(Status._PlayerID) ) {
+
+		}
+		if( InputGame.GetPlayerUpItemL( Status._PlayerID ) ) {
+
+		}
+	}
+
+	/// <summary>
+	/// アイテムブレイク判定
+	/// </summary>
+	private void ItemBreak() {
+		// アイテム終
+		if( _ItemL != null && _ItemL.IsBreak )
+			_ItemL = null;
+		if( _ItemR != null && _ItemR.IsBreak )
+			_ItemR = null;
+
 	}
 
 	/// <summary>
@@ -110,6 +131,7 @@ public class PlayerItem : PlayerBase {
 		// 左アイテム食べる
 		if ( InputGame.GetPlayerEatL( Status._PlayerID ) ) {
 			if ( _ItemL == null ) return;
+			if( _ItemLFlag )
 			Status._HitPoint += _ItemL.EatItem();
 			Status.State = PlayerStatus.STATE.EAT;
 			_ItemL = null;
@@ -128,6 +150,11 @@ public class PlayerItem : PlayerBase {
 
 	// イベント
 	#region MonoBehaviour Event
+
+	private void Start() {
+		_Anime = GetComponent<PlayerAnimation>();
+	}
+
 	/// <summary>
 	/// トリガー当たり判定
 	/// </summary>
@@ -137,10 +164,11 @@ public class PlayerItem : PlayerBase {
 		if( coll.gameObject.tag != "Item" ) return;
 		// アイテム取得
 		Item item = coll.gameObject.GetComponent<Item>();
-		// アイテムが使用状態判定
-		if( !item.Chatch( Status._PlayerID ) ) return;
 		// 先に左取得
 		if( _ItemL == null ) {
+			// アイテムが使用状態判定
+			if( !item.Chatch( Status._PlayerID ) )
+				return;
 			_ItemL = item;
 			_ItemL.HoldHand( _HandTrans );
 			//_ItemL.transform.position = _HandTrans.position;
@@ -150,6 +178,9 @@ public class PlayerItem : PlayerBase {
 		}
 		// 右取得
 		if( _ItemR == null ) {
+			// アイテムが使用状態判定
+			if( !item.Chatch( Status._PlayerID ) )
+				return;
 			_ItemR = item;
 			return;
 		}

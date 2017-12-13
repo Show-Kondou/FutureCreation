@@ -37,10 +37,16 @@ public class PlayerAnimation : PlayerBase {
 
 	// メンバー
 	#region Member
+	private int _ActionAnime = 0;
 	#endregion Member
 
 	// アクセサ
 	#region Accessor
+	public int ActionNumber {
+		set { _ActionAnime = value;
+			Debug.Log( _ActionAnime );
+		}
+	}
 	#endregion Accessor
 
 	// メソッド
@@ -59,6 +65,8 @@ public class PlayerAnimation : PlayerBase {
 		}
 		var body = _UpperAnimator.GetBehaviour<BodyScript>();
 		body._Status = Status;
+		body._Item = GetComponent<PlayerItem>();
+		body._Anime = Status._Animation;
 	}
 	#endregion Method
 
@@ -73,13 +81,21 @@ public class PlayerAnimation : PlayerBase {
 
 	public void StartAnimation( int state ) {
 		_UpperAnimator.SetInteger( "State", state );
+		_UpperAnimator.SetInteger( "ActionNum", _ActionAnime );
 
-		if( state == (int)STATE.STAND ||
+		if( true || state == (int)STATE.STAND ||
 			state == (int)STATE.RUN   ||
-			state == (int)STATE.JUMP ) {
+			state == (int)STATE.JUMP  ) {
 			_LowerAnimator.SetInteger( "State", state );
 		}
 
+	}
+
+	public void ResetLower() {
+		//var a = _LowerAnimator.GetCurrentAnimatorStateInfo(0);
+		var a = _LowerAnimator.GetCurrentAnimatorStateInfo(0);
+		var hash = a.fullPathHash;
+		_LowerAnimator.Play( hash,0,0.0F );
 	}
 
 	/// <summary>

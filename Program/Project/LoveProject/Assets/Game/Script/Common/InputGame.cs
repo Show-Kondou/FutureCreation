@@ -93,12 +93,26 @@ public class InputGame {
 	/// </summary>
 	/// <param name="playerID">プレイヤー番号</param>
 	/// <returns> フラグ </returns>
+	static public bool GetPlayerUpItemL( uint playerID = 1 ) {
+		return Input.GetButtonUp( "Item" + playerID + "_L" );
+	}
+	static public bool GetPlayerUpItemR( uint playerID = 1 ) {
+		return Input.GetButtonUp( "Item" + playerID + "_R" );
+	}
+
+	/// <summary>
+	/// アイテム（お菓子）アクション … Ｌ＆Ｒ
+	/// </summary>
+	/// <param name="playerID">プレイヤー番号</param>
+	/// <returns> フラグ </returns>
 	static public bool GetPlayerItemL( uint playerID = 1 ) {
 		return Input.GetButton( "Item" + playerID + "_L" );
 	}
 	static public bool GetPlayerItemR( uint playerID = 1 ) {
 		return Input.GetButton( "Item" + playerID + "_R" );
 	}
+
+
 
 	/// <summary>
 	/// お菓子を食べるアクション … Ｌ＆Ｒ
