@@ -52,12 +52,13 @@ public class Shoot : Item{
     /// 標準更新
     /// </sammary>
 	void Update(){
-        if(Input.GetKey(KeyCode.G)){
-            this.Action();
+
+        if(isActioning){
+            Action();
+        }else{
+
         }
 
-        if(isPicked == false)
-            transform.localEulerAngles += new Vector3(18 * Mathf.Cos(Time.time), 18 * Mathf.Sin(Time.time),0);
     }
     
 
@@ -99,12 +100,11 @@ public class Shoot : Item{
     /// <summary>
     /// 固有アクション	アイテムのアニメーション番号を返す。
     /// </sammary>
-    public override int Action(){
+    public override void Action(){
 		Debug.Log(this.name + "のアクション");
-        //  行動フラグオン
+        //  押されている
         isAction = true;
 		
-        return (int)ItemManager.ItemAnimationNumber.Shoot;
 	}
 
 
@@ -114,6 +114,29 @@ public class Shoot : Item{
 	public override int EatItem(){
 		//	回復量を返す。
 		return HealPoint;
+	}
+
+    
+
+	//  プレイヤーのアクション開始時に呼ばれる
+	public override int ActionStart(){
+		//	表示する
+		IsActive = true;
+        
+		//  アクション始まるよ
+        isActioning = true;
+
+        //  アニメーション番号返却
+        return (int)ItemManager.ItemAnimationNumber.Shoot;
+	}
+
+
+	//  プレイヤーのアクション開始時に呼ばれる
+	public override void ActionEnd(){
+		//  アクション終わるよ
+        isActioning = false;
+        //  ボタン押してないよ
+        isAction = false;
 	}
 
     #endregion Method
