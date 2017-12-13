@@ -101,7 +101,7 @@ public class Shoot : Item{
     /// 固有アクション	アイテムのアニメーション番号を返す。
     /// </sammary>
     public override void Action(){
-		Debug.Log(this.name + "のアクション");
+		//Debug.Log(this.name + "のアクション");
         //  押されている
         isAction = true;
 		
