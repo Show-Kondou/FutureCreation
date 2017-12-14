@@ -47,6 +47,7 @@ public abstract class Item : MonoBehaviour
 	public bool IsPicked { get{return isPicked;} }
 	public bool IsUsing { get{return isUsing;} }
 	public bool IsActioning { get{return isActioning;} }
+	public uint PlayerID{get{return playerID;} set{playerID = value;}}
 
 
 
