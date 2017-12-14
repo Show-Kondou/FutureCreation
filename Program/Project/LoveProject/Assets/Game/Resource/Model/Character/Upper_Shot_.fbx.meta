@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: ef181801b0351724cbcd7cc166eec5e8
-timeCreated: 1513239855
+guid: e50bc750cd77f394ba0192a583a4491c
+timeCreated: 1512750065
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -149,7 +149,7 @@ ModelImporter:
     4300002: Chara_Ue:Maegami
     4300004: Chara_Ue:chuck
     4300006: Chara_Ue:Parka
-    7400000: Upper_Shot
+    7400000: Upper_Shot_
     9500000: //RootNode
     13700000: Chara_Ue:chuck
     13700002: Chara_Ue:head
@@ -180,10 +180,10 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Upper_Shot
+      name: Upper_Shot_
       takeName: Take 001
       firstFrame: 1
-      lastFrame: 16
+      lastFrame: 17
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
