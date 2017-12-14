@@ -81,8 +81,6 @@ public class Shoot : Item{
 
             //  発射
             forceControll.ShootAction(target, bulletType, playerID);
-            //  使用可能回数減らす
-            SubBreakHP(1);
 
         }else if(isAction == true && isPrevAction == true){
         //  押しっぱなし
@@ -145,6 +143,8 @@ public class Shoot : Item{
         isActioning = false;
         //  ボタン押してないよ
         isAction = false;
+		//  使用可能回数減らす
+		SubBreakHP(1);
 	}
 
     #endregion Method

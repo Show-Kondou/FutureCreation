@@ -26,7 +26,7 @@ GameObject:
   - component: {fileID: 135057328908060794}
   m_Layer: 0
   m_Name: _choco
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakHp: 0
-  attackPoint: 0
+  attackPoint: 20
   healPoint: 0
   type: 7
   isPicked: 0
