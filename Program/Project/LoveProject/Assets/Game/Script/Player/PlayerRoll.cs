@@ -96,11 +96,18 @@ public class PlayerRoll : PlayerBase {
 	// /// </summary>
 	// private void LateUpdate() { }
 
-	// /// <summary>
-	// /// 当たり判定
-	// /// </summary>
-	// /// <param name="coll">当たったオブジェクト</param>
-	// private void OnCollisionXXX( Collision coll ) { }
+	/// <summary>
+	/// 当たり判定
+	/// </summary>
+	/// <param name="coll">当たったオブジェクト</param>
+	private void OnCollisionEnter( Collision coll ) {
+		if( coll.gameObject.tag != "Item" ) return;
+		var item = coll.gameObject.GetComponent<Item>();
+
+		// ダメージ
+		Status._HitPoint -= item.AttackPoint;
+		Debug.Log(Status._PlayerID + "にヒット");
+	}
 
 	// /// <summary>
 	// /// トリガー当たり判定

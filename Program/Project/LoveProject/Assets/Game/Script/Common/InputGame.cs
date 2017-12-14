@@ -52,9 +52,11 @@ public class InputGame {
 	/// <param name="num">プレイヤー番号</param>
 	/// <returns> 移動値 </returns>
 	static public float GetPlayerMoveX( uint playerID = 1 ) {
-		float key = GetKeyMoveX();
-		if( key != 0.0F )
-			return key * MoveCorrectionX;
+		if( playerID == 1 ) {
+			float key = GetKeyMoveX();
+			if( key != 0.0F )
+				return key * MoveCorrectionX;
+		}
 		return GetPadX( playerID ) * MoveCorrectionX;
 	}
 
@@ -64,9 +66,11 @@ public class InputGame {
 	/// <param name="num">プレイヤー番号</param>
 	/// <returns> 移動値 </returns>
 	static public float GetPlayerMoveZ( uint playerID = 1 ) {
-		float key = GetKeyMoveZ();
-		if( key != 0.0F )
-			return key * MoveCorrectionY;
+		if( playerID == 1 ) {
+			float key = GetKeyMoveZ();
+			if( key != 0.0F )
+				return key * MoveCorrectionY;
+		}
 		return GetPadZ( playerID ) * MoveCorrectionY;
 	}
 
