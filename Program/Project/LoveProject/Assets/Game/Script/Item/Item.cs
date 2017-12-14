@@ -11,7 +11,7 @@ public abstract class Item : MonoBehaviour
 	protected int breakHp;        //	耐久度(斬る・投げるアイテムは回数)
 
 	[Header("ダメージ数"), SerializeField]
-	protected float attackPoint;  //	攻撃力・威力
+	protected int attackPoint;  //	攻撃力・威力
 
 	[Header("回復量"), SerializeField]
 	protected int healPoint;     //	回復量
@@ -40,7 +40,7 @@ public abstract class Item : MonoBehaviour
 				else return false;
 			}
 		}
-	public float AttackPoint { get { return attackPoint; } }
+	public int AttackPoint { get { return attackPoint; } }
 	public int HealPoint { get { return healPoint; } }
 	public ItemManager.ItemType Type { get { return type; } set { type = value; } }
 	public bool IsActive {	get{return mesh.enabled && coll.enabled;} set{mesh.enabled = coll.enabled = value;}}
