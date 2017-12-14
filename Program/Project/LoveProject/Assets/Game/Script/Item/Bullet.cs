@@ -8,6 +8,8 @@ using UnityEngine;
 /// </sammary>
 public class Bullet : Item {
 
+	private float saveCollRadius;
+
     #region Method
 
 	/// <summary>
@@ -17,6 +19,7 @@ public class Bullet : Item {
 		//	メッシュ・コライダーの取得
         mesh = GetComponent<MeshRenderer>();
         coll = GetComponent<SphereCollider>();
+		saveCollRadius = GetComponent<SphereCollider>().radius;
     }
 
 	
@@ -130,6 +133,7 @@ public class Bullet : Item {
 		var rb = GetComponent<Rigidbody>();
 		rb.velocity = Vector3.zero;
 		rb.useGravity = true;
+		GetComponent<SphereCollider>().radius = saveCollRadius;
 	}
 
     #endregion Method

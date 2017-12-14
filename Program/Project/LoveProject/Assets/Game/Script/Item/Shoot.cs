@@ -15,7 +15,7 @@ public class Shoot : Item{
     private ItemManager.ItemType bulletType;    //  飛ばすアイテムの種類
 	private Vector3 target;	//	飛んでいく対象座標
 
-    private float shootDistance = 5.0f; //  ベクトルにかける値
+    private float shootDistance = 15.0f; //  ベクトルにかける値
     
     //  ボタンリリース判定用
     private bool isAction = false;
@@ -80,7 +80,7 @@ public class Shoot : Item{
         //  離したフレーム
 
             //  発射
-            forceControll.ShootAction(target, bulletType);
+            forceControll.ShootAction(target, bulletType, playerID);
             //  使用可能回数減らす
             SubBreakHP(1);
 
@@ -132,7 +132,7 @@ public class Shoot : Item{
 
         //  投げの対象地点をカメラから取得
         var _camera = CameraManager.Instance.GetPlayerCamera(playerID).transform;
-        this.target = shootDistance * new Vector3(_camera.forward.x, 0, _camera.forward.z);
+        this.target = transform.position + (shootDistance * new Vector3(_camera.forward.x, 0, _camera.forward.z));
 
         //  アニメーション番号返却
         return (int)ItemManager.ItemAnimationNumber.Shoot;
