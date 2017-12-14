@@ -103,7 +103,8 @@ public class PlayerRoll : PlayerBase {
 	private void OnCollisionEnter( Collision coll ) {
 		if( coll.gameObject.tag != "Item" ) return;
 		var item = coll.gameObject.GetComponent<Item>();
-
+		Debug.Log( Status._PlayerID + "ヒット？" );
+		if( Status._PlayerID == item.PlayerID ) return;
 		// ダメージ
 		Status._HitPoint -= item.AttackPoint;
 		Debug.Log(Status._PlayerID + "にヒット");
@@ -114,6 +115,17 @@ public class PlayerRoll : PlayerBase {
 	// /// </summary>
 	// /// <param name="coll">当たったオブジェクト</param>
 	// private void OnTriggerXXX( Collider coll ) { }
+	private void OnTriggerEnter( Collider coll ) {
+		if( coll.gameObject.tag != "Item" )
+			return;
+		var item = coll.gameObject.GetComponent<Item>();
+		Debug.Log( Status._PlayerID + "ヒット？" );
+		if( Status._PlayerID == item.PlayerID )
+			return;
+		// ダメージ
+		Status._HitPoint -= item.AttackPoint;
+		Debug.Log( Status._PlayerID + "にヒット" );
+	}
 
 	#endregion MonoBehaviour Event
 }
