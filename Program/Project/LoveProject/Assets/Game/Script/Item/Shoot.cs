@@ -47,9 +47,6 @@ public class Shoot : Item{
 
         transform.localPosition += new Vector3(0,1.2f,0);
 
-        //  投げの対象地点をカメラから取得
-        var _camera = CameraManager.Instance.GetPlayerCamera(playerID).transform;
-        this.target = shootDistance * new Vector3(_camera.forward.x, 0, _camera.forward.z);
     }
 
 
@@ -131,6 +128,11 @@ public class Shoot : Item{
         
 		//  アクション始まるよ
         isActioning = true;
+        
+
+        //  投げの対象地点をカメラから取得
+        var _camera = CameraManager.Instance.GetPlayerCamera(playerID).transform;
+        this.target = shootDistance * new Vector3(_camera.forward.x, 0, _camera.forward.z);
 
         //  アニメーション番号返却
         return (int)ItemManager.ItemAnimationNumber.Shoot;
