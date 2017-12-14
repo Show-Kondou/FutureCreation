@@ -57,7 +57,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 45a2333f7dcce21418f3f61b17416bf8, type: 2}
+  - {fileID: 2100000, guid: 02a9e158da072354c86569bd59d64c75, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -110,9 +110,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   breakHp: 0
-  attackPoint: 35
+  attackPoint: 0
   healPoint: 0
   type: 6
+  isPicked: 0
 --- !u!135 &135816474023862256
 SphereCollider:
   m_ObjectHideFlags: 1

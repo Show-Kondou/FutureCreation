@@ -76,7 +76,7 @@ public class PlayerItem : PlayerBase {
 	protected override void Execute() {
 		ActionItem();
 		EatItem();
-		ItemBreak();
+		// ItemBreak();
 		
 	}
 
@@ -127,11 +127,19 @@ public class PlayerItem : PlayerBase {
 			_ItemL.ActionEnd();
 			Debug.Log( "ItemL終了" );
 			_ItemLFlag = false;
+			if( _ItemL != null && _ItemL.IsBreak ) {
+				Debug.Log("左アイテム消費");
+				_ItemL = null;
+			}
 		}
 		if( _ItemRFlag ) {
 			_ItemR.ActionEnd();
 			Debug.Log( "ItemR終了" );
 			_ItemRFlag = false;
+			if( _ItemR != null && _ItemR.IsBreak ) {
+				Debug.Log("アイテム消費");
+				_ItemR = null;
+			}
 		}
 	}
 	/// <summary>

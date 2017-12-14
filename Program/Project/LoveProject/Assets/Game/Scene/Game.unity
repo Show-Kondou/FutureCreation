@@ -484,7 +484,7 @@ Prefab:
         type: 2}
       propertyPath: shootObject
       value: 
-      objectReference: {fileID: 1909159609106486, guid: d6195434973397b4389e63ed4ff6550e,
+      objectReference: {fileID: 1122035579133258, guid: d3b46b64c07376343bd3ccc5f03497c6,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1ae108c9f15b7264b8df59164a8b8979, type: 2}
@@ -1274,7 +1274,7 @@ Prefab:
         type: 2}
       propertyPath: shootObject
       value: 
-      objectReference: {fileID: 1701899574434272, guid: 132d2dd62a9354c4e83f4725903232d8,
+      objectReference: {fileID: 1164067954114468, guid: 9d30d9ef91c9ae04dab0df6347cc1699,
         type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e2176b980c4255e44a120a0c6d36e956, type: 2}
