@@ -6,7 +6,7 @@ public class GameScene : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		CSoundManager.Instance.PlayBGM(AUDIO_LIST.BGM_01,true);
+		CSoundManager.Instance.PlayBGM( AUDIO_LIST.BGM_01, true );
 	}
 	
 	// Update is called once per frame

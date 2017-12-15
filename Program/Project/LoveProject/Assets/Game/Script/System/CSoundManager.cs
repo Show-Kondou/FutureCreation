@@ -39,6 +39,7 @@ public class CSoundManager : MonoBehaviour {
 				LoadSound();
 				CreateChannel();
 				DontDestroyOnLoad( m_GameObj );
+				Debug.Log("LoadEnd");
 			}
 			return m_Instance;
 		}
