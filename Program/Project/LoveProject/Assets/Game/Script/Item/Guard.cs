@@ -134,7 +134,9 @@ public class Guard : Item {
 			//	受けるダメージを、 ItemManager の持つ ダメージ値格納テーブル から取得
 			var damage = ItemManager.Instance.ItemDamageTable[type];
 			//	耐久値 から ダメージ を 引く
-			SubBreakHP(damage);	//	耐久値の減少
+			SubBreakHP(damage); //	耐久値の減少
+			if (breakHp <= 0)
+				gameObject.SetActive(false);
 		}
 
 	}

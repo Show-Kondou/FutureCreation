@@ -112,8 +112,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shootPoint: {fileID: 4467048692351828}
-  target: {fileID: 0}
-  shootObject: {fileID: 0}
+  shootObject: {fileID: 1164067954114468, guid: 9d30d9ef91c9ae04dab0df6347cc1699,
+    type: 2}
 --- !u!114 &114352267294635852
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -165,7 +165,7 @@ LineRenderer:
   m_Positions: []
   m_Parameters:
     serializedVersion: 2
-    widthMultiplier: 1
+    widthMultiplier: 0.1
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -212,7 +212,7 @@ LineRenderer:
     alignment: 0
     textureMode: 0
     generateLightingData: 0
-  m_UseWorldSpace: 0
+  m_UseWorldSpace: 1
   m_Loop: 0
 --- !u!135 &135211245205373982
 SphereCollider:
