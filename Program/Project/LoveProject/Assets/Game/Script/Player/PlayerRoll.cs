@@ -119,12 +119,12 @@ public class PlayerRoll : PlayerBase {
 		if( coll.gameObject.tag != "Item" )
 			return;
 		var item = coll.gameObject.GetComponent<Item>();
-		Debug.Log( Status._PlayerID + "ヒット？" );
+		if( !item.IsActioning ) return;
 		if( Status._PlayerID == item.PlayerID )
 			return;
 		// ダメージ
+		Debug.Log( Status._PlayerID + "にヒット！\nHP:" + Status._HitPoint + "=>" + (Status._HitPoint - item.AttackPoint) );
 		Status._HitPoint -= item.AttackPoint;
-		Debug.Log( Status._PlayerID + "にヒット" );
 	}
 
 	#endregion MonoBehaviour Event

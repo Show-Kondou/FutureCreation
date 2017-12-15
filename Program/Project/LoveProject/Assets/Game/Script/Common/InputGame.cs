@@ -80,15 +80,19 @@ public class InputGame {
 	/// <param name="cameraID">カメラの番号</param>
 	/// <returns></returns>
 	static public float GetCameraTurnX( uint cameraID = 1 ) {
-		float key = GetKeyCameraX();
-		if( key != 0.0F )
-			return key * CameraCorrectionX;
+		if( cameraID == 1 ) {
+			float key = GetKeyCameraX();
+			if( key != 0.0F )
+				return key * CameraCorrectionX;
+		}
 		return GetCameraX( cameraID ) * CameraCorrectionX;
 	}
 	static public float GetCameraTurnY( uint cameraID = 1 ) {
-		float key = GetKeyCameraY();
-		if( key != 0.0F )
-			return key * CameraCorrectionY;
+		if( cameraID == 1 ) {
+			float key = GetKeyCameraY();
+			if( key != 0.0F )
+				return key * CameraCorrectionY;
+		}
 		return GetCameraY( cameraID ) * CameraCorrectionY;
 	}
 
