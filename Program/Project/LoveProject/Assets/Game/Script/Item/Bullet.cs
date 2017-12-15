@@ -19,7 +19,6 @@ public class Bullet : Item {
 		//	メッシュ・コライダーの取得
         mesh = GetComponent<MeshRenderer>();
         coll = GetComponent<SphereCollider>();
-		saveCollRadius = GetComponent<SphereCollider>().radius;
     }
 
 	
@@ -114,7 +113,9 @@ public class Bullet : Item {
 	/// 爆発時のコライダー拡大コルーチン
 	/// </sammary>
 	IEnumerator BombCoroutine(){
-		
+
+		//saveCollRadius = GetComponent<SphereCollider>().radius;
+
 		var sc = GetComponent<SphereCollider>();
 		while(sc.radius < 2){
 			sc.radius += Time.deltaTime;
@@ -122,6 +123,11 @@ public class Bullet : Item {
 		}
 
 		gameObject.SetActive(false);
+	}
+
+
+	private void OnDisable(){
+		//GetComponent<SphereCollider>().radius = saveCollRadius;
 	}
 
 
@@ -133,7 +139,6 @@ public class Bullet : Item {
 		var rb = GetComponent<Rigidbody>();
 		rb.velocity = Vector3.zero;
 		rb.useGravity = true;
-		GetComponent<SphereCollider>().radius = saveCollRadius;
 	}
 
     #endregion Method
