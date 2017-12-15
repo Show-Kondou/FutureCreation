@@ -222,6 +222,7 @@ public class PlayerItem : PlayerBase {
 			if( !item.Chatch( Status._PlayerID ) ) return;
 			_ItemL = item;
 			_ItemL.HoldHand( _HandTrans );
+			CSoundManager.Instance.PlaySE(AUDIO_LIST.OBTAIN);
 			return;
 		}
 		// 右取得
@@ -230,6 +231,7 @@ public class PlayerItem : PlayerBase {
 			if( !item.Chatch( Status._PlayerID ) ) return;
 			_ItemR = item;
 			_ItemR.HoldHand( _HandTrans );
+			CSoundManager.Instance.PlaySE( AUDIO_LIST.OBTAIN );
 			return;
 		}
 	}
