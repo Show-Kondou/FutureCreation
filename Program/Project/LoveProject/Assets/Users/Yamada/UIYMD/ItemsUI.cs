@@ -24,7 +24,6 @@ public class ItemsUI : MonoBehaviour {
 
 		//	所持アイテムのUI用
 		itemImage = transform.Find("ItemIcon").gameObject.GetComponent<Image>();
-		itemImage.color = new Color(1,1,1,0);	//	初期値は非表示
 	}
 	
 
@@ -52,16 +51,15 @@ public class ItemsUI : MonoBehaviour {
 	/// 引数のアイテムを表示
 	/// </sammary>
 	public void SetItemUI(ItemManager.ItemType item_type){
-		itemImage.color = new Color(1,1,1,1);
-		//itemImage.sprite = itemIcon[(int)Mathf.Abs(((GameTimer.Instance.TimeLimit % 10) - 5))];
-		
-		if((int)item_type >= 6){
+
+
+		if ((int)item_type >= 6){
 			LoseItemUI();
 			return;
 		}
-		
 
 		itemImage.sprite = itemIcon[(int)item_type];
+
 	}
 
 	/// <summary>

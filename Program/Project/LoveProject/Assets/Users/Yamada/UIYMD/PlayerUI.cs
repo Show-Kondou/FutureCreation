@@ -34,6 +34,7 @@ public class PlayerUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
 		//	アイテムUIへアイテム情報を投げ
 		itemsUIL.SetItemUI(_player.ItemTypeL);
 		itemsUIR.SetItemUI(_player.ItemTypeR);

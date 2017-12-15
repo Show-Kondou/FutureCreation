@@ -128,7 +128,9 @@ public class ForceControll : MonoBehaviour {
 
 		//var _obj = Instantiate<GameObject>(shootObject, shootPoint.position, Quaternion.identity);
 		var _obj = ItemManager.Instance.Pop(type, shootPoint.position);
-		_obj.GetComponent<Item>().PlayerID = player_id; //	生成したプレイヤーIDを設定
+		var obj_item = _obj.GetComponent<Item>(); //	生成したプレイヤーIDを設定
+		obj_item.PlayerID = player_id;
+
 		var _rigidbody = _obj.GetComponent<Rigidbody>();
 
 		Vector3 _force = _shootVector * _rigidbody.mass;

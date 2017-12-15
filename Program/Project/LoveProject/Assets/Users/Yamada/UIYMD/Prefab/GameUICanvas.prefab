@@ -2175,7 +2175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3755c8ed039af634aa7c7e50c72053a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 114292315535094354, guid: 5778d9f4a06876641bd2ab349a51569b, type: 2}
+  _player: {fileID: 0}
   itemsUIL: {fileID: 114027165103796752}
   itemsUIR: {fileID: 114833439379277930}
   hpUI: {fileID: 114860247116623946}
