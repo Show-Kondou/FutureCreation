@@ -114,8 +114,6 @@ public abstract class Item : MonoBehaviour
 	public void SubBreakHP(int value){
 		
 		breakHp -= value;   //	耐久度を減らす
-		if(breakHp <= 0)
-			gameObject.SetActive(false);
 
 	}
 

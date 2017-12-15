@@ -81,6 +81,9 @@ public class Slash : Item {
 
 		//	アクションを終わるよ～
 		isActioning = false;
+
+		if (breakHp <= 0)
+			gameObject.SetActive(false);
 	}
 
 
