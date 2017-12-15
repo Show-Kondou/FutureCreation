@@ -44,6 +44,19 @@ public class ParticleManager : MonoBehaviour {
 		if (Instance != this) {
 			Destroy(this.gameObject);
 		}
+
+		//	プールの生成
+		if (particlePool == null)
+			particlePool = new MultiDictionary<ParticleName, ParticleSystem>();
+
+		//	初期のアイテムストック生成
+		//	6種類を5個ずつ非表示で生成しておく
+		for (int index = 0; index < particlePrefab.Count; index++) {
+			for (int par_num = 0; par_num < 5; par_num++) {
+				var par_obj = GetGameObject((ParticleName)index, transform.position);
+				par_obj.gameObject.SetActive(false);  //	非表示へ
+			}
+		}
 	}
 
 
@@ -56,6 +69,23 @@ public class ParticleManager : MonoBehaviour {
 		par_obj.Play();
 	}
 
+
+
+	///<param>
+	///	オブジェクト生成	これいる！！消さないで！！
+	///	type	:生成するプレハブの種別
+	///	pos		:生成する座標
+	///</param>
+	public ParticleSystem GetGameObject(ParticleName name, Vector3 pos)
+	{
+
+		//	インスタンス生成
+		var par_obj = (ParticleSystem)Instantiate(particlePrefab[(int)name], pos, Quaternion.identity);
+		par_obj.transform.parent = transform;//	プールの子要素にする
+		particlePool.Add(name, par_obj);   //	リストに追加
+
+		return par_obj;
+	}
 
 
 	private ParticleSystem GetParticleObject(ParticleName _name, Vector3 _pos){
