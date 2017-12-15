@@ -134,6 +134,7 @@ public class PlayerItem : PlayerBase {
 			if( _ItemL != null && _ItemL.IsBreak ) {
 				Debug.Log("左アイテム消費");
 				_ItemL = null;
+				CSoundManager.Instance.PlaySE( AUDIO_LIST.BREAK );
 			}
 		}
 		if( _ItemRFlag ) {
@@ -142,6 +143,7 @@ public class PlayerItem : PlayerBase {
 			if( _ItemR != null && _ItemR.IsBreak ) {
 				Debug.Log("アイテム消費");
 				_ItemR = null;
+				CSoundManager.Instance.PlaySE( AUDIO_LIST.BREAK );
 			}
 		}
 	}
@@ -187,7 +189,6 @@ public class PlayerItem : PlayerBase {
 			//Status._HitPoint += _ItemR.EatItem();
 			Status.State = PlayerStatus.STATE.EAT;
 			_EatRFlag = true;
-
 			//_ItemR = null;
 		}
 	}
