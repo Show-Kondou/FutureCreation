@@ -145,6 +145,8 @@ public class Shoot : Item{
         isAction = false;
 		//  使用可能回数減らす
 		SubBreakHP(1);
+		if (breakHp <= 0)
+			gameObject.SetActive(false);
 	}
 
     #endregion Method
