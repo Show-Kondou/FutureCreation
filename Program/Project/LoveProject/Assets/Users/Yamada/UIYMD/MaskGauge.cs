@@ -44,7 +44,7 @@ public class MaskGauge : MonoBehaviour {
 		uvRect = rawImage.uvRect;
 
 		//	UV操作 Y
-		uvRect.y = hp * 0.01f;
+		uvRect.y = 1 - (hp * 0.01f);
 
 		//	値を反映
 		rawImage.uvRect = uvRect;
