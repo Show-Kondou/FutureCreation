@@ -154,7 +154,11 @@ public class PlayerJump : PlayerBase {
 		// 接地
 		_State = State.STANDING;
 
-		Status.SetState = PlayerStatus.STATE.STAND;
+		if (Status.State == PlayerStatus.STATE.ATTACK) {
+			Status.State = PlayerStatus.STATE.STAND;
+		} else {
+			Status.SetState = PlayerStatus.STATE.STAND;
+		}
 		Status.LowerState = PlayerStatus.STATE.STAND;
 
 		_ActionF = Stand;

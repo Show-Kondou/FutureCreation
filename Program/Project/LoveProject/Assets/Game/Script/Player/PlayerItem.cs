@@ -5,9 +5,6 @@
  *	
  *	▼ Author	Show Kondou
 */
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -21,11 +18,15 @@ public class PlayerItem : PlayerBase {
 	// 各アイテムのキャッシュ
 	private Item    _ItemL;
 	private Item    _ItemR;
-	private bool    _ItemLFlag = false;
-	private bool    _ItemRFlag = false;
+	private bool _ItemLFlag = false;
+	private bool _ItemRFlag = false;
+	private bool _EatLFlag = false;
+	private bool _EatRFlag = false;
 	[SerializeField]
 	private Transform _HandTrans;
 	private PlayerAnimation _Anime;
+
+	// private int _HandItem = 0; // 0…なし　1…左　2…右
 	#endregion Member
 
 
@@ -77,34 +78,38 @@ public class PlayerItem : PlayerBase {
 		ActionItem();
 		EatItem();
 		// ItemBreak();
-		
 	}
 
 	/// <summary>
 	/// アイテム発動
 	/// </summary>
 	private void ActionItem() {
-		// 左アイテムアクション
-		if( InputGame.GetPlayerItemL( Status._PlayerID ) ) {
-			// 所持しているか
-			if( _ItemL == null ) return;
-			// 右のアイテムが使用中か
-			if( _ItemRFlag ) return;
-			// アイテムスタート
-			_Anime.ActionNumber = _ItemL.ActionStart();
-			Status.State = PlayerStatus.STATE.ATTACK;
-			_ItemLFlag = true;
-		}
-		// 右アイテムアクション
-		else if ( InputGame.GetPlayerItemR( Status._PlayerID ) ) {
-			// 所持しているか
-			if( _ItemR == null ) return;
-			// 左のアイテムが使用中か
-			if( _ItemLFlag ) return;
-			_Anime.ActionNumber = _ItemR.ActionStart();
-			Status.State = PlayerStatus.STATE.ATTACK;
-			_ItemRFlag = true;
-
+		if (Status.State != PlayerStatus.STATE.EAT) {
+			// 左アイテムアクション
+			if (InputGame.GetPlayerItemL( Status._PlayerID )) {
+				// 所持しているか
+				if (_ItemL == null)
+					return;
+				// 右のアイテムが使用中か
+				if (_ItemRFlag)
+					return;
+				// アイテムスタート
+				_Anime.ActionNumber = _ItemL.ActionStart();
+				Status.State = PlayerStatus.STATE.ATTACK;
+				_ItemLFlag = true;
+			}
+			// 右アイテムアクション
+			else if (InputGame.GetPlayerItemR( Status._PlayerID )) {
+				// 所持しているか
+				if (_ItemR == null)
+					return;
+				// 左のアイテムが使用中か
+				if (_ItemLFlag)
+					return;
+				_Anime.ActionNumber = _ItemR.ActionStart();
+				Status.State = PlayerStatus.STATE.ATTACK;
+				_ItemRFlag = true;
+			}
 		}
 
 
@@ -125,7 +130,6 @@ public class PlayerItem : PlayerBase {
 	public void EndAction() {
 		if( _ItemLFlag ) {
 			_ItemL.ActionEnd();
-			Debug.Log( "ItemL終了" );
 			_ItemLFlag = false;
 			if( _ItemL != null && _ItemL.IsBreak ) {
 				Debug.Log("左アイテム消費");
@@ -134,12 +138,21 @@ public class PlayerItem : PlayerBase {
 		}
 		if( _ItemRFlag ) {
 			_ItemR.ActionEnd();
-			Debug.Log( "ItemR終了" );
 			_ItemRFlag = false;
 			if( _ItemR != null && _ItemR.IsBreak ) {
 				Debug.Log("アイテム消費");
 				_ItemR = null;
 			}
+		}
+	}
+
+	public void EndEat(){
+		if( _EatLFlag == true ) {
+			Status._HitPoint += _ItemL.EatItem();
+			_ItemL = null;
+		} else if( _EatRFlag == true ) {
+			Status._HitPoint += _ItemR.EatItem();
+			_ItemR = null;
 		}
 	}
 	/// <summary>
@@ -161,19 +174,27 @@ public class PlayerItem : PlayerBase {
 		// 左アイテム食べる
 		if ( InputGame.GetPlayerEatL( Status._PlayerID ) ) {
 			if ( _ItemL == null ) return;
-			if( _ItemLFlag )
-			Status._HitPoint += _ItemL.EatItem();
+			if (_ItemLFlag == true) return;
+			// Status._HitPoint += _ItemL.EatItem();
 			Status.State = PlayerStatus.STATE.EAT;
-			_ItemL = null;
+			_EatLFlag = true;
+			// _ItemL = null;
 		}
 		// 右アイテム食べる
 		else if ( InputGame.GetPlayerEatR( Status._PlayerID ) ) {
 			if ( _ItemR == null ) return;
-			Status._HitPoint += _ItemR.EatItem();
+			if (_ItemRFlag == true) return;
+			//Status._HitPoint += _ItemR.EatItem();
 			Status.State = PlayerStatus.STATE.EAT;
-			_ItemR = null;
+			_EatRFlag = true;
+
+			//_ItemR = null;
 		}
 	}
+
+	
+
+
 	#endregion Method
 
 
@@ -197,8 +218,7 @@ public class PlayerItem : PlayerBase {
 		// 先に左取得
 		if( _ItemL == null ) {
 			// アイテムが使用状態判定
-			if( !item.Chatch( Status._PlayerID ) )
-				return;
+			if( !item.Chatch( Status._PlayerID ) ) return;
 			_ItemL = item;
 			_ItemL.HoldHand( _HandTrans );
 			return;
@@ -206,8 +226,7 @@ public class PlayerItem : PlayerBase {
 		// 右取得
 		if( _ItemR == null ) {
 			// アイテムが使用状態判定
-			if( !item.Chatch( Status._PlayerID ) )
-				return;
+			if( !item.Chatch( Status._PlayerID ) ) return;
 			_ItemR = item;
 			_ItemR.HoldHand( _HandTrans );
 			return;
