@@ -55,7 +55,7 @@ public class ItemsUI : MonoBehaviour {
 		itemImage.color = new Color(1,1,1,1);
 		//itemImage.sprite = itemIcon[(int)Mathf.Abs(((GameTimer.Instance.TimeLimit % 10) - 5))];
 		
-		if((int)item_type >= 7){
+		if((int)item_type >= 6){
 			LoseItemUI();
 			return;
 		}
@@ -70,8 +70,8 @@ public class ItemsUI : MonoBehaviour {
 	public void LoseItemUI(){
 		if(itemImage == null) 
 			itemImage = transform.Find("ItemIcon").gameObject.GetComponent<Image>();
-			
-		itemImage.color = new Color(1,1,1,0);
+
+		itemImage.sprite = itemIcon[6];
 	}
 
 
