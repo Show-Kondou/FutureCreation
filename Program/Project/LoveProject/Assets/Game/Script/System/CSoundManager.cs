@@ -39,7 +39,6 @@ public class CSoundManager : MonoBehaviour {
 				LoadSound();
 				CreateChannel();
 				DontDestroyOnLoad( m_GameObj );
-				Debug.Log("LoadEnd");
 			}
 			return m_Instance;
 		}
@@ -103,6 +102,9 @@ public class CSoundManager : MonoBehaviour {
 			var channel = obj.AddComponent<AudioSource>();
 			m_SEChannel.Add( channel );
 		}
+
+		m_BGMChannel[0].volume = 0.1F;
+
 	}
 
 

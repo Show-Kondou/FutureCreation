@@ -125,6 +125,8 @@ public class PlayerRoll : PlayerBase {
 		// ダメージ
 		Debug.Log( Status._PlayerID + "にヒット！\nHP:" + Status._HitPoint + "=>" + (Status._HitPoint - item.AttackPoint) );
 		Status._HitPoint -= item.AttackPoint;
+
+		CSoundManager.Instance.PlaySE( AUDIO_LIST.DAMAGE );
 	}
 
 	#endregion MonoBehaviour Event
