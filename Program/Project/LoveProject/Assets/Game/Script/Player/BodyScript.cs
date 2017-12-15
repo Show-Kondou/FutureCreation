@@ -74,7 +74,9 @@ public class BodyScript : StateMachineBehaviour {
 		}
 
 		if (stateInfo.IsName( "Eat" )) {
+			_Item.EndEat();	
 			_Status.SetState = PlayerStatus.STATE.STAND;
+
 		}
 
 	}
