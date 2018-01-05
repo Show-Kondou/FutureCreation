@@ -139,7 +139,7 @@ public class PlayerJump : PlayerBase {
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	private void Start() {
+	public override void Init() {
 		_ActionF = Stand;
 		_Rigid = GetComponent<Rigidbody>();
 	}
@@ -150,7 +150,10 @@ public class PlayerJump : PlayerBase {
 	/// </summary>
 	/// <param name="coll">当たったオブジェクト</param>
 	private void OnTriggerEnter( Collider coll ) {
-		if( coll.tag != "Stage" ) return;
+		if (GameScene.GameState != 1)
+			return;
+
+		if ( coll.tag != "Stage" ) return;
 		// 接地
 		_State = State.STANDING;
 
@@ -169,8 +172,10 @@ public class PlayerJump : PlayerBase {
 	/// </summary>
 	/// <param name="coll">当たったオブジェクト</param>
 	private void OnTriggerExit( Collider coll ) {
+		if (GameScene.GameState != 1)
+			return;
 		// 地面から離れた？
-		if( coll.tag != "Stage" ) return;
+		if ( coll.tag != "Stage" ) return;
 		// ジャンプ？落下？
 		if( _State == State.JUMPING ) return;
 

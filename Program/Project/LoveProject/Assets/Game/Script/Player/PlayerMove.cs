@@ -34,15 +34,15 @@ public class PlayerMove : PlayerBase {
 	/// <summary>
 	/// 初期化イベント
 	/// </summary>
-	private void Start() {
-		Init();
-	}
+	//private void Start() {
+	//	Init();
+	//}
 
 
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	void Init() {
+	public override void Init() {
 		_Rigid = GetComponent<Rigidbody>();
 		if( !_Rigid ) {
 			Debug.LogError("リジッドボディ取得失敗。");

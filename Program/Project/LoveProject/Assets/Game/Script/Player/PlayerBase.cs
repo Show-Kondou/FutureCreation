@@ -128,18 +128,26 @@ abstract public class PlayerBase : MonoBehaviour {
 	#region Method
 	private void Update() {
 		_deltaTime = Time.deltaTime;
+		if (GameScene.GameState != 1) return;
+		PlayerMasterExecute();
 		Execute();
 	}
 	private void LateUpdate() {
 		_deltaTime = Time.deltaTime;
+		if (GameScene.GameState != 1)
+			return;
 		LateExecute();
 	}
 	private void FixedUpdate() {
+		if (GameScene.GameState != 1)
+			return;
 		FixedExecute();
 	}
 	virtual protected void FixedExecute() { }
+	virtual protected void PlayerMasterExecute() { }
 	abstract protected void Execute();
 	virtual protected void LateExecute() { }
+	abstract public void Init();
 	#endregion Method
 }
 

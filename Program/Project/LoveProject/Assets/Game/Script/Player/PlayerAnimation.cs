@@ -49,7 +49,7 @@ public class PlayerAnimation : PlayerBase {
 
 	// メソッド
 	#region Method
-	private void Init() {
+	public override void Init() {
 		// 上半身と下半身を取得
 		foreach( Transform obj in transform ) {
 			if( obj.name == "Body" ) {
@@ -73,9 +73,9 @@ public class PlayerAnimation : PlayerBase {
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	private void Start() {
-		Init();
-	}
+	//private void Start() {
+	//	// Init();
+	//}
 
 	public void StartAnimation( int state ) {
 		_UpperAnimator.SetInteger( "State", state );

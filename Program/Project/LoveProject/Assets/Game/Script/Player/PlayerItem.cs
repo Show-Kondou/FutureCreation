@@ -197,7 +197,7 @@ public class PlayerItem : PlayerBase {
 		}
 	}
 
-	
+
 
 
 	#endregion Method
@@ -207,7 +207,7 @@ public class PlayerItem : PlayerBase {
 	// イベント
 	#region MonoBehaviour Event
 
-	private void Start() {
+	public override void Init() {
 		_Anime = GetComponent<PlayerAnimation>();
 	}
 

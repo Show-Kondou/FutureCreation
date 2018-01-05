@@ -36,7 +36,7 @@ public class PlayerRoll : PlayerBase {
 
 	// メソッド
 	#region Method
-	private void Init() {
+	public override void Init() {
 		// リジッドボディ取得
 		_Rigit = GetComponent<Rigidbody>();
 		// 身体（方向用）取得
@@ -82,9 +82,9 @@ public class PlayerRoll : PlayerBase {
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	private void Start() {
-		Init();
-	}
+	//private void Start() {
+	//	Init();
+	//}
 
 	// /// <summary>
 	// /// 更新
@@ -112,15 +112,15 @@ public class PlayerRoll : PlayerBase {
 	/// 当たり判定
 	/// </summary>
 	/// <param name="coll">当たったオブジェクト</param>
-	private void OnCollisionEnter( Collision coll ) {
-		if( coll.gameObject.tag != "Item" ) return;
-		var item = coll.gameObject.GetComponent<Item>();
-		Debug.Log( Status._PlayerID + "ヒット？" );
-		if( Status._PlayerID == item.PlayerID ) return;
-		// ダメージ
-		Status._HitPoint -= item.AttackPoint;
-		Debug.Log(Status._PlayerID + "にヒット");
-	}
+	//private void OnCollisionEnter( Collision coll ) {
+	//	if( coll.gameObject.tag != "Item" ) return;
+	//	var item = coll.gameObject.GetComponent<Item>();
+	//	Debug.Log( Status._PlayerID + "ヒット？" );
+	//	if( Status._PlayerID == item.PlayerID ) return;
+	//	// ダメージ
+	//	Status._HitPoint -= item.AttackPoint;
+	//	Debug.Log(Status._PlayerID + "にヒット");
+	//}
 
 	// /// <summary>
 	// /// トリガー当たり判定
@@ -136,7 +136,7 @@ public class PlayerRoll : PlayerBase {
 			return;
 		// ダメージ
 		Debug.Log( Status._PlayerID + "にヒット！\nHP:" + Status._HitPoint + "=>" + (Status._HitPoint - item.AttackPoint) );
-		Status._HitPoint -= item.AttackPoint;
+		AddHitPoint ( -item.AttackPoint);
 
 		CSoundManager.Instance.PlaySE( AUDIO_LIST.DAMAGE );
 	}
