@@ -54,48 +54,48 @@ public class Shoot : Item{
     /// <summary>
     /// 標準更新
     /// </sammary>
-	void Update(){
+	// void Update(){
 
-        if(isActioning){
-            Action();
-        }else{
+    //     if(isActioning){
+    //         Action();
+    //     }else{
 
-        }
+    //     }
 
-    }
+    // }
     
 
     /// <summary>
     /// 後更新
     /// </sammary>
-    void LateUpdate(){
+    // void LateUpdate(){
         
-        //  レーザーサイト消す
-        forceControll.DestLaser();
-        //  表示
-        //IsActive = false;
+    //     //  レーザーサイト消す
+    //     forceControll.DestLaser();
+    //     //  表示
+    //     //IsActive = false;
 
-        //  ボタン判定
-        if(isAction == false && isPrevAction == true){
-        //  離したフレーム
+    //     //  ボタン判定
+    //     if(isAction == false && isPrevAction == true){
+    //     //  離したフレーム
 
-            //  発射
-            forceControll.ShootAction(target, bulletType, playerID);
+    //         //  発射
+    //         forceControll.ShootAction(target, bulletType, playerID);
 
-        }else if(isAction == true && isPrevAction == true){
-        //  押しっぱなし
-            //  表示
-            IsActive = true;
-            //  レーザーサイト描画
-            forceControll.DrawLaser(target);
-        }
+    //     }else if(isAction == true && isPrevAction == true){
+    //     //  押しっぱなし
+    //         //  表示
+    //         IsActive = true;
+    //         //  レーザーサイト描画
+    //         forceControll.DrawLaser(target);
+    //     }
         
-        //  前フレームのフラグを保存
-        isPrevAction = isAction;
+    //     //  前フレームのフラグを保存
+    //     isPrevAction = isAction;
 
-        //  常にfalseを代入
-        isAction = false;
-    }
+    //     //  常にfalseを代入
+    //     isAction = false;
+    // }
 
 
     /// <summary>
@@ -119,34 +119,46 @@ public class Shoot : Item{
 
     
 
-	//  プレイヤーのアクション開始時に呼ばれる
+	//  プレイヤーのアクション開始時から呼ばれる
 	public override int ActionStart(){
-		//	表示する
+		
+        //	表示する
 		IsActive = true;
         
-		//  アクション始まるよ
-        isActioning = true;
-        
-
         //  投げの対象地点をカメラから取得
         var _camera = CameraManager.Instance.GetPlayerCamera(playerID).transform;
         this.target = transform.position + (shootDistance * new Vector3(_camera.forward.x, 0, _camera.forward.z));
+
+        //  レーザーサイト描画
+        forceControll.DrawLaser(target);
 
         //  アニメーション番号返却
         return (int)ItemManager.ItemAnimationNumber.Shoot;
 	}
 
 
-	//  プレイヤーのアクション開始時に呼ばれる
+	//  プレイヤーのアクション終了時に呼ばれる
 	public override void ActionEnd(){
-		//  アクション終わるよ
-        isActioning = false;
-        //  ボタン押してないよ
-        isAction = false;
+        
+        //  レーザーサイト消す
+        forceControll.DestLaser();
+
+        //  投げの対象地点をカメラから取得
+        var _camera = CameraManager.Instance.GetPlayerCamera(playerID).transform;
+        this.target = transform.position + (shootDistance * new Vector3(_camera.forward.x, 0, _camera.forward.z));
+
+        //  発射
+        forceControll.ShootAction(target, bulletType, playerID);
+
 		//  使用可能回数減らす
 		SubBreakHP(1);
-		if (breakHp <= 0)
+		//  使い切ったら、非アクティブ
+        if (breakHp <= 0)
 			gameObject.SetActive(false);
+        
+		//	メッシュとコライダーを非表示にする
+		IsActive = false;
+
 	}
 
     #endregion Method

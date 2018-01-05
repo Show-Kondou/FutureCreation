@@ -8,6 +8,7 @@ using UnityEngine;
 /// </sammary>
 public class Bullet : Item {
 
+	[SerializeField]
 	private float saveCollRadius;
 
     #region Method
@@ -16,9 +17,14 @@ public class Bullet : Item {
 	/// 初期化
 	/// </sammary>
     void Start(){
-		//	メッシュ・コライダーの取得
-        mesh = GetComponent<MeshRenderer>();
-        coll = GetComponent<SphereCollider>();
+		// //	メッシュ・コライダーの取得
+        // mesh = GetComponent<MeshRenderer>();
+        // coll = GetComponent<SphereCollider>();
+
+		// //OnEnableでやってみ！！
+
+		// // gantan
+		// Debug.Log("Bullet Start");
     }
 
 	
@@ -114,8 +120,6 @@ public class Bullet : Item {
 	/// </sammary>
 	IEnumerator BombCoroutine(){
 
-		//saveCollRadius = GetComponent<SphereCollider>().radius;
-
 		var sc = GetComponent<SphereCollider>();
 		while(sc.radius < 2){
 			sc.radius += Time.deltaTime;
@@ -126,19 +130,26 @@ public class Bullet : Item {
 	}
 
 
-	private void OnDisable(){
-		//GetComponent<SphereCollider>().radius = saveCollRadius;
-	}
-
-
 
 	/// <summary>
 	/// 表示された時の処理
 	/// </sammary>
 	void OnEnable(){
+
+		//	メッシュ・コライダーの取得
+        mesh = GetComponent<MeshRenderer>();
+        coll = GetComponent<SphereCollider>();
+
+		//	再利用時の初期化たち
 		var rb = GetComponent<Rigidbody>();
 		rb.velocity = Vector3.zero;
 		rb.useGravity = true;
+		GetComponent<SphereCollider>().radius = 0;
+
+		IsActive = true;
+		//	拾われないために
+		this.isPicked = true;
+
 	}
 
     #endregion Method
