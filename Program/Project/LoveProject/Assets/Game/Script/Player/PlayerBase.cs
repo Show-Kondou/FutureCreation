@@ -112,24 +112,42 @@ abstract public class PlayerBase : MonoBehaviour {
 		get { return _timeScale; }
 		set { _timeScale = value; }
 	}
+
+	public void AddHitPoint(int value) {
+		Status._HitPoint += value;
+		if (Status._HitPoint > 100) {
+			Status._HitPoint = 100;
+		}
+		if (Status._HitPoint < 0) {
+			Status._HitPoint = 0;
+		}
+	}
 	#endregion Accessor
 
 	// メソッド
 	#region Method
 	private void Update() {
 		_deltaTime = Time.deltaTime;
+		if (GameScene.GameState != 1) return;
+		PlayerMasterExecute();
 		Execute();
 	}
 	private void LateUpdate() {
 		_deltaTime = Time.deltaTime;
+		if (GameScene.GameState != 1)
+			return;
 		LateExecute();
 	}
 	private void FixedUpdate() {
+		if (GameScene.GameState != 1)
+			return;
 		FixedExecute();
 	}
 	virtual protected void FixedExecute() { }
+	virtual protected void PlayerMasterExecute() { }
 	abstract protected void Execute();
 	virtual protected void LateExecute() { }
+	abstract public void Init();
 	#endregion Method
 }
 

@@ -32,6 +32,9 @@ public class PlayerBody : PlayerBase {
 	private Transform		_UpperBody;
 	// 下半身
 	private Transform		_LowerBody;
+
+	public  Transform		_UpperPos = null;
+	public  Transform		_LowerPos = null;
 	#endregion Member
 
 	// アクセサ
@@ -40,7 +43,7 @@ public class PlayerBody : PlayerBase {
 
 	// メソッド
 	#region Method
-	private void Init() {
+	public override void Init() {
 		// 上半身と下半身を取得
 		foreach( Transform obj in transform ) {
 			if( obj.name == "Body" ) {
@@ -80,6 +83,10 @@ public class PlayerBody : PlayerBase {
 			_UpperBody.forward += (_LowerBody.forward - _UpperBody.forward) * 0.2F;
 		}
 
+		//var pos = _LowerPos.position;
+		//pos.y = _UpperPos.position.y;
+		//_UpperPos.position = pos;
+		_UpperPos = _LowerPos;
 	}
 	protected void LowerBodyDirection() {
 
@@ -120,9 +127,9 @@ public class PlayerBody : PlayerBase {
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	private void Start() {
-		Init();
-	}
+	//private void Start() {
+	//	Init();
+	//}
 
 	// /// <summary>
 	// /// 更新

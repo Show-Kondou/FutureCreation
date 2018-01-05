@@ -23,9 +23,9 @@ public class CameraPlayer : ObjectTime {
 	private uint            _PlayerID;
 	//[Header("プレイヤーとカメラの距離"),SerializeField]
 	// private Vector3			DefaultPos		= new Vector3( 0.0F, 5.0F, -10.0F);
-	private Vector3			DefaultPos      = new Vector3( 0.0F, 2.5F, -5.0F);
+	private Vector3			DefaultPos      = new Vector3( 0.0F, 3.5F, -5.0F);
 	//[Header("初期のカメラ角度"),SerializeField]
-	private Vector3			LookPos			= new Vector3( 0.0F, 3.0F, 5.0F );
+	private Vector3			LookPos			= new Vector3( 0.0F, 5.0F, 50.0F );
 	// 回転力
 	private float			_TurnForce;
 
@@ -71,7 +71,8 @@ public class CameraPlayer : ObjectTime {
 		// ステータス初期化
 		_PlayerTrans = trans;
 		transform.position = _PlayerTrans.position + DefaultPos;        // 移動
-		transform.LookAt( LookPos );
+		// transform.LookAt( _PlayerTrans.position + LookPos );
+		transform.rotation = Quaternion.Euler( 10,0,0 );
 
 		// 注視点を作成
 		var obj					= new GameObject( "CameraCenter" );     // 生成
@@ -86,6 +87,8 @@ public class CameraPlayer : ObjectTime {
 	/// 更新（固定フレーム）
 	/// </summary>
 	protected override void FixedExecute() {
+		if (GameScene.GameState != 1)
+			return;
 		Move();	// PlayerがFixedで動くため
 	}
 
@@ -93,6 +96,8 @@ public class CameraPlayer : ObjectTime {
 	/// 更新
 	/// </summary>
 	protected override void Execute() {
+		if (GameScene.GameState != 1)
+			return;
 		Turn();
 		CameraMove();
 	}

@@ -24,6 +24,7 @@ public class Player : PlayerBase {
 	private ItemManager.ItemType _ItemR;
 	//コンポーネントの取得フラグ
 	private bool			_IsGetComponent = false;
+	private bool _IsGameStart = false;
 	
 	// --- コンポーネント ---
 	private PlayerMove      _Move		= null;
@@ -79,7 +80,11 @@ public class Player : PlayerBase {
 	/// <summary>
 	/// 初期化関数
 	/// </summary>
-	private void Awake() {
+	//private void GameStart() {
+	//	Init();
+	//}
+
+	public override void Init() {
 		InitComponent();
 		InitStatus();
 	}
@@ -87,26 +92,26 @@ public class Player : PlayerBase {
 	/// <summary>
 	/// インスペクター変更時イベント
 	/// </summary>
-	private void OnValidate() {
-		Status = _InitStatus;
+	//private void OnValidate() {
+	//	Status = _InitStatus;
 
-		//if ( !_IsGetComponent ) return;
+	//	//if ( !_IsGetComponent ) return;
 
-		//// --- ステータス反映
-		//// 移動
-		//_Move.Status = Status;
-		//// ジャンプ
-		//_Jump.Status = Status;
-		////_Jump.JumpForce = _JumpForce;
-		//// カメラ
-		//_Camera.TurnForce = Status._TurnForce;
-		//// アイテム
-		//_Item.Status = Status;
-		//// 体の方向
-		//_Body.Status = Status;
-		//// アニメーション
-		//_Animetion.Status = Status;
-	}
+	//	//// --- ステータス反映
+	//	//// 移動
+	//	//_Move.Status = Status;
+	//	//// ジャンプ
+	//	//_Jump.Status = Status;
+	//	////_Jump.JumpForce = _JumpForce;
+	//	//// カメラ
+	//	//_Camera.TurnForce = Status._TurnForce;
+	//	//// アイテム
+	//	//_Item.Status = Status;
+	//	//// 体の方向
+	//	//_Body.Status = Status;
+	//	//// アニメーション
+	//	//_Animetion.Status = Status;
+	//}
 
 
 	/// <summary>
@@ -136,20 +141,26 @@ public class Player : PlayerBase {
 		//// --- ステータス反映
 		// 移動
 		_Move.Status = Status;
+		_Move.Init();
 		// ジャンプ
 		_Jump.Status = Status;
+		_Jump.Init();
 		// カメラ
 		_Camera.TurnForce = Status._TurnForce;
 		_Camera.PlayerID = Status._PlayerID;
 		_Camera.Init( _Move.transform );
 		// アイテム
 		_Item.Status = Status;
+		_Item.Init();
 		// 回避＆ダメージ
 		_Roll.Status = Status;
+		_Roll.Init();
 		// 体の方向
 		_Body.Status = Status;
+		_Body.Init();
 		// アニメーション
 		_Animetion.Status = Status;
+		_Animetion.Init();
 	}
 
 
@@ -171,8 +182,24 @@ public class Player : PlayerBase {
 		return default(T);
 	}
 
+	//protected override void PlayerMasterExecute() {
+	//	if (GameScene.GameState != 1) return;
+	//	if( _IsGameStart == false ){
+	//		GameStart();
+	//		_IsGameStart = true;
+	//	}
+
+	//	_ItemL = _Item.ItemTypeL;
+	//	_ItemR = _Item.ItemTypeR;
+	//}
+
 	protected override void Execute() {
 		_ItemL = _Item.ItemTypeL;
 		_ItemR = _Item.ItemTypeR;
+	}
+
+
+	public void GameStart(){
+		Init();
 	}
 }

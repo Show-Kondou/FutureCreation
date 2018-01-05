@@ -152,9 +152,13 @@ public class PlayerItem : PlayerBase {
 		if( _EatLFlag == true ) {
 			Status._HitPoint += _ItemL.EatItem();
 			_ItemL = null;
+			_EatLFlag = false;
+			return;
 		} else if( _EatRFlag == true ) {
 			Status._HitPoint += _ItemR.EatItem();
 			_ItemR = null;
+			_EatRFlag = false;
+			return;
 		}
 	}
 	/// <summary>
@@ -193,7 +197,7 @@ public class PlayerItem : PlayerBase {
 		}
 	}
 
-	
+
 
 
 	#endregion Method
@@ -203,7 +207,7 @@ public class PlayerItem : PlayerBase {
 	// イベント
 	#region MonoBehaviour Event
 
-	private void Start() {
+	public override void Init() {
 		_Anime = GetComponent<PlayerAnimation>();
 	}
 
