@@ -26,6 +26,8 @@ public class PlayerRoll : PlayerBase {
 
 	private Transform   _Body;
 	private Rigidbody   _Rigit;
+
+	private float _SumTime = 0.0F;
 	#endregion Member
 
 	// アクセサ
@@ -52,7 +54,17 @@ public class PlayerRoll : PlayerBase {
 	/// </summary>
 	protected override void Execute() {
 		Roll();
+		Hunger();
 	}
+
+	private void Hunger() {
+		_SumTime += DeltaTime;
+		if (_SumTime < 2.0F)
+			return;
+		AddHitPoint(-1);
+		_SumTime = 0.0F;
+	}
+		
 
 
 	private void Roll() {

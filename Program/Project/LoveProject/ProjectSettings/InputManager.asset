@@ -163,7 +163,7 @@ InputManager:
     snap: 1
     invert: 0
     type: 2
-    axis: 3
+    axis: 2
     joyNum: 2
   - serializedVersion: 3
     m_Name: Camera3_X
@@ -227,7 +227,7 @@ InputManager:
     snap: 1
     invert: 1
     type: 2
-    axis: 2
+    axis: 3
     joyNum: 2
   - serializedVersion: 3
     m_Name: Camera3_Y

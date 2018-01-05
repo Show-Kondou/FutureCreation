@@ -112,6 +112,16 @@ abstract public class PlayerBase : MonoBehaviour {
 		get { return _timeScale; }
 		set { _timeScale = value; }
 	}
+
+	public void AddHitPoint(int value) {
+		Status._HitPoint += value;
+		if (Status._HitPoint > 100) {
+			Status._HitPoint = 100;
+		}
+		if (Status._HitPoint < 0) {
+			Status._HitPoint = 0;
+		}
+	}
 	#endregion Accessor
 
 	// メソッド
