@@ -27,6 +27,7 @@ public abstract class Item : MonoBehaviour
 	//	状態のフラグ管理群
 	[Header("拾われた"), SerializeField]
 	protected bool isPicked = false;      // 拾われた
+	
 	protected bool isUsing = false;       // 使っているか(武器・防具として使用しているか)
 	protected bool isActioning = false;	//	アクション呼ぶかどうか
 

@@ -126,8 +126,9 @@ public class ForceControll : MonoBehaviour {
 		if(shootObject == null) {Debug.Log("shootObjectがない");return;}
 		if(shootPoint == null) {Debug.Log("shootPointがない");return;}
 
-		//var _obj = Instantiate<GameObject>(shootObject, shootPoint.position, Quaternion.identity);
+		//var _obj = (GameObject)Instantiate<GameObject>(shootObject, shootPoint.position, Quaternion.identity);
 		var _obj = ItemManager.Instance.Pop(type, shootPoint.position);
+		
 		var obj_item = _obj.GetComponent<Item>(); //	生成したプレイヤーIDを設定
 		obj_item.PlayerID = player_id;
 
