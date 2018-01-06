@@ -6,7 +6,10 @@ public class ParticleManager : MonoBehaviour {
 
 	public enum ParticleName
 	{
-		Hit = 0,
+		Hit = 0,	//	カスが飛び散る
+		Bomb,	//	投げアイテムの爆発
+		Heal,	//	回復
+		Smoke,	//	足元の煙
 		Max
 	};
 
