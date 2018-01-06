@@ -77,7 +77,8 @@ public class PlayerBody : PlayerBase {
 			Vector3 cameraForward = new Vector3( Status._CameraTrans.forward.x,
 												 0.0F,
 												 Status._CameraTrans.forward.z );
-			_UpperBody.forward += (cameraForward - _UpperBody.forward) * 0.2F;
+			_UpperBody.forward += (cameraForward - _UpperBody.forward) * 0.8F;
+			// _LowerBody.forward += (cameraForward - _LowerBody.forward) * 0.8F;
 		}
 		else {
 			_UpperBody.forward += (_LowerBody.forward - _UpperBody.forward) * 0.2F;
@@ -86,7 +87,7 @@ public class PlayerBody : PlayerBase {
 		//var pos = _LowerPos.position;
 		//pos.y = _UpperPos.position.y;
 		//_UpperPos.position = pos;
-		_UpperPos = _LowerPos;
+		//_UpperPos = _LowerPos;
 	}
 	protected void LowerBodyDirection() {
 

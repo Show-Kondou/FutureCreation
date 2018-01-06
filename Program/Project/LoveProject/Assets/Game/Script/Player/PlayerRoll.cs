@@ -70,8 +70,8 @@ public class PlayerRoll : PlayerBase {
 	private void Roll() {
 		if( !InputGame.GetPlayerRoll( Status._PlayerID ) )
 			return;
-		Debug.Log( _Body.forward * _RollForce );
-
+		Status.SetState = PlayerStatus.STATE.ROLL;
+		Status.LowerState = PlayerStatus.STATE.ROLL;
 		_Rigit.AddForce( _Body.forward * _RollForce );
 
 	}

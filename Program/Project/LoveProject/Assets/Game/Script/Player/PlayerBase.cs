@@ -26,7 +26,7 @@ public class PlayerStatus {
 		MAX,
 	};
 
-	private int[] StatePriority = new int[(int)STATE.MAX]{0,0,1,1,1,1,2,2 };
+	private int[] StatePriority = new int[(int)STATE.MAX]{0,0,1,2,3,4,4,0 };
 
 	[Header("プレイヤーID"), SerializeField]
 	public uint            _PlayerID;
@@ -121,6 +121,7 @@ abstract public class PlayerBase : MonoBehaviour {
 		if (Status._HitPoint < 0) {
 			Status._HitPoint = 0;
 		}
+		Debug.Log(value);
 	}
 	#endregion Accessor
 
