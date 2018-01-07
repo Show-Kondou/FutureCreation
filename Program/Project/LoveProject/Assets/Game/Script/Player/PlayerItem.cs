@@ -116,10 +116,15 @@ public class PlayerItem : PlayerBase {
 		// アイテム解除
 		if( InputGame.GetPlayerUpItemL(Status._PlayerID) ) {
 			if( !_ItemLFlag ) return;
+			if (_ItemL.Type == ItemManager.ItemType.DeliciousBar ||
+				_ItemL.Type == ItemManager.ItemType.Pocky) return;
 			Status.SetState = PlayerStatus.STATE.STAND;
 		}
 		if( InputGame.GetPlayerUpItemR( Status._PlayerID ) ) {
 			if( !_ItemRFlag ) return;
+			if (_ItemR.Type == ItemManager.ItemType.DeliciousBar ||
+				_ItemR.Type == ItemManager.ItemType.Pocky)
+				return;
 			Status.SetState = PlayerStatus.STATE.STAND;
 		}
 	}
@@ -131,7 +136,9 @@ public class PlayerItem : PlayerBase {
 		if( _ItemLFlag ) {
 			_ItemL.ActionEnd();
 			_ItemLFlag = false;
-			if( _ItemL != null && _ItemL.IsBreak ) {
+			Status.SetState = PlayerStatus.STATE.STAND;
+
+			if ( _ItemL != null && _ItemL.IsBreak ) {
 				Debug.Log("左アイテム消費");
 				_ItemL = null;
 				CSoundManager.Instance.PlaySE( AUDIO_LIST.BREAK );
@@ -140,7 +147,9 @@ public class PlayerItem : PlayerBase {
 		if( _ItemRFlag ) {
 			_ItemR.ActionEnd();
 			_ItemRFlag = false;
-			if( _ItemR != null && _ItemR.IsBreak ) {
+			Status.SetState = PlayerStatus.STATE.STAND;
+
+			if ( _ItemR != null && _ItemR.IsBreak ) {
 				Debug.Log("アイテム消費");
 				_ItemR = null;
 				CSoundManager.Instance.PlaySE( AUDIO_LIST.BREAK );
@@ -150,12 +159,13 @@ public class PlayerItem : PlayerBase {
 
 	public void EndEat(){
 		if( _EatLFlag == true ) {
-			Status._HitPoint += _ItemL.EatItem();
+			AddHitPoint( _ItemL.EatItem() );
+
 			_ItemL = null;
 			_EatLFlag = false;
 			return;
 		} else if( _EatRFlag == true ) {
-			Status._HitPoint += _ItemR.EatItem();
+			AddHitPoint( _ItemR.EatItem() );
 			_ItemR = null;
 			_EatRFlag = false;
 			return;

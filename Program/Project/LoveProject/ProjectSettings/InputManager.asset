@@ -521,7 +521,7 @@ InputManager:
     m_Name: Jump1
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: joystick 1 button 2
+    negativeButton: joystick 1 button 1
     positiveButton: space
     altNegativeButton: 
     altPositiveButton: 
@@ -537,7 +537,7 @@ InputManager:
     m_Name: Jump2
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: joystick 2 button 1
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
@@ -553,7 +553,7 @@ InputManager:
     m_Name: Jump3
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: joystick 3 button 1
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
@@ -569,7 +569,7 @@ InputManager:
     m_Name: Jump4
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: 
+    negativeButton: joystick 4 button 1
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
@@ -585,7 +585,7 @@ InputManager:
     m_Name: Roll1
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: joystick 1 button 0
+    negativeButton: joystick 1 button 2
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
@@ -601,7 +601,7 @@ InputManager:
     m_Name: Roll2
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: joystick 2 button 0
+    negativeButton: joystick 2 button 2
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
@@ -617,7 +617,7 @@ InputManager:
     m_Name: Roll3
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: joystick 3 button 0
+    negativeButton: joystick 3 button 2
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
@@ -633,7 +633,7 @@ InputManager:
     m_Name: Roll4
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: joystick 4 button 0
+    negativeButton: joystick 4 button 4
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 

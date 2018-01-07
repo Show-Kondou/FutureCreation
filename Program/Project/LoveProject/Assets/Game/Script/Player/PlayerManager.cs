@@ -29,6 +29,7 @@ public class PlayerManager : MonoBehaviour {
 
 	public void StartPlayer( uint num ){
 		_Player_1.GameStart();
+		_Player_2.GameStart();
 	}
 
 }
