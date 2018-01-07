@@ -158,14 +158,16 @@ public class PlayerItem : PlayerBase {
 	}
 
 	public void EndEat(){
-		if( _EatLFlag == true ) {
+		var pos = transform.position + new Vector3(0,1.5F,0);
+		if ( _EatLFlag == true ) {
 			AddHitPoint( _ItemL.EatItem() );
-
+			ParticleManager.Instance.PlayParticle(ParticleManager.ParticleName.Heal, pos );
 			_ItemL = null;
 			_EatLFlag = false;
 			return;
 		} else if( _EatRFlag == true ) {
 			AddHitPoint( _ItemR.EatItem() );
+			ParticleManager.Instance.PlayParticle( ParticleManager.ParticleName.Heal, pos );
 			_ItemR = null;
 			_EatRFlag = false;
 			return;
