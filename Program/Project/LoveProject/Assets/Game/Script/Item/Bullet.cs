@@ -66,6 +66,7 @@ public class Bullet : Item {
 		//	盾アイテム、またはプレイヤーのみ判定
 		var other_tag = other.gameObject.tag;
 
+
 		//	タグで分岐
 		if(other_tag == "Item"){//	アイテム
 
@@ -73,7 +74,9 @@ public class Bullet : Item {
 			var item = other.gameObject.GetComponent<Item>();
 
 			if(item.IsPicked == false) return;// 相手が、落ちているオブジェクトなら判定しない
-
+			
+			ParticleManager.Instance.PlayParticle(ParticleManager.ParticleName.Bomb, transform.position);
+	
 			//	Typeで分岐
 			switch(item.Type){
 				//	クッキー
@@ -93,10 +96,16 @@ public class Bullet : Item {
 			
 			//	拾ったプレイヤーと同じなので、判定しない
 			if(other_id == playerID) return;
-
+			
+			ParticleManager.Instance.PlayParticle(ParticleManager.ParticleName.Bomb, transform.position);
+	
 			//	自壊
 			Bomb();
 		}else if(other_tag == "Stage"){//	ステージ
+
+			var pos = transform.position;
+			ParticleManager.Instance.PlayParticle(ParticleManager.ParticleName.Bomb, new Vector3(pos.x, 0.3F, pos.z));
+
 			//	自壊
 			Bomb();
 		}
@@ -121,8 +130,8 @@ public class Bullet : Item {
 	IEnumerator BombCoroutine(){
 
 		var sc = GetComponent<SphereCollider>();
-		while(sc.radius < 2){
-			sc.radius += Time.deltaTime;
+		while(sc.radius < 4.0F){
+			sc.radius += Time.deltaTime * 2;
 			yield return null;
 		}
 
@@ -144,7 +153,7 @@ public class Bullet : Item {
 		var rb = GetComponent<Rigidbody>();
 		rb.velocity = Vector3.zero;
 		rb.useGravity = true;
-		GetComponent<SphereCollider>().radius = 0;
+		GetComponent<SphereCollider>().radius = 0.16F;
 
 		IsActive = true;
 		//	拾われないために

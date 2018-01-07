@@ -53,3 +53,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particlePrefab:
   - {fileID: 198237528838376326, guid: 30ac26a17f99fec4786d6a6d600c9860, type: 2}
+  - {fileID: 198407723265415068, guid: e0f0b56a850f9de4e86adabdd9dd1751, type: 2}
+  - {fileID: 19897378, guid: fe6acd16ed6a14fdc8e7b7de04e6862d, type: 2}
+  - {fileID: 19820156, guid: 259c32c26c1c248cf8664a61e1535a6f, type: 2}
