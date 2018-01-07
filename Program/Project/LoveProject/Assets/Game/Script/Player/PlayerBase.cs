@@ -121,7 +121,6 @@ abstract public class PlayerBase : MonoBehaviour {
 		if (Status._HitPoint < 0) {
 			Status._HitPoint = 0;
 		}
-		Debug.Log(value);
 	}
 	#endregion Accessor
 

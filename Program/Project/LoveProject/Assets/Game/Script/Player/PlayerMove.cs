@@ -82,6 +82,7 @@ public class PlayerMove : PlayerBase {
 		}else {
 			Status.State = PlayerStatus.STATE.RUN;
 			Status.LowerState = PlayerStatus.STATE.RUN;
+			ParticleManager.Instance.PlayParticle(ParticleManager.ParticleName.Smoke,transform.position );
 		}
 	}
 
