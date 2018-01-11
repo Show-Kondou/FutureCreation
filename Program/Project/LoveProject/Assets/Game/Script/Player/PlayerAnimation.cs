@@ -113,6 +113,20 @@ public class PlayerAnimation : PlayerBase {
 		//}
 	}
 
+	public void StartLose() {
+		if( Status._IsLose == true )
+			return;
+		_UpperAnimator.SetTrigger( "Lose" );
+		_LowerAnimator.SetTrigger( "Lose" );
+		Status._IsLose = true;
+	}
+
+	public void StopAnimation() {
+		_UpperAnimator.speed = 0.0F;
+		_LowerAnimator.speed = 0.0F;
+	}
+
+
 
 
 	// /// <summary>

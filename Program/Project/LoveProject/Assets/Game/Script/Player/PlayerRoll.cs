@@ -55,13 +55,19 @@ public class PlayerRoll : PlayerBase {
 	protected override void Execute() {
 		Roll();
 		Hunger();
+
+		//if( Status._HitPoint <= 0 ) {
+		//	Debug.Log("ASD");
+		//	Status.SetState = PlayerStatus.STATE.LOSS;
+		//	Status.LowerState = PlayerStatus.STATE.LOSS;
+		//}
 	}
 
 	private void Hunger() {
 		_SumTime += DeltaTime;
 		if (_SumTime < 2.0F)
 			return;
-		AddHitPoint(-1);
+		AddHitPoint(-50);
 		_SumTime = 0.0F;
 	}
 		
@@ -73,6 +79,12 @@ public class PlayerRoll : PlayerBase {
 		Status.SetState = PlayerStatus.STATE.ROLL;
 		Status.LowerState = PlayerStatus.STATE.ROLL;
 		_Rigit.AddForce( _Body.forward * _RollForce );
+
+	}
+
+
+
+	private void Death() {
 
 	}
 	#endregion Method
@@ -128,15 +140,18 @@ public class PlayerRoll : PlayerBase {
 	// /// <param name="coll">当たったオブジェクト</param>
 	// private void OnTriggerXXX( Collider coll ) { }
 	private void OnTriggerEnter( Collider coll ) {
-		if( coll.gameObject.tag != "Item" )
-			return;
+		// 当たったのがアイテムか
+		if( coll.gameObject.tag != "Item" )　return;
 		var item = coll.gameObject.GetComponent<Item>();
+		// アクション中か
 		if( !item.IsActioning ) return;
+		// 自分の意外か
 		if( Status._PlayerID == item.PlayerID )
 			return;
 		// ダメージ
 		Debug.Log( Status._PlayerID + "にヒット！\nHP:" + Status._HitPoint + "=>" + (Status._HitPoint - item.AttackPoint) );
 		AddHitPoint ( -item.AttackPoint);
+
 
 		CSoundManager.Instance.PlaySE( AUDIO_LIST.DAMAGE );
 	}

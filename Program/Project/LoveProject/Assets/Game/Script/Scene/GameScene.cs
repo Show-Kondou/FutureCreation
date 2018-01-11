@@ -15,6 +15,12 @@ public class GameScene : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		CSoundManager.Instance.PlayBGM( AUDIO_LIST.BGM_01, true );
+		PlayerManager.Instance.Init();
+		for( uint i = 1; i <= 4; i++ ) {
+			if( JumpSceneData.Instance.GetJointPlayerNum( i ) )
+				continue;
+			CameraManager.Instance.SetDemoCamera( i );
+		}
 	}
 	
 	// Update is called once per frame

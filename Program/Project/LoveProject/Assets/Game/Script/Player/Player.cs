@@ -122,17 +122,18 @@ public class Player : PlayerBase {
 	/// 初期化
 	/// </summary>
 	private void InitComponent() {
+		Status = _InitStatus;
 		// --- プレイヤー関係クラス取得
 		_Move = GetPlayerComponent<PlayerMove>();
 		_Jump = GetPlayerComponent<PlayerJump>();
-		var camera = CameraManager.Instance.GetPlayerCamera( _InitStatus._PlayerID );
+		var camera = CameraManager.Instance.GetPlayerCamera( Status._PlayerID );
 		_Camera = camera;//Define.NullCheck( camera );
 		_Item = GetPlayerComponent<PlayerItem>();
 		_Roll = GetPlayerComponent<PlayerRoll>();
 		_Body = GetPlayerComponent<PlayerBody>();
 		_Animetion = GetPlayerComponent<PlayerAnimation>();
-		_InitStatus._CameraTrans = _Camera.transform;
-		_InitStatus._Animation = _Animetion;
+		Status._CameraTrans = _Camera.transform;
+		Status._Animation = _Animetion;
 		_IsGetComponent = true;
 	}
 
@@ -141,7 +142,7 @@ public class Player : PlayerBase {
 	/// 初期化
 	/// </summary>
 	private void InitStatus() {
-		Status =_InitStatus;
+		Status = _InitStatus;
 		//// --- ステータス反映
 		// 移動
 		_Move.Status = Status;
@@ -203,7 +204,12 @@ public class Player : PlayerBase {
 	}
 
 
+
 	public void GameStart(){
 		Init();
+	}
+
+	public void GameEnd() {
+
 	}
 }

@@ -160,6 +160,15 @@ public class CameraPlayer : ObjectTime {
 			_CenterTrans.rotation = dumpRot;
 		}
 	}
+
+
+
+	public void EndCamera() {
+		transform.parent = CameraManager.Instance.transform;
+		var camera = GetComponent<DefaultCamera>();
+		CameraManager.Instance.SetCamera( camera, _PlayerID );
+		Destroy( _CameraCenter.gameObject );
+	}
 	#endregion Method
 
 }

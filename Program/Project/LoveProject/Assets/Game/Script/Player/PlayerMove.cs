@@ -55,6 +55,8 @@ public class PlayerMove : PlayerBase {
 	/// 更新（固定フレーム）
 	/// </summary>
 	protected override void FixedExecute() {
+		if( Status._HitPoint <= 0 )
+			return;
 
 		Move(); // 移動処理
 	}
@@ -63,6 +65,7 @@ public class PlayerMove : PlayerBase {
 	/// 更新
 	/// </summary>
 	protected override void Execute() {
+		if( Status._HitPoint <= 0 ) return;
 		Input();
 	}
 

@@ -27,9 +27,33 @@ public class PlayerManager : MonoBehaviour {
 	public Player _Player_4 = null;
 
 
-	public void StartPlayer( uint num ){
-		_Player_1.GameStart();
-		_Player_2.GameStart();
+	public void StartPlayer() {
+		if( JumpSceneData.Instance.GetJointPlayerNum( 1 ) ) {
+			_Player_1.GameStart();
+		}
+		if( JumpSceneData.Instance.GetJointPlayerNum( 2 ) ) {
+			_Player_2.GameStart();
+		}
+		if( JumpSceneData.Instance.GetJointPlayerNum( 3 ) ) {
+			_Player_3.GameStart();
+		}
+		if( JumpSceneData.Instance.GetJointPlayerNum( 4 ) ) {
+			_Player_4.GameStart();
+		}
 	}
 
+	public void Init() {
+		if( JumpSceneData.Instance.GetJointPlayerNum( 1 ) ) {
+			_Player_1.gameObject.SetActive( true );
+		}
+		if( JumpSceneData.Instance.GetJointPlayerNum( 2 ) ) {
+			_Player_2.gameObject.SetActive( true );
+		}
+		if( JumpSceneData.Instance.GetJointPlayerNum( 3 ) ) {
+			_Player_3.gameObject.SetActive( true );
+		}
+		if( JumpSceneData.Instance.GetJointPlayerNum( 4 ) ) {
+			_Player_4.gameObject.SetActive( true );
+		}
+	}
 }
