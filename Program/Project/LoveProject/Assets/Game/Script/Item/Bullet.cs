@@ -103,8 +103,8 @@ public class Bullet : Item {
 			Bomb();
 		}else if(other_tag == "Stage"){//	ステージ
 
-			var pos = transform.position;
-			ParticleManager.Instance.PlayParticle(ParticleManager.ParticleName.Bomb, new Vector3(pos.x, 0.3F, pos.z));
+			ParticleManager.Instance.PlayParticle(ParticleManager.ParticleName.Bomb, transform.position);
+			ParticleManager.Instance.PlayEffect(transform.position);
 
 			//	自壊
 			Bomb();
