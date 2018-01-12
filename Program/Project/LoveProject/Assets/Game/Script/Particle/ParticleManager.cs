@@ -18,6 +18,7 @@ public class ParticleManager : MonoBehaviour {
 
 	//	パーティクルのリスト
 	[SerializeField] List<ParticleSystem> particlePrefab;
+	[SerializeField] List<GameObject> effectPrefab;
 
 	//	インスタンスを格納するプール
 	public MultiDictionary<ParticleName, ParticleSystem> particlePool;
@@ -42,8 +43,7 @@ public class ParticleManager : MonoBehaviour {
 
 	#endregion Singleton
 
-	void Awake()
-	{
+	void Awake(){
 		if (Instance != this) {
 			Destroy(this.gameObject);
 		}
@@ -62,7 +62,9 @@ public class ParticleManager : MonoBehaviour {
 		}
 	}
 
-
+	/// <summary>
+	///	パーティクル再生
+	/// </summary>
 	public void PlayParticle(ParticleName _name, Vector3 _pos){
 
 		//TODO:	使用可能パーティクルを引っ張ってくる
@@ -70,6 +72,12 @@ public class ParticleManager : MonoBehaviour {
 
 		//	パーティクルシステム再生開始
 		par_obj.Play();
+	}
+
+
+	public void PlayEffect(Vector3 _pos){
+		
+		var _obj = (GameObject)Instantiate(effectPrefab[0], _pos, Quaternion.identity);
 	}
 
 
