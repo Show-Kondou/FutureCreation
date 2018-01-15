@@ -26,7 +26,7 @@ public class Title : MonoBehaviour
 	public GameObject[] titleUIs = new GameObject[4];	//	画面４つ分
 
     [SerializeField]
-    GameObject matchingCanvas = null;  //  参 加待ち画面のキャンバス
+    GameObject matchingCanvas = null;  //  参加待ち画面のキャンバス
     
 
     // Use this for initialization
