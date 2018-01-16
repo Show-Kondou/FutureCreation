@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using PM = ParticleManager;
 
 /// <summary>
 /// 弾クラス
@@ -75,7 +76,7 @@ public class Bullet : Item {
 
 			if(item.IsPicked == false) return;// 相手が、落ちているオブジェクトなら判定しない
 			
-			ParticleManager.Instance.PlayParticle(ParticleManager.ParticleName.Bomb, transform.position);
+			PM.Instance.PlayParticle(PM.ParticleName.Bomb, transform.position);
 	
 			//	Typeで分岐
 			switch(item.Type){
@@ -97,14 +98,14 @@ public class Bullet : Item {
 			//	拾ったプレイヤーと同じなので、判定しない
 			if(other_id == playerID) return;
 			
-			ParticleManager.Instance.PlayParticle(ParticleManager.ParticleName.Bomb, transform.position);
+			PM.Instance.PlayParticle(PM.ParticleName.Bomb, transform.position);
 	
 			//	自壊
 			Bomb();
 		}else if(other_tag == "Stage"){//	ステージ
 
-			ParticleManager.Instance.PlayParticle(ParticleManager.ParticleName.Bomb, transform.position);
-			ParticleManager.Instance.PlayEffect(transform.position);
+			PM.Instance.PlayParticle(PM.ParticleName.Bomb, transform.position);
+			PM.Instance.PlayEffect(transform.position);
 
 			//	自壊
 			Bomb();
