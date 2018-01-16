@@ -33,8 +33,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1635843775374456}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1505512, y: 0.75760317, z: -12.996724}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.1505512, y: 6.257603, z: -12.996724}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -53,6 +53,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particlePrefab:
   - {fileID: 198237528838376326, guid: 30ac26a17f99fec4786d6a6d600c9860, type: 2}
-  - {fileID: 198407723265415068, guid: e0f0b56a850f9de4e86adabdd9dd1751, type: 2}
+  - {fileID: 198233647353885316, guid: 0ec5dfd41ff8fdd479c07e915221d5d3, type: 2}
   - {fileID: 19897378, guid: fe6acd16ed6a14fdc8e7b7de04e6862d, type: 2}
   - {fileID: 19820156, guid: 259c32c26c1c248cf8664a61e1535a6f, type: 2}
+  effectPrefab:
+  - {fileID: 1070024707510404, guid: 69c3064d88a7e714e8b8fd523cfc2421, type: 2}

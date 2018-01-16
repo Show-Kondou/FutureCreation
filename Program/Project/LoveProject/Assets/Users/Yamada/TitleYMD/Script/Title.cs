@@ -24,12 +24,16 @@ public class Title : MonoBehaviour
 
 	//	タイトルシーンのみで使用するUI
 	public GameObject[] titleUIs = new GameObject[4];	//	画面４つ分
+
+    [SerializeField]
+    GameObject matchingCanvas = null;  //  参加待ち画面のキャンバス
     
 
     // Use this for initialization
     void Start(){
         //	カメラのアニメーターを取得
         cameraAnim = rendererCamera.GetComponent<Animator>();
+        if(matchingCanvas == null) Debug.LogError("matchingCanvasがアタッチされていませんが。");
 	}
 
 
@@ -45,14 +49,24 @@ public class Title : MonoBehaviour
 
 
 	/// <summary>
-	/// 全画面のタイトルUIのアクティブ操作
+	/// 全画面のタイトルUIのアクティブフラグ操作
 	/// </summary>
 	/// <param name="value"></param>
-	private void TitleUIsSetActive(bool value){
+	public void TitleUIsSetActive(bool value){
 		foreach(GameObject obj in titleUIs) {
 			obj.SetActive(value);
 		}
 	}
+
+	/// <summary>
+	/// マッチング画面UIのアクティブフラグ操作
+	/// </summary>
+	/// <param name="value"></param>
+	public void MatchingUIsSetActive(bool value){
+		matchingCanvas.SetActive(value);
+	}
+
+
 
     /// <summary>
     /// タイトルシーン内での入力待ち処理記述
@@ -60,22 +74,36 @@ public class Title : MonoBehaviour
     private void WaitInput()
     {
         //TODO:	ゲームパッド用のインプットに変更する
+        switch(currentState){
+        case StateInTitle.Title: 
+            //	参加受付画面に移行
+            if (Input.GetKeyDown(KeyCode.Space)){
+                //  アニメーション開始
+                cameraAnim.SetTrigger("PushButton");
+                //	タイトルUIを非表示に
+                TitleUIsSetActive(false);
+                //  マッチングキャンバスを表示
+                MatchingUIsSetActive(true);
+                //  マッチングステートへ
+                currentState = StateInTitle.Select;
+            }
+        break;
 
-		//	参加受付画面に移行
-        if (Input.GetKeyDown(KeyCode.Space)){
-            //  アニメーション開始
-            cameraAnim.SetTrigger("PushButton");
-			//	タイトルUIを非表示に
-			TitleUIsSetActive(false);
+        case StateInTitle.Select: 
+            //	タイトル画面に移行
+            if (Input.GetKeyDown(KeyCode.Backspace)) {
+                //  アニメーション開始
+                cameraAnim.SetTrigger("PushButton");
+                //  マッチングキャンバスを非表示
+                MatchingUIsSetActive(false);
+                //	タイトルUIを表示
+                TitleUIsSetActive(true);
+                //  タイトルステートへ
+                currentState = StateInTitle.Title;
+            }
+            break;
         }
 
-		//	タイトル画面に移行
-		else if (Input.GetKeyDown(KeyCode.Backspace)) {
-			//  アニメーション開始
-			cameraAnim.SetTrigger("PushButton");
-			//	タイトルUIを表示
-			TitleUIsSetActive(true);
-		}
     }
 
 
