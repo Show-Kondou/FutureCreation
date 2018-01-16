@@ -67,7 +67,7 @@ public class PlayerRoll : PlayerBase {
 		_SumTime += DeltaTime;
 		if (_SumTime < 2.0F)
 			return;
-		AddHitPoint(-50);
+		AddHitPoint(-1);
 		_SumTime = 0.0F;
 	}
 		
