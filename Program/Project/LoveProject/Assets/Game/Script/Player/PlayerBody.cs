@@ -78,7 +78,9 @@ public class PlayerBody : PlayerBase {
 												 0.0F,
 												 Status._CameraTrans.forward.z );
 			_UpperBody.forward += (cameraForward - _UpperBody.forward) * 0.8F;
-			// _LowerBody.forward += (cameraForward - _LowerBody.forward) * 0.8F;
+			if( Status.LowerState == PlayerStatus.STATE.STAND ) {
+				_LowerBody.forward += (cameraForward - _LowerBody.forward) * 0.8F;
+			}
 		}
 		else {
 			_UpperBody.forward += (_LowerBody.forward - _UpperBody.forward) * 0.2F;

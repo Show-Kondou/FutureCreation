@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 3f114b15e90e1c441a1342279c4d863b
-timeCreated: 1513150718
+guid: b5f9f5d9f15d4a34eb7928bb351c0f06
+timeCreated: 1515740759
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -206,7 +206,7 @@ ModelImporter:
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 1
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []

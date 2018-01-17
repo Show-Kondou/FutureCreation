@@ -26,7 +26,7 @@ public class PlayerStatus {
 		MAX,
 	};
 
-	private int[] StatePriority = new int[(int)STATE.MAX]{0,0,1,2,3,4,4,0 };
+	private int[] StatePriority = new int[(int)STATE.MAX]{0,0,0,2,3,4,4,0 };
 
 	[Header("プレイヤーID"), SerializeField]
 	public uint            _PlayerID;
@@ -47,6 +47,8 @@ public class PlayerStatus {
 	[Header("アニメーション"), NonSerialized]
 	public PlayerAnimation _Animation;
 
+	public bool             _IsLose = false;
+
 	public STATE State {
 		set {
 			if(StatePriority[(int)_UpperState] <= StatePriority[(int)value])
@@ -64,7 +66,6 @@ public class PlayerStatus {
 		get { return _LowerState; }
 		set { _LowerState = value; }
 	}
-
 
 }
 
@@ -118,7 +119,7 @@ abstract public class PlayerBase : MonoBehaviour {
 		if (Status._HitPoint > 100) {
 			Status._HitPoint = 100;
 		}
-		if (Status._HitPoint < 0) {
+		if (Status._HitPoint <= 0) {
 			Status._HitPoint = 0;
 		}
 	}
@@ -129,6 +130,7 @@ abstract public class PlayerBase : MonoBehaviour {
 	private void Update() {
 		_deltaTime = Time.deltaTime;
 		if (GameScene.GameState != 1) return;
+		if( Status._HitPoint <= 0 ) return;
 		PlayerMasterExecute();
 		Execute();
 	}
@@ -136,13 +138,32 @@ abstract public class PlayerBase : MonoBehaviour {
 		_deltaTime = Time.deltaTime;
 		if (GameScene.GameState != 1)
 			return;
+		if( Status._HitPoint <= 0 ) {
+			Status.State = PlayerStatus.STATE.LOSS;
+			Status.LowerState = PlayerStatus.STATE.LOSS;
+			Status._Animation.StartLose();
+			return;
+		}
+
 		LateExecute();
 	}
 	private void FixedUpdate() {
 		if (GameScene.GameState != 1)
 			return;
+		if( Status._HitPoint <= 0 )
+			return;
+
 		FixedExecute();
 	}
+
+	public void DestroyPlayer() {
+		// DefaultCamera
+		var c = Status._CameraTrans.GetComponent<DefaultCamera>();
+		c.StartDemo();
+		Status._Animation.StopAnimation();
+		Destroy(gameObject);
+	}
+
 	virtual protected void FixedExecute() { }
 	virtual protected void PlayerMasterExecute() { }
 	abstract protected void Execute();
@@ -150,6 +171,9 @@ abstract public class PlayerBase : MonoBehaviour {
 	abstract public void Init();
 	#endregion Method
 }
+
+
+
 
 
 

@@ -27,6 +27,7 @@ public class DefaultCamera : MonoBehaviour {
 	private uint _CameraID;
 
 	private CameraPlayer _PlayerCamera = null;
+	private CameraDemo _DemoCamera = null;
 
 	#endregion Member
 
@@ -44,9 +45,27 @@ public class DefaultCamera : MonoBehaviour {
 			if( _PlayerCamera == null ) {
 				_PlayerCamera = GetComponent<CameraPlayer>();
 			}
+			if( _DemoCamera != null ) {
+				_DemoCamera.enabled = false;
+			}
 			return _PlayerCamera;
 		}
 	}
+
+
+	public void StartDemo() {
+		if( _DemoCamera == null ) {
+			_DemoCamera = GetComponent<CameraDemo>();
+		}
+		if( _PlayerCamera != null ) {
+			_PlayerCamera.EndCamera();
+			_PlayerCamera.enabled = false;
+		}
+		_DemoCamera.enabled = true;
+		_DemoCamera.StartDemo();
+	}
+
+
 	
 	#endregion Accessor
 

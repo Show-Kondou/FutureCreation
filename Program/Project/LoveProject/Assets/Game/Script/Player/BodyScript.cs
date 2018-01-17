@@ -34,6 +34,7 @@ public class BodyScript : StateMachineBehaviour {
 			_Anime.ResetLower();
 		}
 		if( stateInfo.IsName( "Jump" ) ) {
+			Debug.Log(_Status._PlayerID);
 			CSoundManager.Instance.PlaySE(AUDIO_LIST.WALK);
 		}
 		if( stateInfo.IsName( "Roll" ) ) {
@@ -49,7 +50,14 @@ public class BodyScript : StateMachineBehaviour {
 		if( stateInfo.IsName( "Guard" ) ) {
 			CSoundManager.Instance.PlaySE( AUDIO_LIST.STAND );
 		}
-		if ( stateInfo.IsName( "Eat" ) ) {
+		if( stateInfo.IsName( "Eat" ) ) {
+		}
+		if( stateInfo.IsName( "Win" ) ) {
+		}
+		if( stateInfo.IsName( "Lose" ) ) {
+			//_Status.SetState = PlayerStatus.STATE.STAND;
+			//_Status.LowerState = PlayerStatus.STATE.STAND;
+			//Debug.Log( "Loss" );
 		}
 
 	}
@@ -63,11 +71,13 @@ public class BodyScript : StateMachineBehaviour {
 	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 		if (stateInfo.IsName( "Jump" )) {
 			_Status.SetState = PlayerStatus.STATE.STAND;
+			_Status.LowerState = PlayerStatus.STATE.STAND;
 			CSoundManager.Instance.PlaySE( AUDIO_LIST.WALK );
 
 		}
 		if (stateInfo.IsName( "Roll" )) {
 			_Status.SetState = PlayerStatus.STATE.STAND;
+			_Status.LowerState = PlayerStatus.STATE.STAND;
 		}
 		/* 攻撃 */
 		if (stateInfo.IsName( "Slash_P" )) {
@@ -87,8 +97,16 @@ public class BodyScript : StateMachineBehaviour {
 		if (stateInfo.IsName( "Eat" )) {
 			_Item.EndEat();	
 			_Status.SetState = PlayerStatus.STATE.STAND;
+			_Status.LowerState = PlayerStatus.STATE.STAND;
 
 			CSoundManager.Instance.PlaySE( AUDIO_LIST.CURE );
+		}
+
+		if( stateInfo.IsName( "Win" ) ) {
+
+		}
+		if( stateInfo.IsName( "Lose" ) ) {
+			_Item.DestroyPlayer();
 		}
 
 	}

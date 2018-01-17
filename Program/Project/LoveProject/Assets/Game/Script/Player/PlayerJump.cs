@@ -158,7 +158,6 @@ public class PlayerJump : PlayerBase {
 		_State = State.STANDING;
 
 		if (Status.State == PlayerStatus.STATE.ATTACK) {
-			Status.State = PlayerStatus.STATE.STAND;
 		} else {
 			Status.SetState = PlayerStatus.STATE.STAND;
 		}

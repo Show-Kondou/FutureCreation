@@ -12,7 +12,7 @@ public class StartPlayableBehaviour : PlayableBehaviour
 
 	// Called when the owning graph stops playing
 	public override void OnGraphStop(Playable playable) {
-		PlayerManager.Instance.StartPlayer(1);
+		PlayerManager.Instance.StartPlayer();
 		GameScene.GameState = 1;
 	}
 

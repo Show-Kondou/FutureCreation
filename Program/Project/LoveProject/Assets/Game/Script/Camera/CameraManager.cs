@@ -30,8 +30,6 @@ public class CameraManager : MonoBehaviour {
 	// メンバー
 	#region Member
 
-	[Header("メインカメラ"), SerializeField]
-	private Camera _MainCamera = null;
 	[Header("カメラ1（左上）"), SerializeField]
 	private DefaultCamera _Camera_1 = null;
 	[Header("カメラ2（右上）"), SerializeField]
@@ -47,9 +45,6 @@ public class CameraManager : MonoBehaviour {
 	// アクセサ
 	#region Accessor
 
-	public Camera MainCamera {
-		get { return _MainCamera; }
-	}
 
 	/// <summary>
 	/// プレイヤーのカメラの取得
@@ -59,34 +54,74 @@ public class CameraManager : MonoBehaviour {
 	public CameraPlayer GetPlayerCamera( uint num ) {
 		switch( num ) {
 		case 1:
-			// _Camera_1.playerCamera.enabled = true;
+			_Camera_1.playerCamera.enabled = true;
 			return _Camera_1.playerCamera;
 		case 2:
-			// _Camera_2.playerCamera.enabled = true;
+			_Camera_2.playerCamera.enabled = true;
 			return _Camera_2.playerCamera;
 		case 3:
-			// _Camera_3.playerCamera.enabled = true;
+			_Camera_3.playerCamera.enabled = true;
 			return _Camera_3.playerCamera;
 		case 4:
-			// _Camera_4.playerCamera.enabled = true;
+			_Camera_4.playerCamera.enabled = true;
 			return _Camera_4.playerCamera;
 		default:
 			return null;
 		}
 	}
 
+
+	public void SetCamera( DefaultCamera camera, uint num ) {
+		switch( num ) {
+		case 1:
+			_Camera_1 = camera;
+			break;
+		case 2:
+			_Camera_2 = camera;
+			break;
+		case 3:
+			_Camera_3 = camera;
+			break;
+		case 4:
+			_Camera_4 = camera;
+			break;
+		default:
+			break;
+		}
+
+	}
+
+
+
+	public void SetDemoCamera( uint num ) {
+		switch( num ) {
+		case 1:
+			_Camera_1.StartDemo();
+			break;
+		case 2:
+			_Camera_2.StartDemo();
+			break;
+		case 3:
+			_Camera_3.StartDemo();
+			break;
+		case 4:
+			_Camera_4.StartDemo();
+			break;
+		}
+	}
+
 	#endregion Accessor
 
 
-	// メソッド
-	#region Method
+		// メソッド
+		#region Method
 
 
-	#endregion Method
+		#endregion Method
 
 
-	// イベント
-	#region MonoBehaviour Event
+		// イベント
+		#region MonoBehaviour Event
 
 	private void Awake() {
 		DontDestroyOnLoad( _Instance );
