@@ -27,6 +27,8 @@ public class Title : MonoBehaviour
 
     [SerializeField]
     GameObject matchingCanvas = null;  //  参加待ち画面のキャンバス
+    [SerializeField]
+    GameObject titleCanvas = null;  //  タイトル画面のキャンバス
     
 
     // Use this for initialization
@@ -53,9 +55,10 @@ public class Title : MonoBehaviour
 	/// </summary>
 	/// <param name="value"></param>
 	public void TitleUIsSetActive(bool value){
-		foreach(GameObject obj in titleUIs) {
-			obj.SetActive(value);
-		}
+		// foreach(GameObject obj in titleUIs) {
+		// 	obj.SetActive(value);
+		// }
+        titleCanvas.SetActive(value);
 	}
 
 	/// <summary>
