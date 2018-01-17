@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5e55ea12b8dd2154e87282eb29824303
-timeCreated: 1513335972
+timeCreated: 1516096448
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -19,7 +19,7 @@ TextureImporter:
     21300024: UI_12
     21300026: UI_13
     21300028: UI_14
-    21300030: UI_15
+    21300030: UI_R
     21300032: UI_16
     21300034: UI_17
     21300036: UI_18
@@ -38,6 +38,10 @@ TextureImporter:
     21300062: UI_31
     21300064: UI_32
     21300066: UI_33
+    21300068: UI_e
+    21300070: UI_a
+    21300072: UI_d
+    21300074: UI_y
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -319,20 +323,6 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_15
-      rect:
-        serializedVersion: 2
-        x: 10
-        y: 1625
-        width: 1504
-        height: 411
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: UI_16
       rect:
         serializedVersion: 2
@@ -578,6 +568,76 @@ TextureImporter:
         y: 2279
         width: 94
         height: 189
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_R
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 1679
+        width: 315
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_e
+      rect:
+        serializedVersion: 2
+        x: 322
+        y: 1676
+        width: 295
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_a
+      rect:
+        serializedVersion: 2
+        x: 617
+        y: 1678
+        width: 307
+        height: 360
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_d
+      rect:
+        serializedVersion: 2
+        x: 927
+        y: 1672
+        width: 296
+        height: 359
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UI_y
+      rect:
+        serializedVersion: 2
+        x: 1220
+        y: 1620
+        width: 292
+        height: 374
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
