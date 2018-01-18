@@ -12,6 +12,7 @@ public class Slash : Item {
 		mesh = GetComponent<MeshRenderer>();
 		coll = GetComponent<Collider>();
         transform.localPosition += new Vector3(0,1.2f,0);
+		transform.localEulerAngles = new Vector3(45.0F,0,0);
 	}
 	
 
@@ -21,10 +22,9 @@ public class Slash : Item {
 	/// </sammary>
 	void Update(){
 
-		if(isActioning){
-			Action();
+		if(isPicked){
 		}else{
-
+			transform.Rotate(new Vector3(0,90.0F * Time.deltaTime,0),Space.World);
 		}
 	}
 
@@ -55,6 +55,9 @@ public class Slash : Item {
 
 	
 	public override int ActionStart(){
+
+		//	攻撃力をリセット
+		ResetAtkPoint();
 		
 		//	表示する
 		IsActive = true;
@@ -126,6 +129,9 @@ public class Slash : Item {
 			if(other_id == playerID) return;
 
 			SubBreakHP(1);	//	耐久値の減少
+
+			//	当たったから攻撃力をゼロに
+			this.AttackPoint = 0;
 		}
 
 	}

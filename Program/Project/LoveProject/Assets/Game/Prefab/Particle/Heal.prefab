@@ -10,6 +10,7 @@ GameObject:
   - component: {fileID: 434626}
   - component: {fileID: 19880260}
   - component: {fileID: 19902882}
+  - component: {fileID: 114699658510540632}
   m_Layer: 0
   m_Name: par1_add
   m_TagString: Untagged
@@ -27,6 +28,7 @@ GameObject:
   - component: {fileID: 440608}
   - component: {fileID: 19853246}
   - component: {fileID: 19917128}
+  - component: {fileID: 114321704665747116}
   m_Layer: 0
   m_Name: ring1_alpha
   m_TagString: Untagged
@@ -131,7 +133,7 @@ ParticleSystem:
   serializedVersion: 5
   lengthInSec: 2
   simulationSpeed: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -181,7 +183,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 1487414801
+  randomSeed: 385659152
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -3338,7 +3340,7 @@ ParticleSystem:
   serializedVersion: 5
   lengthInSec: 2
   simulationSpeed: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -3388,7 +3390,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 718105342
+  randomSeed: 1516562503
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -6545,7 +6547,7 @@ ParticleSystem:
   serializedVersion: 5
   lengthInSec: 2
   simulationSpeed: 1
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -6595,7 +6597,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 857913280
+  randomSeed: -203186347
   InitialModule:
     serializedVersion: 3
     enabled: 1
@@ -9920,6 +9922,28 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd1f976c86a176f46aec70df6e5371b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114321704665747116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 159958}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd1f976c86a176f46aec70df6e5371b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114699658510540632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 140062}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bd1f976c86a176f46aec70df6e5371b9, type: 3}

@@ -132,7 +132,7 @@ public class Bullet : Item {
 
 		var sc = GetComponent<SphereCollider>();
 		while(sc.radius < 4.0F){
-			sc.radius += Time.deltaTime * 2;
+			sc.radius += Time.deltaTime * 4;
 			yield return null;
 		}
 

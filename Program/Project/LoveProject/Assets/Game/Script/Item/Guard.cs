@@ -35,11 +35,10 @@ public class Guard : Item {
 	/// 標準更新
 	/// </sammary>
 	void Update(){
-		
-		if(isActioning){
-			Action();
-		}else{
 
+		if(isPicked){
+		}else{
+			transform.Rotate(new Vector3(0,90.0F * Time.deltaTime,0),Space.World);
 		}
 	}
 
@@ -128,6 +127,10 @@ public class Guard : Item {
 			var item = other.gameObject.GetComponent<Item>();
 
 			if(item.IsPicked == false) return;// 相手が、落ちているオブジェクトなら判定しない
+			
+
+			//	アイテムの攻撃力を-1にする
+			item.AttackPoint = -1;
 
 			//	識別Typeを　int　で取得 
 			var type = (uint)item.Type;
