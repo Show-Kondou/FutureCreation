@@ -51,18 +51,16 @@ public class Shoot : Item{
 
 
 
-    /// <summary>
-    /// 標準更新
-    /// </sammary>
-	// void Update(){
+	/// <summary>
+	/// 標準更新
+	/// </sammary>
+	void Update(){
 
-    //     if(isActioning){
-    //         Action();
-    //     }else{
-
-    //     }
-
-    // }
+		if(isPicked){
+		}else{
+			transform.Rotate(new Vector3(0,90.0F * Time.deltaTime,0),Space.World);
+		}
+	}
     
 
     /// <summary>

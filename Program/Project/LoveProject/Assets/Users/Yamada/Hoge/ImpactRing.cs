@@ -41,7 +41,6 @@ public class ImpactRing : MonoBehaviour {
 	/// </summary>
 	private void SubAlpha(){
 		var col = childSprite.color;
-		Debug.Log("ImpactRing");
 		if(col.a <= 0) Destroy(this.gameObject);
 
 		col.a -= Time.deltaTime;
