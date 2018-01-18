@@ -81,6 +81,9 @@ public class Player : PlayerBase {
 
 
 
+	public void Start() {
+		InitComponent();
+	}
 	/// <summary>
 	/// 初期化関数
 	/// </summary>

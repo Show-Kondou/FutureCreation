@@ -23,9 +23,7 @@ public class CameraPlayer : ObjectTime {
 	private uint            _PlayerID;
 	//[Header("プレイヤーとカメラの距離"),SerializeField]
 	// private Vector3			DefaultPos		= new Vector3( 0.0F, 5.0F, -10.0F);
-	private Vector3			DefaultPos      = new Vector3( 0.0F, 3.5F, -5.0F);
-	//[Header("初期のカメラ角度"),SerializeField]
-	private Vector3			LookPos			= new Vector3( 0.0F, 5.0F, 50.0F );
+	public Vector3			DefaultPos      = new Vector3( 0.0F, 3.5F, -5.0F);
 	// 回転力
 	private float			_TurnForce;
 
@@ -37,6 +35,8 @@ public class CameraPlayer : ObjectTime {
 	private Transform		_CenterTrans	= null;
 	// プレイヤーのトランスフォーム
 	private Transform		_PlayerTrans	= null;
+
+	private bool            _IsInit = false;
 	#endregion Member
 
 
@@ -68,11 +68,16 @@ public class CameraPlayer : ObjectTime {
 	/// スプリクトの有効時
 	/// </summary>
 	public void Init( Transform trans ) {
+		if( _IsInit ) return;
 		// ステータス初期化
 		_PlayerTrans = trans;
 		transform.position = _PlayerTrans.position + DefaultPos;        // 移動
-		// transform.LookAt( _PlayerTrans.position + LookPos );
-		transform.rotation = Quaternion.Euler( 10,0,0 );
+		if( transform.name == "Camera_1" ||
+			transform.name == "Camera_2" ) {
+			transform.rotation = Quaternion.Euler( 10,0,0 );
+		}else {
+			transform.rotation = Quaternion.Euler( 10, 180, 0 );
+		}
 
 		// 注視点を作成
 		var obj					= new GameObject( "CameraCenter" );     // 生成
@@ -81,14 +86,15 @@ public class CameraPlayer : ObjectTime {
 		_CenterTrans.position	= _PlayerTrans.position + CENTER_POS;	// 注視点位置設定
 		obj.AddComponent<CameraCenter>().CameraTrans = transform;       // めり込み判定追加
 		_CameraCenter = obj.GetComponent<CameraCenter>();
+
+		_IsInit = true;
 	}
 
 	/// <summary>
 	/// 更新（固定フレーム）
 	/// </summary>
 	protected override void FixedExecute() {
-		if (GameScene.GameState != 1)
-			return;
+		if( !_IsInit ) return;
 		Move();	// PlayerがFixedで動くため
 	}
 
@@ -96,8 +102,7 @@ public class CameraPlayer : ObjectTime {
 	/// 更新
 	/// </summary>
 	protected override void Execute() {
-		if (GameScene.GameState != 1)
-			return;
+		if( !_IsInit ) return;
 		Turn();
 		CameraMove();
 	}
