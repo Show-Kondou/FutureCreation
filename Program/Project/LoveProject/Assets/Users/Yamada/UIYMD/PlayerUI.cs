@@ -48,6 +48,8 @@ public class PlayerUI : MonoBehaviour {
 
 
 	void ButtonUI(){
+		if( _player == null ) return;
+		if( _player.enabled == false ) return;
 		//	ボタンUI4更新
 		if( InputGame.GetPlayerItemL( _player.PlayerID ) ) {
 			itemsUIL.PushedButton( 1 );

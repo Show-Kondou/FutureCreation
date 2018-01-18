@@ -82,11 +82,11 @@ public class PlayerTitle : MonoBehaviour {
 	/// <summary>
 	/// 更新
 	/// </summary>
-	private void Update() {
-		if( Input.GetKeyDown( KeyCode.Return ) ) {
-			OutPlayer(new Vector3(-10,5,0));
-		}
-	}
+	//private void Update() {
+	//	if( Input.GetKeyDown( KeyCode.Return ) ) {
+	//		OutPlayer(new Vector3(-10,5,0));
+	//	}
+	//}
 
 
 
