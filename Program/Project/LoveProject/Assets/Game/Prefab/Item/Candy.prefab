@@ -113,7 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   breakHp: 3
   attackPoint: 35
-  healPoint: 100
+  healPoint: 35
   type: 3
   isPicked: 0
 --- !u!114 &114731666207091796

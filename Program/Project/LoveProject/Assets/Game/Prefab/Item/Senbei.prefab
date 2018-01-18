@@ -123,6 +123,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   breakHp: 100
   attackPoint: 0
-  healPoint: 10
+  healPoint: 40
   type: 5
   isPicked: 0

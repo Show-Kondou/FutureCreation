@@ -16,8 +16,8 @@ public class InputGame {
 	#region Constant
 	readonly static string GamePadName = "GamePad";
 	readonly static string CameraName = "Camera";
-	readonly static float CameraCorrectionX = 0.5F;
-	readonly static float CameraCorrectionY = 0.2F;
+	readonly static float CameraCorrectionX = 0.9F;
+	readonly static float CameraCorrectionY = 0.5F;
 	readonly static float MoveCorrectionX = 0.5F;
 	readonly static float MoveCorrectionY = 0.5F;
 	#endregion Constant

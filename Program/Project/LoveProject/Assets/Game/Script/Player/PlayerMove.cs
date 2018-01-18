@@ -121,7 +121,12 @@ public class PlayerMove : PlayerBase {
 		nor = vec.normalized;
 
 		// 移動方向に移動量を計算
-		var move = vec.normalized * Status._MoveForce;
+		Vector3 move;// = vec.normalized * Status._MoveForce;
+		if( Status.State == PlayerStatus.STATE.ATTACK ) {
+			move = vec.normalized * Status._MoveForce * 0.5F;
+		} else {
+			move = vec.normalized * Status._MoveForce;
+		}
 
 		// 移動
 		var vel = _Rigid.velocity;
