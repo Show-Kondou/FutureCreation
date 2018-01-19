@@ -178,10 +178,10 @@ public class Title : MonoBehaviour
     /// 参加者の数をもとにゲーム開始可能ラベルの表示
     /// </summary> 
     private void ShowStartUI(){
-        matchMoni_1.ShowStartLabel(MeetUp());
-        matchMoni_2.ShowStartLabel(MeetUp());
-        matchMoni_3.ShowStartLabel(MeetUp());
-        matchMoni_4.ShowStartLabel(MeetUp());
+        matchMoni_1.ShowStartLabel(MeetUp() && IsJoinedPlayer_1);
+        matchMoni_2.ShowStartLabel(MeetUp() && IsJoinedPlayer_2);
+        matchMoni_3.ShowStartLabel(MeetUp() && IsJoinedPlayer_3);
+        matchMoni_4.ShowStartLabel(MeetUp() && IsJoinedPlayer_4);
     }
 
 
