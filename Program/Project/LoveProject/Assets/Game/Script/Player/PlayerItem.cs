@@ -232,6 +232,9 @@ public class PlayerItem : PlayerBase {
 		if( coll.gameObject.tag != "Item" ) return;
 		// アイテム取得
 		Item item = coll.gameObject.GetComponent<Item>();
+		if( item == null ) {
+			Debug.Log( coll.name );
+		}
 		// 先に左取得
 		if( _ItemL == null ) {
 			// アイテムが使用状態判定
