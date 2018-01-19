@@ -24,6 +24,11 @@ public class InputGame {
 
 	// メソッド
 	#region Method
+	static public bool GetStartButton( int playerID ) {
+		return Input.GetButtonDown( "Start" + playerID );
+	}
+
+
 	/// <summary>
 	/// プレイヤー移動入力値
 	/// </summary>
