@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 72fd9e5bbf9167a438579266eb703912
-timeCreated: 1516024660
+timeCreated: 1516349099
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -239,20 +239,6 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UI_Result_11
-      rect:
-        serializedVersion: 2
-        x: 35
-        y: 910
-        width: 372
-        height: 210
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
       name: UI_Result_12
       rect:
         serializedVersion: 2
@@ -298,12 +284,12 @@ TextureImporter:
       name: UI_Result_10
       rect:
         serializedVersion: 2
-        x: 424
-        y: 897
-        width: 1373
-        height: 248
+        x: 9
+        y: 881
+        width: 1798
+        height: 271
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

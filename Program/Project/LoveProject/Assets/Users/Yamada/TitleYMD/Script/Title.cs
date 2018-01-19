@@ -30,11 +30,28 @@ public class Title : MonoBehaviour
     [SerializeField]
     GameObject matchingCanvas = null;  //  参加待ち画面のキャンバス
     
+    [SerializeField]
+    GameObject[] player = new GameObject[4];    //  タイトルのプレイヤー
+
+	[Header("モニター1")]
+    [SerializeField]
+    Monitor matchMoni_1;
+	[Header("モニター2")]
+    [SerializeField]
+    Monitor matchMoni_2;
+	[Header("モニター3")]
+    [SerializeField]
+    Monitor matchMoni_3;
+	[Header("モニター4")]
+    [SerializeField]
+    Monitor matchMoni_4;
+
+
     //  参加表明したか
-    bool IsJoinedPlayer_1 = false;
-    bool IsJoinedPlayer_2 = false;
-    bool IsJoinedPlayer_3 = false;
-    bool IsJoinedPlayer_4 = false;
+    public bool IsJoinedPlayer_1 = false;
+    public bool IsJoinedPlayer_2 = false;
+    public bool IsJoinedPlayer_3 = false;
+    public bool IsJoinedPlayer_4 = false;
 
     // Use this for initialization
     void Start(){
@@ -44,13 +61,16 @@ public class Title : MonoBehaviour
         //  NULLチェック
         if(titleCanvas == null) Debug.LogError("titleCanvasがアタッチされていませんが。");
         if(matchingCanvas == null) Debug.LogError("matchingCanvasがアタッチされていませんが。");
+
+        titleCanvas.SetActive(true);
+        matchingCanvas.SetActive(false);
 	}
 
 
 	
     // Update is called once per frame
     void Update(){
-
+        
         switch(currentState){
         case StateInTitle.Title:
             TitleSceneUpdate();
@@ -63,8 +83,7 @@ public class Title : MonoBehaviour
 
     }
 
-
-
+    //  ----タイトル＆セレクト　各状態のUpdate----------------------------------------------------------------------------------------------------
     /// <summary>
     /// タイトルステートの時の更新
     /// </summary>
@@ -85,37 +104,46 @@ public class Title : MonoBehaviour
         
     }
 
-    IEnumerator WaitEndCameraAnime(){
-
-        //  アニメーションステートの切り替わり待ち
-        while(cameraAnim.GetCurrentAnimatorStateInfo(0).IsName("New State 0") == false){
-            yield return null;
-        }
-
-        //  アニメーション終了待ち
-        while(cameraAnim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1){
-            yield return null;
-        }
-
-        //  ステート切替
-        currentState = StateInTitle.Select;
-            //  UI切替
-            //TitleUIsSetActive(false);
-            MatchingUIsSetActive(true);
-        Debug.Log("State changed to Select");
-        
-    }
-
-
 
     /// <summary>
     /// 参加待ちステートの時の更新
     /// </summary>
     private void MatchingSceneUpdate(){
-        
+
+        //  入力受付
+        //  参加待ち
+        WaitInputA();
+        //  キャンセル待ち
+        WaitInputB();
+
+        //  OKUIの表示
+        ShowOKUI();
+
+        //  ゲーム開始可能UI
+        ShowStartUI();
+
+        //  ゲーム開始可能人数に達しているとき
+        if(MeetUp()){
+            //  STARTボタンの受付
+            //  シーン変更？
+        }
     }
 
+    
+    //  ----プレイヤーの動作関係-----------------------------------------------------------------------------------------------------------------
+    /// <summary>
+    /// ４プレイヤーの入場動作開始
+    /// </summary>
+    private bool PlayerStart(){
+        player[0].GetComponent<PlayerTitle>().InPlayer();
+        player[1].GetComponent<PlayerTitle>().InPlayer();
+        player[2].GetComponent<PlayerTitle>().InPlayer();
+        player[3].GetComponent<PlayerTitle>().InPlayer();
 
+        return true;
+    }
+
+    //  ----キャンバスのアクティブ操作-------------------------------------------------------------------------------------------------------------
 	/// <summary>
 	/// 全画面のタイトルUIのアクティブフラグ操作
 	/// </summary>
@@ -126,7 +154,6 @@ public class Title : MonoBehaviour
 		}
         //titleCanvas.SetActive(value);
 	}
-
 	/// <summary>
 	/// マッチング画面UIのアクティブフラグ操作
 	/// </summary>
@@ -136,46 +163,132 @@ public class Title : MonoBehaviour
 	}
 
 
-
     /// <summary>
-    /// タイトルシーン内での入力待ち処理記述
-    /// </sammary>
-    private void WaitInput()
-    {
-        //TODO:	ゲームパッド用のインプットに変更する
-        switch(currentState){
-        case StateInTitle.Title: 
-            //	参加受付画面に移行
-            if (Input.GetKeyDown(KeyCode.Space)){
-                //  アニメーション開始
-                cameraAnim.SetTrigger("PushButton");
-                //	タイトルUIを非表示に
-                TitleUIsSetActive(false);
-                //  マッチングキャンバスを表示
-                MatchingUIsSetActive(true);
-                //  マッチングステートへ
-                currentState = StateInTitle.Select;
-            }
-        break;
-
-        case StateInTitle.Select: 
-            //	タイトル画面に移行
-            if (Input.GetKeyDown(KeyCode.Backspace)) {
-                //  アニメーション開始
-                cameraAnim.SetTrigger("PushButton");
-                //  マッチングキャンバスを非表示
-                MatchingUIsSetActive(false);
-                //	タイトルUIを表示
-                TitleUIsSetActive(true);
-                //  タイトルステートへ
-                currentState = StateInTitle.Title;
-            }
-            break;
-        }
-
+    /// OKのUIを参加状態のフラグを元に表示
+    /// </summary>
+    public void ShowOKUI(){
+        matchMoni_1.ShowOKSeal(IsJoinedPlayer_1, IsJoinedPlayer_2, IsJoinedPlayer_3, IsJoinedPlayer_4);
+        matchMoni_2.ShowOKSeal(IsJoinedPlayer_1, IsJoinedPlayer_2, IsJoinedPlayer_3, IsJoinedPlayer_4);
+        matchMoni_3.ShowOKSeal(IsJoinedPlayer_1, IsJoinedPlayer_2, IsJoinedPlayer_3, IsJoinedPlayer_4);
+        matchMoni_4.ShowOKSeal(IsJoinedPlayer_1, IsJoinedPlayer_2, IsJoinedPlayer_3, IsJoinedPlayer_4);
     }
 
 
+    /// <summary>
+    /// 参加者の数をもとにゲーム開始可能ラベルの表示
+    /// </summary> 
+    private void ShowStartUI(){
+        matchMoni_1.ShowStartLabel(MeetUp() && IsJoinedPlayer_1);
+        matchMoni_2.ShowStartLabel(MeetUp() && IsJoinedPlayer_2);
+        matchMoni_3.ShowStartLabel(MeetUp() && IsJoinedPlayer_3);
+        matchMoni_4.ShowStartLabel(MeetUp() && IsJoinedPlayer_4);
+    }
+
+
+
+    //  ----入力関係-------------------------------------------------------------------------------------------------------------------------
+
+    /// <summary>
+    /// Aボタンの入力チェック（個別）
+    /// </summary>
+    private void WaitInputA(){
+
+        //1P A
+        var p1_A = InputGame.GetPlayerJump(1);
+        //2P A
+        var p2_A = InputGame.GetPlayerJump(2);
+        //3P A
+        var p3_A = InputGame.GetPlayerJump(3);
+        //4P A
+        var p4_A = InputGame.GetPlayerJump(4);
+
+        //  1PのA入力があったら
+        if(p1_A && !IsJoinedPlayer_1){
+            //  参加した
+            IsJoinedPlayer_1 = true;
+            //  UIの表示切替
+            matchMoni_1.SetActiveJoined(true);
+            matchMoni_1.SetActiveNotJoined(false);
+        }
+        //  2PのA入力があったら
+        if(p2_A && !IsJoinedPlayer_2){
+            //  参加した
+            IsJoinedPlayer_2 = true;
+            //  UIの表示切替
+            matchMoni_2.SetActiveJoined(true);
+            matchMoni_2.SetActiveNotJoined(false);
+        }
+        //  3PのA入力があったら
+        if(p3_A && !IsJoinedPlayer_3){
+            //  参加した
+            IsJoinedPlayer_3 = true;
+            //  UIの表示切替
+            matchMoni_3.SetActiveJoined(true);
+            matchMoni_3.SetActiveNotJoined(false);
+        }
+        //  4PのA入力があったら
+        if(p4_A && !IsJoinedPlayer_4){
+            //  参加した
+            IsJoinedPlayer_4 = true;
+            //  UIの表示切替
+            matchMoni_4.SetActiveJoined(true);
+            matchMoni_4.SetActiveNotJoined(false);
+        }
+
+    }
+    
+    
+    /// <summary>
+    /// Bボタンの入力チェック（個別）
+    /// </summary>
+    private void WaitInputB(){
+        //1P B
+        var p1_B = InputGame.GetPlayerRoll(1);
+        //2P B
+        var p2_B = InputGame.GetPlayerRoll(2);
+        //3P B
+        var p3_B = InputGame.GetPlayerRoll(3);
+        //4P B
+        var p4_B = InputGame.GetPlayerRoll(4);
+        
+        //  1PのB入力があったら
+        if(p1_B && IsJoinedPlayer_1){
+            //  やっぱやめた
+            IsJoinedPlayer_1 = false;
+            //  UIの表示切替
+            matchMoni_1.SetActiveJoined(false);
+            matchMoni_1.SetActiveNotJoined(true);
+        }
+        //  2PのB入力があったら
+        if(p2_B && IsJoinedPlayer_2){
+            //  やっぱやめた
+            IsJoinedPlayer_2 = false;
+            //  UIの表示切替
+            matchMoni_2.SetActiveJoined(false);
+            matchMoni_2.SetActiveNotJoined(true);
+        }
+        //  3PのB入力があったら
+        if(p3_B && IsJoinedPlayer_3){
+            //  やっぱやめた
+            IsJoinedPlayer_3 = false;
+            //  UIの表示切替
+            matchMoni_3.SetActiveJoined(false);
+            matchMoni_3.SetActiveNotJoined(true);
+        }
+        //  4PのB入力があったら
+        if(p4_B && IsJoinedPlayer_4){
+            //  やっぱやめた
+            IsJoinedPlayer_4 = false;
+            //  UIの表示切替
+            matchMoni_4.SetActiveJoined(false);
+            matchMoni_4.SetActiveNotJoined(true);
+        }
+    }
+
+    
+    /// <summary>
+    /// Aボタンの入力チェック（全プレイヤーのどれか）
+    /// </summary>
     private bool AnyInputA(){
         //1P A
         var p1_A = InputGame.GetPlayerJump(1);
@@ -190,6 +303,9 @@ public class Title : MonoBehaviour
     }
 
 
+    /// <summary>
+    /// Bボタンの入力チェック（全プレイヤーのどれか）
+    /// </summary>
     private bool AnyInputB(){
         //1P B
         var p1_B = InputGame.GetPlayerRoll(1);
@@ -202,70 +318,53 @@ public class Title : MonoBehaviour
 
         return (p1_B || p2_B || p3_B || p4_B);
     }
-    
+
 
     /// <summary>
-    /// 4プレイヤー分のAボタン入力を取得
+    /// カメラのアニメーション終了待ち     タイトル -> マッチング
     /// </summary>
-    private void WaitInputA(){
+    IEnumerator WaitEndCameraAnime(){
 
-        //1P A
-        var p1_A = InputGame.GetPlayerJump(1);
-        //2P A
-        var p2_A = InputGame.GetPlayerJump(2);
-        //3P A
-        var p3_A = InputGame.GetPlayerJump(3);
-        //4P A
-        var p4_A = InputGame.GetPlayerJump(4);
-
-        //  1PのA入力があったら
-        if(p1_A){
-            //  UIの表示切替
-        }
-        //  2PのA入力があったら
-        if(p2_A){
-            //  UIの表示切替
-        }
-        //  3PのA入力があったら
-        if(p3_A){
-            //  UIの表示切替
-        }
-        //  4PのA入力があったら
-        if(p4_A){
-            //  UIの表示切替
+        //  アニメーションステートの切り替わり待ち
+        while(cameraAnim.GetCurrentAnimatorStateInfo(0).IsName("New State 0") == false){
+            yield return null;
         }
 
-    }
-    /// <summary>
-    /// 4プレイヤー分のBボタン入力を取得
-    /// </summary>
-    private void WaitInputB(){
-        //1P B
-        var p1_B = InputGame.GetPlayerRoll(1);
-        //2P B
-        var p2_B = InputGame.GetPlayerRoll(2);
-        //3P B
-        var p3_B = InputGame.GetPlayerRoll(3);
-        //4P B
-        var p4_B = InputGame.GetPlayerRoll(4);
+        //  アニメーション終了待ち
+        while(cameraAnim.GetCurrentAnimatorStateInfo(0).normalizedTime < 1){
+            yield return null;
+        }
+
+        //  ステート切替
+        currentState = StateInTitle.Select;
+        //  UI切替
+        //TitleUIsSetActive(false);
+        titleCanvas.SetActive(false);
+        MatchingUIsSetActive(true);
+        PlayerStart();
+
+        // /Debug.Log("State changed to Select");
         
-        //  1PのB入力があったら
-        if(p1_B){
-            //  UIの表示切替
-        }
-        //  2PのB入力があったら
-        if(p2_B){
-            //  UIの表示切替
-        }
-        //  3PのB入力があったら
-        if(p3_B){
-            //  UIの表示切替
-        }
-        //  4PのB入力があったら
-        if(p4_B){
-            //  UIの表示切替
-        }
     }
+
+
+
+    /// <summary>
+    /// ゲーム開始可能人数集まりました。
+    /// </summary>
+    private bool MeetUp(){
+        int join_cnt = 0;
+        if(IsJoinedPlayer_1) join_cnt += 1;
+        if(IsJoinedPlayer_2) join_cnt += 1;
+        if(IsJoinedPlayer_3) join_cnt += 1;
+        if(IsJoinedPlayer_4) join_cnt += 1;
+
+        return (join_cnt > 1);
+    }
+
+
+
+
 
 
     #region Singleton
