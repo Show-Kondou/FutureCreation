@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: ec0241ef848b01d44930d2c75f5cfcc2
-timeCreated: 1512997319
+guid: 64a782986378d3b4eaf4c8e014bb62e0
+timeCreated: 1516354566
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
@@ -140,7 +140,7 @@ ModelImporter:
     400130: Leg
     400132: //RootNode
     4300000: Leg
-    7400000: Take 001
+    7400000: Lower_Jamp
     9500000: //RootNode
     13700000: Leg
   materials:
@@ -166,11 +166,39 @@ ModelImporter:
     animationWrapMode: 0
     extraExposedTransformPaths: []
     extraUserProperties: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Lower_Jamp
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 32
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
-    globalScale: 1
+    globalScale: 20
     meshCompression: 0
     addColliders: 0
     importVisibility: 1

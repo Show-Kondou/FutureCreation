@@ -128,6 +128,44 @@ GameObject:
   m_PrefabParentObject: {fileID: 1199772017387290, guid: 3659c86e95b9cdc4fb8cb41d93f8c1d9,
     type: 2}
   m_PrefabInternal: {fileID: 903050558}
+--- !u!114 &97285538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 97285529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fceaeb339b971b429c4cc600acabd13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweakMode: 0
+  screenBlendMode: 1
+  hdr: 0
+  sepBlurSpread: 1.19
+  quality: 1
+  bloomIntensity: 0.34
+  bloomThreshold: 0.05
+  bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
+  bloomBlurIterations: 3
+  hollywoodFlareBlurIterations: 2
+  flareRotation: 0
+  lensflareMode: 1
+  hollyStretchWidth: 2.5
+  lensflareIntensity: 0
+  lensflareThreshold: 0.3
+  lensFlareSaturation: 0.75
+  flareColorA: {r: 0.4, g: 0.4, b: 0.8, a: 0.75}
+  flareColorB: {r: 0.4, g: 0.8, b: 0.8, a: 0.75}
+  flareColorC: {r: 0.8, g: 0.4, b: 0.8, a: 0.75}
+  flareColorD: {r: 0.8, g: 0.4, b: 0, a: 0.75}
+  lensFlareVignetteMask: {fileID: 2800000, guid: 95ef4804fe0be4c999ddaa383536cde8,
+    type: 3}
+  lensFlareShader: {fileID: 4800000, guid: 459fe69d2f6d74ddb92f04dbf45a866b, type: 3}
+  screenBlendShader: {fileID: 4800000, guid: 7856cbff0a0ca45c787d5431eb805bb0, type: 3}
+  blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
+  brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
+    type: 3}
 --- !u!1001 &110514519
 Prefab:
   m_ObjectHideFlags: 0
@@ -165,7 +203,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4195675493284810, guid: 3f80ba06b5d43f34e84e1849ef2a15b7, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3f80ba06b5d43f34e84e1849ef2a15b7, type: 2}
@@ -203,7 +241,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &281072830
 MonoBehaviour:
@@ -275,7 +313,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4617063052405500, guid: 318e35543f511a3448777d4420fa4b38, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 318e35543f511a3448777d4420fa4b38, type: 2}
@@ -347,7 +385,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4032230519767792, guid: 1e272db41062aee4687e68d49a8ce84e, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 320593167197496382, guid: 1e272db41062aee4687e68d49a8ce84e,
         type: 2}
@@ -962,6 +1000,11 @@ Prefab:
       value: 
       objectReference: {fileID: 114508311297067714, guid: b78143c92d6528349a09dbfaa6668be9,
         type: 2}
+    - target: {fileID: 114748310775972890, guid: 1e272db41062aee4687e68d49a8ce84e,
+        type: 2}
+      propertyPath: _InitStatus._JumpForce
+      value: 0.45
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e272db41062aee4687e68d49a8ce84e, type: 2}
   m_IsPrefabParent: 0
@@ -1012,7 +1055,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4496572459368942, guid: eb195f87f48d82f4f9eb33b3a97e5aeb, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: eb195f87f48d82f4f9eb33b3a97e5aeb, type: 2}
@@ -1141,6 +1184,48 @@ GameObject:
   m_PrefabParentObject: {fileID: 1630457788886984, guid: 587c7d985ed8dec41a73d98f8fb8993d,
     type: 2}
   m_PrefabInternal: {fileID: 650652101}
+--- !u!1001 &855324212
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4567100946210668, guid: f611213554a43c640891999dce3c2c91, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.32836914
+      objectReference: {fileID: 0}
+    - target: {fileID: 4567100946210668, guid: f611213554a43c640891999dce3c2c91, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.07739258
+      objectReference: {fileID: 0}
+    - target: {fileID: 4567100946210668, guid: f611213554a43c640891999dce3c2c91, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.08862305
+      objectReference: {fileID: 0}
+    - target: {fileID: 4567100946210668, guid: f611213554a43c640891999dce3c2c91, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4567100946210668, guid: f611213554a43c640891999dce3c2c91, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4567100946210668, guid: f611213554a43c640891999dce3c2c91, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4567100946210668, guid: f611213554a43c640891999dce3c2c91, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4567100946210668, guid: f611213554a43c640891999dce3c2c91, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: f611213554a43c640891999dce3c2c91, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &884920043 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1590592896529814, guid: b0ec4243023597a42b319eb9baae6656,
@@ -1193,7 +1278,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4760490761303678, guid: 3659c86e95b9cdc4fb8cb41d93f8c1d9, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4610157977983396, guid: 3659c86e95b9cdc4fb8cb41d93f8c1d9, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1366,6 +1451,11 @@ Prefab:
         type: 2}
       propertyPath: m_ClearFlags
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114695838775780760, guid: 3659c86e95b9cdc4fb8cb41d93f8c1d9,
+        type: 2}
+      propertyPath: bloomThreshold
+      value: 0.05
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 3659c86e95b9cdc4fb8cb41d93f8c1d9, type: 2}
@@ -1635,6 +1725,44 @@ GameObject:
   m_PrefabParentObject: {fileID: 1050338396094950, guid: 3659c86e95b9cdc4fb8cb41d93f8c1d9,
     type: 2}
   m_PrefabInternal: {fileID: 903050558}
+--- !u!114 &1867409028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1867409019}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fceaeb339b971b429c4cc600acabd13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweakMode: 0
+  screenBlendMode: 1
+  hdr: 0
+  sepBlurSpread: 1.19
+  quality: 1
+  bloomIntensity: 0.34
+  bloomThreshold: 0.05
+  bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
+  bloomBlurIterations: 3
+  hollywoodFlareBlurIterations: 2
+  flareRotation: 0
+  lensflareMode: 1
+  hollyStretchWidth: 2.5
+  lensflareIntensity: 0
+  lensflareThreshold: 0.3
+  lensFlareSaturation: 0.75
+  flareColorA: {r: 0.4, g: 0.4, b: 0.8, a: 0.75}
+  flareColorB: {r: 0.4, g: 0.8, b: 0.8, a: 0.75}
+  flareColorC: {r: 0.8, g: 0.4, b: 0.8, a: 0.75}
+  flareColorD: {r: 0.8, g: 0.4, b: 0, a: 0.75}
+  lensFlareVignetteMask: {fileID: 2800000, guid: 95ef4804fe0be4c999ddaa383536cde8,
+    type: 3}
+  lensFlareShader: {fileID: 4800000, guid: 459fe69d2f6d74ddb92f04dbf45a866b, type: 3}
+  screenBlendShader: {fileID: 4800000, guid: 7856cbff0a0ca45c787d5431eb805bb0, type: 3}
+  blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
+  brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
+    type: 3}
 --- !u!1 &1966196830 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1472714014228516, guid: 587c7d985ed8dec41a73d98f8fb8993d,
@@ -1693,7 +1821,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4101731459759372, guid: 2e2910ba80925094da654e2ab58cb7f0, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2e2910ba80925094da654e2ab58cb7f0, type: 2}

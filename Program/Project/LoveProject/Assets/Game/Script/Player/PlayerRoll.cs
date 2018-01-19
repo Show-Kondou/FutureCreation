@@ -26,6 +26,9 @@ public class PlayerRoll : PlayerBase {
 
 	private Transform   _Body;
 	private Rigidbody   _Rigit;
+	private float		_AddForce = 0.1F; // ロール移動の加算する力
+	private bool        _IsRoll = false;
+	private float       _RollTime = 0.0F;
 
 	private float _SumTime = 0.0F;
 	#endregion Member
@@ -55,6 +58,8 @@ public class PlayerRoll : PlayerBase {
 	protected override void Execute() {
 		Roll();
 		Hunger();
+		RollMove();
+
 
 		//if( Status._HitPoint <= 0 ) {
 		//	Debug.Log("ASD");
@@ -76,10 +81,39 @@ public class PlayerRoll : PlayerBase {
 	private void Roll() {
 		if( !InputGame.GetPlayerRoll( Status._PlayerID ) )
 			return;
+		if( Status.State == PlayerStatus.STATE.ROLL ) {
+			return;
+		}
+		_IsRoll = true;
+		_AddForce = 0.0F;
+		_RollTime = 0.0F;
+
 		Status.SetState = PlayerStatus.STATE.ROLL;
 		Status.LowerState = PlayerStatus.STATE.ROLL;
-		_Rigit.AddForce( _Body.forward * _RollForce );
+		//_Rigit.AddForce( _Body.forward * _RollForce );
 
+	}
+
+	private void RollMove() {
+		//if( Input.GetKeyDown(KeyCode.I) ) {
+		//	_AddForce += 0.1F;
+		//}
+		//Debug.Log( _AddForce );
+		//Debug.Log( Mathf.Sin( _AddForce ) );
+		//return;
+
+
+
+
+		if( _IsRoll == false ) return;
+		var forward = transform.forward;
+		forward.y = 0.0F;
+		var force = _AddForce * Mathf.Sin( _RollTime ) * forward;
+		_Rigit.AddForce( force );
+		_RollTime += DeltaTime;
+		if( _RollTime > 3.0F ) {
+			_IsRoll = false;
+		}
 	}
 
 

@@ -34,7 +34,7 @@ public class PlayerJump : PlayerBase {
 	#region Member
 
 	private uint    _PlayerID;
-	private float	_Gravity = Physics.gravity.y;
+	private float	_Gravity = Physics.gravity.y * 0.1F;
 	private float	_JumpForce; //ジャンプ力（基本ステータス）
 	private float	_AddForce;　// ジャンプ力の加算する力
 	public State   _State;		// 状態

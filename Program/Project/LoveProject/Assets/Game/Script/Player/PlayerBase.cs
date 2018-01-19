@@ -64,8 +64,20 @@ public class PlayerStatus {
 
 	public STATE LowerState {
 		get { return _LowerState; }
+		set {
+			if( StatePriority[(int)_UpperState] <= StatePriority[(int)value] ) {
+				_LowerState = value;
+			}
+			
+		}
+	}
+
+
+	public STATE LowerSetState {
+		get { return _LowerState; }
 		set { _LowerState = value; }
 	}
+
 
 }
 

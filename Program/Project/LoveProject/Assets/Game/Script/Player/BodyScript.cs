@@ -31,7 +31,7 @@ public class BodyScript : StateMachineBehaviour {
 		}
 		if( stateInfo.IsName( "Run" ) ) {
 			CSoundManager.Instance.PlaySE( AUDIO_LIST.WALK );
-			_Anime.ResetLower();
+			// _Anime.ResetLower();
 		}
 		if( stateInfo.IsName( "Jump" ) ) {
 			CSoundManager.Instance.PlaySE(AUDIO_LIST.WALK);
@@ -54,29 +54,30 @@ public class BodyScript : StateMachineBehaviour {
 		if( stateInfo.IsName( "Win" ) ) {
 		}
 		if( stateInfo.IsName( "Lose" ) ) {
-			//_Status.SetState = PlayerStatus.STATE.STAND;
-			//_Status.LowerState = PlayerStatus.STATE.STAND;
-			//Debug.Log( "Loss" );
 		}
 
 	}
 
 	// OnStateUpdate is called before OnStateUpdate is called on any state inside this state machine
-	//override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
-	//
-	//}
+	override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex ) {
+		if( stateInfo.IsName( "Roll" ) ) {
+			_Item.Status.SetState = PlayerStatus.STATE.STAND;
+			_Item.Status.LowerSetState = PlayerStatus.STATE.STAND;
+		}
+
+	}
 
 	// OnStateExit is called before OnStateExit is called on any state inside this state machine
 	override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
 		if (stateInfo.IsName( "Jump" )) {
-			_Status.SetState = PlayerStatus.STATE.STAND;
-			_Status.LowerState = PlayerStatus.STATE.STAND;
+			_Item.Status.SetState = PlayerStatus.STATE.STAND;
+			_Item.Status.LowerState = PlayerStatus.STATE.STAND;
 			CSoundManager.Instance.PlaySE( AUDIO_LIST.WALK );
 
 		}
 		if (stateInfo.IsName( "Roll" )) {
-			_Status.SetState = PlayerStatus.STATE.STAND;
-			_Status.LowerState = PlayerStatus.STATE.STAND;
+			_Item.Status.SetState = PlayerStatus.STATE.STAND;
+			_Item.Status.LowerSetState = PlayerStatus.STATE.STAND;
 		}
 		/* 攻撃 */
 		if (stateInfo.IsName( "Slash_P" )) {
