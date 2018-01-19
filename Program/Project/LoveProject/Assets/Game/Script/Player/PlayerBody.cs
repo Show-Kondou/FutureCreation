@@ -33,8 +33,6 @@ public class PlayerBody : PlayerBase {
 	// 下半身
 	private Transform		_LowerBody;
 
-	public  Transform		_UpperPos = null;
-	public  Transform		_LowerPos = null;
 	#endregion Member
 
 	// アクセサ
@@ -77,20 +75,19 @@ public class PlayerBody : PlayerBase {
 			Vector3 cameraForward = new Vector3( Status._CameraTrans.forward.x,
 												 0.0F,
 												 Status._CameraTrans.forward.z );
-			_UpperBody.forward += (cameraForward - _UpperBody.forward) * 0.8F;
+			_UpperBody.forward += (cameraForward - _UpperBody.forward) * 10.0F * DeltaTime;
 			if( Status.LowerState == PlayerStatus.STATE.STAND ) {
-				_LowerBody.forward += (cameraForward - _LowerBody.forward) * 0.8F;
+				_LowerBody.forward += (cameraForward - _LowerBody.forward) * 10.8F * DeltaTime;
 			}
 		}
 		else {
-			_UpperBody.forward += (_LowerBody.forward - _UpperBody.forward) * 0.2F;
+			_UpperBody.forward += (_LowerBody.forward - _UpperBody.forward) * 10.0F * DeltaTime;
 		}
 
-		//var pos = _LowerPos.position;
-		//pos.y = _UpperPos.position.y;
-		//_UpperPos.position = pos;
-		//_UpperPos = _LowerPos;
 	}
+
+
+
 	protected void LowerBodyDirection() {
 
 

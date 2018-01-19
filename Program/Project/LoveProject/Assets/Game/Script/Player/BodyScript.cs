@@ -34,7 +34,6 @@ public class BodyScript : StateMachineBehaviour {
 			_Anime.ResetLower();
 		}
 		if( stateInfo.IsName( "Jump" ) ) {
-			Debug.Log(_Status._PlayerID);
 			CSoundManager.Instance.PlaySE(AUDIO_LIST.WALK);
 		}
 		if( stateInfo.IsName( "Roll" ) ) {
