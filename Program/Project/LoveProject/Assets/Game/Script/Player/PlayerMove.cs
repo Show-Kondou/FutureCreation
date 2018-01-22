@@ -82,10 +82,13 @@ public class PlayerMove : PlayerBase {
 		if( _InputMove.magnitude == 0.0F ) {
 			Status.State = PlayerStatus.STATE.STAND;
 			Status.LowerState = PlayerStatus.STATE.STAND;
+			Debug.Log("Stand");
 		}else {
 			Status.State = PlayerStatus.STATE.RUN;
 			Status.LowerState = PlayerStatus.STATE.RUN;
 			ParticleManager.Instance.PlayParticle(ParticleManager.ParticleName.Smoke,transform.position );
+			Debug.Log( "Run" );
+
 		}
 	}
 

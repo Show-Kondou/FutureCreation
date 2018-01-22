@@ -196,6 +196,9 @@ public class PlayerItem : PlayerBase {
 			// Status._HitPoint += _ItemL.EatItem();
 			Status.State = PlayerStatus.STATE.EAT;
 			_EatLFlag = true;
+			var pos = transform.position;
+			pos.y += 1.3F;
+			ParticleManager.Instance.PlayParticle(ParticleManager.ParticleName.Eat, pos);
 			// _ItemL = null;
 		}
 		// 右アイテム食べる

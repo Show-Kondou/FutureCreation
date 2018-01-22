@@ -34,7 +34,7 @@ public class PlayerJump : PlayerBase {
 	#region Member
 
 	private uint    _PlayerID;
-	private float	_Gravity = Physics.gravity.y * 0.1F;
+	private float _Gravity = Physics.gravity.y;//  * 0.1F;
 	private float	_JumpForce; //ジャンプ力（基本ステータス）
 	private float	_AddForce;　// ジャンプ力の加算する力
 	public State   _State;		// 状態
@@ -87,6 +87,8 @@ public class PlayerJump : PlayerBase {
 			Status.LowerState = PlayerStatus.STATE.JUMP;
 			_AddForce = Status._JumpForce;
 			_ActionF = Jump;
+
+			Debug.Log( "ジャンプ" );
 		}
 	}
 
@@ -96,7 +98,7 @@ public class PlayerJump : PlayerBase {
 	private void Jump() {
 		if( _State != State.JUMPING )
 			return;
-		_AddForce += _Gravity * Time.fixedDeltaTime;
+		_AddForce += _Gravity * Time.fixedDeltaTime * 0.1F;
 		AddVelocityY( _AddForce );
 	}
 
@@ -106,7 +108,7 @@ public class PlayerJump : PlayerBase {
 	private void Fall() {
 		if( _State != State.FALLING )
 			return;
-		_AddForce += _Gravity * Time.fixedDeltaTime;
+		_AddForce += _Gravity * Time.fixedDeltaTime * 0.1F;
 		AddVelocityY( _AddForce );
 	}
 
@@ -154,6 +156,11 @@ public class PlayerJump : PlayerBase {
 			return;
 
 		if ( coll.tag != "Stage" ) return;
+
+		if (_State == State.STANDING)
+			return;
+
+
 		// 接地
 		_State = State.STANDING;
 
@@ -164,6 +171,8 @@ public class PlayerJump : PlayerBase {
 		Status.LowerState = PlayerStatus.STATE.STAND;
 
 		_ActionF = Stand;
+
+		Debug.Log( "着地" );
 	}
 
 	/// <summary>
@@ -186,7 +195,9 @@ public class PlayerJump : PlayerBase {
 		_AddForce = _Gravity * Time.fixedDeltaTime;
 		SetVelocityY( _AddForce );
 		_ActionF = Fall;
+		Debug.Log("落下");
 	}
+	
 	#endregion MonoBehaviour Event
 }
 

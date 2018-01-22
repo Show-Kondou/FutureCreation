@@ -26,7 +26,7 @@ public class PlayerStatus {
 		MAX,
 	};
 
-	private int[] StatePriority = new int[(int)STATE.MAX]{0,0,0,2,3,4,4,0 };
+	private int[] StatePriority = new int[(int)STATE.MAX]{0,0,1,2,3,4,4,0 };
 
 	[Header("プレイヤーID"), SerializeField]
 	public uint            _PlayerID;
@@ -65,7 +65,7 @@ public class PlayerStatus {
 	public STATE LowerState {
 		get { return _LowerState; }
 		set {
-			if( StatePriority[(int)_UpperState] <= StatePriority[(int)value] ) {
+			if( StatePriority[(int)_LowerState] <= StatePriority[(int)value] ) {
 				_LowerState = value;
 			}
 			
