@@ -51,9 +51,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d6b4112df529e0479e4c1f179fc25bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  popPoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  popPoint: []
   limitTime: 8

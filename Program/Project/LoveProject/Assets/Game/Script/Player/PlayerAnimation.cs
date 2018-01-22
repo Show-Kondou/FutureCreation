@@ -100,17 +100,6 @@ public class PlayerAnimation : PlayerBase {
 	/// </summary>
 	protected override void Execute() {
 		StartAnimation( (int)Status.State );
-		//_UpperAnimator.SetInteger( "State", (int)Status.State );
-		// _LowerAnimator.SetInteger( "State", (int)Status.State );
-		//if (Input.GetKey( KeyCode.Q )) {
-		//	_UpperAnimator.SetInteger( "State", 0 );
-		//}
-		//if (Input.GetKey( KeyCode.W )) {
-		//	_UpperAnimator.SetInteger( "State", 1 );
-		//}
-		//if (Input.GetKey( KeyCode.E )) {
-		//	_UpperAnimator.SetInteger( "State", 2 );
-		//}
 	}
 
 	public void StartLose() {

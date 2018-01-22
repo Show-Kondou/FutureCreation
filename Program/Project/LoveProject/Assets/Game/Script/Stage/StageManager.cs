@@ -26,9 +26,11 @@ public class StageManager : MonoBehaviour {
             get{
                 if (!instance){
                     instance = FindObjectOfType<StageManager>();
-                    if (!instance)  instance = new GameObject("StageManager").AddComponent<StageManager>();
-                }
-                return instance;
+				if( !instance ) {
+					instance = new GameObject( "StageManager" ).AddComponent<StageManager>();
+				}
+			}
+			return instance;
             }
         }
 		
@@ -46,8 +48,12 @@ public class StageManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		
+
+
 		foreach(StagePop p  in popPoint){
+			if( popPoint == null ) {
+				Debug.Log("null");
+			}
 			sumPriority += p.popPriority;
 		}
 
@@ -72,8 +78,11 @@ public class StageManager : MonoBehaviour {
 	/// </sammary>
 	private void Pop(){
 
-        //  ステージ生成可能上限数ではないかを見る
-        if (ItemManager.Instance.CanPopItem() == false) return;
+
+		if( GameScene.GameState != 1 ) return;
+
+		//  ステージ生成可能上限数ではないかを見る
+		if (ItemManager.Instance.CanPopItem() == false) return;
 
 		//	popPosの生成確率から、生成するPosを計算で選ぶ
 		int index = PickPopPoint();

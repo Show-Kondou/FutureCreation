@@ -94,6 +94,7 @@ public class PlayerMove : PlayerBase {
 	/// 移動処理
 	/// </summary>
 	void Move() {
+		if( Status.State == PlayerStatus.STATE.ROLL ) return;
 
 		// 最終ベクトル
 		Vector3 vec = Vector3.zero;
