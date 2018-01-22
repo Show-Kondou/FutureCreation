@@ -206,7 +206,7 @@ public class Title : MonoBehaviour
         if(p1_A && !IsJoinedPlayer_1){
             //  参加した
             IsJoinedPlayer_1 = true;
-            JumpSceneData.Instance.JointPlayer(1);
+            //JumpSceneData.Instance.JointPlayer(1);
 
             //  UIの表示切替
             matchMoni_1.SetActiveJoined(true);
@@ -216,7 +216,7 @@ public class Title : MonoBehaviour
         if(p2_A && !IsJoinedPlayer_2){
             //  参加した
             IsJoinedPlayer_2 = true;
-            JumpSceneData.Instance.JointPlayer(2);
+            //JumpSceneData.Instance.JointPlayer(2);
 
             //  UIの表示切替
             matchMoni_2.SetActiveJoined(true);
@@ -226,7 +226,7 @@ public class Title : MonoBehaviour
         if(p3_A && !IsJoinedPlayer_3){
             //  参加した
             IsJoinedPlayer_3 = true;
-            JumpSceneData.Instance.JointPlayer(3);
+            //JumpSceneData.Instance.JointPlayer(3);
 
             //  UIの表示切替
             matchMoni_3.SetActiveJoined(true);
@@ -236,7 +236,7 @@ public class Title : MonoBehaviour
         if(p4_A && !IsJoinedPlayer_4){
             //  参加した
             IsJoinedPlayer_4 = true;
-            JumpSceneData.Instance.JointPlayer(4);
+            //JumpSceneData.Instance.JointPlayer(4);
 
             //  UIの表示切替
             matchMoni_4.SetActiveJoined(true);
@@ -263,6 +263,8 @@ public class Title : MonoBehaviour
         if(p1_B && IsJoinedPlayer_1){
             //  やっぱやめた
             IsJoinedPlayer_1 = false;
+            JumpSceneData.Instance.OutPlayer(1);
+            
             //  UIの表示切替
             matchMoni_1.SetActiveJoined(false);
             matchMoni_1.SetActiveNotJoined(true);
@@ -271,6 +273,8 @@ public class Title : MonoBehaviour
         if(p2_B && IsJoinedPlayer_2){
             //  やっぱやめた
             IsJoinedPlayer_2 = false;
+            JumpSceneData.Instance.OutPlayer(2);
+
             //  UIの表示切替
             matchMoni_2.SetActiveJoined(false);
             matchMoni_2.SetActiveNotJoined(true);
@@ -279,6 +283,8 @@ public class Title : MonoBehaviour
         if(p3_B && IsJoinedPlayer_3){
             //  やっぱやめた
             IsJoinedPlayer_3 = false;
+            JumpSceneData.Instance.OutPlayer(3);
+
             //  UIの表示切替
             matchMoni_3.SetActiveJoined(false);
             matchMoni_3.SetActiveNotJoined(true);
@@ -287,6 +293,8 @@ public class Title : MonoBehaviour
         if(p4_B && IsJoinedPlayer_4){
             //  やっぱやめた
             IsJoinedPlayer_4 = false;
+            JumpSceneData.Instance.OutPlayer(4);
+
             //  UIの表示切替
             matchMoni_4.SetActiveJoined(false);
             matchMoni_4.SetActiveNotJoined(true);
