@@ -176,6 +176,8 @@ MonoBehaviour:
   - {fileID: 198519964081957806, guid: 01a6c13fd947f5643a258198be41ccaa, type: 2}
   - {fileID: 19897378, guid: fe6acd16ed6a14fdc8e7b7de04e6862d, type: 2}
   - {fileID: 198956964323847588, guid: 72a90a201b6eea44798deb0682b6d30b, type: 2}
+  - {fileID: 198812838284419836, guid: 7a0802e1c247d3c4c9176309c94f3438, type: 2}
+  - {fileID: 198126931294474654, guid: 2e4e09274cc0ee544895c715a8217481, type: 2}
   effectPrefab:
   - {fileID: 1070024707510404, guid: 69c3064d88a7e714e8b8fd523cfc2421, type: 2}
 --- !u!198 &198475446680882970
