@@ -65,8 +65,16 @@ public class JumpSceneData : MonoBehaviour {
 	/// 参加プレイヤー
 	/// </summary>
 	/// <param name="num"></param>
-	public void JointPlayer( uint num ) {
+	public void JointPlayer(uint num) {
 		_JoinPlayer[num] = true;
+	}
+
+	/// <summary>
+	/// 不参加プレイヤー
+	/// </summary>
+	/// <param name="num"></param>
+	public void OutPlayer(uint num) {
+		_JoinPlayer[num] = false;
 	}
 
 
