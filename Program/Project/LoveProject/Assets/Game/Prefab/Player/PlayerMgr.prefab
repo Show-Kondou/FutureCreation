@@ -10510,7 +10510,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1952259115348412}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
   m_LocalPosition: {x: 25.6, y: -0.000003993511, z: 32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12378,7 +12378,7 @@ Transform:
   - {fileID: 4775827462503816}
   m_Father: {fileID: 4032230519767792}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 11.75, z: 0}
 --- !u!4 &4544833895066094
 Transform:
   m_ObjectHideFlags: 1
@@ -16303,7 +16303,7 @@ Animator:
   m_Controller: {fileID: 0}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -16470,7 +16470,7 @@ MonoBehaviour:
     _PlayerID: 3
     _HitPoint: 100
     _MoveForce: 10
-    _JumpForce: 2
+    _JumpForce: 0.45
     _TurnForce: 200
     _UpperState: 0
     _LowerState: 0
@@ -16538,7 +16538,7 @@ MonoBehaviour:
     _PlayerID: 2
     _HitPoint: 100
     _MoveForce: 10
-    _JumpForce: 2
+    _JumpForce: 0.45
     _TurnForce: 200
     _UpperState: 0
     _LowerState: 0
@@ -16589,7 +16589,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a01be6de7a737314bb9dfc86e3e3d1a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _HandTrans: {fileID: 4084479076089906}
+  _HandTrans: {fileID: 4626712387000702}
 --- !u!114 &114535919038774174
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -16652,7 +16652,7 @@ MonoBehaviour:
     _PlayerID: 4
     _HitPoint: 100
     _MoveForce: 10
-    _JumpForce: 2
+    _JumpForce: 0.45
     _TurnForce: 200
     _UpperState: 0
     _LowerState: 0
@@ -16756,7 +16756,7 @@ MonoBehaviour:
     _PlayerID: 1
     _HitPoint: 100
     _MoveForce: 10
-    _JumpForce: 2
+    _JumpForce: 0.45
     _TurnForce: 200
     _UpperState: 0
     _LowerState: 0
@@ -18124,7 +18124,7 @@ PlayableDirector:
   - key: {fileID: 114080892981187456, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
     value: {fileID: 0}
   - key: {fileID: 114147974806473620, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1197024746127830}
   - key: {fileID: 114358746187566370, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
     value: {fileID: 0}
   - key: {fileID: 114980978365512750, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
@@ -18200,7 +18200,7 @@ PlayableDirector:
   - key: {fileID: 114069582528496938, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
     value: {fileID: 0}
   - key: {fileID: 114080892981187456, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1568689457913932}
   - key: {fileID: 114147974806473620, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
     value: {fileID: 0}
   - key: {fileID: 114358746187566370, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
@@ -18282,7 +18282,7 @@ PlayableDirector:
   - key: {fileID: 114147974806473620, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
     value: {fileID: 0}
   - key: {fileID: 114358746187566370, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 1952259115348412}
   - key: {fileID: 114980978365512750, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
     value: {fileID: 0}
   - key: {fileID: 114321245857154218, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
@@ -18354,14 +18354,14 @@ PlayableDirector:
   - key: {fileID: 0}
     value: {fileID: 0}
   - key: {fileID: 0}
-    value: {fileID: 0}
+    value: {fileID: 1997426203560686}
   - key: {fileID: 114069582528496938, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: 114080892981187456, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
+    value: {fileID: 1997426203560686}
+  - key: {fileID: 114358746187566370, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
     value: {fileID: 0}
   - key: {fileID: 114147974806473620, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
     value: {fileID: 0}
-  - key: {fileID: 114358746187566370, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
+  - key: {fileID: 114080892981187456, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
     value: {fileID: 0}
   - key: {fileID: 114980978365512750, guid: b78143c92d6528349a09dbfaa6668be9, type: 2}
     value: {fileID: 0}
