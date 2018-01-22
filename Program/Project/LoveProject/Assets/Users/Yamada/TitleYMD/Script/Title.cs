@@ -206,6 +206,8 @@ public class Title : MonoBehaviour
         if(p1_A && !IsJoinedPlayer_1){
             //  参加した
             IsJoinedPlayer_1 = true;
+            JumpSceneData.Instance.JointPlayer(1);
+
             //  UIの表示切替
             matchMoni_1.SetActiveJoined(true);
             matchMoni_1.SetActiveNotJoined(false);
@@ -214,6 +216,8 @@ public class Title : MonoBehaviour
         if(p2_A && !IsJoinedPlayer_2){
             //  参加した
             IsJoinedPlayer_2 = true;
+            JumpSceneData.Instance.JointPlayer(2);
+
             //  UIの表示切替
             matchMoni_2.SetActiveJoined(true);
             matchMoni_2.SetActiveNotJoined(false);
@@ -222,6 +226,8 @@ public class Title : MonoBehaviour
         if(p3_A && !IsJoinedPlayer_3){
             //  参加した
             IsJoinedPlayer_3 = true;
+            JumpSceneData.Instance.JointPlayer(3);
+
             //  UIの表示切替
             matchMoni_3.SetActiveJoined(true);
             matchMoni_3.SetActiveNotJoined(false);
@@ -230,6 +236,8 @@ public class Title : MonoBehaviour
         if(p4_A && !IsJoinedPlayer_4){
             //  参加した
             IsJoinedPlayer_4 = true;
+            JumpSceneData.Instance.JointPlayer(4);
+
             //  UIの表示切替
             matchMoni_4.SetActiveJoined(true);
             matchMoni_4.SetActiveNotJoined(false);

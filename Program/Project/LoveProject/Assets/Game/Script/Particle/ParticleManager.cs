@@ -10,6 +10,8 @@ public class ParticleManager : MonoBehaviour {
 		Bomb,	//	投げアイテムの爆発
 		Heal,	//	回復
 		Smoke,	//	足元の煙
+		Pop,
+		Eat,
 		Max
 	};
 
