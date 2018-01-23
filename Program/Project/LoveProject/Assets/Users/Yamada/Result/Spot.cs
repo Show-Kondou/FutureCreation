@@ -16,7 +16,6 @@ public class Spot : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if(Input.GetKeyDown(KeyCode.Space)){
-			
 			StopLight(1);
 		}
 	}

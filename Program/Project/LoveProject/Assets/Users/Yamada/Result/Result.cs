@@ -40,10 +40,12 @@ public class Result : MonoBehaviour {
 
     PlayerData[] ranking = new PlayerData[4];
 
+    [SerializeField]PlayerResult[] playerResult = new PlayerResult[4];
+    [SerializeField]Spot[] spot = new Spot[4];
 
     bool[] hoge = new bool[]{false, false, false, false};
 
-    bool isShowRanking = true;
+    bool isShowRanking = false;
 
 	// Use this for initialization
 	void Start () {
@@ -67,6 +69,7 @@ public class Result : MonoBehaviour {
 
         //  参加したプレイヤーの順位付け
         RankingSort();
+        PlayPlayerAnim();
         //ShowRanking();
 
         for(int i = 0; i < 4; i++)
@@ -108,6 +111,18 @@ public class Result : MonoBehaviour {
             resultBar4[i].GetComponent<ResultBar>().SetBarImage(ranking[i]._num);
         }
     }
+
+
+    private void PlayPlayerAnim(){
+
+        //  １位のやつはWin   それ以外はLoseを呼ぶ
+        playerResult[ranking[0]._num - 1].WinPlayer();
+        playerResult[ranking[1]._num - 1].LosePlayer();
+        playerResult[ranking[2]._num - 1].LosePlayer();
+        playerResult[ranking[3]._num - 1].LosePlayer();
+
+    }
+
 
 
     /// <summary>
