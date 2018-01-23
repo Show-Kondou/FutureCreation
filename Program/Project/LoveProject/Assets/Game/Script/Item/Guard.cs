@@ -40,6 +40,10 @@ public class Guard : Item {
 		}else{
 			transform.Rotate(new Vector3(0,90.0F * Time.deltaTime,0),Space.World);
 		}
+
+		if( IsActioning ){
+			Action();
+		}
 	}
 
 	
@@ -70,7 +74,7 @@ public class Guard : Item {
 	/// </sammary>
 	public override void Action(){
 		//	押されてる
-		isAction = true;
+		// isAction = true;
 
         //  盾を向ける方向をカメラより設定
         var _camera = CameraManager.Instance.GetPlayerCamera(playerID).transform;
@@ -127,7 +131,8 @@ public class Guard : Item {
 			var item = other.gameObject.GetComponent<Item>();
 
 			if(item.IsPicked == false) return;// 相手が、落ちているオブジェクトなら判定しない
-			
+
+			CSoundManager.Instance.PlaySE(AUDIO_LIST.NOHIT );
 
 			//	アイテムの攻撃力を-1にする
 			item.AttackPoint = -1;

@@ -60,7 +60,7 @@ public class BodyScript : StateMachineBehaviour {
 
 	// OnStateUpdate is called before OnStateUpdate is called on any state inside this state machine
 	override public void OnStateUpdate( Animator animator, AnimatorStateInfo stateInfo, int layerIndex ) {
-		if( stateInfo.IsName( "Roll" ) ) {
+		if (stateInfo.IsName( "Roll" )) {
 			_Item.Status.SetState = PlayerStatus.STATE.STAND;
 			_Item.Status.LowerSetState = PlayerStatus.STATE.STAND;
 		}
@@ -73,7 +73,6 @@ public class BodyScript : StateMachineBehaviour {
 			_Item.Status.SetState = PlayerStatus.STATE.STAND;
 			_Item.Status.LowerState = PlayerStatus.STATE.STAND;
 			CSoundManager.Instance.PlaySE( AUDIO_LIST.WALK );
-
 		}
 		if (stateInfo.IsName( "Roll" )) {
 			_Item.Status.SetState = PlayerStatus.STATE.STAND;

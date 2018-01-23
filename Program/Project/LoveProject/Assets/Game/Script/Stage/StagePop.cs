@@ -22,7 +22,19 @@ public class StagePop : MonoBehaviour {
 	///	指定した種類のお菓子をマネージャで生成
 	/// </sammary>
 	public void Pop(ItemManager.ItemType type){
-		ItemManager.Instance.Pop( type, transform.position);
+		// ItemManager.Instance.Pop( type, transform.position);
+		StartCoroutine( EventPop( type ) );
+	}
+
+
+	IEnumerator EventPop(ItemManager.ItemType type) {
+
+		var pos = transform.position;
+		pos.y += 1.2F;
+		ParticleManager.Instance.PlayParticle(ParticleManager.ParticleName.Pop, pos );
+		yield return new WaitForSeconds( 0.8F );
+		ItemManager.Instance.Pop( type, transform.position );
+
 	}
 	
 
