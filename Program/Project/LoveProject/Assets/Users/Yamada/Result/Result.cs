@@ -43,7 +43,7 @@ public class Result : MonoBehaviour {
 
     bool[] hoge = new bool[]{false, false, false, false};
 
-    bool isShowRanking = false;
+    bool isShowRanking = true;
 
 	// Use this for initialization
 	void Start () {

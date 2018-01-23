@@ -68,7 +68,7 @@ public class PlayerResult : MonoBehaviour {
 	/// </summary>
 	private void Update() {
 		if( Input.GetKeyDown( KeyCode.W ) ) {
-			// WinPlayer();
+			WinPlayer();
 		}
 		if( Input.GetKeyDown( KeyCode.L ) ) {
 			LosePlayer();
