@@ -42,8 +42,8 @@ public class JumpSceneData : MonoBehaviour {
 	// メンバー
 	#region Member
 	// 参加プレイヤー
-	private bool[] _JoinPlayer = new bool[4] { true, false, false, false };
-	// 各プレイヤーがキルしたプレイヤー番号
+	private bool[] _JoinPlayer = new bool[4] { true, true, true, true };
+	// 各プレイヤーがキルしたプレイヤー
 	private bool[] _KillPlayer1 = new bool[4];
 	private bool[] _KillPlayer2 = new bool[4];
 	private bool[] _KillPlayer3 = new bool[4];

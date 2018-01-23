@@ -45,10 +45,14 @@ public class Player : PlayerBase {
 
 	public int PlayerHP {
 		get { 
-			if( GameScene.GameState == 1 )
+			//if( GameScene.GameState == 1 )
 				return Status._HitPoint;
-			return 100;
+			// return 100;
 		}
+	}
+
+	public bool IsDeath{
+		get{ return Status._HitPoint <= 0; }
 	}
 
 	/// <summary>

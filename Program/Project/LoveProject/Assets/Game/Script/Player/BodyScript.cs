@@ -105,7 +105,7 @@ public class BodyScript : StateMachineBehaviour {
 
 		}
 		if( stateInfo.IsName( "Lose" ) ) {
-			_Item.DestroyPlayer();
+			// _Item.DestroyPlayer();
 		}
 
 	}

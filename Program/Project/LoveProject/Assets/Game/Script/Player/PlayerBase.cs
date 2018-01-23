@@ -9,6 +9,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 [Serializable]
 public class PlayerStatus {
@@ -46,6 +47,8 @@ public class PlayerStatus {
 	public Transform       _CameraTrans;
 	[Header("アニメーション"), NonSerialized]
 	public PlayerAnimation _Animation;
+
+	public PlayableDirector _GameSet;
 
 	public bool             _IsLose = false;
 
@@ -100,6 +103,7 @@ abstract public class PlayerBase : MonoBehaviour {
 	// 各オブジェクトごとにヒットストップを行うため
 	private float   _deltaTime;       // 各オブジェクトのデルタタイム
 	private float   _timeScale = 1.0F; // 各オブジェクトのタイムスケール
+
 	#endregion Member
 
 
@@ -151,8 +155,8 @@ abstract public class PlayerBase : MonoBehaviour {
 		if (GameScene.GameState != 1)
 			return;
 		if( Status._HitPoint <= 0 ) {
-			Status.State = PlayerStatus.STATE.LOSS;
-			Status.LowerState = PlayerStatus.STATE.LOSS;
+			//Status.State = PlayerStatus.STATE.LOSS;
+			//Status.LowerState = PlayerStatus.STATE.LOSS;
 			Status._Animation.StartLose();
 			return;
 		}
@@ -170,10 +174,26 @@ abstract public class PlayerBase : MonoBehaviour {
 
 	public void DestroyPlayer() {
 		// DefaultCamera
+		Debug.Log("死");
+		StartCoroutine( Destroy() );
+		//Status._GameSet.Play();
+		//new WaitForSeconds(1.0F);
+		//var c = Status._CameraTrans.GetComponent<DefaultCamera>();
+		//c.StartDemo();
+		//Status._Animation.StopAnimation();
+		//Destroy(gameObject);
+	}
+
+
+	private IEnumerator Destroy() {
+		Status._GameSet.Play();
+		yield return new WaitForSeconds(2.2F);
 		var c = Status._CameraTrans.GetComponent<DefaultCamera>();
 		c.StartDemo();
 		Status._Animation.StopAnimation();
-		Destroy(gameObject);
+		Destroy( gameObject );
+		yield return null;
+
 	}
 
 	virtual protected void FixedExecute() { }
