@@ -28,6 +28,8 @@ public class GameScene : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if( PlayerManager.Instance.IsGameSet() ){
+			Debug.Log("ゲーム終わり");
+		}
 	}
 }

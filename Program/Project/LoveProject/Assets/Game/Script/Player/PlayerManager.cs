@@ -56,4 +56,48 @@ public class PlayerManager : MonoBehaviour {
 			_Player_4.gameObject.SetActive( true );
 		}
 	}
+
+
+	public bool IsGameSet(){
+		int lifeNum = 0;
+
+		if (JumpSceneData.Instance.GetJointPlayerNum( 1 ) && 
+			!_Player_1.IsDeath) {
+			lifeNum++;
+		}
+		if (JumpSceneData.Instance.GetJointPlayerNum( 2 ) &&
+			!_Player_2.IsDeath) {
+			lifeNum++;
+		}
+		if (JumpSceneData.Instance.GetJointPlayerNum( 3 ) &&
+			!_Player_3.IsDeath) {
+			lifeNum++;
+		}
+		if (JumpSceneData.Instance.GetJointPlayerNum( 4 ) &&
+			!_Player_4.IsDeath) {
+			lifeNum++;
+		}
+		// return lifeNum <= 1;
+		if (lifeNum > 1)
+			return false;
+
+		if (JumpSceneData.Instance.GetJointPlayerNum( 1 ) &&
+			!_Player_1.IsDeath) {
+			JumpSceneData.Instance.EndPlayerHP( 1, _Player_1.PlayerHP );
+		}
+		if (JumpSceneData.Instance.GetJointPlayerNum( 2 ) &&
+			!_Player_2.IsDeath) {
+			JumpSceneData.Instance.EndPlayerHP( 2, _Player_2.PlayerHP );
+		}
+		if (JumpSceneData.Instance.GetJointPlayerNum( 3 ) &&
+			!_Player_3.IsDeath) {
+			JumpSceneData.Instance.EndPlayerHP( 3, _Player_3.PlayerHP );
+		}
+		if (JumpSceneData.Instance.GetJointPlayerNum( 4 ) &&
+			!_Player_4.IsDeath) {
+			JumpSceneData.Instance.EndPlayerHP( 4, _Player_4.PlayerHP );
+		}
+
+		return true;
+	}
 }

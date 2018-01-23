@@ -108,11 +108,19 @@ public class PlayerAnimation : PlayerBase {
 		_UpperAnimator.SetTrigger( "Lose" );
 		_LowerAnimator.SetTrigger( "Lose" );
 		Status._IsLose = true;
+		StartCoroutine( LoseStart() );
 	}
 
 	public void StopAnimation() {
 		_UpperAnimator.speed = 0.0F;
 		_LowerAnimator.speed = 0.0F;
+	}
+
+
+	private IEnumerator LoseStart(){
+		yield return new WaitForSeconds(1.4F);
+		DestroyPlayer();
+		yield return null;
 	}
 
 
