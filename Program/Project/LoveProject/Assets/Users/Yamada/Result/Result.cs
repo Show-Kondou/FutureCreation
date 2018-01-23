@@ -43,12 +43,24 @@ public class Result : MonoBehaviour {
     [SerializeField]PlayerResult[] playerResult = new PlayerResult[4];
     [SerializeField]Spot[] spot = new Spot[4];
 
+    [SerializeField]GameObject hubukiParticle;
+
+    [SerializeField]ResultMonitor[] monitor = new ResultMonitor[4];
+
     bool[] hoge = new bool[]{false, false, false, false};
 
     bool isShowRanking = false;
 
 	// Use this for initialization
 	void Start () {
+        //  各モニターの表示を勝者演出にするお
+        for(int i = 0; i < 4; i++){
+            monitor[i].ShowPlayerAnim(true);
+            monitor[i].ShowRankingUI(false);
+        }
+        //  紙吹雪オフ
+        hubukiParticle.SetActive(false);
+
         //  念のため、一旦全部非表示
         for(int i = 0; i < 4; i++){
             resultBar[i].SetActive(false);
@@ -69,11 +81,14 @@ public class Result : MonoBehaviour {
 
         //  参加したプレイヤーの順位付け
         RankingSort();
-        PlayPlayerAnim();
+        //PlayPlayerAnim();
         //ShowRanking();
 
-        for(int i = 0; i < 4; i++)
+
+        for(int i = 0; i < 4; i++){
+            spot[i].StartLight(ranking[0]._num);
             Debug.Log(ranking[i]._num + " : " + ranking[i]._hp + " : " + ranking[i]._killedPlayer[0] + ranking[i]._killedPlayer[1] + ranking[i]._killedPlayer[2] + ranking[i]._killedPlayer[3]);
+        }
 	}
 	
 	// Update is called once per frame
@@ -85,7 +100,7 @@ public class Result : MonoBehaviour {
 	}
 	
     /// <summary>
-    ///
+    /// ランキングセット
     /// </summary>
     private void ShowRanking(){
 
@@ -113,7 +128,10 @@ public class Result : MonoBehaviour {
     }
 
 
-    private void PlayPlayerAnim(){
+    /// <summary>
+    ///
+    /// </summary>
+    public void PlayPlayerAnim(){
 
         //  １位のやつはWin   それ以外はLoseを呼ぶ
         playerResult[ranking[0]._num - 1].WinPlayer();
@@ -193,6 +211,15 @@ public class Result : MonoBehaviour {
     /// </summary>
     public Sprite GetNumberSprite(int num){
         return spriteNumbers[num];
+    }
+
+
+
+    /// <summary>
+    ///
+    /// </summary>
+    public void SetActiveParticle(bool value){
+        hubukiParticle.SetActive(value);
     }
 
     #region Singleton
