@@ -8,13 +8,16 @@ public class GameScene : MonoBehaviour {
 
 	public static int GameState {
 		get { return _GameState; }
-		set { _GameState = value; }
+		set { _GameState = value;
+			if( value == 1 )
+				CSoundManager.Instance.PlayBGM( AUDIO_LIST.BGM_01, true );
+		}
 	}
 
 
 	// Use this for initialization
 	void Start () {
-		CSoundManager.Instance.PlayBGM( AUDIO_LIST.BGM_01, true );
+		// CSoundManager.Instance.PlayBGM( AUDIO_LIST.BGM_01, true );
 		PlayerManager.Instance.Init();
 		for( uint i = 1; i <= 4; i++ ) {
 			if( JumpSceneData.Instance.GetJointPlayerNum( i ) )

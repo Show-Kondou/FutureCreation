@@ -199,6 +199,7 @@ public class PlayerItem : PlayerBase {
 			var pos = transform.position;
 			pos.y += 1.3F;
 			ParticleManager.Instance.PlayParticle(ParticleManager.ParticleName.Eat, pos);
+			CSoundManager.Instance.PlaySE(AUDIO_LIST.EAT);
 			// _ItemL = null;
 		}
 		// 右アイテム食べる
@@ -208,6 +209,10 @@ public class PlayerItem : PlayerBase {
 			//Status._HitPoint += _ItemR.EatItem();
 			Status.State = PlayerStatus.STATE.EAT;
 			_EatRFlag = true;
+			var pos = transform.position;
+			pos.y += 1.3F;
+			ParticleManager.Instance.PlayParticle( ParticleManager.ParticleName.Eat, pos );
+			CSoundManager.Instance.PlaySE( AUDIO_LIST.EAT );
 			//_ItemR = null;
 		}
 	}
