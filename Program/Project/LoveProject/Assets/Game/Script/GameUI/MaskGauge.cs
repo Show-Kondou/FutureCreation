@@ -40,6 +40,9 @@ public class MaskGauge : MonoBehaviour {
 	/// </summary>
 	public void TransUV(float hp){
 
+		if(rawImage == null) 
+			rawImage = GetComponent<RawImage>();
+		
 		//	キャッシュ
 		uvRect = rawImage.uvRect;
 

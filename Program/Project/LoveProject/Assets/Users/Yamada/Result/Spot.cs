@@ -9,12 +9,6 @@ public class Spot : MonoBehaviour {
 	float[] stopAngle = {-30.0F,-10.0F,10.0F,30.0F};
 
 	
-	// Update is called once per frame
-	void Update () {
-		if(Input.GetKeyDown(KeyCode.Space)){
-			StopLight(2);
-		}
-	}
 
 
 	/// <summary>
@@ -39,8 +33,10 @@ public class Spot : MonoBehaviour {
 		//	ドラムロール停止
 
 		//	ターン！！
-		CSoundManager.Instance.PlaySE(AUDIO_LIST.GO);
+		CSoundManager.Instance.PlaySE(AUDIO_LIST.BAAN);
+		//	プレイヤー演出開始
 		Result.Instance.PlayPlayerAnim();
+		StartCoroutine("EndPlayerScene");
 	}
 
 
@@ -62,11 +58,18 @@ public class Spot : MonoBehaviour {
 
 	private IEnumerator StopLightCoroutine(uint pnum){
 
-		yield return new WaitForSeconds(7.99f);
+		yield return new WaitForSeconds(2.5f);
 
 		StopLight(pnum);
 		//	花吹雪発動
 		Result.Instance.SetActiveParticle(true);
 
+	}
+
+
+	private IEnumerator EndPlayerScene(){
+
+		yield return new WaitForSeconds(3.0f);
+		Result.Instance.ShowRanking();
 	}
 }

@@ -49,15 +49,16 @@ public class Result : MonoBehaviour {
 
     bool[] hoge = new bool[]{false, false, false, false};
 
-    bool isShowRanking = false;
+    [HideInInspector]
+    public bool isShowRanking = false;
 
 	// Use this for initialization
 	void Start () {
         //  各モニターの表示を勝者演出にするお
-        for(int i = 0; i < 4; i++){
-            monitor[i].ShowPlayerAnim(true);
-            monitor[i].ShowRankingUI(false);
-        }
+        // for(int i = 0; i < 4; i++){
+        //     monitor[i].ShowPlayerAnim(true);
+        //     monitor[i].ShowRankingUI(false);
+        // }
         //  紙吹雪オフ
         hubukiParticle.SetActive(false);
 
@@ -81,13 +82,11 @@ public class Result : MonoBehaviour {
 
         //  参加したプレイヤーの順位付け
         RankingSort();
-        //PlayPlayerAnim();
-        //ShowRanking();
 
 
         for(int i = 0; i < 4; i++){
             spot[i].StartLight(ranking[0]._num);
-            Debug.Log(ranking[i]._num + " : " + ranking[i]._hp + " : " + ranking[i]._killedPlayer[0] + ranking[i]._killedPlayer[1] + ranking[i]._killedPlayer[2] + ranking[i]._killedPlayer[3]);
+            // /Debug.Log(ranking[i]._num + " : " + ranking[i]._hp + " : " + ranking[i]._killedPlayer[0] + ranking[i]._killedPlayer[1] + ranking[i]._killedPlayer[2] + ranking[i]._killedPlayer[3]);
         }
 	}
 	
@@ -95,15 +94,28 @@ public class Result : MonoBehaviour {
 	void Update () {
 
         if(isShowRanking){
-            ShowRanking();
+            if(AnyPlayerPushedStart()){
+                Debug.LogError("ここでシーン変更呼ぶ");
+            }
         }
-	}
+	}  
+
+    private bool AnyPlayerPushedStart(){
+        return (InputGame.GetStartButton(1) || InputGame.GetStartButton(2) || InputGame.GetStartButton(3) || InputGame.GetStartButton(4));
+    }
 	
     /// <summary>
     /// ランキングセット
     /// </summary>
-    private void ShowRanking(){
+    public void ShowRanking(){
 
+        //  表示
+        for(int i = 0; i < 4; i++){
+            monitor[i].ShowPlayerAnim(false);
+            monitor[i].ShowRankingUI(true);
+        }
+
+        //  値をセットして
         for(int i = 0; i < 4; i++){
             resultBar[i].GetComponent<ResultBar>().SetHp(ranking[i]._hp);
             resultBar[i].GetComponent<ResultBar>().SetPlayerNum(ranking[i]._num);
@@ -125,6 +137,8 @@ public class Result : MonoBehaviour {
             resultBar4[i].GetComponent<ResultBar>().SetKilledPlayer(ranking[i]._killedPlayer);
             resultBar4[i].GetComponent<ResultBar>().SetBarImage(ranking[i]._num);
         }
+
+        isShowRanking = true;
     }
 
 
