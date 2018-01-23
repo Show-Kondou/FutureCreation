@@ -741,7 +741,6 @@ GameObject:
   - component: {fileID: 4796849683514670}
   - component: {fileID: 33681767507053030}
   - component: {fileID: 23186692639429332}
-  - component: {fileID: 111559788511457964}
   - component: {fileID: 95644516302544172}
   m_Layer: 0
   m_Name: Pocky
@@ -4062,7 +4061,7 @@ MeshRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1336914970951738}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_MotionVectors: 1
@@ -4146,21 +4145,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!111 &111559788511457964
-Animation:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1336914970951738}
-  m_Enabled: 0
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 7010feea99e5018448667b635bfc9726, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 7010feea99e5018448667b635bfc9726, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!114 &114382198516087596
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4175,7 +4159,7 @@ MonoBehaviour:
   _Upper: {fileID: 95454010931442538}
   _Lower: {fileID: 95133208257642152}
   _playable: {fileID: 320977668600029376}
-  _Asset: {fileID: 11400000, guid: a755cb2ab12d9614aac31ce52c661c3b, type: 2}
+  _Mesh: {fileID: 23186692639429332}
 --- !u!137 &137146506321021496
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -4485,7 +4469,7 @@ PlayableDirector:
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: a755cb2ab12d9614aac31ce52c661c3b, type: 2}
   m_InitialState: 0
-  m_WrapMode: 2
+  m_WrapMode: 0
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
