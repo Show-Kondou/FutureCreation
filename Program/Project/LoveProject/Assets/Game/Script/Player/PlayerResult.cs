@@ -29,6 +29,9 @@ public class PlayerResult : MonoBehaviour {
 
 	[SerializeField]
 	private PlayableDirector _playable;
+
+	[SerializeField]
+	private MeshRenderer _Mesh;
 	#endregion Member
 
 	// アクセサ
@@ -42,6 +45,7 @@ public class PlayerResult : MonoBehaviour {
 	/// </summary>
 	public void WinPlayer() {
 		_playable.Play();
+		_Mesh.enabled = true;
 	}
 
 	/// <summary>
@@ -50,6 +54,7 @@ public class PlayerResult : MonoBehaviour {
 	public void LosePlayer() {
 		_Upper.SetTrigger( "ResultLose" );
 		_Lower.SetTrigger( "ResultLose" );
+		_Mesh.enabled = false;
 	}
 
 	#endregion Method
@@ -68,7 +73,7 @@ public class PlayerResult : MonoBehaviour {
 	/// </summary>
 	private void Update() {
 		if( Input.GetKeyDown( KeyCode.W ) ) {
-			// WinPlayer();
+			WinPlayer();
 		}
 		if( Input.GetKeyDown( KeyCode.L ) ) {
 			LosePlayer();
