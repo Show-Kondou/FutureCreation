@@ -168,7 +168,7 @@ public class PlayerJump : PlayerBase {
 		} else {
 			Status.SetState = PlayerStatus.STATE.STAND;
 		}
-		Status.LowerState = PlayerStatus.STATE.STAND;
+		Status.LowerSetState = PlayerStatus.STATE.STAND;
 
 		_ActionF = Stand;
 
