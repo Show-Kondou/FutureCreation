@@ -103,7 +103,7 @@ public class CSoundManager : MonoBehaviour {
 			m_SEChannel.Add( channel );
 		}
 
-		m_BGMChannel[0].volume = 0.1F;
+		m_BGMChannel[0].volume = 0.5F;
 
 	}
 

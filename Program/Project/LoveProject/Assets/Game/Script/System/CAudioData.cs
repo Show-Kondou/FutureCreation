@@ -23,11 +23,14 @@ public enum AUDIO_LIST {
 	BGM_03,         // BGM
 
 	/* SE */
-	BREAK,	// 武器が壊れた
+	EAT,		// 食べる
+	DRAMROLL,	//	ドラムロール
+	BREAK,		// 武器が壊れた
 	COLLAPSE,	// 倒れた
 	CURE,		// 回復
 	DAMAGE,		// 攻撃が当たった
-	EXPLOSION,	// 投げ物の爆発
+	EXPLOSION,  // 投げ物の爆発
+	READY,	// レディ
 	GO,		// ゲームスタート
 	IN,		// 観戦中のカメラ移動
 	NOHIT,	// ガード成功時
@@ -61,12 +64,15 @@ public class CAudioData {
 		"BGM/bgm_03",			// BGM
 	
 		/* SE */
+		"SE/Eat",		// 食べる
+		"SE/DramRoll",	// DramRoll
 		"SE/break",	// 武器が壊れた
 		"SE/collapse_02",	// 倒れた
 		"SE/cure_02",		// 回復
 		"SE/damage_02",		// 攻撃が当たった
 		"SE/explosion",	// 投げ物の爆発
-		"SE/go_02",		// ゲームスタート
+		"SE/Ready",		// レディ
+		"SE/Go",		// ゲームスタート
 		"SE/in",		// 観戦中のカメラ移動
 		"SE/nohit_02",	// ガード成功時
 		"SE/obtain",	// 拾う
