@@ -25,6 +25,7 @@ public enum AUDIO_LIST {
 	/* SE */
 	EAT,		// 食べる
 	DRAMROLL,	//	ドラムロール
+	BAAN,
 	BREAK,		// 武器が壊れた
 	COLLAPSE,	// 倒れた
 	CURE,		// 回復
@@ -66,6 +67,7 @@ public class CAudioData {
 		/* SE */
 		"SE/Eat",		// 食べる
 		"SE/DramRoll",	// DramRoll
+		"SE/go",	// Baan
 		"SE/break",	// 武器が壊れた
 		"SE/collapse_02",	// 倒れた
 		"SE/cure_02",		// 回復
