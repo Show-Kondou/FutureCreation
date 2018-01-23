@@ -80,6 +80,7 @@ public class ParticleManager : MonoBehaviour {
 	public void PlayEffect(Vector3 _pos){
 		
 		var _obj = (GameObject)Instantiate(effectPrefab[0], _pos, Quaternion.identity);
+		if(_obj == null) Debug.LogError("リングエフェクトがない");
 	}
 
 

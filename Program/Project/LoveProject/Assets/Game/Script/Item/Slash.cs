@@ -12,7 +12,7 @@ public class Slash : Item {
 		mesh = GetComponent<MeshRenderer>();
 		coll = GetComponent<Collider>();
         transform.localPosition += new Vector3(0,1.2f,0);
-		transform.localEulerAngles = new Vector3(45.0F,0,0);
+		transform.localEulerAngles = new Vector3(-45.0F,0,0);
 	}
 	
 

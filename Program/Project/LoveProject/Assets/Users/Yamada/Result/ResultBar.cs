@@ -27,20 +27,20 @@ public class ResultBar : MonoBehaviour {
 	[SerializeField]
 	Image[] killedPlayerIcon = new Image[3];	//	自身以外のキャラアイコン３つ
 
-	// Use this for initialization
-	void Start () {
-		//	HP取得
-		//playerHp = Data.Instance.GetEndPlayerHP(playerNum);
-		playerHp = 100;
-	}
+	// // Use this for initialization
+	// void Start () {
+	// 	//	HP取得
+	// 	//playerHp = Data.Instance.GetEndPlayerHP(playerNum);
+	// 	playerHp = 100;
+	// }
 	
-	// Update is called once per frame
-	void Update () {
+	// // Update is called once per frame
+	// void Update () {
 		
-		//	残りHPを反映
-		// gauge.TransUV(playerHp);
-		// HpNumberUpdate(playerHp);
-	}
+	// 	//	残りHPを反映
+	// 	// gauge.TransUV(playerHp);
+	// 	// HpNumberUpdate(playerHp);
+	// }
 
 	/// <summary>
 	///

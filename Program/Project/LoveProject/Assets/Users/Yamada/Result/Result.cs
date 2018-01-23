@@ -29,10 +29,7 @@ public class Result : MonoBehaviour {
 
     private uint joinedCount = 0;
 
-    //private GameObject[] ranking = new GameObject[4];
-
     public int[] arrayHP = {100,72,-999,10};//new int[4];
-    private uint[] dumpPlayerNum = new uint[4];
 
     struct PlayerData{
         public uint    _num;       //  プレイヤー番号
@@ -42,10 +39,11 @@ public class Result : MonoBehaviour {
     }
 
     PlayerData[] ranking = new PlayerData[4];
-    PlayerData[] temp = new PlayerData[4];
 
 
     bool[] hoge = new bool[]{false, false, false, false};
+
+    bool isShowRanking = false;
 
 	// Use this for initialization
 	void Start () {
@@ -69,7 +67,7 @@ public class Result : MonoBehaviour {
 
         //  参加したプレイヤーの順位付け
         RankingSort();
-        ShowRanking();
+        //ShowRanking();
 
         for(int i = 0; i < 4; i++)
             Debug.Log(ranking[i]._num + " : " + ranking[i]._hp + " : " + ranking[i]._killedPlayer[0] + ranking[i]._killedPlayer[1] + ranking[i]._killedPlayer[2] + ranking[i]._killedPlayer[3]);
@@ -77,6 +75,10 @@ public class Result : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
+        if(isShowRanking){
+            ShowRanking();
+        }
 	}
 	
     /// <summary>
