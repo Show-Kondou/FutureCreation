@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5e55ea12b8dd2154e87282eb29824303
-timeCreated: 1516096448
+timeCreated: 1516708172
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -342,21 +342,7 @@ TextureImporter:
         serializedVersion: 2
         x: 9
         y: 1231
-        width: 1198
-        height: 358
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UI_18
-      rect:
-        serializedVersion: 2
-        x: 1313
-        y: 1231
-        width: 1181
+        width: 2491
         height: 358
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

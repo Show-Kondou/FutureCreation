@@ -125,7 +125,7 @@ public class CameraManager : MonoBehaviour {
 
 	private void Awake() {
 		DontDestroyOnLoad( _Instance );
-		Screen.SetResolution( 1920 * 2, 1080, false );
+		// Screen.SetResolution( 1920 * 2, 1080, false );
 	}
 	#endregion MonoBehaviour Event
 

@@ -44,6 +44,10 @@ public class PlayerUI : MonoBehaviour {
 		
 		//	ボタンUI
 		ButtonUI();
+
+		if(hpUI.playerHp <= 0) {
+			gameObject.SetActive(false);
+		}
 	}
 
 

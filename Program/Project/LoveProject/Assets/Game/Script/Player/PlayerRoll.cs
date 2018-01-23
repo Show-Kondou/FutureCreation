@@ -72,7 +72,7 @@ public class PlayerRoll : PlayerBase {
 		_SumTime += DeltaTime;
 		if (_SumTime < 2.0F)
 			return;
-		AddHitPoint(-1);
+		AddHitPoint(-50);
 		_SumTime = 0.0F;
 	}
 		
@@ -182,12 +182,28 @@ public class PlayerRoll : PlayerBase {
 		// 自分の意外か
 		if( Status._PlayerID == item.PlayerID )
 			return;
+		if(item.AttackPoint == -1){
+			Debug.Log("ガード");
+			return;
+		}
+		if(item.AttackPoint == 0) {
+			Debug.Log( "ダメージなし" );
+			return;
+		}
 		// ダメージ
 		Debug.Log( Status._PlayerID + "にヒット！\nHP:" + Status._HitPoint + "=>" + (Status._HitPoint - item.AttackPoint) );
+
+
 		AddHitPoint ( -item.AttackPoint);
 
-
 		CSoundManager.Instance.PlaySE( AUDIO_LIST.DAMAGE );
+
+		// 死亡攻撃
+		if(Status._HitPoint <= 0) {
+			JumpSceneData.Instance.KillPlayer( item.PlayerID, Status._PlayerID );
+			Debug.Log( item.PlayerID + "が" + Status._PlayerID + "を殺した、、、" );
+		}
+
 	}
 
 	#endregion MonoBehaviour Event
