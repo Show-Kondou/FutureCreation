@@ -55,10 +55,10 @@ public class Result : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         //  各モニターの表示を勝者演出にするお
-        // for(int i = 0; i < 4; i++){
-        //     monitor[i].ShowPlayerAnim(true);
-        //     monitor[i].ShowRankingUI(false);
-        // }
+        for(int i = 0; i < 4; i++){
+            monitor[i].ShowPlayerAnim(true);
+            monitor[i].ShowRankingUI(false);
+        }
         //  紙吹雪オフ
         hubukiParticle.SetActive(false);
 
@@ -143,7 +143,7 @@ public class Result : MonoBehaviour {
 
 
     /// <summary>
-    ///
+    /// プレイヤーのアニメーション再生
     /// </summary>
     public void PlayPlayerAnim(){
 
@@ -207,21 +207,21 @@ public class Result : MonoBehaviour {
 
 
     /// <summary>
-    ///
+    /// バーのスプライト取得
     /// </summary>
     public Sprite GetBarSprite(int num){
         return spriteBar[num];
     }
 
     /// <summary>
-    ///
+    /// P1～P4のスプライト取得
     /// </summary>
     public Sprite GetPlayerNumSprite(uint num){
         return spritePlayerNumber[num-1];
     }
 
     /// <summary>
-    ///
+    /// 数字スプライト取得
     /// </summary>
     public Sprite GetNumberSprite(int num){
         return spriteNumbers[num];
@@ -230,7 +230,7 @@ public class Result : MonoBehaviour {
 
 
     /// <summary>
-    ///
+    /// 紙吹雪のパーティクルのアクティブ操作
     /// </summary>
     public void SetActiveParticle(bool value){
         hubukiParticle.SetActive(value);

@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+///	スポットライトといいつつ違うこと少しやっちゃってる
+/// </summary>
 public class Spot : MonoBehaviour {
 
 	IEnumerator coro;	//	コルーチン
@@ -9,10 +13,8 @@ public class Spot : MonoBehaviour {
 	float[] stopAngle = {-30.0F,-10.0F,10.0F,30.0F};
 
 	
-
-
 	/// <summary>
-	///
+	///	スポットライトの動き呼び出し
 	/// </summary>
 	public void StartLight(uint pnum){
 		coro = RotateLight(pnum);
@@ -21,7 +23,7 @@ public class Spot : MonoBehaviour {
 
 
 	/// <summary>
-	///
+	///	スポットライトの停止
 	/// </summary>
 	public void StopLight(uint pnum){
 		StopCoroutine(coro);
@@ -40,7 +42,9 @@ public class Spot : MonoBehaviour {
 	}
 
 
-
+	/// <summary>
+	///	スポットライトの動きコルーチン
+	/// </summary>
 	private IEnumerator RotateLight(uint pnum){
 		//	ドラムロール発動
 		CSoundManager.Instance.PlaySE(AUDIO_LIST.DRAMROLL);
@@ -56,6 +60,9 @@ public class Spot : MonoBehaviour {
 	}
 
 
+	/// <summary>
+	///	スポットライト停止コルーチン
+	/// </summary>
 	private IEnumerator StopLightCoroutine(uint pnum){
 
 		yield return new WaitForSeconds(2.5f);
@@ -67,9 +74,12 @@ public class Spot : MonoBehaviour {
 	}
 
 
+	/// <summary>
+	///	プレイヤーの演出終了コルーチン
+	/// </summary>
 	private IEnumerator EndPlayerScene(){
 
-		yield return new WaitForSeconds(3.0f);
+		yield return new WaitForSeconds(5.0f);
 		Result.Instance.ShowRanking();
 	}
 }
