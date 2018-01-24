@@ -127,6 +127,8 @@ public class Title : MonoBehaviour
             //  STARTボタンの受付
             if(InputGame.GetStartButton(1)){
                 PlayerOut();
+				// TODO : シーン変更
+				CSceneManager.Instance.LoadScene(SCENE.GAME, FADE.Fade_1);
             }
             //  シーン変更？
         }
