@@ -13,6 +13,9 @@ public class Slash : Item {
 		coll = GetComponent<Collider>();
         transform.localPosition += new Vector3(0,1.2f,0);
 		transform.localEulerAngles = new Vector3(-45.0F,0,0);
+	
+		this.saveAtkPoint = this.AttackPoint;
+		Debug.Log(this.saveAtkPoint + "<save  atk>"+ this.AttackPoint);
 	}
 	
 
@@ -131,6 +134,7 @@ public class Slash : Item {
 			SubBreakHP(1);	//	耐久値の減少
 
 			//	当たったから攻撃力をゼロに
+			this.saveAtkPoint = this.AttackPoint;
 			this.AttackPoint = 0;
 			Debug.Log("Slash Collision > " + this.AttackPoint);
 		}
