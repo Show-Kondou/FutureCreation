@@ -85,7 +85,9 @@ public class CFadeBase : MonoBehaviour {
 		m_Time = 0.0F;
 		m_FadeType = FADE_TYPE.OUT;
 
-		m_Canvas.sortingOrder = 3;
+		if( m_Canvas != null ) {
+			m_Canvas.sortingOrder = 3;
+		}
 	}
 
 
@@ -162,7 +164,9 @@ public class CFadeBase : MonoBehaviour {
 	protected virtual void FadeInUpdate() {
 		if( m_FadeInTime <= m_Time ) {
 			m_FadeType = FADE_TYPE.END;
-			m_Canvas.sortingOrder = -1;
+			if( m_Canvas != null ) {
+				m_Canvas.sortingOrder = -1;
+			}
 		}
 		m_FadeInRatio = m_Time / m_FadeInTime;
 	}

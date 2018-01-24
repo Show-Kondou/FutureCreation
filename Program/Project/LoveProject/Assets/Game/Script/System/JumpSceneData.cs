@@ -51,6 +51,8 @@ public class JumpSceneData : MonoBehaviour {
 	// 各プレイヤーの最終体力
 	private int[] _EndPlayerHP = new int[4] {100,70,50,20};
 
+	private bool    _IsScreenReSize = false;
+
 	#endregion Member
 
 	// アクセサ
@@ -128,10 +130,16 @@ public class JumpSceneData : MonoBehaviour {
 
 	// イベント
 	#region MonoBehaviour Event
-	// /// <summary>
-	// /// 初期化
-	// /// </summary>
-	// private void Start() { }
+	/// <summary>
+	/// 初期化
+	/// </summary>
+	private void Start() {
+		// 画面サイズ変更
+		if( _IsScreenReSize == false ) {
+			Screen.SetResolution( 1920 * 2, 1080, false );
+			_IsScreenReSize = true;
+		}
+	}
 
 	// /// <summary>
 	// /// 更新

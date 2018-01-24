@@ -45,9 +45,9 @@ public class Player : PlayerBase {
 
 	public int PlayerHP {
 		get { 
-			//if( GameScene.GameState == 1 )
-				return Status._HitPoint;
-			// return 100;
+			if( GameScene.GameState == 0 )
+				return 100;
+			return Status._HitPoint;
 		}
 	}
 
