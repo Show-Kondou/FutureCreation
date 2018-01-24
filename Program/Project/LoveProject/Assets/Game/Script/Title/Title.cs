@@ -55,6 +55,7 @@ public class Title : MonoBehaviour
 
     // Use this for initialization
     void Start(){
+		CSoundManager.Instance.PlayBGM( AUDIO_LIST.BGM_T, true);
         //	カメラのアニメーターを取得
         cameraAnim = rendererCamera.GetComponent<Animator>();
         
@@ -128,6 +129,7 @@ public class Title : MonoBehaviour
             if(InputGame.GetStartButton(1)){
                 PlayerOut();
 				// TODO : シーン変更
+				CSoundManager.Instance.StopBGM();
 				CSceneManager.Instance.LoadScene(SCENE.GAME, FADE.Fade_1);
             }
             //  シーン変更？
