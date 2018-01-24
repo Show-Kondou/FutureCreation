@@ -40,6 +40,8 @@ public class GameTimer : MonoBehaviour {
 
 		timeLimit -= Time.deltaTime;	//	秒減らし
 
+
+
 	}
 
 

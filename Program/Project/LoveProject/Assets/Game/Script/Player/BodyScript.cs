@@ -27,7 +27,9 @@ public class BodyScript : StateMachineBehaviour {
 		if (GameScene.GameState != 1)
 			return;
 		if ( stateInfo.IsName("Stand") ) {
-			_Anime.ResetLower();
+			if( _Anime ) {
+				_Anime.ResetLower();
+			}
 		}
 		if( stateInfo.IsName( "Run" ) ) {
 			CSoundManager.Instance.PlaySE( AUDIO_LIST.WALK );
