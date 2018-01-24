@@ -125,6 +125,7 @@ public abstract class Item : MonoBehaviour
 	/// </summary>
 	public void ResetAtkPoint(){
 		this.attackPoint = this.saveAtkPoint;
+		Debug.Log("ResetAtkPoint() > " + this.attackPoint);
 	}
 
 }

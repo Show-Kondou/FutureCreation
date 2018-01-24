@@ -136,6 +136,7 @@ public class Guard : Item {
 
 			//	アイテムの攻撃力を-1にする
 			item.AttackPoint = -1;
+			Debug.Log("Guard Collision > " + item.AttackPoint);
 
 			//	識別Typeを　int　で取得 
 			var type = (uint)item.Type;

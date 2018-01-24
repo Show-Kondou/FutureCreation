@@ -132,6 +132,7 @@ public class Slash : Item {
 
 			//	当たったから攻撃力をゼロに
 			this.AttackPoint = 0;
+			Debug.Log("Slash Collision > " + this.AttackPoint);
 		}
 
 	}
