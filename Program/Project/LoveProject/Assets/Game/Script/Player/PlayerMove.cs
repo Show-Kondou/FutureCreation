@@ -96,6 +96,7 @@ public class PlayerMove : PlayerBase {
 	/// </summary>
 	void Move() {
 		if( Status.State == PlayerStatus.STATE.ROLL ) return;
+		if( Status.State == PlayerStatus.STATE.EAT ) return;
 
 		// 最終ベクトル
 		Vector3 vec = Vector3.zero;
