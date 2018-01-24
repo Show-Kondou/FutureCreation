@@ -84,6 +84,12 @@ public class PlayerRoll : PlayerBase {
 		if( Status.State == PlayerStatus.STATE.ROLL ) {
 			return;
 		}
+		if( Status.State == PlayerStatus.STATE.JUMP ) {
+			return;
+		}
+		if( Status.State == PlayerStatus.STATE.ATTACK ) {
+			return;
+		}
 		_IsRoll = true;
 		_AddForce = 0.0F;
 		_RollTime = 0.0F;

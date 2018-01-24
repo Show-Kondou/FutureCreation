@@ -30,6 +30,7 @@ public class GameScene : MonoBehaviour {
 	void Update () {
 		if( PlayerManager.Instance.IsGameSet() ){
 			Debug.Log("ゲーム終わり");
+			CSceneManager.Instance.LoadScene(SCENE.RESULT, FADE.Fade_1);
 		}
 	}
 }
