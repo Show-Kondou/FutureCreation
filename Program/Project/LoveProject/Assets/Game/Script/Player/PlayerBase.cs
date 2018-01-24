@@ -177,7 +177,6 @@ abstract public class PlayerBase : MonoBehaviour {
 		 var rigid = GetComponent<Rigidbody>();
 		if( rigid ) {
 			rigid.velocity = Physics.gravity;
-			Debug.Log( "死asd" );
 		}
 		// DefaultCamera
 		StartCoroutine( Destroy() );

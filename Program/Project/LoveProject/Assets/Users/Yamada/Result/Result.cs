@@ -54,6 +54,7 @@ public class Result : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		CSoundManager.Instance.PlayBGM(AUDIO_LIST.BGM_R,true);
         //  各モニターの表示を勝者演出にするお
         for(int i = 0; i < 4; i++){
             monitor[i].ShowPlayerAnim(true);
@@ -96,6 +97,7 @@ public class Result : MonoBehaviour {
         if(isShowRanking){
             if(AnyPlayerPushedStart()){
                 Debug.LogError("ここでシーン変更呼ぶ");
+				CSoundManager.Instance.StopBGM();
 				CSceneManager.Instance.LoadScene(SCENE.TITLE, FADE.Fade_1);
             }
         }
