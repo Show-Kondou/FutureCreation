@@ -121,7 +121,7 @@ public class CameraManager : MonoBehaviour {
 
 
 		// イベント
-		#region MonoBehaviour Event
+	#region MonoBehaviour Event
 
 	private void Awake() {
 		DontDestroyOnLoad( _Instance );

@@ -34,7 +34,7 @@ public enum SCENE {
 
 /* フェード番号 */
 public enum FADE {
-	BLACK = 0,  // 黒フェード
+	Fade_1 = 0,  // 黒フェード
 	RAINBOW,    // 虹フェード
 }
 
