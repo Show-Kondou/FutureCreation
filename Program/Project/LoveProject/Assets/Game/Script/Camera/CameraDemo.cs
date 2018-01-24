@@ -22,6 +22,8 @@ public class CameraDemo : ObjectTime {
 
 	// メンバー
 	#region Member
+	private uint _CameraID;
+	private uint _TargetPlayerID = 1;
 	#endregion Member
 
 	// アクセサ
@@ -30,12 +32,29 @@ public class CameraDemo : ObjectTime {
 
 	// メソッド
 	#region Method
-	public void StartDemo() {
-
+	public void StartDemo( uint id ) {
+		_CameraID = id;
+		transform.position = Vector3.zero;
+		transform.SetY( 13.0F );
 	}
 
 	protected override void Execute() {
-		transform.Rotate(Vector3.up, 1.0F);
+
+		_TargetPlayerID = (_TargetPlayerID % 4) + 1;
+
+
+		if ( JumpSceneData.Instance.GetJointPlayerNum( _TargetPlayerID ) ){
+			var pos = PlayerManager.Instance.GetPlayerPos( _TargetPlayerID );
+			transform.LookAt( pos );
+		}
+		if( Input.GetAxis( "Cross1_X" ) >= 0.5F ){
+			_TargetPlayerID++;
+			Debug.Log( _TargetPlayerID );
+		}
+		
+		
+		// transform.Rotate(Vector3.up, 1.0F);
+		// _Anim.Play();
 	}
 	#endregion Method
 

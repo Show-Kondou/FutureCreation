@@ -188,7 +188,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 97285529}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a76865d00707b34c9c4e96f7abfa920, type: 3}
   m_Name: 
@@ -263,7 +263,8 @@ Camera:
 --- !u!114 &97285538
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 114491350254353466, guid: 3659c86e95b9cdc4fb8cb41d93f8c1d9,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 97285529}
   m_Enabled: 1
@@ -683,6 +684,11 @@ Prefab:
       propertyPath: _InitStatus._GameSet
       value: 
       objectReference: {fileID: 1737360433}
+    - target: {fileID: 114604365358287422, guid: 1e272db41062aee4687e68d49a8ce84e,
+        type: 2}
+      propertyPath: _InitStatus._HitPoint
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1e272db41062aee4687e68d49a8ce84e, type: 2}
   m_IsPrefabParent: 0
@@ -1048,7 +1054,8 @@ Transform:
 --- !u!114 &723032733
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 114969378168322232, guid: 3659c86e95b9cdc4fb8cb41d93f8c1d9,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 723032731}
   m_Enabled: 1
@@ -1120,7 +1127,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 723032731}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a76865d00707b34c9c4e96f7abfa920, type: 3}
   m_Name: 
@@ -1259,8 +1266,9 @@ GameObject:
   - component: {fileID: 885234859}
   - component: {fileID: 885234858}
   - component: {fileID: 885234857}
-  - component: {fileID: 885234856}
   - component: {fileID: 885234855}
+  - component: {fileID: 885234856}
+  - component: {fileID: 885234863}
   m_Layer: 0
   m_Name: Camera_1
   m_TagString: Untagged
@@ -1285,7 +1293,8 @@ Transform:
 --- !u!114 &885234855
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 114256222696846600, guid: 3659c86e95b9cdc4fb8cb41d93f8c1d9,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 885234853}
   m_Enabled: 1
@@ -1330,7 +1339,7 @@ Animator:
   m_GameObject: {fileID: 885234853}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: fa807bda695a12e44890eba8b5d0a883, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1357,7 +1366,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 885234853}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a76865d00707b34c9c4e96f7abfa920, type: 3}
   m_Name: 
@@ -1429,6 +1438,20 @@ Camera:
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
   m_StereoMirrorMode: 0
+--- !u!111 &885234863
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 885234853}
+  m_Enabled: 0
+  serializedVersion: 3
+  m_Animation: {fileID: 0}
+  m_Animations: []
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &895846621 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1147170818869982, guid: 587c7d985ed8dec41a73d98f8fb8993d,
@@ -1885,7 +1908,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1867409019}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a76865d00707b34c9c4e96f7abfa920, type: 3}
   m_Name: 
@@ -1974,7 +1997,8 @@ Transform:
 --- !u!114 &1867409028
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_PrefabParentObject: {fileID: 114486563840822394, guid: 3659c86e95b9cdc4fb8cb41d93f8c1d9,
+    type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1867409019}
   m_Enabled: 1

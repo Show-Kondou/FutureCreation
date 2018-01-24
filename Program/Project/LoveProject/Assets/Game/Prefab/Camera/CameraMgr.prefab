@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114450507925675970}
   - component: {fileID: 114003711318530152}
   - component: {fileID: 95080661543801524}
+  - component: {fileID: 114486563840822394}
   m_Layer: 0
   m_Name: Camera_4
   m_TagString: Untagged
@@ -48,6 +49,7 @@ GameObject:
   - component: {fileID: 114551764874300578}
   - component: {fileID: 114119649476708466}
   - component: {fileID: 95199659532152450}
+  - component: {fileID: 114491350254353466}
   m_Layer: 0
   m_Name: Camera_3
   m_TagString: Untagged
@@ -68,9 +70,9 @@ GameObject:
   - component: {fileID: 92099067151512890}
   - component: {fileID: 114922250414198716}
   - component: {fileID: 114837767856325848}
-  - component: {fileID: 114656416217335232}
   - component: {fileID: 114692240521817836}
   - component: {fileID: 95745104614082534}
+  - component: {fileID: 114969378168322232}
   m_Layer: 0
   m_Name: Camera_2
   m_TagString: Untagged
@@ -91,9 +93,9 @@ GameObject:
   - component: {fileID: 92268340466607502}
   - component: {fileID: 114348219445074714}
   - component: {fileID: 114400197559185098}
-  - component: {fileID: 95451176400237518}
-  - component: {fileID: 114695838775780760}
   - component: {fileID: 114965173215020262}
+  - component: {fileID: 95451176400237518}
+  - component: {fileID: 114256222696846600}
   m_Layer: 0
   m_Name: Camera_1
   m_TagString: Untagged
@@ -136,7 +138,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1050338396094950}
-  m_LocalRotation: {x: -0, y: -0.9961947, z: 0.08715574, w: 0}
+  m_LocalRotation: {x: -0.0000000038096983, y: 0.9961947, z: -0.08715574, w: -0.000000043545054}
   m_LocalPosition: {x: 25.6, y: 3.499996, z: 37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -179,7 +181,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1199772017387290}
-  m_LocalRotation: {x: -0, y: -0.9961947, z: 0.08715574, w: 0}
+  m_LocalRotation: {x: -0.0000000038096983, y: 0.9961947, z: -0.08715574, w: -0.000000043545054}
   m_LocalPosition: {x: -25.6, y: 3.499996, z: 37}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -195,7 +197,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.88235295, g: 0.58910036, b: 0.14922144, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0.5
@@ -230,8 +232,8 @@ Camera:
   m_GameObject: {fileID: 1653503493054098}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.26615292, g: 0.1921569, b: 0.47450984, a: 0}
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.88235295, g: 0.58910036, b: 0.14922144, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -267,7 +269,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.88235295, g: 0.58910036, b: 0.14922144, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -302,8 +304,8 @@ Camera:
   m_GameObject: {fileID: 1574832310858202}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_ClearFlags: 1
+  m_BackGroundColor: {r: 0.88235295, g: 0.58910036, b: 0.14922144, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0.5
@@ -475,6 +477,44 @@ MonoBehaviour:
   _Camera_2: {fileID: 114922250414198716}
   _Camera_3: {fileID: 114142840851375846}
   _Camera_4: {fileID: 114518295056028124}
+--- !u!114 &114256222696846600
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1653503493054098}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fceaeb339b971b429c4cc600acabd13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweakMode: 0
+  screenBlendMode: 1
+  hdr: 0
+  sepBlurSpread: 1.19
+  quality: 1
+  bloomIntensity: 0.34
+  bloomThreshold: 0.05
+  bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
+  bloomBlurIterations: 3
+  hollywoodFlareBlurIterations: 2
+  flareRotation: 0
+  lensflareMode: 1
+  hollyStretchWidth: 2.5
+  lensflareIntensity: 0
+  lensflareThreshold: 0.3
+  lensFlareSaturation: 0.75
+  flareColorA: {r: 0.4, g: 0.4, b: 0.8, a: 0.75}
+  flareColorB: {r: 0.4, g: 0.8, b: 0.8, a: 0.75}
+  flareColorC: {r: 0.8, g: 0.4, b: 0.8, a: 0.75}
+  flareColorD: {r: 0.8, g: 0.4, b: 0, a: 0.75}
+  lensFlareVignetteMask: {fileID: 2800000, guid: 95ef4804fe0be4c999ddaa383536cde8,
+    type: 3}
+  lensFlareShader: {fileID: 4800000, guid: 459fe69d2f6d74ddb92f04dbf45a866b, type: 3}
+  screenBlendShader: {fileID: 4800000, guid: 7856cbff0a0ca45c787d5431eb805bb0, type: 3}
+  blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
+  brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
+    type: 3}
 --- !u!114 &114348219445074714
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -493,12 +533,25 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1653503493054098}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a76865d00707b34c9c4e96f7abfa920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DefaultPos: {x: 0, y: 3.5, z: -5}
 --- !u!114 &114450507925675970
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1050338396094950}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a76865d00707b34c9c4e96f7abfa920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultPos: {x: 0, y: 3.5, z: 5}
+--- !u!114 &114486563840822394
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -506,9 +559,74 @@ MonoBehaviour:
   m_GameObject: {fileID: 1050338396094950}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a76865d00707b34c9c4e96f7abfa920, type: 3}
+  m_Script: {fileID: 11500000, guid: 7fceaeb339b971b429c4cc600acabd13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tweakMode: 0
+  screenBlendMode: 1
+  hdr: 0
+  sepBlurSpread: 1.19
+  quality: 1
+  bloomIntensity: 0.34
+  bloomThreshold: 0.05
+  bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
+  bloomBlurIterations: 3
+  hollywoodFlareBlurIterations: 2
+  flareRotation: 0
+  lensflareMode: 1
+  hollyStretchWidth: 2.5
+  lensflareIntensity: 0
+  lensflareThreshold: 0.3
+  lensFlareSaturation: 0.75
+  flareColorA: {r: 0.4, g: 0.4, b: 0.8, a: 0.75}
+  flareColorB: {r: 0.4, g: 0.8, b: 0.8, a: 0.75}
+  flareColorC: {r: 0.8, g: 0.4, b: 0.8, a: 0.75}
+  flareColorD: {r: 0.8, g: 0.4, b: 0, a: 0.75}
+  lensFlareVignetteMask: {fileID: 2800000, guid: 95ef4804fe0be4c999ddaa383536cde8,
+    type: 3}
+  lensFlareShader: {fileID: 4800000, guid: 459fe69d2f6d74ddb92f04dbf45a866b, type: 3}
+  screenBlendShader: {fileID: 4800000, guid: 7856cbff0a0ca45c787d5431eb805bb0, type: 3}
+  blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
+  brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
+    type: 3}
+--- !u!114 &114491350254353466
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1199772017387290}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fceaeb339b971b429c4cc600acabd13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tweakMode: 0
+  screenBlendMode: 1
+  hdr: 0
+  sepBlurSpread: 1.19
+  quality: 1
+  bloomIntensity: 0.34
+  bloomThreshold: 0.05
+  bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
+  bloomBlurIterations: 3
+  hollywoodFlareBlurIterations: 2
+  flareRotation: 0
+  lensflareMode: 1
+  hollyStretchWidth: 2.5
+  lensflareIntensity: 0
+  lensflareThreshold: 0.3
+  lensFlareSaturation: 0.75
+  flareColorA: {r: 0.4, g: 0.4, b: 0.8, a: 0.75}
+  flareColorB: {r: 0.4, g: 0.8, b: 0.8, a: 0.75}
+  flareColorC: {r: 0.8, g: 0.4, b: 0.8, a: 0.75}
+  flareColorD: {r: 0.8, g: 0.4, b: 0, a: 0.75}
+  lensFlareVignetteMask: {fileID: 2800000, guid: 95ef4804fe0be4c999ddaa383536cde8,
+    type: 3}
+  lensFlareShader: {fileID: 4800000, guid: 459fe69d2f6d74ddb92f04dbf45a866b, type: 3}
+  screenBlendShader: {fileID: 4800000, guid: 7856cbff0a0ca45c787d5431eb805bb0, type: 3}
+  blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
+  brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
+    type: 3}
 --- !u!114 &114518295056028124
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -527,12 +645,59 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1199772017387290}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2a76865d00707b34c9c4e96f7abfa920, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114656416217335232
+  DefaultPos: {x: 0, y: 3.5, z: 5}
+--- !u!114 &114692240521817836
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1574832310858202}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee3cdd30a32ffc249904f5cd83b2b035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114837767856325848
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1574832310858202}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a76865d00707b34c9c4e96f7abfa920, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DefaultPos: {x: 0, y: 3.5, z: -5}
+--- !u!114 &114922250414198716
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1574832310858202}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6782929bcf7a049a18543080e2aefb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _CameraID: 2
+--- !u!114 &114965173215020262
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1653503493054098}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee3cdd30a32ffc249904f5cd83b2b035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114969378168322232
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -570,89 +735,6 @@ MonoBehaviour:
   blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
   brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
     type: 3}
---- !u!114 &114692240521817836
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1574832310858202}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee3cdd30a32ffc249904f5cd83b2b035, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114695838775780760
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1653503493054098}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7fceaeb339b971b429c4cc600acabd13, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tweakMode: 0
-  screenBlendMode: 1
-  hdr: 0
-  sepBlurSpread: 1.19
-  quality: 1
-  bloomIntensity: 0.34
-  bloomThreshold: -0.05
-  bloomThresholdColor: {r: 1, g: 1, b: 1, a: 1}
-  bloomBlurIterations: 3
-  hollywoodFlareBlurIterations: 2
-  flareRotation: 0
-  lensflareMode: 1
-  hollyStretchWidth: 2.5
-  lensflareIntensity: 0
-  lensflareThreshold: 0.3
-  lensFlareSaturation: 0.75
-  flareColorA: {r: 0.4, g: 0.4, b: 0.8, a: 0.75}
-  flareColorB: {r: 0.4, g: 0.8, b: 0.8, a: 0.75}
-  flareColorC: {r: 0.8, g: 0.4, b: 0.8, a: 0.75}
-  flareColorD: {r: 0.8, g: 0.4, b: 0, a: 0.75}
-  lensFlareVignetteMask: {fileID: 2800000, guid: 95ef4804fe0be4c999ddaa383536cde8,
-    type: 3}
-  lensFlareShader: {fileID: 4800000, guid: 459fe69d2f6d74ddb92f04dbf45a866b, type: 3}
-  screenBlendShader: {fileID: 4800000, guid: 7856cbff0a0ca45c787d5431eb805bb0, type: 3}
-  blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
-  brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
-    type: 3}
---- !u!114 &114837767856325848
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1574832310858202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a76865d00707b34c9c4e96f7abfa920, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114922250414198716
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1574832310858202}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b6782929bcf7a049a18543080e2aefb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _CameraID: 2
---- !u!114 &114965173215020262
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1653503493054098}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee3cdd30a32ffc249904f5cd83b2b035, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!124 &124321434278992788
 Behaviour:
   m_ObjectHideFlags: 1

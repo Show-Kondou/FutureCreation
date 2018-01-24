@@ -26,6 +26,20 @@ public class PlayerManager : MonoBehaviour {
 	public Player _Player_3 = null;
 	public Player _Player_4 = null;
 
+	public Vector3 GetPlayerPos( uint ID ){
+		switch (ID) {
+			case 1: return _Player_1.transform.position;
+			case 2:
+			return _Player_1.transform.position;
+			case 3:
+			return _Player_1.transform.position;
+			case 4:
+			return _Player_1.transform.position;
+			default:
+			return Vector3.zero;
+		}
+	}
+
 
 	public void StartPlayer() {
 		if( JumpSceneData.Instance.GetJointPlayerNum( 1 ) ) {
