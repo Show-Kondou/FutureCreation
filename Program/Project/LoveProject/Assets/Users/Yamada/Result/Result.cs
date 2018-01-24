@@ -96,6 +96,7 @@ public class Result : MonoBehaviour {
         if(isShowRanking){
             if(AnyPlayerPushedStart()){
                 Debug.LogError("ここでシーン変更呼ぶ");
+				CSceneManager.Instance.LoadScene(SCENE.TITLE, FADE.Fade_1);
             }
         }
 	}  
