@@ -116,7 +116,7 @@ InputManager:
     invert: 1
     type: 2
     axis: 1
-    joyNum: 2
+    joyNum: 3
   - serializedVersion: 3
     m_Name: GamePad4_Z
     descriptiveName: 
@@ -132,7 +132,7 @@ InputManager:
     invert: 1
     type: 2
     axis: 1
-    joyNum: 2
+    joyNum: 4
   - serializedVersion: 3
     m_Name: Camera1_X
     descriptiveName: 

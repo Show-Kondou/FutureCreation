@@ -81,21 +81,34 @@ public class PlayerManager : MonoBehaviour {
 		if (lifeNum > 1)
 			return false;
 
-		if (JumpSceneData.Instance.GetJointPlayerNum( 1 ) &&
-			!_Player_1.IsDeath) {
+		if (JumpSceneData.Instance.GetJointPlayerNum( 1 ) ) {
 			JumpSceneData.Instance.EndPlayerHP( 1, _Player_1.PlayerHP );
+			if( !_Player_1.IsDeath ) {
+				_Player_1.DestroyPlayer();
+				Debug.Log("1のかち");
+			}
+
 		}
-		if (JumpSceneData.Instance.GetJointPlayerNum( 2 ) &&
-			!_Player_2.IsDeath) {
+		if (JumpSceneData.Instance.GetJointPlayerNum( 2 ) ) {
 			JumpSceneData.Instance.EndPlayerHP( 2, _Player_2.PlayerHP );
+			if( !_Player_2.IsDeath ) {
+				_Player_2.DestroyPlayer();
+				Debug.Log( "2のかち" );
+			}
 		}
-		if (JumpSceneData.Instance.GetJointPlayerNum( 3 ) &&
-			!_Player_3.IsDeath) {
+		if (JumpSceneData.Instance.GetJointPlayerNum( 3 ) ) {
 			JumpSceneData.Instance.EndPlayerHP( 3, _Player_3.PlayerHP );
+			if( !_Player_3.IsDeath ) {
+				Debug.Log("3のかち");
+				_Player_3.DestroyPlayer();
+			}
 		}
-		if (JumpSceneData.Instance.GetJointPlayerNum( 4 ) &&
-			!_Player_4.IsDeath) {
+		if (JumpSceneData.Instance.GetJointPlayerNum( 4 ) ) {
 			JumpSceneData.Instance.EndPlayerHP( 4, _Player_4.PlayerHP );
+			if( !_Player_4.IsDeath ) {
+				Debug.Log("4のかち");
+				_Player_4.DestroyPlayer();
+			}
 		}
 
 		return true;
