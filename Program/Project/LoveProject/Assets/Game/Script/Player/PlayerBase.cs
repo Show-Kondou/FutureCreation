@@ -180,7 +180,6 @@ abstract public class PlayerBase : MonoBehaviour {
 			Debug.Log( "死asd" );
 		}
 		// DefaultCamera
-		Debug.Log("死");
 		StartCoroutine( Destroy() );
 		//Status._GameSet.Play();
 		//new WaitForSeconds(1.0F);

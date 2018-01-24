@@ -30,14 +30,14 @@ public class GameScene : MonoBehaviour {
 	void Update () {
 		if( PlayerManager.Instance.IsGameSet() ){
 			Debug.Log("ゲーム終わり");
-			// CSceneManager.Instance.LoadScene(SCENE.RESULT, FADE.Fade_1);
+			GameState = 2;
 			StartCoroutine( LoadScene() );
 		}
 	}
 
 	private IEnumerator LoadScene() {
-		yield return new WaitForSeconds(3.0F);
-
+		yield return new WaitForSeconds( 2.7F );
+		CSoundManager.Instance.StopBGM();
 		CSceneManager.Instance.LoadScene( SCENE.RESULT, FADE.Fade_1 );
 		yield return null;
 	}

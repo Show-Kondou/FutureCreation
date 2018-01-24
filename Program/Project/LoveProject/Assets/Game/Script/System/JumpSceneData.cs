@@ -118,7 +118,7 @@ public class JumpSceneData : MonoBehaviour {
 
 	// 最終体力保存
 	public void EndPlayerHP( uint playerNum, int hp ) {
-		_EndPlayerHP[playerNum] = hp;
+		_EndPlayerHP[playerNum - 1] = hp;
 	}
 
 	public int GetEndPlayerHP( uint num ) {
