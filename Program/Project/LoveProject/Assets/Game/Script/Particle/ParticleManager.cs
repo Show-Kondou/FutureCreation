@@ -12,6 +12,7 @@ public class ParticleManager : MonoBehaviour {
 		Smoke,	//	足元の煙
 		Pop,
 		Eat,
+		Kas,
 		Max
 	};
 

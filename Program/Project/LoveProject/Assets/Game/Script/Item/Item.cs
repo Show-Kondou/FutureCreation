@@ -12,7 +12,7 @@ public abstract class Item : MonoBehaviour
 
 	[Header("ダメージ数"), SerializeField]
 	protected int attackPoint;  //	攻撃力・威力	使用用
-	private int saveAtkPoint;	//	保存用
+	protected int saveAtkPoint;	//	保存用
 
 	[Header("回復量"), SerializeField]
 	protected int healPoint;     //	回復量
@@ -125,6 +125,7 @@ public abstract class Item : MonoBehaviour
 	/// </summary>
 	public void ResetAtkPoint(){
 		this.attackPoint = this.saveAtkPoint;
+		Debug.Log("ResetAtkPoint() > " + this.attackPoint);
 	}
 
 }

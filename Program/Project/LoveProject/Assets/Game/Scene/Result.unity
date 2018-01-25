@@ -361,6 +361,11 @@ Prefab:
       propertyPath: hubukiParticle
       value: 
       objectReference: {fileID: 782697463}
+    - target: {fileID: 114174210905805056, guid: 1095fcfb6c5c1d3418e4704e2b4efbdb,
+        type: 2}
+      propertyPath: arrayHP.Array.data[2]
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1095fcfb6c5c1d3418e4704e2b4efbdb, type: 2}
   m_IsPrefabParent: 0

@@ -134,8 +134,13 @@ public class Guard : Item {
 
 			CSoundManager.Instance.PlaySE(AUDIO_LIST.NOHIT );
 
-			//	アイテムの攻撃力を-1にする
-			item.AttackPoint = -1;
+			if(item.Type == ItemManager.ItemType.Pocky || item.Type == ItemManager.ItemType.DeliciousBar){
+				//	スラッシュにガードと当たったことをセット
+				item.GetComponent<Slash>().IsHitGuard = true;
+				//	アイテムの攻撃力を-1にする
+				item.AttackPoint = -1;
+				Debug.Log("Guard Collision > " + item.AttackPoint);
+			}
 
 			//	識別Typeを　int　で取得 
 			var type = (uint)item.Type;
