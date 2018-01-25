@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Slash : Item {
 
+	private bool isHitGuard = false;
+	public bool IsHitGuard{get{return isHitGuard;} set{isHitGuard = value;}}
 
 	/// <summary>
 	/// 初期化
@@ -133,6 +135,8 @@ public class Slash : Item {
 
 			SubBreakHP(1);	//	耐久値の減少
 
+			//	ガードと当たって
+			if(isHitGuard) return;
 			//	当たったから攻撃力をゼロに
 			this.saveAtkPoint = this.AttackPoint;
 			this.AttackPoint = 0;
