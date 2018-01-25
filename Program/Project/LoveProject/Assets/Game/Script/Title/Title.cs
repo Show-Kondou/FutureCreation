@@ -133,11 +133,10 @@ public class Title : MonoBehaviour
             //  STARTボタンの受付
             if(AnyStartButton() || Input.GetKeyDown(KeyCode.S)){
                 isPushed = true;
+                CSoundManager.Instance.PlaySE(AUDIO_LIST.START);
 
                 PlayerOut();
 				// TODO : シーン変更
-				//CSoundManager.Instance.StopBGM();
-				//CSceneManager.Instance.LoadScene(SCENE.GAME, FADE.Fade_1);
                 StartCoroutine(EndPlayerOut());
             }
         }
@@ -162,14 +161,18 @@ public class Title : MonoBehaviour
     /// 退場
     /// </summary>
     private void PlayerOut(){
-        if(IsJoinedPlayer_1)
+        if(IsJoinedPlayer_1){
             player[0].GetComponent<PlayerTitle>().OutPlayer(new Vector3(-93.0F, 95.0F, -50.0F));
-        if(IsJoinedPlayer_2)
+        }
+        if(IsJoinedPlayer_2){
             player[1].GetComponent<PlayerTitle>().OutPlayer(new Vector3(-93.0F, 89.0F, -50.0F));
-        if(IsJoinedPlayer_3)
+        }
+        if(IsJoinedPlayer_3){
             player[2].GetComponent<PlayerTitle>().OutPlayer(new Vector3(-81.0F, 95.0F, -50.0F));
-        if(IsJoinedPlayer_4)
+        }
+        if(IsJoinedPlayer_4){
             player[3].GetComponent<PlayerTitle>().OutPlayer(new Vector3(-81.0F, 89.0F, -50.0F));
+        }
     }
 
 
@@ -328,6 +331,7 @@ public class Title : MonoBehaviour
             //  やっぱやめた
             IsJoinedPlayer_1 = false;
             JumpSceneData.Instance.OutPlayer(0);
+            CSoundManager.Instance.PlaySE(AUDIO_LIST.CANCEL);
             
             //  UIの表示切替
             matchMoni_1.SetActiveJoined(false);
@@ -338,6 +342,7 @@ public class Title : MonoBehaviour
             //  やっぱやめた
             IsJoinedPlayer_2 = false;
             JumpSceneData.Instance.OutPlayer(1);
+            CSoundManager.Instance.PlaySE(AUDIO_LIST.CANCEL);
 
             //  UIの表示切替
             matchMoni_2.SetActiveJoined(false);
@@ -348,6 +353,7 @@ public class Title : MonoBehaviour
             //  やっぱやめた
             IsJoinedPlayer_3 = false;
             JumpSceneData.Instance.OutPlayer(2);
+            CSoundManager.Instance.PlaySE(AUDIO_LIST.CANCEL);
 
             //  UIの表示切替
             matchMoni_3.SetActiveJoined(false);
@@ -358,6 +364,7 @@ public class Title : MonoBehaviour
             //  やっぱやめた
             IsJoinedPlayer_4 = false;
             JumpSceneData.Instance.OutPlayer(3);
+            CSoundManager.Instance.PlaySE(AUDIO_LIST.CANCEL);
 
             //  UIの表示切替
             matchMoni_4.SetActiveJoined(false);

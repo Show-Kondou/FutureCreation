@@ -12,11 +12,15 @@ public class Spot : MonoBehaviour {
 	//	ライト投影角テーブル
 	float[] stopAngle = {-30.0F,-10.0F,10.0F,30.0F};
 
-	
+	void Start(){
+	}
+
+
 	/// <summary>
 	///	スポットライトの動き呼び出し
 	/// </summary>
 	public void StartLight(uint pnum){
+
 		coro = RotateLight(pnum);
 		StartCoroutine(coro);
 	}
@@ -50,6 +54,9 @@ public class Spot : MonoBehaviour {
 
 			yield return null;
 		}
+		CSoundManager.Instance.PlaySE(AUDIO_LIST.LIGHTON);
+		yield return new WaitForSeconds(1.5f);
+
 		//	ドラムロール発動
 		CSoundManager.Instance.PlaySE(AUDIO_LIST.DRAMROLL);
 		StartCoroutine(StopLightCoroutine(pnum));
@@ -74,6 +81,7 @@ public class Spot : MonoBehaviour {
 		StopLight(pnum);
 		//	花吹雪発動
 		Result.Instance.SetActiveParticle(true);
+		CSoundManager.Instance.PlayBGM(AUDIO_LIST.BGM_R,true);
 
 	}
 

@@ -54,7 +54,6 @@ public class Result : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		CSoundManager.Instance.PlayBGM(AUDIO_LIST.BGM_R,true);
         //  各モニターの表示を勝者演出にするお
         for(int i = 0; i < 4; i++){
             monitor[i].ShowPlayerAnim(true);
@@ -72,7 +71,7 @@ public class Result : MonoBehaviour {
         }
 
         //  参加人数取得
-        joinedCount = 3;//CountPlayers();
+        joinedCount = CountPlayers();
         //  参加人数分再表示
         for(int cnt = 0; cnt < joinedCount; cnt++){
             resultBar[cnt].SetActive(true);
@@ -87,7 +86,7 @@ public class Result : MonoBehaviour {
 
         for(int i = 0; i < 4; i++){
             spot[i].StartLight(ranking[0]._num);
-            Debug.Log(ranking[i]._num + " : " + ranking[i]._hp + " : " + ranking[i]._killedPlayer[0] + ranking[i]._killedPlayer[1] + ranking[i]._killedPlayer[2] + ranking[i]._killedPlayer[3]);
+            //Debug.Log(ranking[i]._num + " : " + ranking[i]._hp + " : " + ranking[i]._killedPlayer[0] + ranking[i]._killedPlayer[1] + ranking[i]._killedPlayer[2] + ranking[i]._killedPlayer[3]);
         }
 	}
 	
@@ -171,6 +170,7 @@ public class Result : MonoBehaviour {
             }
             else{
                 arrayHP[ply-1] = Data.Instance.GetEndPlayerHP(ply-1);
+                Debug.Log(Data.Instance.GetEndPlayerHP(ply-1));
             }
             ranking[ply-1]._hp = arrayHP[ply-1]; 
             ranking[ply-1]._num = ply;
@@ -184,16 +184,37 @@ public class Result : MonoBehaviour {
         for(uint ply = 1; ply <= 4; ply++){
             ls.Add(ranking[ply-1]);
         }
-        ls.Sort((a,b) => b._hp - a._hp);
+        // ls.Sort((a,b) =>{
+        //     if(b._hp == a._hp)  return -1;  //  同じ値の場合は入れ替えなし
+        //     return (b._hp - a._hp);
+        // });// b._hp - a._hp);
 
-        for(int i = 0; i < 4; i++)
-            ranking[i] = ls[i];
+        //ls.Sort((a,b) => b._hp - a._hp);
+        BubbleSort(ranking);
 
-        //  降順ソート
-        // Array.Sort(arrayHP);
-        // Array.Reverse(arrayHP); 
+        // for(int i = 0; i < 4; i++)
+        //     ranking[i] = ls[i];
+
     }
+    
+    void BubbleSort(PlayerData[] array){
+        
+        int start,end;
+        PlayerData tmp;
 
+        for(start = 1; start < array.Length; start++)
+        {
+            for (end = array.Length-1; end >= start; end--)
+            {
+                if (array[end - 1]._hp < array[end]._hp)
+                {
+                    tmp = array[end - 1];
+                    array[end - 1] = array[end];
+                    array[end] = tmp;
+                }
+            }
+        }
+    }
 
     /// <summary>
     /// 参加人数を数える
