@@ -62,7 +62,7 @@ public class DefaultCamera : MonoBehaviour {
 			_PlayerCamera.enabled = false;
 		}
 		_DemoCamera.enabled = true;
-		_DemoCamera.StartDemo();
+		_DemoCamera.StartDemo( _CameraID );
 	}
 
 

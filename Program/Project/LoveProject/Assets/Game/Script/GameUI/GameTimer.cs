@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameTimer : MonoBehaviour {
 
 	//	メンバ
-	private float timeLimit = 18;	//	秒
+	private float timeLimit = 180;	//	秒
 
 	//	アクセサ
 	public float TimeLimit{get{return timeLimit;}}

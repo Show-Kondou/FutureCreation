@@ -124,6 +124,12 @@ public class InputGame {
 	static public bool GetPlayerItemR( uint playerID = 1 ) {
 		return Input.GetButton( "Item" + playerID + "_R" );
 	}
+	static public bool GetCameraDemoL( uint playerID = 1 ) {
+		return Input.GetButtonDown( "Item" + playerID + "_L" );
+	}
+	static public bool GetCameraDemoR( uint playerID = 1 ) {
+		return Input.GetButtonDown( "Item" + playerID + "_R" );
+	}
 
 
 

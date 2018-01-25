@@ -114,7 +114,7 @@ public class CameraManager : MonoBehaviour {
 
 
 		// メソッド
-		#region Method
+	#region Method
 
 
 		#endregion Method
