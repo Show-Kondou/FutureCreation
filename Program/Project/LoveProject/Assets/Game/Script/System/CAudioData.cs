@@ -44,6 +44,13 @@ public enum AUDIO_LIST {
 	STAND,	// ガード
 	WALK,	// 走り、ジャンプ
 
+	CANCEL,
+	INPLAYER,
+	LIGHTON,
+	MOVE,
+	RESULTITEM,
+	START,
+
 
 	/* 最大数 */
 	MAX
@@ -87,6 +94,13 @@ public class CAudioData {
 		"SE/shake",	// 切る、投げる
 		"SE/stand",	// ガード
 		"SE/walk",	// 走り、ジャンプ
+
+		"SE/Cancel",
+		"SE/InPlayer",
+		"SE/LightOn",
+		"SE/Move",
+		"SE/ResultItem",
+		"SE/Start",
 		null,
 	};
 

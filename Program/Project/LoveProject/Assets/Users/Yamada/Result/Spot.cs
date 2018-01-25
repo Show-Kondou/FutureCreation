@@ -47,7 +47,7 @@ public class Spot : MonoBehaviour {
 	/// </summary>
 	private IEnumerator RotateLight(uint pnum){
 		while (Time.timeScale != 1.0F) {
-			Debug.Log( Time.timeScale );
+
 			yield return null;
 		}
 		//	ドラムロール発動

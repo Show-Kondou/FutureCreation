@@ -22,6 +22,10 @@ public class CameraDemo : ObjectTime {
 
 	// メンバー
 	#region Member
+	private uint _CameraID;
+	private uint _TargetPlayerID = 0;
+	private bool _AddType;
+
 	#endregion Member
 
 	// アクセサ
@@ -30,12 +34,45 @@ public class CameraDemo : ObjectTime {
 
 	// メソッド
 	#region Method
-	public void StartDemo() {
-
+	public void StartDemo( uint id ) {
+		_CameraID = id;
+		transform.position = Vector3.zero;
+		transform.SetY( 13.0F );
 	}
 
 	protected override void Execute() {
-		transform.Rotate(Vector3.up, 1.0F);
+
+		while( true ) {
+			if( JumpSceneData.Instance.GetJointPlayerNum( _TargetPlayerID + 1 ) &&
+				PlayerManager.Instance.GetPlayerHp( _TargetPlayerID + 1 ) > 0 ) {
+				var pos = PlayerManager.Instance.GetPlayerPos( _TargetPlayerID + 1 );
+				transform.LookAt( pos );
+				Debug.Log( "居る" );
+				break;
+			} else {
+				if( _AddType ) {
+					_TargetPlayerID++;
+					Debug.Log( "いないから次へ" );
+				} else {
+					_TargetPlayerID--;
+					Debug.Log( "いないから前へ" );
+				}
+			}
+			_TargetPlayerID = (_TargetPlayerID % 4);
+		}
+
+		if( InputGame.GetCameraDemoL( _CameraID ) ) {
+			_AddType = false;
+			_TargetPlayerID--;
+		}
+		if( InputGame.GetCameraDemoR( _CameraID ) ) {
+			_AddType = true;
+			_TargetPlayerID++;
+		}
+
+		_TargetPlayerID = (_TargetPlayerID % 4);
+
+
 	}
 	#endregion Method
 

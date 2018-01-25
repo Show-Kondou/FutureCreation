@@ -80,15 +80,16 @@ public class PlayerJump : PlayerBase {
 		SetVelocityY( _AddForce );    // 速度適応
 
 		// ジャンプインプット
-		if( _Input ) {
+		if( _Input && Status.State != PlayerStatus.STATE.ROLL ) {
 			// ジャンプ
+
 			_State = State.JUMPING;
 			Status.State = PlayerStatus.STATE.JUMP;
 			Status.LowerState = PlayerStatus.STATE.JUMP;
 			_AddForce = Status._JumpForce;
 			_ActionF = Jump;
 
-			Debug.Log( "ジャンプ" );
+			// Debug.Log( "ジャンプ" );
 		}
 	}
 
@@ -172,7 +173,7 @@ public class PlayerJump : PlayerBase {
 
 		_ActionF = Stand;
 
-		Debug.Log( "着地" );
+		// Debug.Log( "着地" );
 	}
 
 	/// <summary>
@@ -195,7 +196,7 @@ public class PlayerJump : PlayerBase {
 		_AddForce = _Gravity * Time.fixedDeltaTime;
 		SetVelocityY( _AddForce );
 		_ActionF = Fall;
-		Debug.Log("落下");
+		// Debug.Log("落下");
 	}
 	
 	#endregion MonoBehaviour Event
