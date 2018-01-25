@@ -26,17 +26,32 @@ public class PlayerManager : MonoBehaviour {
 	public Player _Player_3 = null;
 	public Player _Player_4 = null;
 
-	public Vector3 GetPlayerPos( uint ID ){
-		switch (ID) {
-			case 1: return _Player_1.transform.position;
-			case 2:
+	public Vector3 GetPlayerPos( uint ID ) {
+		switch( ID ) {
+		case 1:
 			return _Player_1.transform.position;
-			case 3:
-			return _Player_1.transform.position;
-			case 4:
-			return _Player_1.transform.position;
-			default:
+		case 2:
+			return _Player_2.transform.position;
+		case 3:
+			return _Player_3.transform.position;
+		case 4:
+			return _Player_4.transform.position;
+		default:
 			return Vector3.zero;
+		}
+	}
+	public int GetPlayerHp( uint ID ) {
+		switch( ID ) {
+		case 1:
+			return _Player_1.PlayerHP;
+		case 2:
+			return _Player_2.PlayerHP;
+		case 3:
+			return _Player_3.PlayerHP;
+		case 4:
+			return _Player_4.PlayerHP;
+		default:
+			return 100;
 		}
 	}
 
