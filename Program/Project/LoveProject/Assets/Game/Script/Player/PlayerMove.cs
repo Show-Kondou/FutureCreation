@@ -55,8 +55,11 @@ public class PlayerMove : PlayerBase {
 	/// 更新（固定フレーム）
 	/// </summary>
 	protected override void FixedExecute() {
-		if( Status._HitPoint <= 0 )
+		if( Status._HitPoint <= 0 ) {
+			_Rigid.velocity = Physics.gravity;
+			Debug.Log("AASD");
 			return;
+		}
 
 		Move(); // 移動処理
 	}
@@ -95,8 +98,11 @@ public class PlayerMove : PlayerBase {
 	/// 移動処理
 	/// </summary>
 	void Move() {
-		if( Status.State == PlayerStatus.STATE.ROLL ) return;
-		if( Status.State == PlayerStatus.STATE.EAT ) return;
+		if( Status.State == PlayerStatus.STATE.ROLL ||
+			Status.State == PlayerStatus.STATE.EAT ) {
+			_Rigid.velocity = Physics.gravity;
+			return;
+		}
 
 		// 最終ベクトル
 		Vector3 vec = Vector3.zero;

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class GameTimer : MonoBehaviour {
 
 	//	メンバ
-	private float timeLimit = 180;	//	秒
+	private float timeLimit = 18;	//	秒
 
 	//	アクセサ
 	public float TimeLimit{get{return timeLimit;}}
@@ -40,6 +40,21 @@ public class GameTimer : MonoBehaviour {
 
 		timeLimit -= Time.deltaTime;	//	秒減らし
 
+		if( timeLimit <= 0.0F ) {
+			PlayerManager.Instance.SavePlayerHP();
+			GameScene.GameState = 2;
+			StartCoroutine( LoadScene() );
+		}
+
+
+	}
+
+
+	private IEnumerator LoadScene() {
+		CSoundManager.Instance.StopBGM();
+		yield return new WaitForSeconds( 2.7F );
+		CSceneManager.Instance.LoadScene( SCENE.RESULT, FADE.Fade_1 );
+		yield return null;
 	}
 
 
