@@ -7,6 +7,9 @@ public class Slash : Item {
 	private bool isHitGuard = false;
 	public bool IsHitGuard{get{return isHitGuard;} set{isHitGuard = value;}}
 
+	private bool isHitPlayer = false;
+	public bool IsHitPlayer{get{return isHitPlayer;} set{isHitPlayer = value;}}
+
 	/// <summary>
 	/// 初期化
 	/// </sammary>
@@ -17,7 +20,7 @@ public class Slash : Item {
 		transform.localEulerAngles = new Vector3(-45.0F,0,0);
 	
 		this.saveAtkPoint = this.AttackPoint;
-		Debug.Log(this.saveAtkPoint + "<save  atk>"+ this.AttackPoint);
+		//Debug.Log(this.saveAtkPoint + "<save  atk>"+ this.AttackPoint);
 	}
 	
 
@@ -63,6 +66,7 @@ public class Slash : Item {
 
 		//	攻撃力をリセット
 		ResetAtkPoint();
+		isHitPlayer = false;
 		
 		//	表示する
 		IsActive = true;
@@ -137,10 +141,16 @@ public class Slash : Item {
 
 			//	ガードと当たって
 			if(isHitGuard) return;
-			//	当たったから攻撃力をゼロに
-			this.saveAtkPoint = this.AttackPoint;
-			this.AttackPoint = 0;
-			Debug.Log("Slash Collision > " + this.AttackPoint);
+
+			if(isHitPlayer){
+				//	当たったから攻撃力をゼロに
+				this.saveAtkPoint = this.AttackPoint;
+				this.AttackPoint = 0;
+				//Debug.Log("Slash Collision > " + this.AttackPoint);
+			}
+			else{
+				isHitPlayer = true;
+			}
 		}
 
 	}

@@ -29,7 +29,7 @@ public class Result : MonoBehaviour {
 
     private uint joinedCount = 0;
 
-    public int[] arrayHP = {100,72,-999,10};//new int[4];
+    public int[] arrayHP = {0,0,0,0};//new int[4];
 
     struct PlayerData{
         public uint    _num;       //  プレイヤー番号
@@ -87,7 +87,7 @@ public class Result : MonoBehaviour {
 
         for(int i = 0; i < 4; i++){
             spot[i].StartLight(ranking[0]._num);
-            // /Debug.Log(ranking[i]._num + " : " + ranking[i]._hp + " : " + ranking[i]._killedPlayer[0] + ranking[i]._killedPlayer[1] + ranking[i]._killedPlayer[2] + ranking[i]._killedPlayer[3]);
+            Debug.Log(ranking[i]._num + " : " + ranking[i]._hp + " : " + ranking[i]._killedPlayer[0] + ranking[i]._killedPlayer[1] + ranking[i]._killedPlayer[2] + ranking[i]._killedPlayer[3]);
         }
 	}
 	
@@ -95,8 +95,8 @@ public class Result : MonoBehaviour {
 	void Update () {
 
         if(isShowRanking){
-            if(AnyPlayerPushedStart()){
-                Debug.LogError("ここでシーン変更呼ぶ");
+            if(AnyPlayerPushedStart() || Input.GetKeyDown(KeyCode.S)){
+                //Debug.LogError("ここでシーン変更呼ぶ");
 				CSoundManager.Instance.StopBGM();
 				CSceneManager.Instance.LoadScene(SCENE.TITLE, FADE.Fade_1);
             }
@@ -166,16 +166,16 @@ public class Result : MonoBehaviour {
     private void RankingSort(){
         //  最終体力    不参加は例外値999を入れる。
         for(uint ply = 1; ply <= 4; ply++){
-            // if(Data.Instance.GetJointPlayerNum(ply) == false) {
-            //     arrayHP[ply-1] = 999;
-            // }
-            // else{
-            //     arrayHP[ply-1] = Data.Instance.GetEndPlayerHP(ply);
-            // }
+            if(Data.Instance.GetJointPlayerNum(ply) == false) {
+                arrayHP[ply-1] = -999;
+            }
+            else{
+                arrayHP[ply-1] = Data.Instance.GetEndPlayerHP(ply-1);
+            }
             ranking[ply-1]._hp = arrayHP[ply-1]; 
             ranking[ply-1]._num = ply;
-            //ranking[ply-1]._killedPlayer = Data.Instance.GetKillPlayer(ply);
-            ranking[ply-1]._killedPlayer = hoge;
+            ranking[ply-1]._killedPlayer = Data.Instance.GetKillPlayer(ply);
+            //ranking[ply-1]._killedPlayer = hoge;
         }
 
 

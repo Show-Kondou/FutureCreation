@@ -26,6 +26,7 @@ public class Bullet : Item {
 
 		// // gantan
 		// Debug.Log("Bullet Start");
+		Debug.Log(isActioning);
     }
 
 	

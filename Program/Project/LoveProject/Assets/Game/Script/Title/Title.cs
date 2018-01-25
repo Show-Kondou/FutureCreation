@@ -53,6 +53,9 @@ public class Title : MonoBehaviour
     public bool IsJoinedPlayer_3 = false;
     public bool IsJoinedPlayer_4 = false;
 
+
+    bool isPushed = false;
+
     // Use this for initialization
     void Start(){
 		CSoundManager.Instance.PlayBGM( AUDIO_LIST.BGM_T, true);
@@ -92,7 +95,7 @@ public class Title : MonoBehaviour
         
         //Debug.Log("AnimeTime: " + cameraAnim.GetCurrentAnimatorStateInfo(0).normalizedTime);
         //  4つのうちのどれかの入力あれば
-        if(AnyStartButton()){
+        if(AnyStartButton() || InputGame.GetPlayerJump(1)){
             //  アニメーション開始
             cameraAnim.SetTrigger("PushButton");
 
@@ -110,6 +113,8 @@ public class Title : MonoBehaviour
     /// 参加待ちステートの時の更新
     /// </summary>
     private void MatchingSceneUpdate(){
+        
+        if(isPushed) return;
 
         //  入力受付
         //  参加待ち
@@ -126,13 +131,15 @@ public class Title : MonoBehaviour
         //  ゲーム開始可能人数に達しているとき
         if(MeetUp()){
             //  STARTボタンの受付
-            if(InputGame.GetStartButton(1)){
+            if(AnyStartButton() || Input.GetKeyDown(KeyCode.S)){
+                isPushed = true;
+
                 PlayerOut();
 				// TODO : シーン変更
-				CSoundManager.Instance.StopBGM();
-				CSceneManager.Instance.LoadScene(SCENE.GAME, FADE.Fade_1);
+				//CSoundManager.Instance.StopBGM();
+				//CSceneManager.Instance.LoadScene(SCENE.GAME, FADE.Fade_1);
+                StartCoroutine(EndPlayerOut());
             }
-            //  シーン変更？
         }
     }
 
@@ -155,10 +162,37 @@ public class Title : MonoBehaviour
     /// 退場
     /// </summary>
     private void PlayerOut(){
-        player[0].GetComponent<PlayerTitle>().OutPlayer(new Vector3(-93.0F, 95.0F, -50.0F));
-        player[1].GetComponent<PlayerTitle>().OutPlayer(new Vector3(-93.0F, 89.0F, -50.0F));
-        player[2].GetComponent<PlayerTitle>().OutPlayer(new Vector3(-81.0F, 95.0F, -50.0F));
-        player[3].GetComponent<PlayerTitle>().OutPlayer(new Vector3(-81.0F, 89.0F, -50.0F));
+        if(IsJoinedPlayer_1)
+            player[0].GetComponent<PlayerTitle>().OutPlayer(new Vector3(-93.0F, 95.0F, -50.0F));
+        if(IsJoinedPlayer_2)
+            player[1].GetComponent<PlayerTitle>().OutPlayer(new Vector3(-93.0F, 89.0F, -50.0F));
+        if(IsJoinedPlayer_3)
+            player[2].GetComponent<PlayerTitle>().OutPlayer(new Vector3(-81.0F, 95.0F, -50.0F));
+        if(IsJoinedPlayer_4)
+            player[3].GetComponent<PlayerTitle>().OutPlayer(new Vector3(-81.0F, 89.0F, -50.0F));
+    }
+
+
+    IEnumerator EndPlayerOut(){
+
+        while(true){
+            if((player[0].transform.position - new Vector3(-93.0F, 95.0F, -50.0F)).magnitude < 1){
+                break;
+            }
+            if((player[1].transform.position - new Vector3(-93.0F, 89.0F, -50.0F)).magnitude < 1){
+                break;
+            }
+            if((player[2].transform.position - new Vector3(-81.0F, 95.0F, -50.0F)).magnitude < 1){
+                break;
+            }
+            if((player[3].transform.position - new Vector3(-81.0F, 89.0F, -50.0F)).magnitude < 1){
+                break;
+            }
+            yield return null;
+        }
+        // TODO : シーン変更
+        CSoundManager.Instance.StopBGM();
+        CSceneManager.Instance.LoadScene(SCENE.GAME, FADE.Fade_1);
     }
 
     //  ----キャンバスのアクティブ操作-------------------------------------------------------------------------------------------------------------
@@ -221,11 +255,17 @@ public class Title : MonoBehaviour
         //4P A
         var p4_A = InputGame.GetPlayerJump(4);
 
+
+        p1_A = Input.GetKeyDown(KeyCode.Alpha1);
+        p2_A = Input.GetKeyDown(KeyCode.Alpha2);
+        p3_A = Input.GetKeyDown(KeyCode.Alpha3);
+        p4_A = Input.GetKeyDown(KeyCode.Alpha4);
+
         //  1PのA入力があったら
         if(p1_A && !IsJoinedPlayer_1){
             //  参加した
             IsJoinedPlayer_1 = true;
-            //JumpSceneData.Instance.JointPlayer(1);
+            JumpSceneData.Instance.JointPlayer(0);
 
             //  UIの表示切替
             matchMoni_1.SetActiveJoined(true);
@@ -235,7 +275,7 @@ public class Title : MonoBehaviour
         if(p2_A && !IsJoinedPlayer_2){
             //  参加した
             IsJoinedPlayer_2 = true;
-            //JumpSceneData.Instance.JointPlayer(2);
+            JumpSceneData.Instance.JointPlayer(1);
 
             //  UIの表示切替
             matchMoni_2.SetActiveJoined(true);
@@ -245,7 +285,7 @@ public class Title : MonoBehaviour
         if(p3_A && !IsJoinedPlayer_3){
             //  参加した
             IsJoinedPlayer_3 = true;
-            //JumpSceneData.Instance.JointPlayer(3);
+            JumpSceneData.Instance.JointPlayer(2);
 
             //  UIの表示切替
             matchMoni_3.SetActiveJoined(true);
@@ -255,7 +295,7 @@ public class Title : MonoBehaviour
         if(p4_A && !IsJoinedPlayer_4){
             //  参加した
             IsJoinedPlayer_4 = true;
-            //JumpSceneData.Instance.JointPlayer(4);
+            JumpSceneData.Instance.JointPlayer(3);
 
             //  UIの表示切替
             matchMoni_4.SetActiveJoined(true);
@@ -278,11 +318,16 @@ public class Title : MonoBehaviour
         //4P B
         var p4_B = InputGame.GetPlayerRoll(4);
         
+        p1_B = Input.GetKeyDown(KeyCode.Alpha5);
+        p2_B = Input.GetKeyDown(KeyCode.Alpha6);
+        p3_B = Input.GetKeyDown(KeyCode.Alpha7);
+        p4_B = Input.GetKeyDown(KeyCode.Alpha8);
+        
         //  1PのB入力があったら
         if(p1_B && IsJoinedPlayer_1){
             //  やっぱやめた
             IsJoinedPlayer_1 = false;
-            //JumpSceneData.Instance.OutPlayer(1);
+            JumpSceneData.Instance.OutPlayer(0);
             
             //  UIの表示切替
             matchMoni_1.SetActiveJoined(false);
@@ -292,7 +337,7 @@ public class Title : MonoBehaviour
         if(p2_B && IsJoinedPlayer_2){
             //  やっぱやめた
             IsJoinedPlayer_2 = false;
-            //JumpSceneData.Instance.OutPlayer(2);
+            JumpSceneData.Instance.OutPlayer(1);
 
             //  UIの表示切替
             matchMoni_2.SetActiveJoined(false);
@@ -302,7 +347,7 @@ public class Title : MonoBehaviour
         if(p3_B && IsJoinedPlayer_3){
             //  やっぱやめた
             IsJoinedPlayer_3 = false;
-            //JumpSceneData.Instance.OutPlayer(3);
+            JumpSceneData.Instance.OutPlayer(2);
 
             //  UIの表示切替
             matchMoni_3.SetActiveJoined(false);
@@ -312,7 +357,7 @@ public class Title : MonoBehaviour
         if(p4_B && IsJoinedPlayer_4){
             //  やっぱやめた
             IsJoinedPlayer_4 = false;
-            //JumpSceneData.Instance.OutPlayer(4);
+            JumpSceneData.Instance.OutPlayer(3);
 
             //  UIの表示切替
             matchMoni_4.SetActiveJoined(false);
